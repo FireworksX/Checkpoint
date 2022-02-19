@@ -1,0 +1,44 @@
+overwrite: true
+schema:
+  - https://scores24.live/graphql:
+      headers:
+        Origin: localhost:4000
+documents: ${DOCUMENTS:src/**/*.gql}
+skipGraphQLImport: false
+hooks:
+  afterOneFileWrite:
+#    - eslint --fix
+generates:
+  src/graphql/codegenTypes.ts:
+    plugins:
+      - typescript
+    config:
+      avoidOptionals:
+        field: true
+        inputValue: false
+        object: false
+        defaultValue: false
+      skipTypename: true
+      maybeValue: T
+      enumsAsTypes: true
+  src/:
+    preset: near-operation-file
+    presetConfig:
+      extension: .tsx
+      baseTypesPath: graphql/codegenTypes.ts
+    plugins:
+      - typescript-operations
+      - typescript-urql
+    config:
+      withHooks: true
+      withComponent: false
+      preResolveTypes: true
+      flattenGeneratedTypes: true
+      avoidOptionals:
+        field: true
+        inputValue: false
+        object: false
+        defaultValue: false
+      skipTypename: true
+      maybeValue: T
+      documentMode: documentNode

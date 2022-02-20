@@ -15,7 +15,7 @@ export const Title = styled.div`
   display: flex;
   align-items: center;
   font-weight: bold;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 `
 
 export const Counter = styled.div`

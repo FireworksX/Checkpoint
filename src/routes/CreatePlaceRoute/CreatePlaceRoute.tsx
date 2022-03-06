@@ -29,8 +29,8 @@ const CreatePlaceRoute: FC<CreatePlaceRouteProps> = ({ className }) => {
         <Styled.HeaderTitle>Create place</Styled.HeaderTitle>
       </Styled.Header>
       <Container>
-        <Styled.Field label='Title' icon='pencil' />
-        <Styled.Field label='Description' icon='pencil' textarea />
+        <Styled.Field label='Title' />
+        <Styled.Field label='Description' textarea />
         <Styled.Submit onClick={onSubmit}>Submit</Styled.Submit>
       </Container>
     </Styled.Root>

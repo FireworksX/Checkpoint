@@ -3,8 +3,9 @@ import PageHeader from 'src/widgets/PageHeader/PageHeader'
 import Counter from './components/Counter/Counter'
 import NotificationsCell from './components/NotificationsCell/NotificationsCell'
 import NotificationsGroup from './components/NotificationsGroup/NotificationsGroup'
+import Page from 'src/widgets/Page/Page'
 
-export const Root = styled.div``
+export const Root = styled(Page)``
 
 export const Header = styled(PageHeader)`
   display: grid;

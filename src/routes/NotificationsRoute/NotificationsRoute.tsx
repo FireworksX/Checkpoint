@@ -3,8 +3,6 @@ import * as Styled from './styles'
 import { ROUTE_NAMES } from 'src/router/constants'
 import { route } from 'src/hoc/route'
 import PageHeaderButtonBack from 'src/widgets/PageHeader/components/PageHeaderButtonBack/PageHeaderButtonBack'
-import NotificationsGroup from './components/NotificationsGroup/NotificationsGroup'
-import {Group} from "./styles";
 
 interface NotificationsRouteProps {
   className?: string

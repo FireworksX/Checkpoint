@@ -23,28 +23,33 @@ export const routes: Route[] = [
         component: routeComponents.HomeRoute
       },
       {
+        name: ROUTE_NAMES.register,
+        path: `/register`,
+        component: routeComponents.ProfileRoute
+      },
+      {
         name: ROUTE_NAMES.profile,
-        path: `/profile`,
+        path: `profile`,
         component: routeComponents.ProfileRoute
       },
       {
         name: ROUTE_NAMES.notifications,
-        path: `/notifications`,
+        path: `notifications`,
         component: routeComponents.NotificationsRoute
       },
       {
         name: ROUTE_NAMES.trends,
-        path: `/trends`,
+        path: `trends`,
         component: routeComponents.TrendsRoute
       },
       {
         name: ROUTE_NAMES.createPlace,
-        path: `/createPlace`,
+        path: `createPlace`,
         component: routeComponents.CreatePlaceRoute
       },
       {
         name: ROUTE_NAMES.welcome,
-        path: `/welcome`,
+        path: `welcome`,
         component: routeComponents.WelcomeRoute
       }
     ]

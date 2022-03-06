@@ -15,13 +15,13 @@ const { urqlClient } = createApiClients('')
 
 ReactDOM.render(
   <React.StrictMode>
-    <StoreProvider>
-      <Provider value={urqlClient}>
-        <RouterProvider router={router}>
+    <RouterProvider router={router}>
+      <StoreProvider>
+        <Provider value={urqlClient}>
           <RootRoute />
-        </RouterProvider>
-      </Provider>
-    </StoreProvider>
+        </Provider>
+      </StoreProvider>
+    </RouterProvider>
   </React.StrictMode>,
   document.getElementById('root')
 )

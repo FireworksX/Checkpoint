@@ -1,18 +1,21 @@
-import React from 'react'
+import React, { FC } from 'react'
 import AppHelpers from 'src/widgets/AppHelpers/AppHelpers'
 import * as Styled from './styles'
 import { GlobalStyle } from 'src/styles/GlobalStyle'
 import { route } from 'src/hoc/route'
 import { ROUTE_NAMES } from 'src/router/constants'
 import 'src/utils/dayjs-timezone'
+import { useStore } from 'src/store'
 
-const RootRoute: React.FC = ({ children }) => {
+const RootRoute: FC = ({ children }) => {
+  const { hasNavigation } = useStore.uiStore()
+
   return (
     <AppHelpers>
       <GlobalStyle />
       <Styled.Root>
         {children}
-        <Styled.Navigation />
+        <Styled.Navigation hasNavigation={hasNavigation} />
       </Styled.Root>
     </AppHelpers>
   )

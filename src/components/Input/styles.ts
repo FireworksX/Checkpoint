@@ -57,10 +57,10 @@ const fieldBase = css<Props>`
   outline: none;
   ${({ theme, hasIcon }) => css`
     padding-left: ${hasIcon && '30px'};
-    border-radius: ${theme.baseStyles.radius.radiusSecond};
+    border-radius: ${theme.baseStyles.radius.radiusMain};
     border: none;
-    border-bottom: 2px solid ${theme.colors.border};
-    background: transparent;
+    resize: none;
+    background: ${({ theme }) => theme.colors.border};
     transition: background-color ${theme.animation.transitionDuration},
       border-color ${theme.animation.transitionDuration};
   `}

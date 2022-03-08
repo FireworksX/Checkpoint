@@ -55,7 +55,7 @@ const CommonLogo: React.FC<CommonLogoProps> = ({
         <picture>
           <source suppressHydrationWarning data-srcset={`${x1} 1x, ${x3} 2x`} media='(min-width: 1600px)' />
           <source suppressHydrationWarning data-srcset={`${x1} 1x, ${x2} 2x`} media='(min-width: 320px)' />
-          <Styled.Image suppressHydrationWarning src={x1} size={size} alt={alt || iso} />
+          <Styled.Image src={x1} size={size} alt={alt || iso} />
         </picture>
       </Styled.Root>
     )

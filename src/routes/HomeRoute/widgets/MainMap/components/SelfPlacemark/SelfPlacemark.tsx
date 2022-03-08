@@ -1,8 +1,8 @@
 import { FC } from 'react'
 import * as Styled from './styles'
-import { PlacemarkType } from 'src/widgets/MainMap/MainMap'
+import { Coords } from 'google-map-react'
 
-interface SelfPlacemarkProps extends PlacemarkType {
+interface SelfPlacemarkProps extends Coords {
   className?: string
 }
 

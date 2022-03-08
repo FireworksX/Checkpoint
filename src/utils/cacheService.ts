@@ -1,15 +1,21 @@
-const localStorage = window.localStorage
+import isBrowser from './isBrowser'
+
 const PREFIX = 'placesato'
 
 export const cacheService = () => {
+  const localStorage = isBrowser && window.localStorage
+
   const addItem = (key: string, value: any) => {
-    localStorage.setItem(`${PREFIX}-${key}`, JSON.stringify(value))
+    if (localStorage) {
+      localStorage.setItem(`${PREFIX}-${key}`, JSON.stringify(value))
+    }
   }
 
   const getItem = (key: string) => {
-    const value = localStorage.getItem(`${PREFIX}-${key}`)
-
-    return value ? JSON.parse(value) : value
+    if (localStorage) {
+      const value = localStorage.getItem(`${PREFIX}-${key}`)
+      return value ? JSON.parse(value) : value
+    }
   }
 
   return {

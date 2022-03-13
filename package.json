@@ -7,7 +7,7 @@
     "build:client": "vite build --outDir dist/client",
     "build:server": "vite build --ssr src/entryServer.tsx --outDir dist/server",
     "serve": "cross-env NODE_ENV=production nodemon server/index.ts",
-    "deploy": "yarn build & yarn serve",
+    "deploy": "yarn build && yarn serve",
     "preview": "vite preview",
     "cc": "create-component",
     "gql-codegen": "graphql-codegen --require ./gql-generate-init --documents "

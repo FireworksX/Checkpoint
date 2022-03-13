@@ -1,6 +1,6 @@
 import { defineConfig, loadEnv, UserConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import viteSvgIcons from 'vite-plugin-svg-icons'
+import {createSvgIconsPlugin} from 'vite-plugin-svg-icons'
 import * as path from 'path'
 
 // https://vitejs.dev/config/
@@ -28,7 +28,7 @@ export default ({ mode }: UserConfig) => {
     },
     plugins: [
       react(),
-      viteSvgIcons({
+      createSvgIconsPlugin({
         iconDirs: [path.resolve(__dirname, './src/svg')],
         symbolId: '[name]'
       })

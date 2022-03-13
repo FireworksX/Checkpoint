@@ -23,11 +23,6 @@ export const routes: Route[] = [
         component: routeComponents.HomeRoute
       },
       {
-        name: ROUTE_NAMES.register,
-        path: `/register`,
-        component: routeComponents.ProfileRoute
-      },
-      {
         name: ROUTE_NAMES.profile,
         path: `profile`,
         component: routeComponents.ProfileRoute

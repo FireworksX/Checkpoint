@@ -5,7 +5,6 @@ import NotificationsRoute from './NotificationsRoute/NotificationsRoute'
 import TrendsRoute from './TrendsRoute/TrendsRoute'
 import CreatePlaceRoute from './CreatePlaceRoute/CreatePlaceRoute'
 import WelcomeRoute from './WelcomeRoute/WelcomeRoute'
-import RegisterRoute from './RegisterRoute/RegisterRoute'
 
 export default {
   RootRoute,
@@ -14,6 +13,5 @@ export default {
   NotificationsRoute,
   TrendsRoute,
   CreatePlaceRoute,
-  WelcomeRoute,
-  RegisterRoute
+  WelcomeRoute
 }

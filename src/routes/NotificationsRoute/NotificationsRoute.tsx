@@ -3,6 +3,7 @@ import * as Styled from './styles'
 import { ROUTE_NAMES } from 'src/router/constants'
 import { route } from 'src/hoc/route'
 import PageHeaderButtonBack from 'src/widgets/PageHeader/components/PageHeaderButtonBack/PageHeaderButtonBack'
+import { withValidateUser } from 'src/hoc/withValidateUser'
 
 interface NotificationsRouteProps {
   className?: string
@@ -138,4 +139,4 @@ const NotificationsRoute: FC<NotificationsRouteProps> = ({ className }) => {
   )
 }
 
-export default route(NotificationsRoute, ROUTE_NAMES.notifications)
+export default route(withValidateUser(NotificationsRoute), ROUTE_NAMES.notifications)

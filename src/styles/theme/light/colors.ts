@@ -2,9 +2,9 @@
 
 const baseColors = {
   basicWhite: 'rgb(255, 255, 255)',
-  basicBlack: 'rgb(41 41 41)',
+  basicBlack: 'rgb(41, 41, 41)',
 
-  primary: 'rgb(0 51 255)',
+  primary: 'rgb(0, 51, 255)',
   primaryHover: 'rgb(98, 145, 80)',
   primaryPress: 'rgb(78, 119, 65)',
   primaryDisable: 'rgb(208, 226, 202)',

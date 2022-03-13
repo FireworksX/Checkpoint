@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import Page from 'src/widgets/Page/Page'
 import Container from 'src/components/Container/Container'
+import Carousel from 'src/components/Carousel/Carousel'
 
 export const Root = styled(Page)`
   position: relative;
@@ -11,15 +12,16 @@ export const Overlay = styled.div`
   top: 0;
   left: 0;
   width: 100%;
-  height: 60vh;
+  height: 30vh;
   background: ${({ theme }) => theme.colors.primary};
   border-radius: 35px;
-  transform: translateY(-50px) skew(-8deg) rotate(-8deg);
+  transform: translateY(-60px) skew(-8deg) rotate(-8deg);
 `
 
 export const OverlayTexts = styled(Container)`
   position: relative;
-  height: 60vh;
+  padding-top: 20px;
+  height: 30vh;
 `
 
 export const HeaderLabel = styled.div`
@@ -41,3 +43,5 @@ export const Description = styled.h2`
   ${({ theme }) => theme.typography.text_14_24};
   color: ${({ theme }) => theme.colors.basicWhite};
 `
+
+export const Slider = styled(Carousel)``

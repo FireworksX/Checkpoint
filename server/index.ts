@@ -1,10 +1,23 @@
 require('dotenv').config()
+import { Request, Response } from 'express'
 const fs = require('fs')
 const path = require('path')
 const express = require('express')
+const bodyParser = require('body-parser')
+const cookieParser = require('cookie-parser')
+const apiRouter = require('./api')()
 
 const isTest = process.env.NODE_ENV === 'test' || !!process.env.VITE_TEST_BUILD
 const port = process.env.VITE_PORT || 3000
+
+export interface AppContext {
+  redirect?: {
+    path?: string
+    status?: number
+  }
+  req: Request
+  res: Response
+}
 
 async function createServer(root = process.cwd(), isProd = process.env.NODE_ENV === 'production') {
   const resolve = (p: string) => path.resolve(__dirname, p)
@@ -12,6 +25,12 @@ async function createServer(root = process.cwd(), isProd = process.env.NODE_ENV 
   const indexProd = isProd ? fs.readFileSync(resolve('../dist/client/index.html'), 'utf-8') : ''
 
   const app = express()
+
+  app.use(bodyParser.urlencoded({ extended: false }))
+  app.use(bodyParser.json())
+  app.use(cookieParser('secret key'))
+
+  app.use('/api', apiRouter)
 
   let vite: any
   if (!isProd) {
@@ -54,12 +73,19 @@ async function createServer(root = process.cwd(), isProd = process.env.NODE_ENV 
         render = require('../dist/server/entryServer.js').render
       }
 
-      const context: any = {}
-      const { appHtml, stylesTags } = render(url, context)
+      const context: AppContext = {
+        req,
+        res,
+        redirect: {
+          path: undefined,
+          status: 301
+        }
+      }
+      const { appHtml, stylesTags } = await render(url, context)
 
-      if (context.url) {
+      if (context.redirect?.path) {
         // Somewhere a `<Redirect>` was rendered
-        return res.redirect(301, context.url)
+        return res.redirect(context.redirect?.status || 301, context.redirect?.path)
       }
 
       const html = template.replace(`<!--app-html-->`, appHtml).replace(`<!--app-styles-->`, stylesTags)

@@ -6,12 +6,15 @@ import MainMap from './widgets/MainMap/MainMap'
 import Icon from 'src/components/Icon/Icon'
 import { useMapCreation } from './hooks/useMapCreation'
 import CreationPlacemark from './components/CreationPlacemark/CreationPlacemark'
+import { useKeepNavigation } from 'src/hooks/keepNavigation'
+import { withValidateUser } from 'src/hoc/withValidateUser'
 
 interface HomeRouteProps {
   className?: string
 }
 
 const HomeRoute: FC<HomeRouteProps> = ({ className }) => {
+  useKeepNavigation(true)
   const { isCreation, onToggleIsCreation } = useMapCreation()
 
   return (
@@ -30,4 +33,4 @@ const HomeRoute: FC<HomeRouteProps> = ({ className }) => {
   )
 }
 
-export default route(HomeRoute, ROUTE_NAMES.root)
+export default route(withValidateUser(HomeRoute), ROUTE_NAMES.root)

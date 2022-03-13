@@ -3,22 +3,25 @@ import * as Styled from './styles'
 import { route } from 'src/hoc/route'
 import { ROUTE_NAMES } from 'src/router/constants'
 import PageHeaderButtonBack from 'src/widgets/PageHeader/components/PageHeaderButtonBack/PageHeaderButtonBack'
-import {Description, FollowButton} from './styles'
+import { useCurrentUser } from 'src/hooks/data/useCurrentUser'
+import { withValidateUser } from 'src/hoc/withValidateUser'
 
 interface ProfileRouteProps {
   className?: string
 }
 
 const ProfileRoute: FC<ProfileRouteProps> = ({ className }) => {
+  const { data } = useCurrentUser()
+
   return (
     <Styled.Root className={className}>
       <Styled.Header>
         <PageHeaderButtonBack />
-        <Styled.HeaderTitle>@fireworksx</Styled.HeaderTitle>
+        <Styled.HeaderTitle>@{data?.data?.login}</Styled.HeaderTitle>
       </Styled.Header>
       <Styled.Avatar src='https://avatars.githubusercontent.com/u/22668125?v=4' />
       <Styled.Name>Arthur Abeltinsh</Styled.Name>
-      <Styled.Description>I love traveling and i do enjoy taking photos of tourist attractions.</Styled.Description>
+      <Styled.Description>{data?.data?.bio}</Styled.Description>
       <Styled.Row>
         <Styled.Group>
           <Styled.GroupTitle>Followers</Styled.GroupTitle>
@@ -48,4 +51,4 @@ const ProfileRoute: FC<ProfileRouteProps> = ({ className }) => {
   )
 }
 
-export default route(ProfileRoute, ROUTE_NAMES.profile)
+export default route(withValidateUser(ProfileRoute), ROUTE_NAMES.profile)

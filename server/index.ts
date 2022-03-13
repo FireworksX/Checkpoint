@@ -1,4 +1,7 @@
 require('dotenv').config()
+require('dotenv').config({
+  path: '.env.local'
+})
 import { Request, Response } from 'express'
 const fs = require('fs')
 const path = require('path')
@@ -34,7 +37,7 @@ async function createServer(root = process.cwd(), isProd = process.env.NODE_ENV 
 
   app.use(bodyParser.urlencoded({ extended: false }))
   app.use(bodyParser.json())
-  app.use(cookieParser('secret key'))
+  app.use(cookieParser(process.env.COOKIE_SALT))
   app.use('/api', apiRouter)
 
   let vite: any
@@ -62,7 +65,6 @@ async function createServer(root = process.cwd(), isProd = process.env.NODE_ENV 
       })
     )
   }
-
 
   app.use('*', async (req: any, res: any) => {
     try {
@@ -106,7 +108,6 @@ async function createServer(root = process.cwd(), isProd = process.env.NODE_ENV 
       res.status(500).end(e.stack)
     }
   })
-
 
   return { app, vite }
 }

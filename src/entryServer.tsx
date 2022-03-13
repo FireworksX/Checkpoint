@@ -13,19 +13,37 @@ export async function render(url: string, ctx: AppContext) {
   router.start(url)
 
   const fetcher: AppFetcherType = (resource, init) =>
-    nodeFetch(`${ctx.req.baseUrl}/api${resource}`, init).then(res => res.json())
+    nodeFetch(`${ctx.req.protocol}://${ctx.req.header('host')}/api${resource}`, {
+      headers: {
+        cookie: cookieManager.getAllByString()
+      }
+    }).then(res => res.json())
 
-  const Application = <App router={router} cookieManager={cookieManager} fetcher={fetcher} />
+  const cacheManager = new Map()
+
+  const Application = (
+    <App router={router} cookieManager={cookieManager} fetcher={fetcher} cacheManager={cacheManager} />
+  )
 
   const sheet = new ServerStyleSheet()
   const styledChunks = sheet.collectStyles(Application)
 
   await ssrPrepass(styledChunks)
-
   const appHtml = ReactDOMServer.renderToString(styledChunks)
+
+  const appCache: any = {}
+  cacheManager.forEach((value, key) => (appCache[key] = value))
+
+  const appCacheTags = `
+    <script>
+      window.__APP__CACHE__ = ${JSON.stringify(appCache)}
+    </script>
+  `
 
   return {
     appHtml,
+    appCache,
+    appCacheTags,
     stylesTags: sheet.getStyleTags()
   }
 }

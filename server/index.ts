@@ -10,6 +10,12 @@ const apiRouter = require('./api')()
 const isTest = process.env.NODE_ENV === 'test' || !!process.env.VITE_TEST_BUILD
 const port = process.env.VITE_PORT || 3000
 
+declare global {
+  interface Window {
+    __APP__CACHE__: Record<string, any>
+  }
+}
+
 export interface AppContext {
   redirect?: {
     path?: string
@@ -29,7 +35,6 @@ async function createServer(root = process.cwd(), isProd = process.env.NODE_ENV 
   app.use(bodyParser.urlencoded({ extended: false }))
   app.use(bodyParser.json())
   app.use(cookieParser('secret key'))
-
   app.use('/api', apiRouter)
 
   let vite: any
@@ -58,6 +63,7 @@ async function createServer(root = process.cwd(), isProd = process.env.NODE_ENV 
     )
   }
 
+
   app.use('*', async (req: any, res: any) => {
     try {
       const url = req.originalUrl
@@ -81,14 +87,17 @@ async function createServer(root = process.cwd(), isProd = process.env.NODE_ENV 
           status: 301
         }
       }
-      const { appHtml, stylesTags } = await render(url, context)
+      const { appHtml, stylesTags, appCacheTags } = await render(url, context)
 
       if (context.redirect?.path) {
         // Somewhere a `<Redirect>` was rendered
         return res.redirect(context.redirect?.status || 301, context.redirect?.path)
       }
 
-      const html = template.replace(`<!--app-html-->`, appHtml).replace(`<!--app-styles-->`, stylesTags)
+      const html = template
+        .replace(`<!--app-html-->`, appHtml)
+        .replace(`<!--app-styles-->`, stylesTags)
+        .replace(`<!--app-cache-->`, appCacheTags)
 
       res.status(200).set({ 'Content-Type': 'text/html' }).end(html)
     } catch (e: any) {
@@ -97,6 +106,7 @@ async function createServer(root = process.cwd(), isProd = process.env.NODE_ENV 
       res.status(500).end(e.stack)
     }
   })
+
 
   return { app, vite }
 }

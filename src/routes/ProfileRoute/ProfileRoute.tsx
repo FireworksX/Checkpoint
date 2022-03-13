@@ -5,6 +5,7 @@ import { ROUTE_NAMES } from 'src/router/constants'
 import PageHeaderButtonBack from 'src/widgets/PageHeader/components/PageHeaderButtonBack/PageHeaderButtonBack'
 import { useCurrentUser } from 'src/hooks/data/useCurrentUser'
 import { withValidateUser } from 'src/hoc/withValidateUser'
+import useCookies from "../../hooks/useCookies";
 
 interface ProfileRouteProps {
   className?: string

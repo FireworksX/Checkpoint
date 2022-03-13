@@ -1,5 +1,5 @@
 import { RouterProvider } from 'react-router5'
-import { SWRConfig } from 'swr'
+import { SWRConfig, Cache } from 'swr'
 import axios from 'axios'
 import { StoreProvider } from './store'
 import RootRoute from './routes/RootRoute/RootRoute'
@@ -8,6 +8,7 @@ import { DefaultDependencies, Router } from 'router5/dist/types/router'
 import { CookieProvider } from './services/cookie/CookieProvider'
 import { CookieManager } from './interfaces/CookieManager'
 import 'virtual:svg-icons-register'
+import isBrowser from 'src/utils/isBrowser'
 
 export type AppFetcherType = (resource: string, init: any) => Promise<unknown>
 
@@ -15,9 +16,10 @@ interface Props {
   router: Router<DefaultDependencies>
   cookieManager: CookieManager
   fetcher: AppFetcherType
+  cacheManager: Cache
 }
 
-export const App: FC<Props> = ({ router, cookieManager, fetcher }) => {
+export const App: FC<Props> = ({ router, cookieManager, fetcher, cacheManager }) => {
   return (
     <React.StrictMode>
       <CookieProvider cookieManager={cookieManager}>
@@ -25,8 +27,9 @@ export const App: FC<Props> = ({ router, cookieManager, fetcher }) => {
           <StoreProvider>
             <SWRConfig
               value={{
+                provider: () => cacheManager,
                 fetcher,
-                suspense: true
+                suspense: !isBrowser
               }}
             >
               <RootRoute />

@@ -26,7 +26,13 @@ export const clientCookieManager = <T extends string = string>(prefix = ''): Coo
     document.cookie = [`${prefix}${name}=${value}`, `expires=${date.toUTCString()}`, 'path=/'].join('; ')
   }
 
+  const getAllByString = () => {
+    const allItems = getAll()
+    return Object.keys(allItems).map((key) => `${key}=${allItems[key]}`).join('; ')
+  }
+
   return {
+    getAllByString,
     get,
     getAll,
     set

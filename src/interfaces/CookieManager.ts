@@ -3,6 +3,7 @@ import { Request, Response } from 'express'
 export interface CookieManager<T extends string = string> {
   get(name: T): string
   getAll(): Record<T, string>
+  getAllByString(): string
   set(name: T, value: string, days?: number): void
 }
 

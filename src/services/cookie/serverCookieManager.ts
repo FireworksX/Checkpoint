@@ -20,9 +20,15 @@ export const serverCookieManager = <T extends string = string>(
     res.cookie(`${prefix}${name}`, value, { maxAge })
   }
 
+  const getAllByString = () => {
+    const allItems = getAll()
+    return Object.keys(allItems).map((key) => `${key}=${allItems[key]}`).join('; ')
+  }
+
   return {
     get,
     getAll,
+    getAllByString,
     set
   }
 }

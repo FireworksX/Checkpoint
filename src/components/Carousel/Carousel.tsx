@@ -1,8 +1,7 @@
-import { FC, useCallback, useEffect, useState } from 'react'
+import React, { FC, useCallback, useEffect, useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Swiper as SwiperClass } from 'swiper'
 import './swiper.min.css'
-import React from 'react'
 
 interface CarouselProps {
   className?: string

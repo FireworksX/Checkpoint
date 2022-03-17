@@ -6,7 +6,7 @@
     "build": "yarn build:client && yarn build:server",
     "build:client": "vite build --outDir dist/client",
     "build:server": "vite build --ssr src/entryServer.tsx --outDir dist/server",
-    "serve": "cross-env NODE_ENV=production nodemon server/index.ts",
+    "serve": "cross-env NODE_ENV=production nodemon -O '{\"module\": \"commonjs\"}' server/index.ts",
     "deploy": "yarn build && yarn serve",
     "preview": "vite preview",
     "cc": "create-component",
@@ -36,7 +36,7 @@
     "router5": "^8.0.1",
     "router5-plugin-browser": "^8.0.1",
     "styled-components": "^5.3.3",
-    "swiper": "^8.0.7",
+    "swiper": "^6.5.0",
     "swr": "^1.2.2",
     "urql": "^2.0.6",
     "vite-plugin-svg-icons": "^2.0.1"

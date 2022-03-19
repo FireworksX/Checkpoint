@@ -1,3 +1,4 @@
+import { apiEndpoints } from 'src/data/apiEndpoints'
 import { useMutation } from 'src/hooks/useMutation'
 import { UserInterface } from 'src/interfaces/UserInterface'
 
@@ -7,16 +8,14 @@ interface Props {
 }
 
 export const useLoginUser = () => {
-  const { fetching, execute, mutate } = useMutation<UserInterface, Props>('/auth/login')
+  const { fetching, execute, mutate } = useMutation<UserInterface, Props>(apiEndpoints.AUTH_LOGIN)
 
   return {
     execute: async (data: Props) => {
       const response = await execute(data)
 
-      console.log(response);
-
       if (response.success) {
-        mutate('/users/profile', response.data, false)
+        mutate(apiEndpoints.USERS_PROFILE, response.data, true)
       }
 
       return response

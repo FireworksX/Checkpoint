@@ -1,4 +1,5 @@
 import { RouterProvider } from 'react-router5'
+import { RecoilRoot } from 'recoil'
 import { SWRConfig, Cache } from 'swr'
 import axios from 'axios'
 import { StoreProvider } from './store'
@@ -24,17 +25,19 @@ export const App: FC<Props> = ({ router, cookieManager, fetcher, cacheManager })
     <React.StrictMode>
       <CookieProvider cookieManager={cookieManager}>
         <RouterProvider router={router}>
-          <StoreProvider>
-            <SWRConfig
-              value={{
-                provider: () => cacheManager,
-                fetcher,
-                suspense: !isBrowser
-              }}
-            >
-              <RootRoute />
-            </SWRConfig>
-          </StoreProvider>
+          <RecoilRoot>
+            <StoreProvider>
+              <SWRConfig
+                value={{
+                  provider: () => cacheManager,
+                  fetcher,
+                  suspense: !isBrowser
+                }}
+              >
+                <RootRoute />
+              </SWRConfig>
+            </StoreProvider>
+          </RecoilRoot>
         </RouterProvider>
       </CookieProvider>
     </React.StrictMode>

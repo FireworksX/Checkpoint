@@ -4,23 +4,14 @@ import PageHeaderButtonBack from 'src/widgets/PageHeader/components/PageHeaderBu
 import Container from 'src/components/Container/Container'
 import { useStore } from 'src/store'
 import { useRouter } from 'src/hooks/useRouter'
+import { useCreatePlaceRoute } from './hooks/useCreatePlaceRoute'
 
 interface CreatePlaceRouteProps {
   className?: string
 }
 
 const CreatePlaceRoute: FC<CreatePlaceRouteProps> = ({ className }) => {
-  const { back } = useRouter()
-  const { saveCenter, addPlacemark } = useStore.mapStore()
-
-  const onSubmit = () => {
-    addPlacemark({
-      id: Math.random(),
-      lat: saveCenter?.lat,
-      lng: saveCenter.lng
-    })
-    back()
-  }
+  const { register, onSubmit } = useCreatePlaceRoute()
 
   return (
     <Styled.Root className={className}>
@@ -28,11 +19,15 @@ const CreatePlaceRoute: FC<CreatePlaceRouteProps> = ({ className }) => {
         <PageHeaderButtonBack />
         <Styled.HeaderTitle>Create place</Styled.HeaderTitle>
       </Styled.Header>
-      <Container>
-        <Styled.Field label='Title' />
-        <Styled.Field label='Description' textarea />
-        <Styled.Submit onClick={onSubmit}>Submit</Styled.Submit>
-      </Container>
+      <form onSubmit={onSubmit}>
+        <Container>
+          <Styled.Field label='Title' {...register('title', { required: true, minLength: 3, maxLength: 100 })} />
+          <Styled.Field label='Description' textarea {...register('description')} />
+          <Styled.Field label='Latitude' disabled {...register('lat', { required: true })} />
+          <Styled.Field label='Longitude' disabled {...register('lng', { required: true })} />
+          <Styled.Submit type='submit'>Submit</Styled.Submit>
+        </Container>
+      </form>
     </Styled.Root>
   )
 }

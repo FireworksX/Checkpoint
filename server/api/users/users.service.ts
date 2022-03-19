@@ -1,12 +1,14 @@
 import { Response, Request } from 'express'
-import { UserInterface } from '../auth/auth.service'
-import { fileControl } from '../../helpers/fileControl'
+import { UserInterface } from 'server/interfaces/UserInterface'
 const { AUTH_USER_KEY } = require('../auth/auth.service')()
+import FileControl from 'server/helpers/fileControl'
+import { AppResponse } from 'server/interfaces/Request'
+const fileControl: typeof FileControl = require('../../helpers/fileControl')
 
 module.exports = () => {
   const usersTable = fileControl<UserInterface[]>('server/data/users.json')
 
-  const profile = (req: Request, res: Response) => {
+  const profile = (req: Request, res: AppResponse<UserInterface>) => {
     const currentUser = req.cookies[AUTH_USER_KEY]
 
     if (currentUser) {

@@ -22,7 +22,7 @@ export const Field = styled(Input)`
   margin-bottom: 30px;
 `
 
-export const Submit = styled(Touchable)`
+export const Submit = styled(Touchable).attrs({ tagName: 'button' })`
   width: 100%;
   background: ${({ theme }) => theme.colors.primary};
   ${({ theme }) => theme.typography.text_16_20}

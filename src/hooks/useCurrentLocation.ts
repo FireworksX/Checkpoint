@@ -1,17 +1,20 @@
 import { useEffect, useState } from 'react'
+import { useRecoilState } from 'recoil'
 import { cacheService } from 'src/utils/cacheService'
+import { userCurrentLocationAtom } from 'src/store/userStore'
 
 export const useCurrentLocation = () => {
-  const [currentLocation, setCurrentLocation] = useState<GeolocationPosition['coords'] | undefined>(
-    cacheService().getItem('selfLocation')
-  )
+  const [currentLocation, setCurrentLocation] = useRecoilState(userCurrentLocationAtom)
 
   useEffect(() => {
     window.navigator.geolocation.getCurrentPosition(({ coords }) => {
-      setCurrentLocation(coords)
+      setCurrentLocation({
+        lat: coords?.latitude,
+        lng: coords?.longitude
+      })
 
       if (coords) {
-        cacheService().addItem('selfLocation', { latitude: coords.latitude, longitude: coords.longitude })
+        cacheService().addItem('selfLocation', { lat: coords.latitude, lng: coords.longitude })
       }
     })
   }, [])

@@ -37,9 +37,9 @@ const MapWrapper: FC<MapWrapperProps> = ({ className, children, zoom, center, on
   return (
     <GoogleMapReact
       options={{
-        styles: mapStyles,
         zoomControl: false,
-        fullscreenControl: false
+        fullscreenControl: false,
+        mapId: 'e7e50c35fc383495'
       }}
       yesIWantToUseGoogleMapApiInternals
       onGoogleApiLoaded={apiHasLoaded}

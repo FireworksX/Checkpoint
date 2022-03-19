@@ -1,8 +1,7 @@
 import { useSWRConfig } from 'swr'
 import { useCallback, useState } from 'react'
 import { useApiClient } from './useApiClient'
-
-type ResponseType<T = any> = { success: boolean, data: T }
+import { ApiResponseBody } from 'server/interfaces/Request'
 
 export const useMutation = <RESDATA = any, DATA = any>(path: string) => {
   const apiClient = useApiClient()
@@ -12,7 +11,7 @@ export const useMutation = <RESDATA = any, DATA = any>(path: string) => {
   const execute = useCallback(
     async (data?: DATA) => {
       setFetching(true)
-      const response = (await apiClient.post<ResponseType<RESDATA>>(path, data)).data
+      const response = (await apiClient.post<ApiResponseBody<RESDATA>>(path, data)).data
       setFetching(false)
 
       return response

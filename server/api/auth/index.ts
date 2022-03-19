@@ -7,11 +7,10 @@
 // router.post('/verify-email', validate(authValidation.verifyEmail), authController.verifyEmail)
 
 module.exports = () => {
-  const { register, login } = require('./auth.service')()
+  const { login } = require('./auth.service')()
   const express = require('express')
   const router = express.Router()
 
-  router.post('/register', register)
   router.post('/login', login)
 
   return router

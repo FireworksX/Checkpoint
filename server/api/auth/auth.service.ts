@@ -1,25 +1,20 @@
 import { Request, Response } from 'express'
-import { fileControl } from '../../helpers/fileControl'
-
-export interface UserInterface {
-  email: string
-  login: string
-  password: string
-  bio?: string
-}
-
+import { UserInterface } from 'server/interfaces/UserInterface'
+import FileControl from 'server/helpers/fileControl'
+import { AppResponse } from 'server/interfaces/Request'
+const fileControl: typeof FileControl = require('../../helpers/fileControl')
 
 module.exports = () => {
   const AUTH_USER_KEY = 'pl-profile'
   const usersTable = fileControl<UserInterface[]>('server/data/users.json')
 
-  const register = (req: Request, res: Response) => {
-    setTimeout(() => {
-      res.json({ status: 'ok' })
-    }, 1000)
-  }
+  // const register = (req: Request, res: AppResponse<any>) => {
+  //   setTimeout(() => {
+  //     res.json({ status: 'ok' })
+  //   }, 1000)
+  // }
 
-  const login = (req: Request, res: Response) => {
+  const login = (req: Request, res: AppResponse<UserInterface>) => {
     const { login, password } = req.body
     const users = usersTable.getFileData()
 
@@ -35,7 +30,7 @@ module.exports = () => {
 
   return {
     AUTH_USER_KEY,
-    register,
+    // register,
     login
   }
 }

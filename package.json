@@ -1,6 +1,9 @@
 {
   "name": "scoresmobile",
   "version": "0.0.0",
+  "engines" : {
+    "node" : "14.18.3"
+  },
   "scripts": {
     "dev": "nodemon --ignore src --ignore server/data -O '{\"module\": \"commonjs\"}' server/index.ts",
     "build": "yarn build:client && yarn build:server",

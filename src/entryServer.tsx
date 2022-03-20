@@ -1,5 +1,6 @@
 import ReactDOMServer from 'react-dom/server'
 import { ServerStyleSheet } from 'styled-components'
+import nodeFetch from 'node-fetch'
 import { App, AppFetcherType } from './App'
 import { configureRouter } from './router/configureRouter'
 import { serverCookieManager } from './services/cookie/serverCookieManager'
@@ -12,13 +13,11 @@ export async function render(url: string, ctx: AppContext) {
   router.start(url)
 
   const fetcher: AppFetcherType = (resource, init) =>
-    import('node-fetch').then(({ default: nodeFetch }) =>
-      nodeFetch(`${ctx.req.protocol}://${ctx.req.header('host')}/api${resource}`, {
-        headers: {
-          cookie: cookieManager.getAllByString()
-        }
-      }).then(res => res.json())
-    )
+    nodeFetch(`${ctx.req.protocol}://${ctx.req.header('host')}/api${resource}`, {
+      headers: {
+        cookie: cookieManager.getAllByString()
+      }
+    }).then(res => res.json())
 
   const cacheManager = new Map()
 

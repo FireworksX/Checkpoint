@@ -1,14 +1,15 @@
 import React, { FC } from 'react'
+import { useRecoilValue } from 'recoil'
 import AppHelpers from 'src/widgets/AppHelpers/AppHelpers'
 import * as Styled from './styles'
 import { GlobalStyle } from 'src/styles/GlobalStyle'
 import { route } from 'src/hoc/route'
 import { ROUTE_NAMES } from 'src/router/constants'
 import 'src/utils/dayjs-timezone'
-import { useStore } from 'src/store'
+import { hasNavigationAtom } from 'src/store/uiStore'
 
 const RootRoute: FC = ({ children }) => {
-  const { hasNavigation } = useStore.uiStore()
+  const hasNavigation = useRecoilValue(hasNavigationAtom)
 
   return (
     <AppHelpers>

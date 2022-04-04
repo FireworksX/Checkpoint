@@ -31,7 +31,5 @@ export const useRequest = <Data = any, Error = any, SWRKey extends Key = Key>(
   const qs = usp.toString()
   const resultUrl = qs ? `${url}?${qs}` : url
 
-  return revalidate
-    ? useSWR<ApiResponseBody<Data>>(!pause && resultUrl)
-    : useSWRImmutable<ApiResponseBody<Data>>(!pause && resultUrl)
+  return useSWR<ApiResponseBody<Data>>(!pause && resultUrl)
 }

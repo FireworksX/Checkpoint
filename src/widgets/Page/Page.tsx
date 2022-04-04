@@ -1,6 +1,7 @@
 import { FC } from 'react'
+import { hasNavigationAtom } from 'src/store/uiStore'
 import * as Styled from './styles'
-import { useStore } from 'src/store'
+import { useRecoilValue } from 'recoil'
 
 interface PageProps {
   safeAreaBottom?: boolean
@@ -8,7 +9,7 @@ interface PageProps {
 }
 
 const Page: FC<PageProps> = ({ className, children, safeAreaBottom = true }) => {
-  const { hasNavigation } = useStore.uiStore()
+  const hasNavigation = useRecoilValue(hasNavigationAtom)
 
   return (
     <Styled.Root className={className} safeAreaBottom={safeAreaBottom && hasNavigation}>

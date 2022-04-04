@@ -6,9 +6,10 @@ import { configureRouter } from './router/configureRouter'
 import { serverCookieManager } from './services/cookie/serverCookieManager'
 import { AppContext } from 'server'
 import ssrPrepass from 'react-ssr-prepass'
+import { appConfig } from './data/appConfig'
 
 export async function render(url: string, ctx: AppContext) {
-  const cookieManager = serverCookieManager(ctx.req, ctx.res, 'pl-')
+  const cookieManager = serverCookieManager(ctx.req, ctx.res, appConfig.COOKIE_PREFIX)
   const router = configureRouter(ctx)
   router.start(url)
 

@@ -2,10 +2,11 @@ import { Request, Response } from 'express'
 import { UserInterface } from 'server/interfaces/UserInterface'
 import FileControl from 'server/helpers/fileControl'
 import { AppResponse } from 'server/interfaces/Request'
+const { appConfig } = require('../../../src/data/appConfig')
 const fileControl: typeof FileControl = require('../../helpers/fileControl')
 
 module.exports = () => {
-  const AUTH_USER_KEY = 'pl-profile'
+  const AUTH_USER_KEY = `${appConfig.COOKIE_PREFIX}profile`
   const usersTable = fileControl<UserInterface[]>('server/data/users.json')
 
   // const register = (req: Request, res: AppResponse<any>) => {

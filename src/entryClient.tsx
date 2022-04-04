@@ -2,8 +2,9 @@ import ReactDOM from 'react-dom'
 import { App, AppFetcherType } from './App'
 import { configureRouter } from './router/configureRouter'
 import { clientCookieManager } from './services/cookie/clientCookieManager'
+import { appConfig } from './data/appConfig'
 
-const cookieManager = clientCookieManager('pl-')
+const cookieManager = clientCookieManager(appConfig.COOKIE_PREFIX)
 const router = configureRouter()
 router.start()
 

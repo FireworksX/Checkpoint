@@ -1,10 +1,11 @@
-# Placesato
+# Checkpoint
 
 ### Features
 
 - Vite (development server + fast refresh)
 - React
 - SSR
+- Recoil
 - SVG sprite
 - Styled-components
 - Suspense mode for fetching (ssr prepass)

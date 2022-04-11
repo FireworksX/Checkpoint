@@ -35,3 +35,26 @@ export const SubmitButton = styled(Link)`
   right: ${({ theme }) => theme.baseStyles.paddings.gutterMobile};
   background: ${({ theme }) => theme.colors.statusSuccessText};
 `
+
+export const ZoomControl = styled.div`
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  z-index: 2;
+`
+
+export const ZoomButton = styled(Touchable)`
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: ${({ theme }) => theme.colors.basicWhite};
+  border-radius: 50%;
+  margin-bottom: 10px;
+  box-shadow: ${({ theme }) => theme.baseStyles.shadows.shadowBig};
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+`

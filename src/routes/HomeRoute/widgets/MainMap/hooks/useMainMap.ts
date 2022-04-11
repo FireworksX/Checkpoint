@@ -9,7 +9,7 @@ export const useMainMap = () => {
   const [placemarks, setPlacemarks] = useRecoilState(mapPlacemarksAtom)
   const [saveCenter, setSaveCenter] = useRecoilState(mapSaveCenterAtom)
   const [center, setCenter] = useRecoilState(mapCenterAtom)
-  const zoom = useRecoilValue(mapZoomAtom)
+  const [zoom, setZoom] = useRecoilState(mapZoomAtom)
   const currentLocation = useCurrentLocation()
 
   useIsomorphicEffect(() => {
@@ -33,6 +33,7 @@ export const useMainMap = () => {
   return {
     placemarks,
     zoom,
+    setZoom,
     center,
     saveCenter,
     currentLocation,

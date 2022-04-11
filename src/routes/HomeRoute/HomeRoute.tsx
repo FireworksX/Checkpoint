@@ -8,6 +8,8 @@ import { useMapCreation } from './hooks/useMapCreation'
 import CreationPlacemark from './components/CreationPlacemark/CreationPlacemark'
 import { useKeepNavigation } from 'src/hooks/keepNavigation'
 import { withValidateUser } from 'src/hoc/withValidateUser'
+import { ZoomControl } from './styles'
+import { useMainMap } from './widgets/MainMap/hooks/useMainMap'
 
 interface HomeRouteProps {
   className?: string
@@ -16,9 +18,21 @@ interface HomeRouteProps {
 const HomeRoute: FC<HomeRouteProps> = ({ className }) => {
   useKeepNavigation(true)
   const { isCreation, onToggleIsCreation } = useMapCreation()
+  const { setZoom } = useMainMap()
+
+    const onZoomMore = () => setZoom((val) => val + 1)
+    const onZoomLess = () => setZoom((val) => val - 1)
 
   return (
     <Styled.Root className={className}>
+      <Styled.ZoomControl>
+        <Styled.ZoomButton onClick={onZoomMore}>
+          <Icon name='more' />
+        </Styled.ZoomButton>
+        <Styled.ZoomButton onClick={onZoomLess}>
+          <Icon name='less' />
+        </Styled.ZoomButton>
+      </Styled.ZoomControl>
       <Styled.CreateButton isCreation={isCreation} onClick={onToggleIsCreation}>
         <Icon name='plus-circle' width={24} height={24} />
       </Styled.CreateButton>

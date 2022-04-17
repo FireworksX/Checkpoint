@@ -1,0 +1,62 @@
+[
+  {
+    "id": "736ef76f-19c6-4547-a63f-e48d2f3b9f34",
+    "name": "Стамбул",
+    "slug": "istambul",
+    "geo": {
+      "center": {
+        "lat": 0,
+        "lng": 0
+      },
+      "zoom": 10
+    },
+    "info": [
+      {
+        "slug": "timezome",
+        "value": 3
+      },
+      {
+        "slug": "currency",
+        "value": "TL"
+      },
+      {
+        "slug": "currencyRate",
+        "value": 5.6
+      }
+    ],
+    "categories": [
+      {
+        "slug": "eats"
+      },
+      {
+        "slug": "walk"
+      },
+      {
+        "slug": "photos"
+      },
+      {
+        "slug": "locals"
+      },
+      {
+        "slug": "secrets"
+      },
+      {
+        "slug": "romantic"
+      }
+    ],
+    "scales": [
+      {
+        "slug": "prices",
+        "value": 70
+      },
+      {
+        "slug": "weather",
+        "value": 50
+      },
+      {
+        "slug": "english",
+        "value": 30
+      }
+    ]
+  }
+]

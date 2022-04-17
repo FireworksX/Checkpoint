@@ -3,6 +3,7 @@ module.exports = () => {
   const authRoute = require('./auth')()
   const usersRoute = require('./users')()
   const placesRoute = require('./places')()
+  const citiesRoute = require('./cities')()
 
   const router = express.Router()
 
@@ -18,6 +19,10 @@ module.exports = () => {
     {
       path: '/places',
       route: placesRoute
+    },
+    {
+      path: '/cities',
+      route: citiesRoute
     }
   ]
 

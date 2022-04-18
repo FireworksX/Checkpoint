@@ -1,10 +1,12 @@
-import { FC } from 'react'
+import { FC, useEffect } from 'react'
 import * as Styled from './styles'
 import { route } from 'src/hoc/route'
 import { ROUTE_NAMES } from 'src/router/constants'
 import PageHeaderButtonBack from 'src/widgets/PageHeader/components/PageHeaderButtonBack/PageHeaderButtonBack'
 import { useCurrentUser } from 'src/hooks/data/useCurrentUser'
 import { withValidateUser } from 'src/hoc/withValidateUser'
+import { useGeoLocation } from '../../hooks/useGeoLocation'
+import { useNotifications } from '../../hooks/useNotifications'
 
 interface ProfileRouteProps {
   className?: string
@@ -12,6 +14,8 @@ interface ProfileRouteProps {
 
 const ProfileRoute: FC<ProfileRouteProps> = ({ className }) => {
   const { data } = useCurrentUser()
+  const geoLocations = useGeoLocation()
+  const notifications = useNotifications()
 
   return (
     <Styled.Root className={className}>
@@ -46,7 +50,12 @@ const ProfileRoute: FC<ProfileRouteProps> = ({ className }) => {
           <Styled.GroupValue>560k</Styled.GroupValue>
         </Styled.Group>
       </Styled.Row>
-      <Styled.FollowButton>Follow</Styled.FollowButton>
+      {!geoLocations.hasPermissions && (
+        <Styled.FollowButton onClick={geoLocations.onGetPermissions}>Get geolocation</Styled.FollowButton>
+      )}
+      {!notifications.hasPermissions && (
+        <Styled.FollowButton onClick={notifications.onGetPermissions}>Get notifications</Styled.FollowButton>
+      )}
     </Styled.Root>
   )
 }

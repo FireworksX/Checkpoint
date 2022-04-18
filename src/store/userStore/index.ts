@@ -1,3 +1,3 @@
-import { userCurrentLocationAtom } from './atoms/userCurrentLocationAtom'
+import { geoLocationAtom } from './atoms/userCurrentLocationAtom'
 
-export { userCurrentLocationAtom }
+export { geoLocationAtom }

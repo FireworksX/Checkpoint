@@ -1,5 +1,5 @@
 import { useRecoilState, useRecoilValue } from 'recoil'
-import { useCurrentLocation } from 'src/hooks/useCurrentLocation'
+import { useGeoLocation } from 'src/hooks/useGeoLocation'
 import { mapCenterAtom, mapPlacemarksAtom, mapSaveCenterAtom, mapZoomAtom } from 'src/store/mapStore'
 import { useIsomorphicEffect } from 'src/hooks/useIsomorphicEffect'
 import { useCurrentUserPlaces } from 'src/hooks/data/useCurrentUserPlaces'
@@ -10,7 +10,7 @@ export const useMainMap = () => {
   const [saveCenter, setSaveCenter] = useRecoilState(mapSaveCenterAtom)
   const [center, setCenter] = useRecoilState(mapCenterAtom)
   const [zoom, setZoom] = useRecoilState(mapZoomAtom)
-  const currentLocation = useCurrentLocation()
+  const { currentLocation } = useGeoLocation()
 
   useIsomorphicEffect(() => {
     if (currentLocation) {

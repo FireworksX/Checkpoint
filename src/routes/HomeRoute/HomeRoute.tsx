@@ -1,5 +1,6 @@
 import { FC, useEffect } from 'react'
 import * as Styled from './styles'
+import { Helmet } from 'react-helmet-async'
 import { route } from 'src/hoc/route'
 import { ROUTE_NAMES } from 'src/router/constants'
 import MainMap from './widgets/MainMap/MainMap'
@@ -20,8 +21,8 @@ const HomeRoute: FC<HomeRouteProps> = ({ className }) => {
   const { isCreation, onToggleIsCreation } = useMapCreation()
   const { setZoom } = useMainMap()
 
-    const onZoomMore = () => setZoom((val) => val + 1)
-    const onZoomLess = () => setZoom((val) => val - 1)
+  const onZoomMore = () => setZoom(val => val + 1)
+  const onZoomLess = () => setZoom(val => val - 1)
 
   return (
     <Styled.Root className={className}>

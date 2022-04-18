@@ -7,6 +7,7 @@ import { serverCookieManager } from './services/cookie/serverCookieManager'
 import { AppContext } from 'server'
 import ssrPrepass from 'react-ssr-prepass'
 import { appConfig } from './data/appConfig'
+import { FilledContext } from 'react-helmet-async'
 
 export async function render(url: string, ctx: AppContext) {
   const cookieManager = serverCookieManager(ctx.req, ctx.res, appConfig.COOKIE_PREFIX)
@@ -21,9 +22,16 @@ export async function render(url: string, ctx: AppContext) {
     }).then(res => res.json())
 
   const cacheManager = new Map()
+  const helmetContext = {} as FilledContext
 
   const Application = (
-    <App router={router} cookieManager={cookieManager} fetcher={fetcher} cacheManager={cacheManager} />
+    <App
+      router={router}
+      helmetContext={helmetContext}
+      cookieManager={cookieManager}
+      fetcher={fetcher}
+      cacheManager={cacheManager}
+    />
   )
 
   const sheet = new ServerStyleSheet()
@@ -42,6 +50,7 @@ export async function render(url: string, ctx: AppContext) {
   `
 
   return {
+    helmetContext: helmetContext.helmet,
     appHtml,
     appCache,
     appCacheTags,

@@ -7,12 +7,14 @@ import { route } from 'src/hoc/route'
 import { ROUTE_NAMES } from 'src/router/constants'
 import 'src/utils/dayjs-timezone'
 import { hasNavigationAtom } from 'src/store/uiStore'
+import { RootRouteHead } from './RootRouteHead'
 
 const RootRoute: FC = ({ children }) => {
   const hasNavigation = useRecoilValue(hasNavigationAtom)
 
   return (
     <AppHelpers>
+      <RootRouteHead />
       <GlobalStyle />
       <Styled.Root>
         {children}

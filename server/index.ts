@@ -2,6 +2,7 @@ require('dotenv').config()
 require('dotenv').config({
   path: '.env.local'
 })
+import { FilledContext } from 'react-helmet-async'
 import { Request, Response } from 'express'
 const fs = require('fs')
 const path = require('path')
@@ -9,6 +10,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const apiRouter = require('./api')()
+const morgan = require('morgan')
 
 const isTest = process.env.NODE_ENV === 'test' || !!process.env.VITE_TEST_BUILD
 const port = process.env.VITE_PORT || 3000
@@ -35,6 +37,9 @@ async function createServer(root = process.cwd(), isProd = process.env.NODE_ENV 
 
   const app = express()
 
+  if (isProd) {
+    app.use(morgan('dev'))
+  }
   app.use(bodyParser.urlencoded({ extended: false }))
   app.use(bodyParser.json())
   app.use(cookieParser(process.env.COOKIE_SALT))
@@ -89,7 +94,9 @@ async function createServer(root = process.cwd(), isProd = process.env.NODE_ENV 
           status: 301
         }
       }
-      const { appHtml, stylesTags, appCacheTags } = await render(url, context)
+      const { appHtml, stylesTags, appCacheTags, helmetContext } = await render(url, context)
+
+      const { bodyAttributes, htmlAttributes, noscript, meta, ...helmet } = helmetContext as FilledContext['helmet']
 
       if (context.redirect?.path) {
         // Somewhere a `<Redirect>` was rendered
@@ -97,6 +104,16 @@ async function createServer(root = process.cwd(), isProd = process.env.NODE_ENV 
       }
 
       const html = template
+        .replace(`app-html-attrs`, htmlAttributes.toString())
+        .replace(`<!--app-meta-->`, meta.toString())
+        .replace(
+          `<!--app-helmet-->`,
+          Object.values(helmet)
+            .map(datum => datum.toString())
+            .join('')
+        )
+        .replace(`app-body-attrs`, bodyAttributes.toString())
+        .replace(`<!--app-noscript-->`, noscript.toString())
         .replace(`<!--app-html-->`, appHtml)
         .replace(`<!--app-styles-->`, stylesTags)
         .replace(`<!--app-cache-->`, appCacheTags)

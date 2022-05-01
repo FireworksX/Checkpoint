@@ -37,9 +37,6 @@ async function createServer(root = process.cwd(), isProd = process.env.NODE_ENV 
 
   const app = express()
 
-  if (isProd) {
-    app.use(morgan('dev'))
-  }
   app.use(bodyParser.urlencoded({ extended: false }))
   app.use(bodyParser.json())
   app.use(cookieParser(process.env.COOKIE_SALT))

@@ -13,6 +13,7 @@
     "serve": "cross-env NODE_ENV=production nodemon --ignore server/data -O '{\"module\": \"commonjs\"}' server/index.ts",
     "deploy": "yarn build && yarn serve",
     "preview": "vite preview",
+    "cts": "tsc --project . --noEmit",
     "cc": "create-component",
     "gql-codegen": "graphql-codegen --require ./gql-generate-init --documents "
   },

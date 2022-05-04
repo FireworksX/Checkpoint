@@ -2,8 +2,6 @@ import { FC } from 'react'
 import * as Styled from './styles'
 import PageHeaderButtonBack from 'src/widgets/PageHeader/components/PageHeaderButtonBack/PageHeaderButtonBack'
 import Container from 'src/components/Container/Container'
-import { useStore } from 'src/store'
-import { useRouter } from 'src/hooks/useRouter'
 import { useCreatePlaceRoute } from './hooks/useCreatePlaceRoute'
 
 interface CreatePlaceRouteProps {

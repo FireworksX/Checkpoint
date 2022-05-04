@@ -3,8 +3,10 @@ import { useRecoilState, useRecoilValue } from 'recoil'
 import { cacheService } from 'src/utils/cacheService'
 import { geoLocationAtom } from 'src/store/userStore'
 import { userAgentAtom } from '../store/configStore'
+import useCookies from './useCookies'
 
 export const useGeoLocation = () => {
+  const [_, setSelfLocation] = useCookies('selfLocation')
   const [geoLocation, setGeoLocation] = useRecoilState(geoLocationAtom)
   const userAgentValue = useRecoilValue(userAgentAtom)
 
@@ -25,7 +27,7 @@ export const useGeoLocation = () => {
     }))
 
     if (coords) {
-      cacheService().addItem('selfLocation', { lat: coords.latitude, lng: coords.longitude })
+      setSelfLocation({ lat: coords.latitude, lng: coords.longitude })
     }
   }, [])
 

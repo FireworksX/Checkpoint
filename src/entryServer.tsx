@@ -9,8 +9,7 @@ import ssrPrepass from 'react-ssr-prepass'
 import { appConfig } from './data/appConfig'
 import { FilledContext } from 'react-helmet-async'
 import { MutableSnapshot, Snapshot } from 'recoil'
-import { storeMap, StoreType } from './store'
-import { userAgentAtom } from './store/configStore'
+import { STORE_NAMES, storeMap, StoreType } from './store'
 
 export async function render(url: string, ctx: AppContext) {
   const cookieManager = serverCookieManager(ctx.req, ctx.res, appConfig.COOKIE_PREFIX)
@@ -24,12 +23,14 @@ export async function render(url: string, ctx: AppContext) {
       }
     }).then(res => res.json())
 
+  const currentLocation = cookieManager.get('selfLocation')
+
   const cacheManager = new Map()
   const helmetContext = {} as FilledContext
-  let storeCache: StoreType = {}
+  let storeCache = {} as StoreType
 
   const initializeState = async (snapshot: MutableSnapshot) => {
-    const nodesMap: any = {}
+    const nodesMap = {} as StoreType
     const promises: Promise<any>[] = []
 
     for (const node of snapshot.getNodes_UNSTABLE()) {
@@ -40,14 +41,25 @@ export async function render(url: string, ctx: AppContext) {
 
     let index = 0
     for (const node of snapshot.getNodes_UNSTABLE()) {
+      // @ts-ignore
       nodesMap[node.key] = results[index]
 
       index++
     }
 
-    nodesMap[userAgentAtom.key] = ctx.req.useragent
+    nodesMap[STORE_NAMES.userAgentAtom] = ctx.req.useragent
+
+
+    nodesMap[STORE_NAMES.geoLocationAtom] = {
+      hasPermissions: false,
+      currentLocation: {
+        lat: currentLocation?.lat || 0,
+        lng: currentLocation?.lng || 0
+      }
+    }
 
     storeCache = nodesMap
+    return storeCache
   }
 
   const Application = (
@@ -75,6 +87,7 @@ export async function render(url: string, ctx: AppContext) {
       window.__APP__CACHE__ = ${JSON.stringify(appCache)}
     </script>
   `
+
 
   const storeCacheTags = `
     <script>

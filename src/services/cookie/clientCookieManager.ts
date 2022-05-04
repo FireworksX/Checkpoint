@@ -1,15 +1,15 @@
-import { ClientCookieManager, CookieManager } from 'src/interfaces/CookieManager'
+import { ClientCookieManager, CookieManager, CookiesType } from 'src/interfaces/CookieManager'
 
-export const clientCookieManager = <T extends string = string>(prefix = ''): CookieManager<T> => {
-  const get = (name: T): string => {
+export const clientCookieManager = <T extends CookiesType = CookiesType>(prefix = ''): CookieManager<T> => {
+  const get = <K extends keyof T>(name: keyof T): T[K] => {
     const cookies = getAll()
 
-    return cookies[`${prefix}${name}`]
+    return (cookies as any)[`${prefix}${name}`]
   }
 
-  const getAll = () => {
+  const getAll = (): CookiesType => {
     const pairs = document.cookie.split(';')
-    const cookies: Record<string, string> = {}
+    const cookies = {} as any
 
     for (let i = 0; i < pairs.length; i++) {
       const pair = pairs[i].split('=')
@@ -19,16 +19,20 @@ export const clientCookieManager = <T extends string = string>(prefix = ''): Coo
     return cookies
   }
 
-  const set = (name: T, value = '', days = 30) => {
+  const set = <K extends keyof T>(name: K, value: T[K], days = 30) => {
     const date = new Date()
     date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000)
 
-    document.cookie = [`${prefix}${name}=${value}`, `expires=${date.toUTCString()}`, 'path=/'].join('; ')
+    document.cookie = [`${prefix}${name}=${JSON.stringify(value)}`, `expires=${date.toUTCString()}`, 'path=/'].join(
+      '; '
+    )
   }
 
   const getAllByString = () => {
     const allItems = getAll()
-    return Object.keys(allItems).map((key) => `${key}=${allItems[key]}`).join('; ')
+    return Object.keys(allItems)
+      .map(key => `${key}=${(allItems as any)[key]}`)
+      .join('; ')
   }
 
   return {

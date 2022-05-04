@@ -1,15 +1,23 @@
 import { Request, Response } from 'express'
 
-export interface CookieManager<T extends string = string> {
-  get(name: T): string
-  getAll(): Record<T, string>
+export type CookiesType = Partial<{
+  selfLocation: {
+    lat: number
+    lng: number
+  }
+  profile: string
+}>
+
+export interface CookieManager<T extends CookiesType = CookiesType> {
+  get<K extends keyof T>(name: K): T[K]
+  getAll(): CookiesType
   getAllByString(): string
-  set(name: T, value: string, days?: number): void
+  set<K extends keyof T>(name: K, value: T[K], days?: number): void
 }
 
-export type ClientCookieManager = <T extends string = string>(prefix?: string) => CookieManager<T>
+export type ClientCookieManager = <T extends CookiesType = CookiesType>(prefix?: string) => CookieManager<T>
 
-export type ServerCookieManager = <T extends string = string>(
+export type ServerCookieManager = <T extends CookiesType = CookiesType>(
   req: Request,
   res: Response,
   prefix: string

@@ -25,8 +25,8 @@ const initializeRecoilState =
   (initialStoreState: StoreType) =>
   ({ set }: MutableSnapshot) =>
     Object.keys(initialStoreState).map(key => {
-      const value = initialStoreState[key]
-      const atom = storeMap[key]
+      const value = (initialStoreState as any)[key]
+      const atom = (storeMap as any)[key]
       set(atom, value)
     })
 

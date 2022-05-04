@@ -1,3 +1,5 @@
+import {StoreType} from "../src/store";
+
 require('dotenv').config()
 require('dotenv').config({
   path: '.env.local'
@@ -18,7 +20,7 @@ const port = process.env.VITE_PORT || 3000
 declare global {
   interface Window {
     __APP__CACHE__: Record<string, any>
-    __STORE__CACHE__: Record<string, any>
+    __STORE__CACHE__: StoreType
   }
 }
 

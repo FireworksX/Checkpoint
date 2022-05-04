@@ -8,6 +8,9 @@ import { AppContext } from 'server'
 import ssrPrepass from 'react-ssr-prepass'
 import { appConfig } from './data/appConfig'
 import { FilledContext } from 'react-helmet-async'
+import { MutableSnapshot, Snapshot } from 'recoil'
+import { storeMap, StoreType } from './store'
+import { userAgentAtom } from './store/configStore'
 
 export async function render(url: string, ctx: AppContext) {
   const cookieManager = serverCookieManager(ctx.req, ctx.res, appConfig.COOKIE_PREFIX)
@@ -23,6 +26,29 @@ export async function render(url: string, ctx: AppContext) {
 
   const cacheManager = new Map()
   const helmetContext = {} as FilledContext
+  let storeCache: StoreType = {}
+
+  const initializeState = async (snapshot: MutableSnapshot) => {
+    const nodesMap: any = {}
+    const promises: Promise<any>[] = []
+
+    for (const node of snapshot.getNodes_UNSTABLE()) {
+      promises.push(snapshot.getPromise(node))
+    }
+
+    const results = await Promise.all(promises)
+
+    let index = 0
+    for (const node of snapshot.getNodes_UNSTABLE()) {
+      nodesMap[node.key] = results[index]
+
+      index++
+    }
+
+    nodesMap[userAgentAtom.key] = ctx.req.useragent
+
+    storeCache = nodesMap
+  }
 
   const Application = (
     <App
@@ -31,6 +57,7 @@ export async function render(url: string, ctx: AppContext) {
       cookieManager={cookieManager}
       fetcher={fetcher}
       cacheManager={cacheManager}
+      initializeState={initializeState}
     />
   )
 
@@ -49,11 +76,19 @@ export async function render(url: string, ctx: AppContext) {
     </script>
   `
 
+  const storeCacheTags = `
+    <script>
+      window.__STORE__CACHE__ = ${JSON.stringify(storeCache)}
+    </script>
+  `
+
   return {
     helmetContext: helmetContext.helmet,
     appHtml,
     appCache,
     appCacheTags,
-    stylesTags: sheet.getStyleTags()
+    stylesTags: sheet.getStyleTags(),
+    storeCacheTags,
+    storeCache
   }
 }

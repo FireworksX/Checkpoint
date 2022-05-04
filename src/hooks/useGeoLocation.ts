@@ -1,10 +1,12 @@
 import { useCallback, useEffect, useState } from 'react'
-import { useRecoilState } from 'recoil'
+import { useRecoilState, useRecoilValue } from 'recoil'
 import { cacheService } from 'src/utils/cacheService'
 import { geoLocationAtom } from 'src/store/userStore'
+import { userAgentAtom } from '../store/configStore'
 
 export const useGeoLocation = () => {
   const [geoLocation, setGeoLocation] = useRecoilState(geoLocationAtom)
+  const userAgentValue = useRecoilValue(userAgentAtom)
 
   const onValidatePermissions = useCallback(
     (state: PermissionStatus['state']) => {
@@ -32,10 +34,22 @@ export const useGeoLocation = () => {
   }, [setGeoLocation])
 
   useEffect(() => {
-    navigator.permissions.query({ name: 'geolocation' }).then(result => {
-      onValidatePermissions(result.state)
-      result.addEventListener('change', () => onValidatePermissions(result.state))
-    })
+    if (userAgentValue?.isSafari) {
+      navigator.geolocation.getCurrentPosition(
+        ({ coords }) => {
+          onValidatePermissions('granted')
+          onSubmitLocation(coords)
+        },
+        () => {
+          onValidatePermissions('denied')
+        }
+      )
+    } else {
+      navigator.permissions.query({ name: 'geolocation' }).then(result => {
+        onValidatePermissions(result.state)
+        result.addEventListener('change', () => onValidatePermissions(result.state))
+      })
+    }
   }, [])
 
   useEffect(() => {

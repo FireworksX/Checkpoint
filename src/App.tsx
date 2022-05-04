@@ -1,5 +1,5 @@
 import { RouterProvider } from 'react-router5'
-import { RecoilRoot } from 'recoil'
+import { MutableSnapshot, RecoilRoot, RecoilRootProps } from 'recoil'
 import { SWRConfig, Cache } from 'swr'
 import { FilledContext, HelmetProvider } from 'react-helmet-async'
 import RootRoute from './routes/RootRoute/RootRoute'
@@ -18,15 +18,16 @@ interface Props {
   fetcher: AppFetcherType
   cacheManager: Cache
   helmetContext?: FilledContext
+  initializeState?: (snapshot: MutableSnapshot) => void
 }
 
-export const App: FC<Props> = ({ router, helmetContext, cookieManager, fetcher, cacheManager }) => {
+export const App: FC<Props> = ({ router, helmetContext, cookieManager, fetcher, cacheManager, initializeState }) => {
   return (
     <React.StrictMode>
       <HelmetProvider context={helmetContext || {}}>
         <CookieProvider cookieManager={cookieManager}>
           <RouterProvider router={router}>
-            <RecoilRoot>
+            <RecoilRoot initializeState={initializeState}>
               <SWRConfig
                 value={{
                   provider: () => cacheManager,

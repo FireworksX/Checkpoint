@@ -35,6 +35,7 @@ export default ({ mode }: UserConfig) => {
       }),
       VitePWA({
         manifest: {
+          theme_color: '#fff',
           icons: [
             {
               src: 'assets/manifest-icon-192.maskable.png',

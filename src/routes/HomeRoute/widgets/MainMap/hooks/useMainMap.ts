@@ -17,7 +17,7 @@ export const useMainMap = () => {
       setCenter(currentLocation)
       setSaveCenter(currentLocation)
     }
-  })
+  }, [])
 
   useIsomorphicEffect(() => {
     setPlacemarks(userPlaces?.data || [])

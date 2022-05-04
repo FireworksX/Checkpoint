@@ -10,7 +10,7 @@ interface Props {
 export const geoLocationAtom = atom<Props>({
   key: 'geoLocationAtom',
   default: {
-    currentLocation: cacheService().getItem('selfLocation'),
+    currentLocation: { lat: 0, lng: 0 },
     hasPermissions: false
   }
 })

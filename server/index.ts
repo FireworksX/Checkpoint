@@ -9,8 +9,8 @@ const path = require('path')
 const express = require('express')
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
+const useragent = require('express-useragent');
 const apiRouter = require('./api')()
-const morgan = require('morgan')
 
 const isTest = process.env.NODE_ENV === 'test' || !!process.env.VITE_TEST_BUILD
 const port = process.env.VITE_PORT || 3000
@@ -18,6 +18,7 @@ const port = process.env.VITE_PORT || 3000
 declare global {
   interface Window {
     __APP__CACHE__: Record<string, any>
+    __STORE__CACHE__: Record<string, any>
   }
 }
 
@@ -39,6 +40,7 @@ async function createServer(root = process.cwd(), isProd = process.env.NODE_ENV 
 
   app.use(bodyParser.urlencoded({ extended: false }))
   app.use(bodyParser.json())
+  app.use(useragent.express())
   app.use(cookieParser(process.env.COOKIE_SALT))
   app.use('/api', apiRouter)
 
@@ -91,7 +93,7 @@ async function createServer(root = process.cwd(), isProd = process.env.NODE_ENV 
           status: 301
         }
       }
-      const { appHtml, stylesTags, appCacheTags, helmetContext } = await render(url, context)
+      const { appHtml, stylesTags, appCacheTags, helmetContext, storeCacheTags } = await render(url, context)
 
       const { bodyAttributes, htmlAttributes, noscript, meta, ...helmet } = helmetContext as FilledContext['helmet']
 
@@ -114,6 +116,7 @@ async function createServer(root = process.cwd(), isProd = process.env.NODE_ENV 
         .replace(`<!--app-html-->`, appHtml)
         .replace(`<!--app-styles-->`, stylesTags)
         .replace(`<!--app-cache-->`, appCacheTags)
+        .replace(`<!--app-store-cache-->`, storeCacheTags)
 
       res.status(200).set({ 'Content-Type': 'text/html' }).end(html)
     } catch (e: any) {

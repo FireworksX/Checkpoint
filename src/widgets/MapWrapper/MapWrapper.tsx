@@ -7,6 +7,7 @@ interface MapWrapperProps {
   zoom?: number
   center?: Coords
   onDragend?: (map: any) => void
+  onZoomChange?: (map: any) => void
 }
 
 const defaultProps = {
@@ -19,7 +20,7 @@ const defaultProps = {
 
 const MAP_KEY = 'AIzaSyDmf_DUzM3a8aq_xGPTnPKJB2IHU0izWBQ'
 
-const MapWrapper: FC<MapWrapperProps> = ({ className, children, zoom, center, onDragend }) => {
+const MapWrapper: FC<MapWrapperProps> = ({ className, children, zoom, center, onDragend, onZoomChange }) => {
   const [map, setMap] = useState<any>()
 
   const apiHasLoaded = ({ map, maps }: any) => {
@@ -30,6 +31,9 @@ const MapWrapper: FC<MapWrapperProps> = ({ className, children, zoom, center, on
     if (map) {
       if (!!onDragend) {
         map.addListener('dragend', () => onDragend(map))
+      }
+      if (!!onZoomChange) {
+        map.addListener('zoom_changed', () => onZoomChange(map))
       }
     }
   }, [map])

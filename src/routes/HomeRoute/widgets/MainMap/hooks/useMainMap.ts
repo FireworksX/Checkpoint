@@ -3,6 +3,7 @@ import { useGeoLocation } from 'src/hooks/useGeoLocation'
 import { mapCenterAtom, mapPlacemarksAtom, mapSaveCenterAtom, mapZoomAtom } from 'src/store/mapStore'
 import { useIsomorphicEffect } from 'src/hooks/useIsomorphicEffect'
 import { useCurrentUserPlaces } from 'src/hooks/data/useCurrentUserPlaces'
+import { useCallback } from 'react'
 
 export const useMainMap = () => {
   const { data: userPlaces } = useCurrentUserPlaces()
@@ -23,12 +24,16 @@ export const useMainMap = () => {
     setPlacemarks(userPlaces?.data || [])
   }, [userPlaces])
 
-  const onDragend = (map: any) => {
+  const onDragend = useCallback((map: any) => {
     setSaveCenter({
       lat: map?.center?.lat(),
       lng: map?.center?.lng()
     })
-  }
+  }, [])
+
+  const onZoomChange = useCallback((map: any) => {
+    setZoom(map?.getZoom())
+  }, [])
 
   return {
     placemarks,
@@ -37,6 +42,7 @@ export const useMainMap = () => {
     center,
     saveCenter,
     currentLocation,
-    onDragend
+    onDragend,
+    onZoomChange
   }
 }

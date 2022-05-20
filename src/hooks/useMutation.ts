@@ -1,7 +1,7 @@
 import { useSWRConfig } from 'swr'
 import { useCallback, useState } from 'react'
 import { useApiClient } from './useApiClient'
-import { ApiResponseBody } from 'server/interfaces/Request'
+import { ApiResponseBody } from 'src/interfaces/Request'
 
 export const useMutation = <RESDATA = any, DATA = any>(path: string) => {
   const apiClient = useApiClient()

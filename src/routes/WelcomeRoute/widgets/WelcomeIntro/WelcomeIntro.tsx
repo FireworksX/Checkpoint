@@ -1,25 +1,34 @@
 import { FC } from 'react'
 import * as Styled from './styles'
+import Touchable from 'src/components/Touchable/Touchable'
+import Container from 'src/components/Container/Container'
+import { usePhoneFormatter } from 'src/components/Input/hooks/usePhoneFormatter'
 
 interface WelcomeRegisterProps {
   className?: string
-  onClickInvite?: () => any
-  onClickLogin?: () => any
 }
 
-const WelcomeIntro: FC<WelcomeRegisterProps> = ({ className, onClickInvite, onClickLogin }) => {
+const WelcomeIntro: FC<WelcomeRegisterProps> = ({ className }) => {
+  const { formatValue, setValue } = usePhoneFormatter()
+
   return (
     <Styled.Root className={className}>
-      <Styled.Title>Inspire the world</Styled.Title>
-      <Styled.Description>
-        Add the places you love to online map accessible everyone. Make remarks, rate the places, share the experience.
-      </Styled.Description>
-      <Styled.Button size='l' stretched onClick={onClickInvite}>
-        Get invite
-      </Styled.Button>
-      <Styled.Button color='secondary' size='l' stretched onClick={onClickLogin}>
-        Login
-      </Styled.Button>
+      <Container>
+        <Styled.Header right={<Touchable>Next</Touchable>} />
+        <Styled.Title>Your phone</Styled.Title>
+        <Styled.Description>Please confirm your country code and your phone number.</Styled.Description>
+      </Container>
+
+      <Styled.CountrySection>
+        <Styled.CountrySector>
+            <Styled.CountryFlag size={30} iso='ru' />
+            Russia
+        </Styled.CountrySector>
+      </Styled.CountrySection>
+      <Styled.PhoneSection>
+        <Styled.PhoneCode value='+7' />
+        <Styled.PhoneNumber placeholder='--- --- ----' value={formatValue} onChange={e => setValue(e.target.value)} />
+      </Styled.PhoneSection>
     </Styled.Root>
   )
 }

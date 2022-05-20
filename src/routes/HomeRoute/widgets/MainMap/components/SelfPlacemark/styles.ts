@@ -7,4 +7,7 @@ export const Root = styled.div`
   background: ${({ theme }) => theme.colors.accentRed};
   border: 4px solid ${({ theme }) => theme.colors.border};
   box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+  position: absolute;
+  top: -15px;
+  left: -15px;
 `

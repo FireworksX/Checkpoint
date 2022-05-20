@@ -2,9 +2,9 @@ import { useForm } from 'src/hooks/useForm'
 import { useRecoilValue } from 'recoil'
 import { useIsomorphicEffect } from 'src/hooks/useIsomorphicEffect'
 import { useCreatePlace } from 'src/hooks/data/useCreatePlace'
-import { PlaceInterfaceCreate } from 'server/interfaces/PlaceInterface'
 import { useRouter } from 'src/hooks/useRouter'
 import { mapSaveCenterAtom } from 'src/store/mapStore'
+import { PlaceInterfaceCreate } from 'src/interfaces/PlaceInterface'
 
 export const useCreatePlaceRoute = () => {
   const saveCenter = useRecoilValue(mapSaveCenterAtom)

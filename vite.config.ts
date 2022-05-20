@@ -17,15 +17,7 @@ export default ({ mode }: UserConfig) => {
       }
     },
     server: {
-      port: Number(process.env.VITE_PORT) || 3000,
-      proxy: {
-        '/graphql': {
-          target: process.env.VITE_API_PATH,
-          changeOrigin: true,
-          secure: false,
-          ws: true
-        }
-      }
+      port
     },
     plugins: [
       react(),

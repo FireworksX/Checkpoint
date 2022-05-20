@@ -12,7 +12,6 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const useragent = require('express-useragent');
-const apiRouter = require('./api')()
 
 const isTest = process.env.NODE_ENV === 'test' || !!process.env.VITE_TEST_BUILD
 const port = process.env.VITE_PORT || 3000
@@ -44,7 +43,6 @@ async function createServer(root = process.cwd(), isProd = process.env.NODE_ENV 
   app.use(bodyParser.json())
   app.use(useragent.express())
   app.use(cookieParser(process.env.COOKIE_SALT))
-  app.use('/api', apiRouter)
 
   let vite: any
   if (!isProd) {

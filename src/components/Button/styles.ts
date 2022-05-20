@@ -17,7 +17,7 @@ const sizesMap: Record<NonNullable<Props['size']>, string> = {
 
 const colorsMap: (
   theme: DefaultTheme
-) => Record<NonNullable<Props['color']>, FlattenInterpolation<DefaultTheme>> = theme => ({
+) => Record<NonNullable<Props['color']>, any> = theme => ({
   dark: css`
     background: ${theme.colors.basicBlack};
     color: ${theme.colors.basicWhite};

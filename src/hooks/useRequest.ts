@@ -1,7 +1,6 @@
 import useSWR from 'swr'
-import useSWRImmutable from 'swr/immutable'
-import { Key, SWRResponse } from 'swr/dist/types'
-import { ApiResponseBody } from 'server/interfaces/Request'
+import { Key } from 'swr/dist/types'
+import { ApiResponseBody } from 'src/interfaces/Request'
 
 interface RequestOptions {
   revalidate?: boolean

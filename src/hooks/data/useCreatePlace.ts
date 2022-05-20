@@ -1,7 +1,7 @@
 import { useMutation } from '../useMutation'
-import { PlaceInterface, PlaceInterfaceCreate } from 'server/interfaces/PlaceInterface'
 import { apiEndpoints } from 'src/data/apiEndpoints'
 import { useCurrentUser } from 'src/hooks/data/useCurrentUser'
+import { PlaceInterface, PlaceInterfaceCreate } from 'src/interfaces/PlaceInterface'
 
 export const useCreatePlace = () => {
   const { data: userData } = useCurrentUser()

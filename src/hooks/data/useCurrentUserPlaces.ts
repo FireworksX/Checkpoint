@@ -1,7 +1,7 @@
 import { useRequest } from '../useRequest'
 import { useCurrentUser } from './useCurrentUser'
-import { PlaceInterface } from 'server/interfaces/PlaceInterface'
 import { apiEndpoints } from 'src/data/apiEndpoints'
+import { PlaceInterface } from 'src/interfaces/PlaceInterface'
 
 export const useCurrentUserPlaces = () => {
   const { data: userData } = useCurrentUser()

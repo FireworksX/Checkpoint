@@ -54,21 +54,21 @@ export const PhoneCode = styled(Input).attrs({ inputClassName: 'input' })`
   width: 20%;
 
   .input {
-    background: transparent;
     border-radius: 0;
     height: 50px;
     padding: 10px;
     text-align: center;
+    border: none;
     ${({ theme }) => theme.typography.text_16_20};
   }
 `
 
 export const PhoneNumber = styled(Input).attrs({ inputClassName: 'input' })`
   .input {
-    background: transparent;
     border-radius: 0;
     height: 50px;
     padding: 10px 15px;
+    border: none;
     ${({ theme }) => theme.typography.text_16_20};
   }
 `

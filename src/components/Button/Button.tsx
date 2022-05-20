@@ -3,15 +3,16 @@ import * as Styled from './styles'
 import { TouchableProps } from 'src/components/Touchable/Touchable'
 
 export interface ButtonProps extends TouchableProps {
-  color?: 'dark' | 'secondary'
+  color?: 'accent' | 'positive' | 'negative' | 'neutral'
   size?: 's' | 'm' | 'l'
+  mode?: 'primary' | 'secondary' | 'tertiary' | 'outline'
   stretched?: boolean
   className?: string
 }
 
-const Button: FC<ButtonProps> = ({ className, size, color, stretched, children, ...rest }) => {
+const Button: FC<ButtonProps> = ({ className, size, color, mode, stretched, children, ...rest }) => {
   return (
-    <Styled.Root className={className} color={color} stretched={stretched} size={size} {...rest}>
+    <Styled.Root className={className} color={color} mode={mode} stretched={stretched} size={size} {...rest}>
       {children}
     </Styled.Root>
   )

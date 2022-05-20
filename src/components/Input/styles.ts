@@ -60,7 +60,8 @@ const fieldBase = css<Props>`
     border-radius: ${theme.baseStyles.radius.radiusMain};
     border: none;
     resize: none;
-    background: ${({ theme }) => theme.colors.border};
+    // background: ${({ theme }) => theme.colors.border};
+    border: 1px solid ${({ theme }) => theme.colors.border};
     transition: background-color ${theme.animation.transitionDuration},
       border-color ${theme.animation.transitionDuration};
   `}

@@ -6,23 +6,39 @@ import { usePhoneFormatter } from 'src/components/Input/hooks/usePhoneFormatter'
 
 interface WelcomeRegisterProps {
   className?: string
+  phone?: string
+  onSubmit?: (data: { phone: string; phoneCode: string }) => void
 }
 
-const WelcomeIntro: FC<WelcomeRegisterProps> = ({ className }) => {
-  const { formatValue, setValue } = usePhoneFormatter()
+const WelcomeIntro: FC<WelcomeRegisterProps> = ({ className, phone, onSubmit }) => {
+  const { formatValue, setValue } = usePhoneFormatter(phone)
 
   return (
     <Styled.Root className={className}>
       <Container>
-        <Styled.Header right={<Touchable>Next</Touchable>} />
+        <Styled.Header
+          right={
+            <Touchable
+              onClick={() =>
+                onSubmit &&
+                onSubmit({
+                  phone: formatValue,
+                  phoneCode: '+7'
+                })
+              }
+            >
+              Next
+            </Touchable>
+          }
+        />
         <Styled.Title>Your phone</Styled.Title>
         <Styled.Description>Please confirm your country code and your phone number.</Styled.Description>
       </Container>
 
       <Styled.CountrySection>
         <Styled.CountrySector>
-            <Styled.CountryFlag size={30} iso='ru' />
-            Russia
+          <Styled.CountryFlag size={30} iso='ru' />
+          Russia
         </Styled.CountrySector>
       </Styled.CountrySection>
       <Styled.PhoneSection>

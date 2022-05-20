@@ -7,6 +7,7 @@ interface Props {
   size?: ButtonProps['size']
   stretched?: ButtonProps['stretched']
   color?: ButtonProps['color']
+  mode?: ButtonProps['mode']
 }
 
 const sizesMap: Record<NonNullable<Props['size']>, string> = {
@@ -15,26 +16,61 @@ const sizesMap: Record<NonNullable<Props['size']>, string> = {
   l: `padding: 10px 16px;`
 }
 
-const colorsMap: (
-  theme: DefaultTheme
-) => Record<NonNullable<Props['color']>, any> = theme => ({
-  dark: css`
-    background: ${theme.colors.basicBlack};
-    color: ${theme.colors.basicWhite};
+const colorsMap = (theme: DefaultTheme) => ({
+  accent: {
+    color: theme.colors.primary,
+    active: rgbToRgba(theme.colors.primaryBg, 0.9)
+  },
 
-    &:active {
-      background: ${rgbToRgba(theme.colors.basicBlack, 0.9)};
-    }
-  `,
-  secondary: css`
-    background: ${theme.colors.secondary};
-    color: ${theme.colors.basicWhite};
+  positive: {
+    color: theme.colors.primary,
+    active: rgbToRgba(theme.colors.primaryBg, 0.9)
+  },
 
-    &:active {
-      background: ${rgbToRgba(theme.colors.secondary, 0.9)};
-    }
-  `
+  negative: {
+    color: theme.colors.primary,
+    active: rgbToRgba(theme.colors.primaryBg, 0.9)
+  },
+
+  neutral: {
+    color: theme.colors.primary,
+    active: rgbToRgba(theme.colors.primaryBg, 0.9)
+  }
 })
+
+const modesMap = (theme: DefaultTheme, colorMode: Props['color']) => {
+  const { color, active } = colorsMap(theme)[colorMode || 'accent']
+
+  return {
+    primary: css`
+      background-color: ${color};
+      color: ${theme.colors.textWhite};
+
+      &:active {
+        background-color: ${active};
+      }
+    `,
+    secondary: css`
+      background-color: ${theme.colors.secondaryBg};
+      color: ${color};
+
+      &:active {
+        background-color: ${theme.colors.secondaryPress};
+      }
+    `,
+
+    tertiary: css`
+      background-color: transparent;
+      color: ${color};
+
+      &:active {
+        background-color: transparent;
+      }
+    `,
+
+    outline: ``
+  }
+}
 
 export const Root = styled(Touchable).attrs({ tagName: 'button' })<Props>`
   ${({ theme }) => theme.typography.text_14_24}
@@ -45,5 +81,5 @@ export const Root = styled(Touchable).attrs({ tagName: 'button' })<Props>`
   border: none;
   ${({ size }) => sizesMap[size || 's']}
   width: ${({ stretched }) => stretched && '100%'};
-  ${({ theme, color }) => colorsMap(theme)[color || 'dark']}
+  ${({ theme, mode, color }) => modesMap(theme, color)[mode || 'primary']}
 `

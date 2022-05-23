@@ -1,8 +1,17 @@
 import axios from 'axios'
 
-export const createApiClients = () => {
+interface ApiClientOptions {
+  accessToken?: string
+}
+
+const DEFAULT_OPTIONS: ApiClientOptions = {}
+
+export const createApiClients = ({ accessToken } = DEFAULT_OPTIONS) => {
   const apiClient = axios.create({
-    baseURL: `${import.meta.env.VITE_API_PATH}/api/v1`
+    baseURL: '/api',
+    headers: {
+      Authorization: `Bearer ${accessToken}`
+    }
   })
 
   return { apiClient }

@@ -10,7 +10,7 @@ export const usePhoneFormatter = <T extends string>(initialState = '') => {
 
   return {
     formatValue,
-    value,
+    value: value.replace(/ /gm, ''),
     setValue
   }
 }

@@ -6,15 +6,18 @@ import { authUserAtom } from 'src/store/userStore/atoms/authUserAtom'
 import { GeneratedTokenResponse } from 'src/interfaces/Request'
 import useCookies from "../useCookies";
 
-type InputProps = Omit<AuthUser, 'id' | 'token'>
+type InputProps = {
+  phone: string
+  code: string
+}
 type OutputProps = {
   user: AuthUserResponse
   token: GeneratedTokenResponse
 }
 
-export const useRegisterUser = () => {
+export const useLoginUser = () => {
   const [, setAuthUser] = useRecoilState(authUserAtom)
-  const { fetching, execute } = useMutation<OutputProps, InputProps>(apiEndpoints.AUTH_REGISTER)
+  const { fetching, execute } = useMutation<OutputProps, InputProps>(apiEndpoints.AUTH_LOGIN)
   const [, setAccessToken] = useCookies('accessToken')
 
   return {

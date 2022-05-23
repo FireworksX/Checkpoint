@@ -1,6 +1,5 @@
 import ReactDOMServer from 'react-dom/server'
 import { ServerStyleSheet } from 'styled-components'
-import nodeFetch from 'node-fetch'
 import { App, AppFetcherType } from './App'
 import { configureRouter } from './router/configureRouter'
 import { serverCookieManager } from './services/cookie/serverCookieManager'
@@ -10,18 +9,18 @@ import { appConfig } from './data/appConfig'
 import { FilledContext } from 'react-helmet-async'
 import { MutableSnapshot, Snapshot } from 'recoil'
 import { STORE_NAMES, storeMap, StoreType } from './store'
+import { createApiClients } from './utils/createApiClients'
 
 export async function render(url: string, ctx: AppContext) {
   const cookieManager = serverCookieManager(ctx.req, ctx.res, appConfig.COOKIE_PREFIX)
+  const accessToken = cookieManager.get('accessToken')
+
   const router = configureRouter(ctx)
   router.start(url)
 
-  const fetcher: AppFetcherType = (resource, init) =>
-    nodeFetch(`${ctx.req.protocol}://${ctx.req.header('host')}/api${resource}`, {
-      headers: {
-        cookie: cookieManager.getAllByString()
-      }
-    }).then(res => res.json())
+  const { apiClient } = createApiClients({ accessToken })
+
+  const fetcher: AppFetcherType = (resource, init) => apiClient.get(resource).then(({ data }) => data)
 
   const currentLocation = cookieManager.get('selfLocation')
 
@@ -48,7 +47,6 @@ export async function render(url: string, ctx: AppContext) {
     }
 
     nodesMap[STORE_NAMES.userAgentAtom] = ctx.req.useragent
-
 
     nodesMap[STORE_NAMES.geoLocationAtom] = {
       hasPermissions: false,
@@ -87,7 +85,6 @@ export async function render(url: string, ctx: AppContext) {
       window.__APP__CACHE__ = ${JSON.stringify(appCache)}
     </script>
   `
-
 
   const storeCacheTags = `
     <script>

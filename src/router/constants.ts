@@ -17,4 +17,15 @@ export type RouteNamesType = keyof typeof ROUTE_NAMES
 
 const ROUTE_PARAMS = createConstants()
 
-export { langSlugs, ROUTE_NAMES, ROUTE_PARAMS }
+const STORE_NAMES = createConstants(
+    'mapCenterAtom',
+    'mapZoomAtom',
+    'mapPlacemarksAtom',
+    'mapSaveCenterAtom',
+    'hasNavigationAtom',
+    'geoLocationAtom',
+    'userAgentAtom',
+    'authUserAtom'
+)
+
+export { langSlugs, ROUTE_NAMES, ROUTE_PARAMS, STORE_NAMES }

@@ -1,6 +1,6 @@
 import { apiEndpoints } from 'src/data/apiEndpoints'
 import { useMutation } from 'src/hooks/useMutation'
-import { UserInterface } from 'src/interfaces/UserInterface'
+import { UserInterface } from 'src/interfaces/User'
 
 interface Props {
   login: string

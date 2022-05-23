@@ -1,7 +1,17 @@
 import { createApiClients } from 'src/utils/createApiClients'
+import useCookies from './useCookies'
+import { useIsomorphicEffect } from './useIsomorphicEffect'
+import { useRef } from 'react'
 
-const { apiClient } = createApiClients()
+const { apiClient: initialApiClient } = createApiClients()
 
 export const useApiClient = () => {
-  return apiClient
+  const apiClient = useRef(initialApiClient)
+  const [accessToken] = useCookies('accessToken')
+
+  useIsomorphicEffect(() => {
+    apiClient.current = createApiClients({ accessToken }).apiClient
+  }, [accessToken])
+
+  return apiClient.current
 }

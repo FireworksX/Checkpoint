@@ -1,36 +1,25 @@
 import { FC } from 'react'
 import * as Styled from './styles'
-import Touchable from 'src/components/Touchable/Touchable'
 import Container from 'src/components/Container/Container'
-import { usePhoneFormatter } from 'src/components/Input/hooks/usePhoneFormatter'
+import { useWelcomeIntro } from './hooks/useWelcomeIntro'
+import PageHeaderButton from 'src/widgets/PageHeader/components/PageHeaderButton/PageHeaderButton'
 
 interface WelcomeRegisterProps {
   className?: string
   phone?: string
-  onSubmit?: (data: { phone: string; phoneCode: string }) => void
+  onNext(): void
 }
 
-const WelcomeIntro: FC<WelcomeRegisterProps> = ({ className, phone, onSubmit }) => {
-  const { formatValue, setValue } = usePhoneFormatter(phone)
+const WelcomeIntro: FC<WelcomeRegisterProps> = ({ className, phone, onNext }) => {
+  const { phoneValue, onSetPhoneValue, onSubmit } = useWelcomeIntro({
+    onNext,
+    onBack: () => undefined
+  })
 
   return (
     <Styled.Root className={className}>
       <Container>
-        <Styled.Header
-          right={
-            <Touchable
-              onClick={() =>
-                onSubmit &&
-                onSubmit({
-                  phone: formatValue,
-                  phoneCode: '+7'
-                })
-              }
-            >
-              Next
-            </Touchable>
-          }
-        />
+        <Styled.Header right={<PageHeaderButton onClick={onSubmit}>Next</PageHeaderButton>} />
         <Styled.Title>Your phone</Styled.Title>
         <Styled.Description>Please confirm your country code and your phone number.</Styled.Description>
       </Container>
@@ -43,7 +32,11 @@ const WelcomeIntro: FC<WelcomeRegisterProps> = ({ className, phone, onSubmit }) 
       </Styled.CountrySection>
       <Styled.PhoneSection>
         <Styled.PhoneCode value='+7' />
-        <Styled.PhoneNumber placeholder='--- --- ----' value={formatValue} onChange={e => setValue(e.target.value)} />
+        <Styled.PhoneNumber
+          placeholder='--- --- ----'
+          value={phoneValue}
+          onChange={e => onSetPhoneValue(e.target.value)}
+        />
       </Styled.PhoneSection>
     </Styled.Root>
   )

@@ -5,13 +5,14 @@ import {
   PropsWithChildren,
   ReactNode,
   RefObject,
-  TextareaHTMLAttributes
+  TextareaHTMLAttributes,
+  useMemo
 } from 'react'
 import * as Styled from './styles'
 
 export type InputProps = {
-  error?: ReactNode | true
-  success?: ReactNode | true
+  status?: 'success' | 'error'
+  statusText?: ReactNode
   className?: string
   label?: string
   inputClassName?: string
@@ -24,13 +25,13 @@ export type InputProps = {
 )
 
 const Input: FC<InputProps> = forwardRef<HTMLInputElement | HTMLTextAreaElement, PropsWithChildren<InputProps>>(
-  ({ isSlimArea, label, error, success, className, inputClassName, postfix, icon, ...inputProps }, ref) => {
-    const status = success ? 'success' : error ? 'error' : undefined
+  ({ isSlimArea, label, status, statusText, className, inputClassName, postfix, icon, ...inputProps }, ref) => {
 
-    // if (inputProps?.textarea) {
-    //   // @ts-ignore
-    //   delete inputProps.textarea
-    // }
+    const StatusCheck = useMemo(() => {
+      if (status) {
+        return status === 'success' ? <Styled.IconCheck /> : <Styled.IconExclamation />
+      }
+    }, [status])
 
     return (
       <Styled.Root className={className}>
@@ -57,14 +58,8 @@ const Input: FC<InputProps> = forwardRef<HTMLInputElement | HTMLTextAreaElement,
             />
           )}
           {postfix && <Styled.Postfix>{postfix}</Styled.Postfix>}
-          <div>{success ? <Styled.IconCheck /> : error ? <Styled.IconExclamation /> : null}</div>
-          <div>
-            {success && success !== true ? (
-              <Styled.Message status='success'>{success}</Styled.Message>
-            ) : error && error !== true ? (
-              <Styled.Message status='error'>{error}</Styled.Message>
-            ) : null}
-          </div>
+          <div>{StatusCheck}</div>
+          <div>{statusText && <Styled.Message status={status}>{statusText}</Styled.Message>}</div>
         </Styled.Wrapper>
       </Styled.Root>
     )

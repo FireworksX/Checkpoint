@@ -28,12 +28,12 @@ const colorsMap = (theme: DefaultTheme) => ({
   },
 
   negative: {
-    color: theme.colors.primary,
-    active: rgbToRgba(theme.colors.primaryBg, 0.9)
+    color: theme.colors.statusDangerText,
+    active: rgbToRgba(theme.colors.statusDangerText, 0.9)
   },
 
   neutral: {
-    color: theme.colors.primary,
+    color: theme.colors.textColor,
     active: rgbToRgba(theme.colors.primaryBg, 0.9)
   }
 })

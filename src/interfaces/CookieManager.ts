@@ -6,6 +6,8 @@ export type CookiesType = Partial<{
     lng: number
   }
   profile: string
+  accessToken: string
+  refreshToken: string
 }>
 
 export interface CookieManager<T extends CookiesType = CookiesType> {

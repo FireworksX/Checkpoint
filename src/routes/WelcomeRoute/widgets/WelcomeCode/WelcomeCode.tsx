@@ -1,29 +1,26 @@
 import { FC } from 'react'
 import * as Styled from './styles'
-import Touchable from 'src/components/Touchable/Touchable'
 import Container from 'src/components/Container/Container'
-import { useNumberFormatter } from 'src/components/Input/hooks/useNumberFormatter'
+import { useWelcomeCode } from './hooks/useWelcomeCode'
+import PageHeaderButton from 'src/widgets/PageHeader/components/PageHeaderButton/PageHeaderButton'
 
 interface WelcomeRegisterProps {
   className?: string
-  phone?: string
-  phoneCode?: string
-  onBack?: () => void
-  onSubmit?: () => void
+  onBack(): void
+  onLogin(): void
+  onRegister(): void
 }
 
-const WelcomeCode: FC<WelcomeRegisterProps> = ({ className, phone, phoneCode,onSubmit, onBack }) => {
-  const { formatValue, setValue } = useNumberFormatter()
+const WelcomeCode: FC<WelcomeRegisterProps> = ({ className, onLogin, onRegister, onBack }) => {
+  const { phone, codeValue, onSetCodeValue } = useWelcomeCode({ onLogin, onRegister, onBack })
 
   return (
     <Styled.Root className={className}>
       <Container>
-        <Styled.Header left={<Touchable onClick={onBack}>Back</Touchable>} right={<Touchable onClick={onSubmit}>Next</Touchable>} />
-        <Styled.Title>
-          {phoneCode} {phone}
-        </Styled.Title>
+        <Styled.Header left={<PageHeaderButton onClick={onBack}>Back</PageHeaderButton>} />
+        <Styled.Title>{phone}</Styled.Title>
         <Styled.Description>We've sent the code to your phone via SMS</Styled.Description>
-        <Styled.CodeInput value={formatValue} onChange={e => setValue(e.target.value)} />
+        <Styled.CodeInput value={codeValue} onChange={e => onSetCodeValue(e.target.value)} />
       </Container>
     </Styled.Root>
   )

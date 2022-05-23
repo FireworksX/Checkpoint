@@ -1,4 +1,4 @@
-import {StoreType} from "../src/store";
+import { StoreType } from '../src/store'
 
 require('dotenv').config()
 require('dotenv').config({
@@ -6,12 +6,13 @@ require('dotenv').config({
 })
 import { FilledContext } from 'react-helmet-async'
 import { Request, Response } from 'express'
+import { apiProxy } from './proxy/apiProxy'
 const fs = require('fs')
 const path = require('path')
 const express = require('express')
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
-const useragent = require('express-useragent');
+const useragent = require('express-useragent')
 
 const isTest = process.env.NODE_ENV === 'test' || !!process.env.VITE_TEST_BUILD
 const port = process.env.VITE_PORT || 3000
@@ -38,6 +39,8 @@ async function createServer(root = process.cwd(), isProd = process.env.NODE_ENV 
   const indexProd = isProd ? fs.readFileSync(resolve('../dist/client/index.html'), 'utf-8') : ''
 
   const app = express()
+
+  app.use('/api', apiProxy)
 
   app.use(bodyParser.urlencoded({ extended: false }))
   app.use(bodyParser.json())

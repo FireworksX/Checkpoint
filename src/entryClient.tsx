@@ -6,12 +6,16 @@ import { clientCookieManager } from './services/cookie/clientCookieManager'
 import { appConfig } from './data/appConfig'
 import 'src/pwa'
 import { storeMap, StoreType } from './store'
+import { createApiClients } from './utils/createApiClients'
 
 const cookieManager = clientCookieManager(appConfig.COOKIE_PREFIX)
 const router = configureRouter()
 router.start()
 
-const fetcher: AppFetcherType = (resource, init) => fetch(`/api${resource}`, init).then(res => res.json())
+const accessToken = cookieManager.get('accessToken')
+const { apiClient } = createApiClients({ accessToken })
+
+const fetcher: AppFetcherType = (resource, init) => apiClient.get(resource).then(({ data }) => data)
 
 const appCache = window.__APP__CACHE__
 const storeCache = window.__STORE__CACHE__

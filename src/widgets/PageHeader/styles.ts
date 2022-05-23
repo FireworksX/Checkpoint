@@ -17,10 +17,6 @@ const sidesCss = css`
   flex-grow: 1;
   flex-basis: 0;
   flex-shrink: 0;
-  font-weight: bold;
-  ${({ theme }) => theme.typography.text_16_20};
-  color: ${({ theme }) => theme.colors.primary};
-  
 `
 
 export const Left = styled.div`

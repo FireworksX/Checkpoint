@@ -3,7 +3,7 @@ import * as Styled from './styles'
 import { route } from 'src/hoc/route'
 import { ROUTE_NAMES } from 'src/router/constants'
 import PageHeaderButtonBack from 'src/widgets/PageHeader/components/PageHeaderButtonBack/PageHeaderButtonBack'
-import { useCurrentUser } from 'src/hooks/data/useCurrentUser'
+// import { useCurrentUser } from 'src/hooks/data/useCurrentUser'
 import { withValidateUser } from 'src/hoc/withValidateUser'
 import { useGeoLocation } from 'src/hooks/useGeoLocation'
 import { useNotifications } from 'src/hooks/useNotifications'
@@ -13,7 +13,7 @@ interface ProfileRouteProps {
 }
 
 const ProfileRoute: FC<ProfileRouteProps> = ({ className }) => {
-  const { data } = useCurrentUser()
+  const { data } = { data: {} } //useCurrentUser()
   const geoLocations = useGeoLocation()
   const notifications = useNotifications()
 

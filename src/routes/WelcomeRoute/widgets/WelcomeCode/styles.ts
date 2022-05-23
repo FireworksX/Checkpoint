@@ -34,5 +34,6 @@ export const CodeInput = styled(Input).attrs({
     ${({ theme }) => theme.typography.text_16_20};
     text-align: center;
     padding: 10px;
+    letter-spacing: 15px;
   }
 `

@@ -1,4 +1,5 @@
 import { ClientCookieManager, CookieManager, CookiesType } from 'src/interfaces/CookieManager'
+import { isPrimitive } from '../../utils/isPremitive'
 
 export const clientCookieManager = <T extends CookiesType = CookiesType>(prefix = ''): CookieManager<T> => {
   const get = <K extends keyof T>(name: keyof T): T[K] => {
@@ -23,9 +24,11 @@ export const clientCookieManager = <T extends CookiesType = CookiesType>(prefix 
     const date = new Date()
     date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000)
 
-    document.cookie = [`${prefix}${name}=${JSON.stringify(value)}`, `expires=${date.toUTCString()}`, 'path=/'].join(
-      '; '
-    )
+    document.cookie = [
+      `${prefix}${name}=${isPrimitive(value) ? value : JSON.stringify(value)}`,
+      `expires=${date.toUTCString()}`,
+      'path=/'
+    ].join('; ')
   }
 
   const getAllByString = () => {

@@ -12,8 +12,7 @@ const cookieManager = clientCookieManager(appConfig.COOKIE_PREFIX)
 const router = configureRouter()
 router.start()
 
-const accessToken = cookieManager.get('accessToken')
-const { apiClient } = createApiClients({ accessToken })
+const { apiClient } = createApiClients({ cookieManager })
 
 const fetcher: AppFetcherType = (resource, init) => apiClient.get(resource).then(({ data }) => data)
 

@@ -8,7 +8,6 @@ import { ROUTE_NAMES } from 'src/router/constants'
 import 'src/utils/dayjs-timezone'
 import { hasNavigationAtom } from 'src/store/uiStore'
 import { RootRouteHead } from './RootRouteHead'
-import useCookies from "src/hooks/useCookies";
 
 const RootRoute: FC = ({ children }) => {
     const hasNavigation = useRecoilValue(hasNavigationAtom)

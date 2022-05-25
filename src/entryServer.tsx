@@ -13,12 +13,11 @@ import { createApiClients } from './utils/createApiClients'
 
 export async function render(url: string, ctx: AppContext) {
   const cookieManager = serverCookieManager(ctx.req, ctx.res, appConfig.COOKIE_PREFIX)
-  const accessToken = cookieManager.get('accessToken')
 
   const router = configureRouter(ctx)
   router.start(url)
 
-  const { apiClient } = createApiClients({ accessToken })
+  const { apiClient } = createApiClients({ cookieManager })
 
   const fetcher: AppFetcherType = (resource, init) => apiClient.get(resource).then(({ data }) => data)
 

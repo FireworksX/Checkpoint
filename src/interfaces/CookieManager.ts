@@ -5,7 +5,7 @@ export type CookiesType = Partial<{
     lat: number
     lng: number
   }
-  profile: string
+  userPhone: string
   accessToken: string
   refreshToken: string
 }>

@@ -9,7 +9,6 @@ import { useMapCreation } from './hooks/useMapCreation'
 import CreationPlacemark from './components/CreationPlacemark/CreationPlacemark'
 import { useKeepNavigation } from 'src/hooks/keepNavigation'
 import { withValidateUser } from 'src/hoc/withValidateUser'
-import { ZoomControl } from './styles'
 import { useMainMap } from './widgets/MainMap/hooks/useMainMap'
 
 interface HomeRouteProps {

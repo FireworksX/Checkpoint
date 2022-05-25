@@ -10,6 +10,7 @@
 - Styled-components
 - Suspense mode for fetching (ssr prepass)
 - SWR data fetching (transfer cache from server)
+- PWA (offline mode / cache assets)
 
 ### Bootstrap
 Development

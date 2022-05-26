@@ -4,13 +4,6 @@ import Touchable from 'src/components/Touchable/Touchable'
 
 export const Root = styled.div``
 
-export const Wrapper = styled.div`
-  white-space: nowrap;
-  overflow: scroll;
-  display: flex;
-  align-items: center;
-`
-
 export const Slide = styled(Touchable)`
   height: 180px;
   min-width: calc(100vw - 30px);

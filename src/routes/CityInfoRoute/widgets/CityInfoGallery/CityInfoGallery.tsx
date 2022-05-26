@@ -1,6 +1,7 @@
 import { FC } from 'react'
 import * as Styled from './styles'
 import Container from 'src/components/Container/Container'
+import HorizontalScroll from "src/components/HorizontalScroll/HorizontalScroll";
 
 interface CityInfoGalleryProps {
   className?: string
@@ -18,7 +19,7 @@ const CityInfoGallery: FC<CityInfoGalleryProps> = ({ className }) => {
 
   return (
     <Styled.Root className={className}>
-      <Styled.Wrapper>
+      <HorizontalScroll>
         {list.map(src => (
           <Container>
             <Styled.Slide>
@@ -26,7 +27,7 @@ const CityInfoGallery: FC<CityInfoGalleryProps> = ({ className }) => {
             </Styled.Slide>
           </Container>
         ))}
-      </Styled.Wrapper>
+      </HorizontalScroll>
     </Styled.Root>
   )
 }

@@ -21,6 +21,14 @@ const linkConfig = {
   createPlace: {
     name: buildName(ROUTE_NAMES.createPlace),
     params: { required: [], optional: [] }
+  },
+  cityList: {
+    name: buildName(ROUTE_NAMES.city, ROUTE_NAMES.cityList),
+    params: { required: [], optional: [] }
+  },
+  cityDetail: {
+    name: buildName(ROUTE_NAMES.city, ROUTE_NAMES.cityDetail, ROUTE_NAMES.cityInfo),
+    params: { required: ['citySlug'], optional: [] }
   }
 } as const
 

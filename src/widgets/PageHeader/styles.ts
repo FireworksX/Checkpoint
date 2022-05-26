@@ -10,7 +10,10 @@ export const Root = styled.header`
   height: ${({ theme }) => theme.baseStyles.sizes.headerHeight}px;
 `
 
-export const Center = styled.div``
+export const Center = styled.div`
+  flex-grow: 1;
+  text-align: center;
+`
 
 const sidesCss = css`
   display: flex;

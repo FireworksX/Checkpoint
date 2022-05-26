@@ -11,7 +11,12 @@ const ROUTE_NAMES = createConstants(
   'notifications',
   'welcome',
   'register',
-  'createPlace'
+  'createPlace',
+  'city',
+  'cityList',
+  'cityDetail',
+  'cityInfo',
+  'cityMap',
 )
 export type RouteNamesType = keyof typeof ROUTE_NAMES
 

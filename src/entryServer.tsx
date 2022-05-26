@@ -19,7 +19,7 @@ export async function render(url: string, ctx: AppContext) {
 
   const { apiClient } = createApiClients({ cookieManager })
 
-  const fetcher: AppFetcherType = (resource, init) => apiClient.get(resource).then(({ data }) => data)
+  const fetcher: AppFetcherType = (resource, init) => apiClient.get(resource).then(({ data }) => data).catch(console.log)
 
   const currentLocation = cookieManager.get('selfLocation')
 

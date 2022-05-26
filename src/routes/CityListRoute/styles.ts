@@ -1,11 +1,18 @@
 import styled from 'styled-components'
-import PageHeader from 'src/widgets/PageHeader/PageHeader'
-import Input from 'src/components/Input/Input'
+import BaseImage from 'src/components/BaseImage/BaseImage'
 
 export const Root = styled.div``
 
-export const Header = styled(PageHeader)`
-  margin-bottom: 100px;
+export const ImageWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 0 50px 0;
+`
+
+export const Image = styled(BaseImage)`
+  width: 80px;
+  height: 80px;
 `
 
 export const Title = styled.div`
@@ -22,15 +29,4 @@ export const Description = styled.p`
   margin-bottom: 40px;
   text-align: center;
   padding: 0 15%;
-`
-
-export const CodeInput = styled(Input).attrs({
-  inputClassName: 'input'
-})`
-  .input {
-    ${({ theme }) => theme.typography.text_16_20};
-    text-align: center;
-    padding: 10px;
-    letter-spacing: 15px;
-  }
 `

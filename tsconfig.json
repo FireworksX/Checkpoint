@@ -17,7 +17,7 @@
     "jsx": "react-jsx",
     "paths": {
       "src": ["./src"],
-      "server": ["./server"],
+      "server": ["./server"]
     }
   },
   "exclude": ["node_modules"],

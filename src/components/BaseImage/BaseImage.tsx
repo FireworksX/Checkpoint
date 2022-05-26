@@ -4,7 +4,7 @@ import React from 'react'
 export interface BaseImageProps {
   src: string
   useImageProxy?: boolean
-  size: number
+  size?: number
   sizesDesktop?: number[]
   className?: string
   alt?: string | null
@@ -28,7 +28,7 @@ export const FALLBACK_BASE64 = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAA
 
 const BaseImage: React.FC<BaseImageProps> = ({
   src,
-  size,
+  size = 60,
   sizesDesktop,
   className,
   alt: propsAlt,

@@ -17,7 +17,7 @@ const DEFAULT_OPTIONS: ApiClientOptions = {}
 
 export const createApiClients = ({ cookieManager } = DEFAULT_OPTIONS) => {
   const apiClient = axios.create({
-    baseURL: '/api'
+    baseURL: 'http://localhost:3000/api'
   })
 
   let tryRefresh = false
@@ -25,7 +25,6 @@ export const createApiClients = ({ cookieManager } = DEFAULT_OPTIONS) => {
   apiClient.interceptors.request.use(req => {
     const accessToken = cookieManager?.get('accessToken')
 
-    console.log(accessToken, req);
     if (req.headers && accessToken) {
       req.headers.Authorization = `Bearer ${accessToken}`
     }
@@ -53,7 +52,6 @@ export const createApiClients = ({ cookieManager } = DEFAULT_OPTIONS) => {
             }
           )
 
-          console.log(data)
           if (data.success) {
             const token = data?.data?.token
 

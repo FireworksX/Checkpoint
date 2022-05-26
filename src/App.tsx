@@ -32,7 +32,7 @@ export const App: FC<Props> = ({ router, helmetContext, cookieManager, fetcher, 
                 value={{
                   provider: () => cacheManager,
                   fetcher,
-                  suspense: !isBrowser
+                  suspense: true
                 }}
               >
                 <RootRoute />

@@ -46,6 +46,25 @@ export const routes: Route[] = [
         name: ROUTE_NAMES.welcome,
         path: `welcome`,
         component: routeComponents.WelcomeRoute
+      },
+      {
+        name: ROUTE_NAMES.city,
+        path: `city`,
+        children: [
+          {
+            name: ROUTE_NAMES.cityList,
+            path: '/',
+            component: routeComponents.CityListRoute
+          },
+          {
+            name: ROUTE_NAMES.cityDetail,
+            path: '/:citySlug',
+            children: [
+              { name: ROUTE_NAMES.cityInfo, path: '/', component: routeComponents.CityInfoRoute },
+              { name: ROUTE_NAMES.cityMap, path: '/map' }
+            ]
+          }
+        ]
       }
     ]
   }

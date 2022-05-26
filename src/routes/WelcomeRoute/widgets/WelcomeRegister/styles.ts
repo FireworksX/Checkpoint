@@ -1,9 +1,7 @@
 import styled from 'styled-components'
 import PageHeader from 'src/widgets/PageHeader/PageHeader'
-import Touchable from 'src/components/Touchable/Touchable'
-import Input from '../../../../components/Input/Input'
-import CommonLogo from '../../../../components/CommonLogo/CommonLogo'
-import Container from '../../../../components/Container/Container'
+import Input from 'src/components/Input/Input'
+import CommonLogo from 'src/components/CommonLogo/CommonLogo'
 
 export const Root = styled.div``
 

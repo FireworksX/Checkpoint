@@ -28,7 +28,8 @@ const CityListRoute: FC<CityListRouteProps> = ({ className }) => {
       {list.map(city => (
         <Link type='cityDetail' citySlug={city.slug}>
           <SimpleCell
-            description='Locations to explore: 243'
+            description='Кол-во локаций: 243'
+            expandable
             before={<CommonLogo size={34} src={staticImagesMap.church} />}
           >
             {city.name}

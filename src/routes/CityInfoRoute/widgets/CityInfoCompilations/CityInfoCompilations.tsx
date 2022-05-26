@@ -9,7 +9,7 @@ interface CityInfoCompilationsProps {
 const CityInfoCompilations: FC<CityInfoCompilationsProps> = ({ className }) => {
   const list = [
     {
-      title: 'Локальное',
+      title: 'От местных',
       description: 'Куда ходят местные',
       image: staticImagesMap.manWalkingLightSkinTone
     },
@@ -19,7 +19,7 @@ const CityInfoCompilations: FC<CityInfoCompilationsProps> = ({ className }) => {
       image: staticImagesMap.classicalBuilding
     },
     {
-      title: 'Рестораны',
+      title: 'Поесть',
       description: 'Где покушать',
       image: staticImagesMap.potOfFood
     },
@@ -29,7 +29,7 @@ const CityInfoCompilations: FC<CityInfoCompilationsProps> = ({ className }) => {
       image: staticImagesMap.worldMap
     },
     {
-      title: 'Инстаместа',
+      title: 'Пофоткаться',
       description: 'Для фото в Инстаграм',
       image: staticImagesMap.cameraWithFlash
     },

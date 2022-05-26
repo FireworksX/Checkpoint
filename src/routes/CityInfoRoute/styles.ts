@@ -2,12 +2,16 @@ import styled from 'styled-components'
 import PageHeader from 'src/widgets/PageHeader/PageHeader'
 import CityInfoGallery from './widgets/CityInfoGallery/CityInfoGallery'
 import CityInfoCompilations from "./widgets/CityInfoCompilations/CityInfoCompilations";
+import CityInfoStories from "./widgets/CityInfoStories/CityInfoStories";
+import CityInfoFacts from "./widgets/CityInfoFacts/CityInfoFacts";
+import CityInfoRates from "./widgets/CityInfoRates/CityInfoRates";
 
 export const Root = styled.div``
 
 export const Header = styled(PageHeader)`
   ${({ theme }) => theme.typography.text_20_24};
   font-weight: bold;
+  margin-bottom: 10px;
 `
 
 export const Gallery = styled(CityInfoGallery)`
@@ -15,5 +19,17 @@ export const Gallery = styled(CityInfoGallery)`
 `
 
 export const Compilations = styled(CityInfoCompilations)`
+  margin-bottom: 40px;
+`
+
+export const Stories = styled(CityInfoStories)`
+  margin-bottom: 40px;
+`
+
+export const Facts = styled(CityInfoFacts)`
+  margin-bottom: 15px;
+`
+
+export const Rates = styled(CityInfoRates)`
   margin-bottom: 40px;
 `

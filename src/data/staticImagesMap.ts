@@ -6,7 +6,12 @@ import beerMug from '../../public/assets/images/emoji/beer-mug.png'
 import worldMap from '../../public/assets/images/emoji/world-map.png'
 import sunset from '../../public/assets/images/emoji/sunset.png'
 import church from '../../public/assets/images/emoji/church.png'
+import automobile from '../../public/assets/images/emoji/automobile.png'
+import wrench from '../../public/assets/images/emoji/wrench.png'
+import stopwatch from '../../public/assets/images/emoji/stopwatch.png'
+import personInLotusPosition from '../../public/assets/images/emoji/person-in-lotus-position.png'
 
+// TODO Make lazy load with import()
 export const staticImagesMap = {
   classicalBuilding,
   manWalkingLightSkinTone,
@@ -15,5 +20,9 @@ export const staticImagesMap = {
   beerMug,
   worldMap,
   sunset,
-  church
+  church,
+  automobile,
+  wrench,
+  stopwatch,
+  personInLotusPosition
 }

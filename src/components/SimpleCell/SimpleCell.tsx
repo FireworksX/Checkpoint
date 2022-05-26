@@ -5,11 +5,12 @@ import Icon from '../Icon/Icon'
 interface SimpleCellProps {
   className?: string
   before?: ReactNode
+  after?: ReactNode
   expandable?: boolean
   description?: string | number
 }
 
-const SimpleCell: FC<SimpleCellProps> = ({ className, before, description, expandable, children }) => {
+const SimpleCell: FC<SimpleCellProps> = ({ className, before, after, description, expandable, children }) => {
   return (
     <Styled.Root className={className}>
       <Styled.Before>{before}</Styled.Before>
@@ -17,9 +18,12 @@ const SimpleCell: FC<SimpleCellProps> = ({ className, before, description, expan
         {children}
         <Styled.Description>{description}</Styled.Description>
       </Styled.Main>
-      <Styled.Expandable>
-        <Icon name='arrow-chevron' />
-      </Styled.Expandable>
+      <Styled.Before>{after}</Styled.Before>
+      {expandable && (
+        <Styled.Expandable>
+          <Icon name='arrow-chevron' />
+        </Styled.Expandable>
+      )}
     </Styled.Root>
   )
 }

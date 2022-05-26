@@ -8,3 +8,11 @@ export const Title = styled.h2`
   color: ${({ theme }) => theme.colors.textColor};
   margin-bottom: 15px;
 `
+
+export const CellWrapper = styled.div`
+  padding: 0 5px;
+
+  &:first-child {
+    padding-left: ${({ theme }) => theme.baseStyles.paddings.gutterMobile};
+  }
+`

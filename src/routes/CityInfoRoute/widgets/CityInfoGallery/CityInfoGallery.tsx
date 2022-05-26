@@ -20,8 +20,8 @@ const CityInfoGallery: FC<CityInfoGalleryProps> = ({ className }) => {
   return (
     <Styled.Root className={className}>
       <HorizontalScroll>
-        {list.map(src => (
-          <Container>
+        {list.map((src, index) => (
+          <Container key={index}>
             <Styled.Slide>
               <Styled.SlideImage src={src} />
             </Styled.Slide>

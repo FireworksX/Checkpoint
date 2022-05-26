@@ -4,6 +4,8 @@ import potOfFood from '../../public/assets/images/emoji/pot-of-food.png'
 import cameraWithFlash from '../../public/assets/images/emoji/camera-with-flash.png'
 import beerMug from '../../public/assets/images/emoji/beer-mug.png'
 import worldMap from '../../public/assets/images/emoji/world-map.png'
+import sunset from '../../public/assets/images/emoji/sunset.png'
+import church from '../../public/assets/images/emoji/church.png'
 
 export const staticImagesMap = {
   classicalBuilding,
@@ -11,5 +13,7 @@ export const staticImagesMap = {
   potOfFood,
   cameraWithFlash,
   beerMug,
-  worldMap
+  worldMap,
+  sunset,
+  church
 }

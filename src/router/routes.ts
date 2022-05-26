@@ -58,7 +58,7 @@ export const routes: Route[] = [
           },
           {
             name: ROUTE_NAMES.cityDetail,
-            path: '/:citySlug',
+            path: `/:${ROUTE_PARAMS.citySlug}`,
             children: [
               { name: ROUTE_NAMES.cityInfo, path: '/', component: routeComponents.CityInfoRoute },
               { name: ROUTE_NAMES.cityMap, path: '/map' }

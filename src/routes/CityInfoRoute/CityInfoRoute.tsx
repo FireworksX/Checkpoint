@@ -4,8 +4,8 @@ import { ROUTE_NAMES } from 'src/router/constants'
 import { route } from 'src/hoc/route'
 import { withValidateUser } from 'src/hoc/withValidateUser'
 import { useCityList } from './hooks/useCityList'
-import Container from "../../components/Container/Container";
-import CityInfoCompilations from "./widgets/CityInfoCompilations/CityInfoCompilations";
+import Container from '../../components/Container/Container'
+import CityInfoCompilations from './widgets/CityInfoCompilations/CityInfoCompilations'
 
 interface CityListRouteProps {
   className?: string
@@ -17,8 +17,9 @@ const CityInfoRoute: FC<CityListRouteProps> = ({ className }) => {
   return (
     <Styled.Root className={className}>
       <Styled.Header>Saint-Peterburg</Styled.Header>
+      <Styled.Gallery />
       <Container>
-        <CityInfoCompilations/>
+        <CityInfoCompilations />
       </Container>
     </Styled.Root>
   )

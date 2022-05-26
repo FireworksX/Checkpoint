@@ -9,6 +9,7 @@ import saintPetersburgImage from '../../../public/assets/images/saint-petersburg
 import SimpleCell from 'src/components/SimpleCell/SimpleCell'
 import CommonLogo from 'src/components/CommonLogo/CommonLogo'
 import Link from 'src/widgets/Link/Link'
+import {staticImagesMap} from "src/data/staticImagesMap";
 
 interface CityListRouteProps {
   className?: string
@@ -20,7 +21,7 @@ const CityListRoute: FC<CityListRouteProps> = ({ className }) => {
   return (
     <Styled.Root className={className}>
       <Styled.ImageWrapper>
-        <Styled.Image src={sunsetImage} />
+        <Styled.Image src={staticImagesMap.sunset} />
       </Styled.ImageWrapper>
       <Styled.Title>Choose city</Styled.Title>
       <Styled.Description>Select city which one you want to explore</Styled.Description>
@@ -28,7 +29,7 @@ const CityListRoute: FC<CityListRouteProps> = ({ className }) => {
         <Link type='cityDetail' citySlug={city.slug}>
           <SimpleCell
             description='Locations to explore: 243'
-            before={<CommonLogo size={34} src={saintPetersburgImage} />}
+            before={<CommonLogo size={34} src={staticImagesMap.church} />}
           >
             {city.name}
           </SimpleCell>

@@ -16,21 +16,21 @@ const ROUTE_NAMES = createConstants(
   'cityList',
   'cityDetail',
   'cityInfo',
-  'cityMap',
+  'cityMap'
 )
 export type RouteNamesType = keyof typeof ROUTE_NAMES
 
-const ROUTE_PARAMS = createConstants()
+const ROUTE_PARAMS = createConstants('citySlug')
 
 const STORE_NAMES = createConstants(
-    'mapCenterAtom',
-    'mapZoomAtom',
-    'mapPlacemarksAtom',
-    'mapSaveCenterAtom',
-    'hasNavigationAtom',
-    'geoLocationAtom',
-    'userAgentAtom',
-    'authUserAtom'
+  'mapCenterAtom',
+  'mapZoomAtom',
+  'mapPlacemarksAtom',
+  'mapSaveCenterAtom',
+  'hasNavigationAtom',
+  'geoLocationAtom',
+  'userAgentAtom',
+  'authUserAtom'
 )
 
 export { langSlugs, ROUTE_NAMES, ROUTE_PARAMS, STORE_NAMES }

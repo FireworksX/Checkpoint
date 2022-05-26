@@ -28,7 +28,7 @@ const linkConfig = {
   },
   cityDetail: {
     name: buildName(ROUTE_NAMES.city, ROUTE_NAMES.cityDetail, ROUTE_NAMES.cityInfo),
-    params: { required: ['citySlug'], optional: [] }
+    params: { required: [ROUTE_PARAMS.citySlug], optional: [] }
   }
 } as const
 

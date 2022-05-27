@@ -7,6 +7,7 @@ import CreatePlaceRoute from './CreatePlaceRoute/CreatePlaceRoute'
 import WelcomeRoute from './WelcomeRoute/WelcomeRoute'
 import CityListRoute from './CityListRoute/CityListRoute'
 import CityInfoRoute from './CityInfoRoute/CityInfoRoute'
+import NavigationRoute from './NavigationRoute/NavigationRoute'
 
 export default {
   RootRoute,
@@ -17,5 +18,6 @@ export default {
   CreatePlaceRoute,
   WelcomeRoute,
   CityListRoute,
-  CityInfoRoute
+  CityInfoRoute,
+  NavigationRoute
 }

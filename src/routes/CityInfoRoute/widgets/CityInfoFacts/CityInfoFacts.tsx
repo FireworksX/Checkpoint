@@ -27,11 +27,11 @@ const CityInfoFacts: FC<CityInfoFactsProps> = ({ className }) => {
 
   return (
     <Styled.Root className={className}>
-      <Styled.Header>Немного фактов о Санкт-Петербурге</Styled.Header>
+      <Styled.Header>Немного фактов о городе</Styled.Header>
       <Styled.FactsSection>
         {factList.map(fact => (
           <Styled.Fact>
-            <Styled.FactImage src={fact.image} />
+            {/*<Styled.FactImage src={fact.image} />*/}
             <Styled.FactName>{fact.name}</Styled.FactName>
             <Styled.FactValue>{fact.value}</Styled.FactValue>
           </Styled.Fact>

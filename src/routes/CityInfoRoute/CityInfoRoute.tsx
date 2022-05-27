@@ -20,6 +20,7 @@ const CityInfoRoute: FC<CityListRouteProps> = ({ className }) => {
       <Styled.Stories />
       <Styled.Facts />
       <Styled.Rates />
+      <Styled.Ambassadors />
     </Styled.Root>
   )
 }

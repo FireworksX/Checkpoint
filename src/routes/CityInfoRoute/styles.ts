@@ -5,6 +5,7 @@ import CityInfoCompilations from "./widgets/CityInfoCompilations/CityInfoCompila
 import CityInfoStories from "./widgets/CityInfoStories/CityInfoStories";
 import CityInfoFacts from "./widgets/CityInfoFacts/CityInfoFacts";
 import CityInfoRates from "./widgets/CityInfoRates/CityInfoRates";
+import CityInfoAmbassadors from "./widgets/CityInfoAmbassadors/CityInfoAmbassadors";
 
 export const Root = styled.div``
 
@@ -31,5 +32,9 @@ export const Facts = styled(CityInfoFacts)`
 `
 
 export const Rates = styled(CityInfoRates)`
+  margin-bottom: 40px;
+`
+
+export const Ambassadors = styled(CityInfoAmbassadors)`
   margin-bottom: 40px;
 `

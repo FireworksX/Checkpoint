@@ -3,31 +3,31 @@ import { buildName } from 'src/utils/buildName'
 
 const linkConfig = {
   home: {
-    name: buildName(ROUTE_NAMES.home),
+    name: buildName(ROUTE_NAMES.navigation, ROUTE_NAMES.home),
     params: { required: [], optional: [] }
   },
   profile: {
-    name: buildName(ROUTE_NAMES.profile),
+    name: buildName(ROUTE_NAMES.navigation, ROUTE_NAMES.profile),
     params: { required: [], optional: [] }
   },
   trends: {
-    name: buildName(ROUTE_NAMES.trends),
+    name: buildName(ROUTE_NAMES.navigation, ROUTE_NAMES.trends),
     params: { required: [], optional: [] }
   },
   notifications: {
-    name: buildName(ROUTE_NAMES.notifications),
+    name: buildName(ROUTE_NAMES.navigation, ROUTE_NAMES.notifications),
     params: { required: [], optional: [] }
   },
   createPlace: {
-    name: buildName(ROUTE_NAMES.createPlace),
+    name: buildName(ROUTE_NAMES.navigation, ROUTE_NAMES.createPlace),
     params: { required: [], optional: [] }
   },
   cityList: {
-    name: buildName(ROUTE_NAMES.city, ROUTE_NAMES.cityList),
+    name: buildName(ROUTE_NAMES.navigation, ROUTE_NAMES.city, ROUTE_NAMES.cityList),
     params: { required: [], optional: [] }
   },
   cityDetail: {
-    name: buildName(ROUTE_NAMES.city, ROUTE_NAMES.cityDetail, ROUTE_NAMES.cityInfo),
+    name: buildName(ROUTE_NAMES.navigation, ROUTE_NAMES.city, ROUTE_NAMES.cityDetail, ROUTE_NAMES.cityInfo),
     params: { required: [ROUTE_PARAMS.citySlug], optional: [] }
   }
 } as const

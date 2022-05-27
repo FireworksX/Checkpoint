@@ -1,12 +1,12 @@
 import styled from 'styled-components'
 import Container from 'src/components/Container/Container'
-import BaseImage from '../../../../components/BaseImage/BaseImage'
-import Touchable from '../../../../components/Touchable/Touchable'
+import BaseImage from 'src/components/BaseImage/BaseImage'
+import Touchable from 'src/components/Touchable/Touchable'
 
 export const Root = styled(Container)``
 
 export const Header = styled.h2`
-  ${({ theme }) => theme.typography.text_18_22};
+  ${({ theme }) => theme.typography.text_20_24};
   font-weight: bold;
   margin-bottom: 15px;
 `

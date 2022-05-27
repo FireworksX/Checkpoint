@@ -5,6 +5,7 @@ const langSlugs = createConstants('en', 'ru', 'es', 'it')
 const ROUTE_NAMES = createConstants(
   '__splat_route',
   'root',
+  'navigation',
   'home',
   'profile',
   'trends',

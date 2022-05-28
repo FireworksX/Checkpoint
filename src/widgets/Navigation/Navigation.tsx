@@ -7,24 +7,28 @@ interface NavigationProps {
 }
 
 const Navigation: React.FC<NavigationProps> = ({ className }) => {
+  const { citySlug } = useRouter()
+
   return (
     <Styled.Root className={className}>
-      <Styled.Item type='home'>
-        <Styled.Icon name='faults' />
-        <Styled.Name>Map</Styled.Name>
-      </Styled.Item>
-      <Styled.Item type='trends'>
-        <Styled.Icon name='fire' />
-        <Styled.Name>Trends</Styled.Name>
-      </Styled.Item>
-      <Styled.Item type='notifications'>
-        <Styled.Icon name='bell' />
-        <Styled.Name>Notification</Styled.Name>
-      </Styled.Item>
-      <Styled.Item type='profile'>
-        <Styled.Icon name='profile-avatar' />
-        <Styled.Name>Profile</Styled.Name>
-      </Styled.Item>
+      <Styled.MapHelpers>
+        <Styled.SearchInput />
+        <Styled.MapFilter>
+          <Styled.Icon name='group' />
+        </Styled.MapFilter>
+      </Styled.MapHelpers>
+
+      <Styled.NavigationWrapper>
+        <Styled.Item type='cityInfo' citySlug={citySlug}>
+          <Styled.Icon name='home' />
+        </Styled.Item>
+        <Styled.Item type='cityMap' citySlug={citySlug}>
+          <Styled.Icon name='location' />
+        </Styled.Item>
+        <Styled.Item type='profile'>
+          <Styled.Icon name='user-area' />
+        </Styled.Item>
+      </Styled.NavigationWrapper>
     </Styled.Root>
   )
 }

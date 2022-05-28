@@ -1,12 +1,21 @@
 import styled, { css } from 'styled-components'
 import Touchable from 'src/components/Touchable/Touchable'
 import Link from 'src/widgets/Link/Link'
+import PageHeader from 'src/widgets/PageHeader/PageHeader'
 
 interface Props {
   isCreation?: boolean
 }
 
 export const Root = styled.div``
+
+export const Header = styled(PageHeader)`
+  position: fixed;
+  top: 0;
+  z-index: 2;
+  background: linear-gradient(to bottom, ${({ theme }) => theme.colors.background}, transparent);
+  height: 70px;
+`
 
 export const asideButtonCss = css`
   width: 70px;

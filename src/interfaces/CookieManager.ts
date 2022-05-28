@@ -8,6 +8,7 @@ export type CookiesType = Partial<{
   userPhone: string
   accessToken: string
   refreshToken: string
+  citySlug: string
 }>
 
 export interface CookieManager<T extends CookiesType = CookiesType> {

@@ -10,12 +10,13 @@ import CreationPlacemark from './components/CreationPlacemark/CreationPlacemark'
 import { useKeepNavigation } from 'src/hooks/keepNavigation'
 import { withValidateUser } from 'src/hoc/withValidateUser'
 import { useMainMap } from './widgets/MainMap/hooks/useMainMap'
+import CurrentLocationSelect from './components/CurrentLocationSelect/CurrentLocationSelect'
 
 interface HomeRouteProps {
   className?: string
 }
 
-const HomeRoute: FC<HomeRouteProps> = ({ className }) => {
+const CityMapRoute: FC<HomeRouteProps> = ({ className }) => {
   useKeepNavigation(true)
   const { isCreation, onToggleIsCreation } = useMapCreation()
   const { setZoom } = useMainMap()
@@ -25,6 +26,9 @@ const HomeRoute: FC<HomeRouteProps> = ({ className }) => {
 
   return (
     <Styled.Root className={className}>
+      <Styled.Header>
+        <CurrentLocationSelect />
+      </Styled.Header>
       <Styled.ZoomControl>
         <Styled.ZoomButton onClick={onZoomMore}>
           <Icon name='more' />
@@ -47,4 +51,4 @@ const HomeRoute: FC<HomeRouteProps> = ({ className }) => {
   )
 }
 
-export default route(withValidateUser(HomeRoute), ROUTE_NAMES.root)
+export default route(withValidateUser(CityMapRoute), ROUTE_NAMES.root)

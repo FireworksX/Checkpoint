@@ -29,7 +29,7 @@ const CityInfoRates: FC<CityInfoRatesProps> = ({ className }) => {
     {
       label: 'Цены',
       value: 50,
-      description: 'выше стреднего'
+      description: 'выше среднего'
     },
     {
       label: 'Погода',

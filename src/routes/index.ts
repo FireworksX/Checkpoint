@@ -1,5 +1,5 @@
 import RootRoute from './RootRoute/RootRoute'
-import HomeRoute from './HomeRoute/HomeRoute'
+import CityMapRoute from './CityMapRoute/CityMapRoute'
 import ProfileRoute from './ProfileRoute/ProfileRoute'
 import NotificationsRoute from './NotificationsRoute/NotificationsRoute'
 import TrendsRoute from './TrendsRoute/TrendsRoute'
@@ -11,7 +11,7 @@ import NavigationRoute from './NavigationRoute/NavigationRoute'
 
 export default {
   RootRoute,
-  HomeRoute,
+  CityMapRoute,
   ProfileRoute,
   NotificationsRoute,
   TrendsRoute,

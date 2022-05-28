@@ -1,4 +1,9 @@
 declare type SvgNames =
+  | 'group'
+  | 'location'
+  | 'home'
+  | 'list'
+  | 'user-area'
   | '1x2'
   | 'SPchart'
   | 'SPclock'

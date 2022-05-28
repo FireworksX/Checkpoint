@@ -2,7 +2,7 @@ import { Route } from 'router5'
 import { FC } from 'react'
 import { langSlugs, ROUTE_NAMES, ROUTE_PARAMS } from './constants'
 import routeComponents from 'src/routes/index'
-import NavigationRoute from "../routes/NavigationRoute/NavigationRoute";
+import NavigationRoute from '../routes/NavigationRoute/NavigationRoute'
 
 declare module 'router5' {
   interface Route {
@@ -26,11 +26,6 @@ export const routes: Route[] = [
         path: `/`,
         component: routeComponents.NavigationRoute,
         children: [
-          {
-            name: ROUTE_NAMES.home,
-            path: `/`,
-            component: routeComponents.HomeRoute
-          },
           {
             name: ROUTE_NAMES.profile,
             path: `profile`,
@@ -65,7 +60,7 @@ export const routes: Route[] = [
                 path: `/:${ROUTE_PARAMS.citySlug}`,
                 children: [
                   { name: ROUTE_NAMES.cityInfo, path: '/', component: routeComponents.CityInfoRoute },
-                  { name: ROUTE_NAMES.cityMap, path: '/map' }
+                  { name: ROUTE_NAMES.cityMap, path: '/map', component: routeComponents.CityMapRoute }
                 ]
               }
             ]

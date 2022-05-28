@@ -29,6 +29,7 @@ const Link: React.FC<LinkProps> = props => {
       routeParams[key] = props[key]
     })
   }
+
   const href = router.routerInstance.buildUrl(link?.name || 'root', routeParams)
   const isSamePage = route?.path === href
 

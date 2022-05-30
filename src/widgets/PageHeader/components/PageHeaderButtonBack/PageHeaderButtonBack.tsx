@@ -6,7 +6,7 @@ interface PageHeaderButtonBackProps {
   className?: string
 }
 
-const PageHeaderButtonBack: FC<PageHeaderButtonBackProps> = ({ className, children }) => {
+const PageHeaderButtonBack: FC<PageHeaderButtonBackProps> = ({ className }) => {
   const { back } = useRouter()
   return (
     <Styled.Root className={className} onClick={back}>

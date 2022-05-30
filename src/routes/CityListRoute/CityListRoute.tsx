@@ -24,7 +24,7 @@ const CityListRoute: FC<CityListRouteProps> = ({ className }) => {
       <Styled.Title>Choose city</Styled.Title>
       <Styled.Description>Select city which one you want to explore</Styled.Description>
       {list.map(city => (
-        <Link type='cityInfo' citySlug={city.slug}>
+        <Link key={city.slug} type='cityInfo' citySlug={city.slug}>
           <SimpleCell
             description='Кол-во локаций: 243'
             expandable

@@ -31,8 +31,8 @@ const CityInfoStories: FC<CityInfoStoriesProps> = ({ className }) => {
         <Styled.Title>Истории в моментах</Styled.Title>
       </Container>
       <HorizontalScroll>
-        {list.map(src => (
-          <CellWrapper>
+        {list.map((src, index) => (
+          <CellWrapper key={index}>
             <Story src={src} />
           </CellWrapper>
         ))}

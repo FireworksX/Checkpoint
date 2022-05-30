@@ -6,10 +6,9 @@ import isBrowser from 'src/utils/isBrowser'
 interface RedirectProps {
   routeName: string
   params?: Record<keyof typeof ROUTE_PARAMS, any>
-  className?: string
 }
 
-const Redirect: FC<RedirectProps> = ({ className, routeName, params }) => {
+const Redirect: FC<RedirectProps> = ({ routeName, params }) => {
   const { routerInstance } = useRouter()
 
   if (!isBrowser) {

@@ -1,8 +1,7 @@
 import { Route } from 'router5'
 import { FC } from 'react'
-import { langSlugs, ROUTE_NAMES, ROUTE_PARAMS } from './constants'
+import { ROUTE_NAMES, ROUTE_PARAMS } from './constants'
 import routeComponents from 'src/routes/index'
-import NavigationRoute from '../routes/NavigationRoute/NavigationRoute'
 
 declare module 'router5' {
   interface Route {

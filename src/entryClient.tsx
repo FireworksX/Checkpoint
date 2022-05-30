@@ -1,11 +1,9 @@
 import ReactDOM from 'react-dom'
-import { MutableSnapshot } from 'recoil'
 import { App, AppFetcherType } from './App'
 import { configureRouter } from './router/configureRouter'
 import { clientCookieManager } from './services/cookie/clientCookieManager'
 import { appConfig } from './data/appConfig'
 import 'src/pwa'
-import { storeMap, StoreType } from './store'
 import { createApiClients } from './utils/createApiClients'
 import { serviceContainer } from './services/ioc/serviceContainer'
 import { cacheManager } from './services/cacheManager'
@@ -18,7 +16,7 @@ router.start()
 
 const { apiClient } = createApiClients({ cookieManager })
 
-const fetcher: AppFetcherType = (resource, init) => apiClient.get<any>(resource).then(({ data }) => data)
+const fetcher: AppFetcherType = (resource) => apiClient.get<any>(resource).then(({ data }) => data)
 
 const cacheManagerInstance = cacheManager()
 

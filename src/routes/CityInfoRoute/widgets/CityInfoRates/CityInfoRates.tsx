@@ -1,7 +1,7 @@
-import { FC, useState } from 'react'
+import { FC } from 'react'
 import * as Styled from './styles'
 import { useTheme } from 'styled-components'
-import ProgressBar from '../../../../components/ProgressBar/ProgressBar'
+import ProgressBar from 'src/components/ProgressBar/ProgressBar'
 
 interface CityInfoRatesProps {
   className?: string

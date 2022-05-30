@@ -1,10 +1,8 @@
-import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios'
+import axios, { AxiosRequestConfig } from 'axios'
 import { apiEndpoints } from 'src/data/apiEndpoints'
 import { AuthUserResponse } from '../interfaces/User'
 import { ApiResponseBody, GeneratedTokenResponse } from '../interfaces/Request'
 import { CookieManager } from '../interfaces/CookieManager'
-import { serviceContainer } from '../services/ioc/serviceContainer'
-import isBrowser from './isBrowser'
 
 interface ApiClientOptions {
   cookieManager?: CookieManager

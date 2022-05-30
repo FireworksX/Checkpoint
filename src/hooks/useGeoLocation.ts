@@ -1,6 +1,5 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect } from 'react'
 import { useRecoilState, useRecoilValue } from 'recoil'
-import { cacheService } from 'src/utils/cacheService'
 import { geoLocationAtom } from 'src/store/userStore'
 import { userAgentAtom } from '../store/configStore'
 import useCookies from './useCookies'

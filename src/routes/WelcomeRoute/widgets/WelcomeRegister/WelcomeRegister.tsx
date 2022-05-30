@@ -13,7 +13,7 @@ interface WelcomeRegisterProps {
   onRegister(): void
 }
 
-const WelcomeRegister: FC<WelcomeRegisterProps> = ({ className, phone, phoneCode, onRegister, onBack }) => {
+const WelcomeRegister: FC<WelcomeRegisterProps> = ({ className, onRegister, onBack }) => {
   const { fields, onSubmit } = useWelcomeRegister({ onRegister })
 
   return (

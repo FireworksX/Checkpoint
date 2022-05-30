@@ -1,7 +1,6 @@
 import { apiEndpoints } from 'src/data/apiEndpoints'
-import { useMutation } from '../useMutation'
 import { useRequest } from '../useRequest'
-import {AuthUser} from "../../interfaces/User";
+import { AuthUser } from 'src/interfaces/User'
 
 interface Props {
   phone: string

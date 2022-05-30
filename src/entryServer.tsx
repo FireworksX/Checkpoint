@@ -22,7 +22,7 @@ export async function render(url: string, ctx: AppContext) {
 
   const { apiClient } = createApiClients({ cookieManager })
 
-  const fetcher: AppFetcherType = (resource, init) =>
+  const fetcher: AppFetcherType = resource =>
     apiClient
       .get<any>(resource)
       .then(({ data }) => data)

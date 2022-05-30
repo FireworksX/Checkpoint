@@ -10,7 +10,7 @@ interface WelcomeRegisterProps {
   onNext(): void
 }
 
-const WelcomeIntro: FC<WelcomeRegisterProps> = ({ className, phone, onNext }) => {
+const WelcomeIntro: FC<WelcomeRegisterProps> = ({ className, onNext }) => {
   const { phoneValue, onSetPhoneValue, onSubmit } = useWelcomeIntro({
     onNext,
     onBack: () => undefined

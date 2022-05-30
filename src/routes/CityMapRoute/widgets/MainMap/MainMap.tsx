@@ -1,5 +1,4 @@
-import { FC, useEffect } from 'react'
-import { useRecoilState, useRecoilValue } from 'recoil'
+import { FC } from 'react'
 import * as Styled from './styles'
 import SelfPlacemark from './components/SelfPlacemark/SelfPlacemark'
 import Placemark from './components/Placemark/Placemark'

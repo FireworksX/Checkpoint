@@ -1,6 +1,6 @@
-import { PluginFactory, Router } from 'router5'
+import { PluginFactory } from 'router5'
 import isBrowser from 'src/utils/isBrowser'
-import { DoneFn, Params } from 'router5/dist/types/base'
+import { Params } from 'router5/dist/types/base'
 import { AppContext } from 'server'
 
 declare module 'router5' {

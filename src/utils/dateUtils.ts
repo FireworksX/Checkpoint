@@ -31,15 +31,15 @@ export function guessTimezone(offset: number = new Date().getTimezoneOffset()) {
       (acc, zone) => {
         const zoneDifference = Math.abs(zone.offset - acc.browserOffset)
 
-        if (!acc.closestTimezone || acc.closestDifference! > zoneDifference!) {
+        if (!acc.closestTimezone || (acc?.closestDifference || 0) > zoneDifference) {
           return { browserOffset: acc.browserOffset, closestTimezone: zone.name, closestDifference: zoneDifference }
         }
         return acc
       },
       {
         browserOffset: offset,
-        closestTimezone: null as TimezoneName | null,
-        closestDifference: null as number | null
+        closestTimezone: undefined as TimezoneName | undefined,
+        closestDifference: undefined as number | undefined
       }
-    ).closestTimezone!
+    ).closestTimezone
 }

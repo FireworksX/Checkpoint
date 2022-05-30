@@ -1,4 +1,4 @@
-import { useRecoilState, useRecoilValue } from 'recoil'
+import { useRecoilState } from 'recoil'
 import { useGeoLocation } from 'src/hooks/useGeoLocation'
 import { mapCenterAtom, mapPlacemarksAtom, mapSaveCenterAtom, mapZoomAtom } from 'src/store/mapStore'
 import { useIsomorphicEffect } from 'src/hooks/useIsomorphicEffect'

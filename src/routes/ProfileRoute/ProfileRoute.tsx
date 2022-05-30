@@ -1,9 +1,8 @@
-import { FC, useEffect } from 'react'
+import { FC } from 'react'
 import * as Styled from './styles'
 import { route } from 'src/hoc/route'
 import { ROUTE_NAMES } from 'src/router/constants'
 import PageHeaderButtonBack from 'src/widgets/PageHeader/components/PageHeaderButtonBack/PageHeaderButtonBack'
-// import { useCurrentUser } from 'src/hooks/data/useCurrentUser'
 import { withValidateUser } from 'src/hoc/withValidateUser'
 import { useGeoLocation } from 'src/hooks/useGeoLocation'
 import { useNotifications } from 'src/hooks/useNotifications'
@@ -18,12 +17,10 @@ const ProfileRoute: FC<ProfileRouteProps> = ({ className }) => {
   const geoLocations = useGeoLocation()
   const notifications = useNotifications()
 
-    console.log(currentUser);
-
-    return (
+  return (
     <Styled.Root className={className}>
       <Styled.Header left={<PageHeaderButtonBack />}>
-        <Styled.HeaderTitle>@{currentUser.username}</Styled.HeaderTitle>
+        <Styled.HeaderTitle>@{currentUser?.username}</Styled.HeaderTitle>
       </Styled.Header>
       <Styled.Avatar src='https://avatars.githubusercontent.com/u/22668125?v=4' />
       <Styled.Name>Arthur Abeltinsh</Styled.Name>

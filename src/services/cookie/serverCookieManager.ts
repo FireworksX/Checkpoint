@@ -12,6 +12,7 @@ export const serverCookieManager = <T extends CookiesType = CookiesType>(
     try {
       result = JSON.parse(result)
     } catch (e) {
+      return result
     }
 
     return result

@@ -1,5 +1,5 @@
 import { RouterProvider } from 'react-router5'
-import { MutableSnapshot, RecoilRoot, RecoilRootProps } from 'recoil'
+import { MutableSnapshot, RecoilRoot } from 'recoil'
 import { SWRConfig, Cache } from 'swr'
 import { FilledContext, HelmetProvider } from 'react-helmet-async'
 import RootRoute from './routes/RootRoute/RootRoute'

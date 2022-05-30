@@ -1,4 +1,4 @@
-import { FC, useCallback, useEffect, useState } from 'react'
+import { FC, useCallback, useState } from 'react'
 import * as Styled from './styles'
 import { ROUTE_NAMES } from 'src/router/constants'
 import { route } from 'src/hoc/route'
@@ -22,9 +22,9 @@ const WelcomeRoute: FC<WelcomeRouteProps> = ({ className }) => {
   }, [routerInstance])
 
   const viewsMap = [
-    <WelcomeIntro onNext={() => setStep(1)} />,
-    <WelcomeCode onBack={() => setStep(0)} onRegister={() => setStep(2)} onLogin={onFinish} />,
-    <WelcomeRegister onRegister={onFinish} onBack={() => setStep(0)} />
+    <WelcomeIntro key='welcomeIntroView' onNext={() => setStep(1)} />,
+    <WelcomeCode key='welcomeCodeView' onBack={() => setStep(0)} onRegister={() => setStep(2)} onLogin={onFinish} />,
+    <WelcomeRegister key='welcomeRegisterView' onRegister={onFinish} onBack={() => setStep(0)} />
   ]
 
   return <Styled.Root className={className}>{viewsMap[step]}</Styled.Root>

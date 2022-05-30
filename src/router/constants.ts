@@ -1,5 +1,4 @@
 import { createConstants } from 'src/utils/createConstants'
-import { getUniqueName } from 'src/utils/getUniqueName'
 
 const langSlugs = createConstants('en', 'ru', 'es', 'it')
 

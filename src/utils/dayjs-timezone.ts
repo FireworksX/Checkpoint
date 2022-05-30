@@ -60,7 +60,6 @@ function tz(options: any, dayjsClass: any, dayjsFactory: any) {
 
     // offset for given timezone
 
-    // @ts-ignore
     dayjsDate = dayjsDate.utcOffset(timezoneOffset)
 
     return dayjsDate

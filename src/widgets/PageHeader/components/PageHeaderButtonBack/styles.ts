@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import Touchable from 'src/components/Touchable/Touchable'
 import Icon from 'src/components/Icon/Icon'
 import PageHeaderButton from 'src/widgets/PageHeader/components/PageHeaderButton/PageHeaderButton'
 

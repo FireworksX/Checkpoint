@@ -1,5 +1,4 @@
 import { useMemo, useState } from 'react'
-import { useRecoilValue } from 'recoil'
 import { useForm } from 'src/hooks/useForm'
 import { useRegisterUser } from 'src/hooks/data/useRegisterUser'
 import { useUserIsRegister } from 'src/hooks/data/useUserIsRegister'

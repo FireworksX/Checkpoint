@@ -29,10 +29,10 @@ const MapWrapper: FC<MapWrapperProps> = ({ className, children, zoom, center, on
 
   useEffect(() => {
     if (map) {
-      if (!!onDragend) {
+      if (onDragend) {
         map.addListener('dragend', () => onDragend(map))
       }
-      if (!!onZoomChange) {
+      if (onZoomChange) {
         map.addListener('zoom_changed', () => onZoomChange(map))
       }
     }

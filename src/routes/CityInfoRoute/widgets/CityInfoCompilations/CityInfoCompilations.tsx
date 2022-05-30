@@ -42,8 +42,8 @@ const CityInfoCompilations: FC<CityInfoCompilationsProps> = ({ className }) => {
 
   return (
     <Styled.Root className={className}>
-      {list.map(el => (
-        <Styled.Cell>
+      {list.map((el, index) => (
+        <Styled.Cell key={`${el.title}_${index}`}>
           {el.image && <Styled.Image src={el.image} />}
           <div>
             <Styled.Title>{el.title}</Styled.Title>

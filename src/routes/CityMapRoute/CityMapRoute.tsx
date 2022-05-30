@@ -1,6 +1,5 @@
-import { FC, useEffect } from 'react'
+import { FC } from 'react'
 import * as Styled from './styles'
-import { Helmet } from 'react-helmet-async'
 import { route } from 'src/hoc/route'
 import { ROUTE_NAMES } from 'src/router/constants'
 import MainMap from './widgets/MainMap/MainMap'
@@ -11,8 +10,8 @@ import { useKeepNavigation } from 'src/hooks/keepNavigation'
 import { withValidateUser } from 'src/hoc/withValidateUser'
 import { useMainMap } from './widgets/MainMap/hooks/useMainMap'
 import CurrentLocationSelect from './components/CurrentLocationSelect/CurrentLocationSelect'
-import {useRecoilState} from "recoil";
-import {hasNavigationMapHelpersAtom} from "../../store/uiStore";
+import { useRecoilState } from 'recoil'
+import { hasNavigationMapHelpersAtom } from 'src/store/uiStore'
 
 interface HomeRouteProps {
   className?: string
@@ -23,7 +22,7 @@ const CityMapRoute: FC<HomeRouteProps> = ({ className }) => {
   const { isCreation, onToggleIsCreation } = useMapCreation()
   const { setZoom } = useMainMap()
 
-    const [, setHelpers] = useRecoilState(hasNavigationMapHelpersAtom)
+  const [, setHelpers] = useRecoilState(hasNavigationMapHelpersAtom)
 
   const onZoomMore = () => setZoom(val => val + 1)
   const onZoomLess = () => setZoom(val => val - 1)
@@ -34,7 +33,7 @@ const CityMapRoute: FC<HomeRouteProps> = ({ className }) => {
         <CurrentLocationSelect />
       </Styled.Header>
       <Styled.ZoomControl>
-        <Styled.ZoomButton onClick={() => setHelpers((val) => !val)}>
+        <Styled.ZoomButton onClick={() => setHelpers(val => !val)}>
           <Icon name='more' />
         </Styled.ZoomButton>
         <Styled.ZoomButton onClick={onZoomLess}>

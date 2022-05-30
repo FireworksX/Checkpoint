@@ -123,9 +123,10 @@ const NotificationsRoute: FC<NotificationsRouteProps> = ({ className }) => {
         <Styled.HeaderTitle>Notifications</Styled.HeaderTitle>
       </Styled.Header>
       {data.map(el => (
-        <Styled.Group title={el.title} counter={<Styled.AccentCounter>{el.count}</Styled.AccentCounter>}>
-          {el.list.map(cell => (
+        <Styled.Group key={el.title} title={el.title} counter={<Styled.AccentCounter>{el.count}</Styled.AccentCounter>}>
+          {el.list.map((cell, index) => (
             <Styled.Cell
+              key={`${cell.name}_${index}`}
               avatar={cell.avatar}
               name={cell.name}
               description={cell.mode === 'shared' ? 'shared your folder' : 'like your pin'}

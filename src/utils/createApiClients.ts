@@ -1,11 +1,14 @@
-import axios from 'axios'
+import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios'
 import { apiEndpoints } from 'src/data/apiEndpoints'
 import { AuthUserResponse } from '../interfaces/User'
 import { ApiResponseBody, GeneratedTokenResponse } from '../interfaces/Request'
 import { CookieManager } from '../interfaces/CookieManager'
+import { serviceContainer } from '../services/ioc/serviceContainer'
+import isBrowser from './isBrowser'
 
 interface ApiClientOptions {
   cookieManager?: CookieManager
+  cache?: CookieManager
 }
 
 interface RefreshTokenResponse {
@@ -13,9 +16,13 @@ interface RefreshTokenResponse {
   token: GeneratedTokenResponse
 }
 
+export interface ApiClient {
+  get<T>(path: string, config?: AxiosRequestConfig): Promise<T>
+}
+
 const DEFAULT_OPTIONS: ApiClientOptions = {}
 
-export const createApiClients = ({ cookieManager } = DEFAULT_OPTIONS) => {
+const createApiClient = ({ cookieManager } = DEFAULT_OPTIONS): ApiClient => {
   const apiClient = axios.create({
     baseURL: 'http://localhost:3000/api'
   })
@@ -70,6 +77,32 @@ export const createApiClients = ({ cookieManager } = DEFAULT_OPTIONS) => {
       return Promise.reject(error)
     }
   )
+
+  const get = async <T>(path: string, config?: AxiosRequestConfig) => {
+    try {
+      const cache = serviceContainer().getService('cacheManager')
+
+      if (cache?.has(path)) {
+        return cache?.get(path)
+      }
+
+      const response = await apiClient.get<T>(path, config)
+      cache?.set(path, response.data)
+
+      return response.data
+    } catch (e) {
+      console.log(e)
+      return Promise.reject(e)
+    }
+  }
+
+  return {
+    get
+  }
+}
+
+export const createApiClients = ({ cookieManager } = DEFAULT_OPTIONS) => {
+  const apiClient = createApiClient({ cookieManager })
 
   return { apiClient }
 }

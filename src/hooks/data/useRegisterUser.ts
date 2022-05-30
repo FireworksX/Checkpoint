@@ -27,8 +27,6 @@ export const useRegisterUser = () => {
           ...currentData,
           ...user,
           id: user._id,
-          token: token.accessToken,
-          refreshToken: token.refreshToken
         }))
 
         onSetTokens({ accessToken: token.accessToken, refreshToken: token.refreshToken, userPhone: user.phone })

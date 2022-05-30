@@ -1,4 +1,5 @@
 import { createConstants } from 'src/utils/createConstants'
+import { getUniqueName } from 'src/utils/getUniqueName'
 
 const langSlugs = createConstants('en', 'ru', 'es', 'it')
 
@@ -19,7 +20,7 @@ const ROUTE_NAMES = createConstants(
   'cityInfo',
   'cityMap'
 )
-export type RouteNamesType = keyof typeof ROUTE_NAMES
+type RouteNamesType = keyof typeof ROUTE_NAMES
 
 const ROUTE_PARAMS = createConstants('citySlug')
 
@@ -31,7 +32,10 @@ const STORE_NAMES = createConstants(
   'hasNavigationAtom',
   'geoLocationAtom',
   'userAgentAtom',
-  'authUserAtom'
+  'authUserAtom',
+  'hasNavigationMapHelpersAtom',
+  'authUserSelector',
+  'authUserIsAuthSelector'
 )
 
-export { langSlugs, ROUTE_NAMES, ROUTE_PARAMS, STORE_NAMES }
+export { langSlugs, ROUTE_NAMES, ROUTE_PARAMS, STORE_NAMES, RouteNamesType }

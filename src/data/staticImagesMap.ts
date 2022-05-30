@@ -11,7 +11,6 @@ import wrench from '../../public/assets/images/emoji/wrench.png'
 import stopwatch from '../../public/assets/images/emoji/stopwatch.png'
 import personInLotusPosition from '../../public/assets/images/emoji/person-in-lotus-position.png'
 
-// TODO Make lazy load with import()
 export const staticImagesMap = {
   classicalBuilding,
   manWalkingLightSkinTone,

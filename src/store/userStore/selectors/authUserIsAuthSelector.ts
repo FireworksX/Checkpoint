@@ -1,11 +1,12 @@
 import { selector } from 'recoil'
 import { authUserAtom } from '../atoms/authUserAtom'
+import { STORE_NAMES } from 'src/router/constants'
 
 export const authUserIsAuthSelector = selector({
-  key: 'authUserIsAuthSelector',
+  key: STORE_NAMES.authUserIsAuthSelector,
   get: ({ get }) => {
-    const { id } = get(authUserAtom)
+    const user = get(authUserAtom)
 
-    return id.length > 0
+    return user && user?.id?.length > 0
   }
 })

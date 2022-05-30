@@ -1,6 +1,8 @@
 import React from 'react'
 import * as Styled from './styles'
 import { useRouter } from 'src/hooks/useRouter'
+import { useRecoilValue } from 'recoil'
+import { hasNavigationMapHelpersAtom } from 'src/store/uiStore'
 
 interface NavigationProps {
   className?: string
@@ -8,15 +10,18 @@ interface NavigationProps {
 
 const Navigation: React.FC<NavigationProps> = ({ className }) => {
   const { citySlug } = useRouter()
+  const hasMapHelpers = useRecoilValue(hasNavigationMapHelpersAtom)
 
   return (
     <Styled.Root className={className}>
-      <Styled.MapHelpers>
-        <Styled.SearchInput />
-        <Styled.MapFilter>
-          <Styled.Icon name='group' />
-        </Styled.MapFilter>
-      </Styled.MapHelpers>
+      {hasMapHelpers && (
+        <Styled.MapHelpers>
+          <Styled.SearchInput />
+          <Styled.MapFilter>
+            <Styled.Icon name='group' />
+          </Styled.MapFilter>
+        </Styled.MapHelpers>
+      )}
 
       <Styled.NavigationWrapper>
         <Styled.Item type='cityInfo' citySlug={citySlug}>

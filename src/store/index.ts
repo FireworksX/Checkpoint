@@ -1,28 +1,22 @@
-import { RecoilState } from 'recoil'
+import { RecoilState, RecoilValueReadOnly } from 'recoil'
 import { mapCenterAtom, mapPlacemarksAtom, mapSaveCenterAtom, mapZoomAtom } from './mapStore'
-import { hasNavigationAtom } from './uiStore'
+import { hasNavigationAtom, hasNavigationMapHelpersAtom } from './uiStore'
 import { geoLocationAtom } from './userStore'
 import { userAgentAtom } from './configStore'
-import { createConstants } from 'src/utils/createConstants'
 import { authUserAtom } from './userStore/atoms/authUserAtom'
+import { STORE_NAMES } from 'src/router/constants'
+import { authUserSelector } from './userStore/selectors/authUserSelector'
 
 export type StoreAtomsType = typeof storeMap
 export type StoreType = {
-  [P in keyof StoreAtomsType]: StoreAtomsType[P] extends RecoilState<infer V> ? V : StoreAtomsType[P]
+  [P in keyof StoreAtomsType]: StoreAtomsType[P] extends RecoilState<infer V>
+    ? V
+    : StoreAtomsType[P] extends RecoilValueReadOnly<infer V2>
+    ? V2
+    : StoreAtomsType[P]
 }
 
-const STORE_NAMES = createConstants(
-  'mapCenterAtom',
-  'mapZoomAtom',
-  'mapPlacemarksAtom',
-  'mapSaveCenterAtom',
-  'hasNavigationAtom',
-  'geoLocationAtom',
-  'userAgentAtom',
-  'authUserAtom'
-)
-
-const storeMap: { [P in keyof typeof STORE_NAMES]: RecoilState<any> } = {
+const storeMap = {
   [STORE_NAMES.mapCenterAtom]: mapCenterAtom,
   [STORE_NAMES.mapZoomAtom]: mapZoomAtom,
   [STORE_NAMES.mapPlacemarksAtom]: mapPlacemarksAtom,
@@ -30,7 +24,9 @@ const storeMap: { [P in keyof typeof STORE_NAMES]: RecoilState<any> } = {
   [STORE_NAMES.hasNavigationAtom]: hasNavigationAtom,
   [STORE_NAMES.geoLocationAtom]: geoLocationAtom,
   [STORE_NAMES.userAgentAtom]: userAgentAtom,
-  [STORE_NAMES.authUserAtom]: authUserAtom
+  [STORE_NAMES.authUserAtom]: authUserAtom,
+  [STORE_NAMES.hasNavigationMapHelpersAtom]: hasNavigationMapHelpersAtom,
+  [STORE_NAMES.authUserSelector]: authUserSelector
 }
 
-export { STORE_NAMES, storeMap }
+export { storeMap }

@@ -73,7 +73,7 @@ async function createServer(root = process.cwd(), isProd = process.env.NODE_ENV 
     )
   }
 
-  app.use('*', async (req: any, res: any) => {
+  app.use('/welcome', async (req: any, res: any) => {
     try {
       const url = req.originalUrl
 
@@ -96,7 +96,7 @@ async function createServer(root = process.cwd(), isProd = process.env.NODE_ENV 
           status: 301
         }
       }
-      const { appHtml, stylesTags, appCacheTags, helmetContext, storeCacheTags } = await render(url, context)
+      const { appHtml, stylesTags, appCacheTags, helmetContext } = await render(url, context)
 
       const { bodyAttributes, htmlAttributes, noscript, meta, ...helmet } = helmetContext as FilledContext['helmet']
 
@@ -119,7 +119,6 @@ async function createServer(root = process.cwd(), isProd = process.env.NODE_ENV 
         .replace(`<!--app-html-->`, appHtml)
         .replace(`<!--app-styles-->`, stylesTags)
         .replace(`<!--app-cache-->`, appCacheTags)
-        .replace(`<!--app-store-cache-->`, storeCacheTags)
 
       res.status(200).set({ 'Content-Type': 'text/html' }).end(html)
     } catch (e: any) {

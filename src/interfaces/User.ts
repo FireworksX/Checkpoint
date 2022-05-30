@@ -1,7 +1,5 @@
 export interface AuthUser {
   id: string
-  token?: string
-  refreshToken?: string
   firstName?: string
   lastName?: string
   username?: string
@@ -9,4 +7,4 @@ export interface AuthUser {
   phone?: string
 }
 
-export type AuthUserResponse = Omit<AuthUser, 'id' | 'token'> & { _id: string }
+export type AuthUserResponse = Omit<AuthUser, 'id'> & { _id: string }

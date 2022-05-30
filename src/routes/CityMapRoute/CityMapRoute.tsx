@@ -11,6 +11,8 @@ import { useKeepNavigation } from 'src/hooks/keepNavigation'
 import { withValidateUser } from 'src/hoc/withValidateUser'
 import { useMainMap } from './widgets/MainMap/hooks/useMainMap'
 import CurrentLocationSelect from './components/CurrentLocationSelect/CurrentLocationSelect'
+import {useRecoilState} from "recoil";
+import {hasNavigationMapHelpersAtom} from "../../store/uiStore";
 
 interface HomeRouteProps {
   className?: string
@@ -21,6 +23,8 @@ const CityMapRoute: FC<HomeRouteProps> = ({ className }) => {
   const { isCreation, onToggleIsCreation } = useMapCreation()
   const { setZoom } = useMainMap()
 
+    const [, setHelpers] = useRecoilState(hasNavigationMapHelpersAtom)
+
   const onZoomMore = () => setZoom(val => val + 1)
   const onZoomLess = () => setZoom(val => val - 1)
 
@@ -30,7 +34,7 @@ const CityMapRoute: FC<HomeRouteProps> = ({ className }) => {
         <CurrentLocationSelect />
       </Styled.Header>
       <Styled.ZoomControl>
-        <Styled.ZoomButton onClick={onZoomMore}>
+        <Styled.ZoomButton onClick={() => setHelpers((val) => !val)}>
           <Icon name='more' />
         </Styled.ZoomButton>
         <Styled.ZoomButton onClick={onZoomLess}>

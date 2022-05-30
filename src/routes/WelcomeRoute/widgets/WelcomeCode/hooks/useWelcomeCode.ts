@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from 'react'
+import { useCallback, useEffect, useRef } from 'react'
 import { useRecoilValue } from 'recoil'
 import { authUserAtom } from 'src/store/userStore/atoms/authUserAtom'
 import { useNumberFormatter } from 'src/components/Input/hooks/useNumberFormatter'
@@ -13,6 +13,7 @@ interface Props {
 }
 
 export const useWelcomeCode = ({ onRegister, onLogin, onBack }: Props) => {
+  const tryLogin = useRef(false)
   const authUser = useRecoilValue(authUserAtom)
   const { formatValue, setValue } = useNumberFormatter()
   const { data: validationData } = usePhoneValidationCodeCheck({
@@ -29,7 +30,9 @@ export const useWelcomeCode = ({ onRegister, onLogin, onBack }: Props) => {
   const { execute } = useLoginUser()
 
   const onLoginUser = useCallback(async () => {
-    const {success} = await execute({
+    tryLogin.current = true
+
+    const { success } = await execute({
       phone: authUser?.phone || '',
       code: formatValue
     })
@@ -39,7 +42,7 @@ export const useWelcomeCode = ({ onRegister, onLogin, onBack }: Props) => {
     } else {
       alert('Error')
     }
-  }, [execute])
+  }, [formatValue])
 
   useEffect(() => {
     if (validationData?.success && validationData?.data && !fetching) {

@@ -1,14 +1,16 @@
 import React, { FC } from 'react'
-import useCookies from 'src/hooks/useCookies'
+import { useRecoilValue } from 'recoil'
 import Redirect from 'src/components/Redirect/Redirect'
-import { buildName } from 'src/utils/buildName'
+import { authUserIsAuthSelector } from 'src/store/userStore/selectors/authUserIsAuthSelector'
+import { useLinkConfig } from '../widgets/Link/hooks/useLinkConfig'
 
 export const withValidateUser = (Route: FC) => {
   return () => {
-    const [accessToken] = useCookies('accessToken')
+    const isAuth = useRecoilValue(authUserIsAuthSelector)
+    const welcomeLink = useLinkConfig('welcome')
 
-    if (!accessToken) {
-      return <Redirect routeName={buildName('welcome')} />
+    if (!isAuth) {
+      return <Redirect routeName={welcomeLink.link.name} />
     }
 
     return <Route />

@@ -3,6 +3,8 @@ import { useRecoilState } from 'recoil'
 import { usePhoneValidationCodeCreate } from 'src/hooks/data/usePhoneValidationCodeCreate'
 import { usePhoneFormatter } from 'src/components/Input/hooks/usePhoneFormatter'
 import { authUserAtom } from 'src/store/userStore/atoms/authUserAtom'
+import isBrowser from 'src/utils/isBrowser'
+import { serviceContainer } from '../../../../../services/ioc/serviceContainer'
 
 interface Props {
   onBack(): void

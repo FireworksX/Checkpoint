@@ -2,6 +2,10 @@ import { ROUTE_NAMES, ROUTE_PARAMS } from 'src/router/constants'
 import { buildName } from 'src/utils/buildName'
 
 const linkConfig = {
+  welcome: {
+    name: buildName(ROUTE_NAMES.welcome),
+    params: { required: [], optional: [] }
+  },
   profile: {
     name: buildName(ROUTE_NAMES.navigation, ROUTE_NAMES.profile),
     params: { required: [], optional: [] }
@@ -24,11 +28,11 @@ const linkConfig = {
   },
   cityInfo: {
     name: buildName(ROUTE_NAMES.navigation, ROUTE_NAMES.city, ROUTE_NAMES.cityDetail, ROUTE_NAMES.cityInfo),
-    params: { required: [ROUTE_PARAMS.citySlug], optional: [] }
+    params: { required: [], optional: [ROUTE_PARAMS.citySlug] }
   },
   cityMap: {
     name: buildName(ROUTE_NAMES.navigation, ROUTE_NAMES.city, ROUTE_NAMES.cityDetail, ROUTE_NAMES.cityMap),
-    params: { required: [ROUTE_PARAMS.citySlug], optional: [] }
+    params: { required: [], optional: [ROUTE_PARAMS.citySlug] }
   }
 } as const
 

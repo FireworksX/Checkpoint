@@ -42,8 +42,6 @@ export const useLoginUser = () => {
           ...currentData,
           ...user,
           id: user._id,
-          token: token.accessToken,
-          refreshToken: token.refreshToken
         }))
 
         onSetTokens({

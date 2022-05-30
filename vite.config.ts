@@ -16,6 +16,7 @@ export default ({ mode }: UserConfig) => {
         src: path.resolve(__dirname, './src')
       }
     },
+    publicDir: 'assets',
     server: {
       port
     },

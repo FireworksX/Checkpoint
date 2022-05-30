@@ -6,8 +6,10 @@ import { route } from 'src/hoc/route'
 import { ROUTE_NAMES } from 'src/router/constants'
 import 'src/utils/dayjs-timezone'
 import { RootRouteHead } from './RootRouteHead'
+import { useCurrentUser } from 'src/hooks/data/useCurrentUser'
 
 const RootRoute: FC = ({ children }) => {
+
   return (
     <AppHelpers>
       <RootRouteHead />

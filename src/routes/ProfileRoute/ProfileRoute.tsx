@@ -7,25 +7,27 @@ import PageHeaderButtonBack from 'src/widgets/PageHeader/components/PageHeaderBu
 import { withValidateUser } from 'src/hoc/withValidateUser'
 import { useGeoLocation } from 'src/hooks/useGeoLocation'
 import { useNotifications } from 'src/hooks/useNotifications'
+import { useProfileRoute } from './hooks/useProfileRoute'
 
 interface ProfileRouteProps {
   className?: string
 }
 
 const ProfileRoute: FC<ProfileRouteProps> = ({ className }) => {
-  const { data } = { data: {} } //useCurrentUser()
+  const { currentUser } = useProfileRoute()
   const geoLocations = useGeoLocation()
   const notifications = useNotifications()
 
-  return (
+    console.log(currentUser);
+
+    return (
     <Styled.Root className={className}>
-      <Styled.Header>
-        <PageHeaderButtonBack />
-        <Styled.HeaderTitle>@{data?.data?.login}</Styled.HeaderTitle>
+      <Styled.Header left={<PageHeaderButtonBack />}>
+        <Styled.HeaderTitle>@{currentUser.username}</Styled.HeaderTitle>
       </Styled.Header>
       <Styled.Avatar src='https://avatars.githubusercontent.com/u/22668125?v=4' />
       <Styled.Name>Arthur Abeltinsh</Styled.Name>
-      <Styled.Description>{data?.data?.bio}</Styled.Description>
+      <Styled.Description>{currentUser.bio}</Styled.Description>
       <Styled.Row>
         <Styled.Group>
           <Styled.GroupTitle>Followers</Styled.GroupTitle>

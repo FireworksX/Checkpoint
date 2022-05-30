@@ -4,8 +4,6 @@ import { ROUTE_NAMES } from 'src/router/constants'
 import { route } from 'src/hoc/route'
 import { withValidateUser } from 'src/hoc/withValidateUser'
 import { useCityList } from './hooks/useCityList'
-import sunsetImage from '../../../public/assets/images/emoji_subset.png'
-import saintPetersburgImage from '../../../public/assets/images/saint-petersburg.png'
 import SimpleCell from 'src/components/SimpleCell/SimpleCell'
 import CommonLogo from 'src/components/CommonLogo/CommonLogo'
 import Link from 'src/widgets/Link/Link'
@@ -26,7 +24,7 @@ const CityListRoute: FC<CityListRouteProps> = ({ className }) => {
       <Styled.Title>Choose city</Styled.Title>
       <Styled.Description>Select city which one you want to explore</Styled.Description>
       {list.map(city => (
-        <Link type='cityDetail' citySlug={city.slug}>
+        <Link type='cityInfo' citySlug={city.slug}>
           <SimpleCell
             description='Кол-во локаций: 243'
             expandable

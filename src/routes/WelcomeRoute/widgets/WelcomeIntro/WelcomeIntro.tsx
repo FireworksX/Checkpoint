@@ -20,7 +20,7 @@ const WelcomeIntro: FC<WelcomeRegisterProps> = ({ className, phone, onNext }) =>
     <Styled.Root className={className}>
       <Container>
         <Styled.Header right={<PageHeaderButton onClick={onSubmit}>Next</PageHeaderButton>} />
-        <Styled.Title>Your phone {phoneValue}</Styled.Title>
+        <Styled.Title>Your phone</Styled.Title>
         <Styled.Description>Please confirm your country code and your phone number.</Styled.Description>
       </Container>
 
@@ -34,7 +34,7 @@ const WelcomeIntro: FC<WelcomeRegisterProps> = ({ className, phone, onNext }) =>
         <Styled.PhoneCode defaultValue='+7' />
         <Styled.PhoneNumber
           placeholder='--- --- ----'
-          defaultValue={phoneValue}
+          value={phoneValue}
           onChange={e => onSetPhoneValue(e.target.value)}
         />
       </Styled.PhoneSection>

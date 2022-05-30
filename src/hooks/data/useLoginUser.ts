@@ -1,11 +1,10 @@
-import { useRecoilState } from 'recoil'
 import { apiEndpoints } from 'src/data/apiEndpoints'
 import { useMutation } from 'src/hooks/useMutation'
 import { AuthUser, AuthUserResponse } from 'src/interfaces/User'
-import { authUserAtom } from 'src/store/userStore/atoms/authUserAtom'
 import { GeneratedTokenResponse } from 'src/interfaces/Request'
 import useCookies from '../useCookies'
 import { useCallback } from 'react'
+import { useCurrentUser } from './useCurrentUser'
 
 type InputProps = {
   phone: string
@@ -17,7 +16,7 @@ type OutputProps = {
 }
 
 export const useLoginUser = () => {
-  const [, setAuthUser] = useRecoilState(authUserAtom)
+  const { mutate, user } = useCurrentUser()
   const { fetching, execute } = useMutation<OutputProps, InputProps>(apiEndpoints.AUTH_LOGIN)
   const [, setAccessToken] = useCookies('accessToken')
   const [, setRefreshToken] = useCookies('refreshToken')
@@ -32,13 +31,15 @@ export const useLoginUser = () => {
     []
   )
 
+  console.log(user);
+
   return {
     execute: async (data: InputProps) => {
       const response = await execute(data)
 
       if (response.success && response.data) {
         const { user, token } = response.data
-        setAuthUser(currentData => ({
+        mutate(currentData => ({
           ...currentData,
           ...user,
           id: user._id,

@@ -73,7 +73,7 @@ async function createServer(root = process.cwd(), isProd = process.env.NODE_ENV 
     )
   }
 
-  app.use('/welcome', async (req: any, res: any) => {
+  app.use('*', async (req: any, res: any) => {
     try {
       const url = req.originalUrl
 

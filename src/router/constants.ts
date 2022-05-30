@@ -32,10 +32,7 @@ const STORE_NAMES = createConstants(
   'hasNavigationAtom',
   'geoLocationAtom',
   'userAgentAtom',
-  'authUserAtom',
   'hasNavigationMapHelpersAtom',
-  'authUserSelector',
-  'authUserIsAuthSelector'
 )
 
 export { langSlugs, ROUTE_NAMES, ROUTE_PARAMS, STORE_NAMES, RouteNamesType }

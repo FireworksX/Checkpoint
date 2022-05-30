@@ -18,7 +18,7 @@ router.start()
 
 const { apiClient } = createApiClients({ cookieManager })
 
-const fetcher: AppFetcherType = (resource, init) => apiClient.get(resource)
+const fetcher: AppFetcherType = (resource, init) => apiClient.get<any>(resource).then(({ data }) => data)
 
 const cacheManagerInstance = cacheManager()
 

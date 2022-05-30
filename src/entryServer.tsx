@@ -11,10 +11,9 @@ import { createApiClients } from './utils/createApiClients'
 import { serviceContainer } from './services/ioc/serviceContainer'
 import { cacheManager } from './services/cacheManager'
 
-const cacheManagerInstance = cacheManager()
-
 export async function render(url: string, ctx: AppContext) {
   const { addService } = serviceContainer()
+  const cacheManagerInstance = cacheManager()
 
   const cookieManager = serverCookieManager(ctx.req, ctx.res, appConfig.COOKIE_PREFIX)
 
@@ -23,7 +22,16 @@ export async function render(url: string, ctx: AppContext) {
 
   const { apiClient } = createApiClients({ cookieManager })
 
-  const fetcher: AppFetcherType = (resource, init) => apiClient.get(resource).catch(console.error)
+  const fetcher: AppFetcherType = (resource, init) =>
+    apiClient
+      .get<any>(resource)
+      .then(({ data }) => data)
+      .catch(e => {
+        return Promise.resolve({
+          success: false,
+          error: e
+        })
+      })
 
   addService('cacheManager', cacheManagerInstance)
   addService('cookieManager', cookieManager)

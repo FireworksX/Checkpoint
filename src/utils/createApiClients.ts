@@ -78,27 +78,7 @@ const createApiClient = ({ cookieManager } = DEFAULT_OPTIONS): ApiClient => {
     }
   )
 
-  const get = async <T>(path: string, config?: AxiosRequestConfig) => {
-    try {
-      const cache = serviceContainer().getService('cacheManager')
-
-      if (cache?.has(path)) {
-        return cache?.get(path)
-      }
-
-      const response = await apiClient.get<T>(path, config)
-      cache?.set(path, response.data)
-
-      return response.data
-    } catch (e) {
-      console.log(e)
-      return Promise.reject(e)
-    }
-  }
-
-  return {
-    get
-  }
+  return apiClient
 }
 
 export const createApiClients = ({ cookieManager } = DEFAULT_OPTIONS) => {

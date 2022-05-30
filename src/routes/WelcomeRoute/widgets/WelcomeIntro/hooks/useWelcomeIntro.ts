@@ -2,9 +2,7 @@ import { useCallback } from 'react'
 import { useRecoilState } from 'recoil'
 import { usePhoneValidationCodeCreate } from 'src/hooks/data/usePhoneValidationCodeCreate'
 import { usePhoneFormatter } from 'src/components/Input/hooks/usePhoneFormatter'
-import { authUserAtom } from 'src/store/userStore/atoms/authUserAtom'
-import isBrowser from 'src/utils/isBrowser'
-import { serviceContainer } from '../../../../../services/ioc/serviceContainer'
+import { useCurrentUser } from 'src/hooks/data/useCurrentUser'
 
 interface Props {
   onBack(): void
@@ -12,8 +10,8 @@ interface Props {
 }
 
 export const useWelcomeIntro = ({ onNext, onBack }: Props) => {
-  const [authUser, setAuthUser] = useRecoilState(authUserAtom)
-  const { formatValue, value, setValue } = usePhoneFormatter(authUser?.phone)
+  const { user, mutate } = useCurrentUser()
+  const { formatValue, value, setValue } = usePhoneFormatter(user?.phone)
   const { execute } = usePhoneValidationCodeCreate()
 
   const onSubmit = useCallback(async () => {
@@ -21,7 +19,7 @@ export const useWelcomeIntro = ({ onNext, onBack }: Props) => {
     const { success, data } = await execute({ phone })
 
     if (success) {
-      setAuthUser(user => ({ ...user, phone }))
+      mutate(user => ({ ...user, _id: user?._id || '', phone }))
       onNext()
     }
   }, [execute, formatValue])

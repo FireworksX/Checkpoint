@@ -2,18 +2,18 @@ import { useMemo, useState } from 'react'
 import { useRecoilValue } from 'recoil'
 import { useForm } from 'src/hooks/useForm'
 import { useRegisterUser } from 'src/hooks/data/useRegisterUser'
-import { authUserAtom } from 'src/store/userStore/atoms/authUserAtom'
 import { useUserIsRegister } from 'src/hooks/data/useUserIsRegister'
+import { useCurrentUser } from 'src/hooks/data/useCurrentUser'
 
 interface Props {
   onRegister(): void
 }
 
 export const useWelcomeRegister = ({ onRegister }: Props) => {
-  const authUser = useRecoilValue(authUserAtom)
   const { register, handleSubmit } = useForm()
   const { execute } = useRegisterUser()
 
+  const { user } = useCurrentUser()
   const [proxyUsername, setProxyUsername] = useState('')
   const { data: isRegisterUser, fetching } = useUserIsRegister({
     username: proxyUsername
@@ -39,8 +39,9 @@ export const useWelcomeRegister = ({ onRegister }: Props) => {
       return
     }
 
+    console.log(user, 'on register');
     const response = await execute({
-      phone: authUser.phone,
+      phone: user?.phone,
       ...data
     })
 

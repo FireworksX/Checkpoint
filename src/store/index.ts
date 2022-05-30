@@ -3,9 +3,7 @@ import { mapCenterAtom, mapPlacemarksAtom, mapSaveCenterAtom, mapZoomAtom } from
 import { hasNavigationAtom, hasNavigationMapHelpersAtom } from './uiStore'
 import { geoLocationAtom } from './userStore'
 import { userAgentAtom } from './configStore'
-import { authUserAtom } from './userStore/atoms/authUserAtom'
 import { STORE_NAMES } from 'src/router/constants'
-import { authUserSelector } from './userStore/selectors/authUserSelector'
 
 export type StoreAtomsType = typeof storeMap
 export type StoreType = {
@@ -24,9 +22,7 @@ const storeMap = {
   [STORE_NAMES.hasNavigationAtom]: hasNavigationAtom,
   [STORE_NAMES.geoLocationAtom]: geoLocationAtom,
   [STORE_NAMES.userAgentAtom]: userAgentAtom,
-  [STORE_NAMES.authUserAtom]: authUserAtom,
   [STORE_NAMES.hasNavigationMapHelpersAtom]: hasNavigationMapHelpersAtom,
-  [STORE_NAMES.authUserSelector]: authUserSelector
 }
 
 export { storeMap }

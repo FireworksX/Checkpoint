@@ -1,10 +1,9 @@
 import { useCallback, useEffect, useRef } from 'react'
-import { useRecoilValue } from 'recoil'
-import { authUserAtom } from 'src/store/userStore/atoms/authUserAtom'
 import { useNumberFormatter } from 'src/components/Input/hooks/useNumberFormatter'
 import { usePhoneValidationCodeCheck } from 'src/hooks/data/usePhoneValidationCodeCheck'
 import { useUserIsRegister } from 'src/hooks/data/useUserIsRegister'
 import { useLoginUser } from 'src/hooks/data/useLoginUser'
+import { useCurrentUser } from 'src/hooks/data/useCurrentUser'
 
 interface Props {
   onBack(): void
@@ -14,15 +13,16 @@ interface Props {
 
 export const useWelcomeCode = ({ onRegister, onLogin, onBack }: Props) => {
   const tryLogin = useRef(false)
-  const authUser = useRecoilValue(authUserAtom)
+  const { user } = useCurrentUser()
   const { formatValue, setValue } = useNumberFormatter()
+
   const { data: validationData } = usePhoneValidationCodeCheck({
-    phone: authUser.phone || '',
+    phone: user?.phone || '',
     code: formatValue
   })
   const { data: isRegisterData, fetching } = useUserIsRegister(
     {
-      phone: authUser?.phone
+      phone: user?.phone
     },
     !validationData?.data
   )
@@ -33,7 +33,7 @@ export const useWelcomeCode = ({ onRegister, onLogin, onBack }: Props) => {
     tryLogin.current = true
 
     const { success } = await execute({
-      phone: authUser?.phone || '',
+      phone: user?.phone || '',
       code: formatValue
     })
 
@@ -55,7 +55,7 @@ export const useWelcomeCode = ({ onRegister, onLogin, onBack }: Props) => {
   }, [validationData, fetching, isRegisterData, onLoginUser])
 
   return {
-    phone: authUser.phone,
+    phone: user?.phone,
     codeValue: formatValue,
     onSetCodeValue: setValue
   }

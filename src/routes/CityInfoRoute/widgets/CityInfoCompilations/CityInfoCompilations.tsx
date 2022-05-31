@@ -1,6 +1,7 @@
 import { FC } from 'react'
 import * as Styled from './styles'
 import { staticImagesMap } from 'src/data/staticImagesMap'
+import CompilationCell from '../../../../components/CompilationCell/CompilationCell'
 
 interface CityInfoCompilationsProps {
   className?: string
@@ -43,13 +44,7 @@ const CityInfoCompilations: FC<CityInfoCompilationsProps> = ({ className }) => {
   return (
     <Styled.Root className={className}>
       {list.map((el, index) => (
-        <Styled.Cell key={`${el.title}_${index}`}>
-          {el.image && <Styled.Image src={el.image} />}
-          <div>
-            <Styled.Title>{el.title}</Styled.Title>
-            <Styled.Description>{el.description}</Styled.Description>
-          </div>
-        </Styled.Cell>
+        <CompilationCell key={`${el.title}_${index}`} title={el.title} image={el.image} description={el.description} />
       ))}
     </Styled.Root>
   )

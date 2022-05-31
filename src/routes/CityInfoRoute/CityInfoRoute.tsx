@@ -3,14 +3,12 @@ import * as Styled from './styles'
 import { ROUTE_NAMES } from 'src/router/constants'
 import { route } from 'src/hoc/route'
 import { withValidateUser } from 'src/hoc/withValidateUser'
-import { useCityList } from './hooks/useCityList'
 
 interface CityListRouteProps {
   className?: string
 }
 
 const CityInfoRoute: FC<CityListRouteProps> = ({ className }) => {
-  const { list } = useCityList()
 
   return (
     <Styled.Root className={className}>

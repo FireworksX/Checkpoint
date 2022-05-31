@@ -23,13 +23,16 @@ export const useRouter = () => {
 
   const defaultParams = useMemo(
     () => ({
-      [ROUTE_PARAMS.citySlug]: route?.params?.[ROUTE_PARAMS.citySlug] || cookieCitySlug
+      [ROUTE_PARAMS.citySlug]:
+        route?.params?.[ROUTE_PARAMS.citySlug] || cookieCitySlug === 'undefined' ? undefined : cookieCitySlug
     }),
     [route]
   )
 
   useEffect(() => {
-    setCookieCitySlug(route.params[ROUTE_PARAMS.citySlug])
+    if (route.params[ROUTE_PARAMS.citySlug]) {
+      setCookieCitySlug(route.params[ROUTE_PARAMS.citySlug])
+    }
   }, [route.params[ROUTE_PARAMS.citySlug]])
 
   return {
@@ -37,6 +40,7 @@ export const useRouter = () => {
     getLastSegment,
     getParam,
     back,
+    route,
     ...defaultParams
   }
 }

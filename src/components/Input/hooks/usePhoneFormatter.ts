@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react'
 
-export const usePhoneFormatter = <T extends string>(initialState = '') => {
+export const usePhoneFormatter = (initialState = '') => {
   const [value, setValue] = useState(initialState)
 
   const formatValue = useMemo(() => {

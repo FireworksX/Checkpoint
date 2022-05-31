@@ -1,17 +1,20 @@
 import styled from 'styled-components'
 import PageHeader from 'src/widgets/PageHeader/PageHeader'
 import CommonLogo from 'src/components/CommonLogo/CommonLogo'
-import Touchable from '../../components/Touchable/Touchable'
+import Touchable from 'src/components/Touchable/Touchable'
+import Container from 'src/components/Container/Container'
+import CompilationCell from '../../components/CompilationCell/CompilationCell'
+import HorizontalScroll from '../../components/HorizontalScroll/HorizontalScroll'
+import LocationCard from '../../components/LocationCard/LocationCard'
 
-export const Root = styled.div`
-  text-align: center;
-`
+export const Root = styled.div``
 
 export const Header = styled(PageHeader)`
-  display: grid;
-  align-items: center;
-  text-align: center;
-  grid-template-columns: 50px 1fr 50px;
+  border-bottom: 2px solid ${({ theme }) => theme.colors.border};
+`
+
+export const HeaderButton = styled(Touchable)`
+  color: ${({ theme }) => theme.colors.primary};
 `
 
 export const HeaderTitle = styled.div`
@@ -19,57 +22,74 @@ export const HeaderTitle = styled.div`
   color: ${({ theme }) => theme.colors.secondary};
 `
 
-export const Avatar = styled(CommonLogo).attrs({ size: 90 })`
-  margin: 40px auto 30px auto;
-  border-radius: 15px;
+export const Head = styled(Container)`
+  display: flex;
+  padding-top: 20px;
+  padding-bottom: 20px;
 `
 
-export const Name = styled.h1`
+export const Avatar = styled(CommonLogo).attrs({ size: 90, withRadius: true })`
+  margin-right: 30px;
+`
+
+export const NameWrapper = styled.div`
+  width: 100%;
+`
+
+export const Name = styled.h2`
   ${({ theme }) => theme.typography.text_20_24}
   color: ${({ theme }) => theme.colors.textColor};
-  font-weight: 600;
-  text-align: center;
+  font-weight: bold;
 `
 
 export const Description = styled.p`
   ${({ theme }) => theme.typography.text_14_24}
-  color: ${({ theme }) => theme.colors.secondary};
+`
+
+export const Metrics = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  border-bottom: 2px solid ${({ theme }) => theme.colors.border};
+  border-top: 2px solid ${({ theme }) => theme.colors.border};
+`
+
+export const MetricCell = styled.div`
   text-align: center;
-  padding: 0 15%;
-  margin-bottom: 50px;
+  padding: 10px 0;
 `
 
-export const Row = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 30px;
-`
-
-export const Group = styled.div`
-  text-align: center;
-  padding: 0 ${({ theme }) => theme.baseStyles.paddings.gutterMobile};
-`
-
-export const GroupTitle = styled.div`
-  ${({ theme }) => theme.typography.text_12_16}
+export const MetricLabel = styled.div`
+  ${({ theme }) => theme.typography.text_14_20}
   color: ${({ theme }) => theme.colors.secondary};
-  margin-bottom: 7px;
 `
 
-export const GroupValue = styled.div`
+export const MetricValue = styled.div`
   ${({ theme }) => theme.typography.text_16_20}
-  color: ${({ theme }) => theme.colors.textColor};
   font-weight: bold;
+  margin-bottom: 5px;
 `
 
-export const FollowButton = styled(Touchable)`
-  ${({ theme }) => theme.typography.text_14_24}
-  color: ${({ theme }) => theme.colors.basicWhite};
-  font-weight: bold;
-  text-transform: uppercase;
-  padding: 7px 20px;
-  border-radius: ${({ theme }) => theme.baseStyles.radius.radiusMain};
-  background: ${({ theme }) => theme.colors.primary};
-  display: inline-block;
+export const CompilationWrapper = styled(HorizontalScroll)`
+  margin: 15px 0;
+`
+
+export const Compilation = styled(CompilationCell)`
+  white-space: nowrap;
+  margin: 0 7px;
+
+  &:first-child {
+    margin-left: ${({ theme }) => theme.baseStyles.paddings.gutterMobile};
+  }
+
+  &:last-child {
+    margin-right: ${({ theme }) => theme.baseStyles.paddings.gutterMobile};
+  }
+`
+
+export const LocationsWrapper = styled(Container)`
+  margin-top: 15px;
+`
+
+export const LocationCell = styled(LocationCard)`
+  margin-bottom: 15px;
 `

@@ -1,6 +1,6 @@
-import { useMemo, useState } from 'react'
+import { useState } from 'react'
 
-export const useUsernameFormatter = <T extends string>(initialState = '') => {
+export const useUsernameFormatter = (initialState = '') => {
   const [value, setValue] = useState(initialState)
 
   return {

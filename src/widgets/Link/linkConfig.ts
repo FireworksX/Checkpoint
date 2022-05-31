@@ -23,7 +23,7 @@ const linkConfig = {
     params: { required: [], optional: [] }
   },
   cityList: {
-    name: buildName(ROUTE_NAMES.navigation, ROUTE_NAMES.city, ROUTE_NAMES.cityList),
+    name: buildName(ROUTE_NAMES.cityList),
     params: { required: [], optional: [] }
   },
   cityInfo: {

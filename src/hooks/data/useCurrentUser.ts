@@ -11,6 +11,7 @@ export const useCurrentUser = () => {
     isAuth: (response?.data?._id?.length || '') > 0,
     user: response?.data,
     success: response?.success,
+    fullName: [response?.data?.firstName, response?.data?.lastName].join(' '),
     error,
     mutate: (callback: MutateCallback) =>
       mutate(apiUser => ({

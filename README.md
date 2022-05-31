@@ -6,6 +6,7 @@
 - React
 - SSR
 - Recoil
+- ESLint + Prettier
 - SVG sprite
 - Styled-components
 - Suspense mode for fetching (ssr prepass)

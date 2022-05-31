@@ -29,8 +29,8 @@ const Carousel: FC<CarouselProps> = ({ className, allowTouchMove = true, activeS
 
   return (
     <Swiper className={className} allowTouchMove={allowTouchMove} onSwiper={setSwiper} onSlideChange={onChange}>
-      {React.Children.toArray(children).map(slide => (
-        <SwiperSlide>{slide}</SwiperSlide>
+      {React.Children.toArray(children).map((slide, index) => (
+        <SwiperSlide key={`slide_${index}`}>{slide}</SwiperSlide>
       ))}
     </Swiper>
   )

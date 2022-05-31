@@ -21,6 +21,11 @@ export const routes: Route[] = [
         component: routeComponents.WelcomeRoute
       },
       {
+        name: ROUTE_NAMES.cityList,
+        path: 'city/list',
+        component: routeComponents.CityListRoute
+      },
+      {
         name: ROUTE_NAMES.navigation,
         path: `/`,
         component: routeComponents.NavigationRoute,
@@ -49,11 +54,6 @@ export const routes: Route[] = [
             name: ROUTE_NAMES.city,
             path: `city`,
             children: [
-              {
-                name: ROUTE_NAMES.cityList,
-                path: '/',
-                component: routeComponents.CityListRoute
-              },
               {
                 name: ROUTE_NAMES.cityDetail,
                 path: `/:${ROUTE_PARAMS.citySlug}`,

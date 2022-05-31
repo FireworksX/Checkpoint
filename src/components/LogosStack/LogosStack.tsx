@@ -10,6 +10,7 @@ interface LogosStackProps {
   logos: LogoType[]
   size?: CommonLogoSize
   className?: string
+  logoClassName?: string
   sportSlug?: string
   direction?: 'left' | 'right'
   withPadding?: boolean
@@ -19,10 +20,10 @@ interface LogosStackProps {
 const LogosStack: React.FunctionComponent<LogosStackProps> = ({
   direction = 'left',
   size = 20,
-  sportSlug,
   logos,
   withPadding = true,
   className,
+  logoClassName,
   isStuck = false
 }) => {
   return (
@@ -36,7 +37,7 @@ const LogosStack: React.FunctionComponent<LogosStackProps> = ({
             isReverse={direction === 'right'}
             isStuck={isStuck}
           >
-            <CommonLogo src={logo.src} size={size} />
+            <CommonLogo className={logoClassName} src={logo.src} size={size} />
           </Styled.Logo>
         ))}
       </Styled.Root>

@@ -10,9 +10,9 @@ interface PageHeaderProps {
 const PageHeader: FC<PageHeaderProps> = ({ className, children, left, right }) => {
   return (
     <Styled.Root className={className}>
-      {left && <Styled.Left>{left}</Styled.Left>}
+      <Styled.Left>{left}</Styled.Left>
       <Styled.Center>{children}</Styled.Center>
-      {right && <Styled.Right>{right}</Styled.Right>}
+      <Styled.Right>{right}</Styled.Right>
     </Styled.Root>
   )
 }

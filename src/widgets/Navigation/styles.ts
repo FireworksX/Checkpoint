@@ -22,12 +22,12 @@ export const Root = styled.nav`
 
       &:before {
         content: '';
-        width: 40px;
-        height: 32px;
+        width: 50px;
+        height: 37px;
         position: absolute;
         top: 8px;
         left: 50%;
-        margin-left: -20px;
+        margin-left: -25px;
         background: ${({ theme }) => theme.colors.secondaryHover};
         border-radius: 10px;
         z-index: -1;
@@ -50,7 +50,7 @@ export const Item = styled(Link).attrs({ activeClassName: 'navigationActive' })`
   flex-basis: 33%;
   flex-grow: 1;
   flex-shrink: 0;
-  padding: 15px 0;
+  padding: 20px 0;
   position: relative;
 `
 

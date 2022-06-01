@@ -19,7 +19,7 @@ const sizesMap: Record<NonNullable<Props['size']>, string> = {
 const colorsMap = (theme: DefaultTheme) => ({
   accent: {
     color: theme.colors.primary,
-    active: rgbToRgba(theme.colors.primaryBg, 0.9)
+    active: theme.colors.primaryPress
   },
 
   positive: {

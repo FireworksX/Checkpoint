@@ -5,9 +5,9 @@ const baseColors = {
   basicBlack: 'rgb(41, 41, 41)',
 
   primary: 'rgb(0, 51, 255)',
-  primaryHover: 'rgb(98, 145, 80)',
-  primaryPress: 'rgb(78, 119, 65)',
-  primaryDisable: 'rgb(208, 226, 202)',
+  primaryHover: 'rgb(0,41,226)',
+  primaryPress: 'rgb(0,37,177)',
+  primaryDisable: 'rgb(152,164,213)',
   primaryBg: 'rgb(227, 234, 255)',
 
   secondary: 'rgb(126, 131, 146)',

@@ -11,6 +11,7 @@ import Icon from 'src/components/Icon/Icon'
 import { staticImagesMap } from 'src/data/staticImagesMap'
 import Container from 'src/components/Container/Container'
 import Button from 'src/components/Button/Button'
+import Portal from '../../components/Portal/Portal'
 
 interface ProfileRouteProps {
   className?: string
@@ -51,8 +52,6 @@ const list = [
 
 const ProfileRoute: FC<ProfileRouteProps> = ({ className }) => {
   const { user, fullName } = useProfileRoute()
-  const geoLocations = useGeoLocation()
-  const notifications = useNotifications()
 
   return (
     <Styled.Root className={className}>

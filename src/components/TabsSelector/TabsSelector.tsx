@@ -11,7 +11,7 @@ export interface TabsSelectorItem {
 interface TabsSelectorProps {
   items: TabsSelectorItem[]
   value: string // находит из массива items по имени
-  onChange?: (item: TabsSelectorItem) => void
+  onChange?: (item: TabsSelectorItem) => never
   className?: string
 }
 

@@ -4,7 +4,7 @@ import { ApiResponseBody } from 'src/interfaces/Request'
 
 interface RequestOptions {
   revalidate?: boolean
-  params: Record<string, string | undefined | null>
+  params: Record<string, string | number | undefined | null>
   pause?: boolean
 }
 
@@ -18,7 +18,7 @@ export const useRequest = <Data = any, Error = any, SWRKey extends Key = Key>(
     const value = params[key]
 
     if (value) {
-      acc[key] = value
+      acc[key] = typeof value !== 'string' ? value.toString() : value
     }
     return acc
   }, {})
@@ -30,5 +30,10 @@ export const useRequest = <Data = any, Error = any, SWRKey extends Key = Key>(
   const qs = usp.toString()
   const resultUrl = qs ? `${url}?${qs}` : url
 
-  return useSWR<ApiResponseBody<Data>>(!pause && resultUrl)
+  const swrResponse = useSWR<ApiResponseBody<Data>>(!pause && resultUrl)
+
+  return {
+    ...swrResponse,
+    fetching: (!swrResponse?.data && !swrResponse.error) || swrResponse.isValidating
+  }
 }

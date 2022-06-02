@@ -2,10 +2,14 @@ import styled from 'styled-components'
 import BaseImage from 'src/components/BaseImage/BaseImage'
 import Touchable from 'src/components/Touchable/Touchable'
 
-export const Root = styled(Touchable)`
+interface Props {
+  isActive?: boolean
+}
+
+export const Root = styled(Touchable)<Props>`
   display: flex;
   align-items: center;
-  background: ${({ theme }) => theme.colors.backgroundWhite};
+  background: ${({ theme, isActive }) => (isActive ? theme.colors.border : theme.colors.backgroundWhite)};
   border-radius: ${({ theme }) => theme.baseStyles.radius.radiusMain};
   padding: 7px 15px;
 `

@@ -51,7 +51,7 @@ const list = [
 ]
 
 const ProfileRoute: FC<ProfileRouteProps> = ({ className }) => {
-  const { user, fullName } = useProfileRoute()
+  const { user, fullName, categories, locations, setSelectedCategory } = useProfileRoute()
 
   return (
     <Styled.Root className={className}>
@@ -89,12 +89,14 @@ const ProfileRoute: FC<ProfileRouteProps> = ({ className }) => {
       </Styled.Metrics>
 
       <Styled.CompilationWrapper>
-        {list.map((el, index) => (
+        {categories.map((el, index) => (
           <Styled.Compilation
-            key={`${el.title}_${index}`}
-            title={el.title}
-            image={el.image}
+            key={`${el.slug}_${index}`}
+            title={el.name}
+            image={el.icon}
             description={el.description}
+            isActive={el.isActive}
+            onClick={() => setSelectedCategory(el.slug)}
           />
         ))}
       </Styled.CompilationWrapper>
@@ -106,12 +108,14 @@ const ProfileRoute: FC<ProfileRouteProps> = ({ className }) => {
       </Container>
 
       <Styled.LocationsWrapper>
-        <Styled.LocationCell />
-        <Styled.LocationCell />
-        <Styled.LocationCell />
-        <Styled.LocationCell />
-        <Styled.LocationCell />
-        <Styled.LocationCell />
+        {locations?.map(location => (
+          <Styled.LocationCell
+            key={location._id}
+            name={location.title}
+            cover={'https://image.bugsm.co.kr/album/images/500/204702/20470222.jpg'}
+            description={location.description}
+          />
+        ))}
       </Styled.LocationsWrapper>
     </Styled.Root>
   )

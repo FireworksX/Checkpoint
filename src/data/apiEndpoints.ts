@@ -9,6 +9,8 @@ export const apiEndpoints = {
   CURRENT_USER: '/users/profile',
   USER_IS_REGISTER: '/users/check',
 
+  LOCATIONS_LIST: '/locations/list',
+
   CITY_LIST: '/cities/list',
   CITY_DETAIL: '/cities/detail',
   CITY_CREATE: '/cities/create',

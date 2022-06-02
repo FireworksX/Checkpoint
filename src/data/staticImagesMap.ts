@@ -24,4 +24,14 @@ export const staticImagesMap = {
   wrench,
   stopwatch,
   personInLotusPosition
-}
+} as const
+
+type Key = keyof typeof staticImagesMap
+
+export const staticImagesMapKebab = Object.keys(staticImagesMap).reduce<Record<string, string>>((acc, key) => {
+  const lowerKey = key.replace(/([A-Z])/g, '-$1').toLowerCase()
+
+  acc[lowerKey] = staticImagesMap[key as Key]
+
+  return acc
+}, {})

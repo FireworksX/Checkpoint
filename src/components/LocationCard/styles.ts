@@ -10,7 +10,7 @@ export const Root = styled.div`
   align-items: center;
 `
 
-export const Avatar = styled(BaseImage)`
+export const Cover = styled(BaseImage)`
   flex-basis: 80px;
   margin-right: 15px;
   width: 80px;

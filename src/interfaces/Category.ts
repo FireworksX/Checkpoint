@@ -1,6 +1,7 @@
 import { AuthUser, BaseUser } from './User'
 
 export interface Category {
+  _id: string
   name: string
   slug: string
   description?: string

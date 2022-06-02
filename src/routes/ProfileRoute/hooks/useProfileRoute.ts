@@ -5,6 +5,7 @@ import { useUserLocations } from 'src/hooks/data/useUserLocations'
 import { Category } from 'src/interfaces/Category'
 
 const DEFAULT_ALL_CATEGORY: Category = {
+  _id: '',
   name: 'Все локации',
   description: 'Всё что есть',
   icon: 'sunset',
@@ -15,11 +16,10 @@ const DEFAULT_ALL_CATEGORY: Category = {
 
 export const useProfileRoute = () => {
   const [selectedCategory, setSelectedCategory] = useState(DEFAULT_ALL_CATEGORY.slug)
-
   const { user, fullName } = useCurrentUser()
-
-  const { data: locations } = useUserLocations({
-    author: user?._id
+  const { data: locations, fetching: locationsFetching } = useUserLocations({
+    author: user?._id,
+    category: user?.categories.find(category => category.slug === selectedCategory)?._id
   })
 
   const categories = useMemo(
@@ -34,6 +34,7 @@ export const useProfileRoute = () => {
 
   return {
     locations,
+    locationsFetching,
     user,
     categories,
     fullName,

@@ -4,7 +4,7 @@ import { ApiResponseBody } from 'src/interfaces/Request'
 
 interface RequestOptions {
   revalidate?: boolean
-  params: Record<string, string | number | undefined | null>
+  params: Record<string, any>
   pause?: boolean
 }
 
@@ -18,7 +18,7 @@ export const useRequest = <Data = any, Error = any, SWRKey extends Key = Key>(
     const value = params[key]
 
     if (value) {
-      acc[key] = typeof value !== 'string' ? value.toString() : value
+      acc[key] =  value
     }
     return acc
   }, {})

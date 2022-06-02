@@ -6,6 +6,7 @@ import Container from 'src/components/Container/Container'
 import CompilationCell from '../../components/CompilationCell/CompilationCell'
 import HorizontalScroll from '../../components/HorizontalScroll/HorizontalScroll'
 import LocationCard from '../../components/LocationCard/LocationCard'
+import LocationCardSkeleton from '../../components/LocationCardSkeleton/LocationCardSkeleton'
 
 export const Root = styled.div``
 
@@ -91,5 +92,9 @@ export const LocationsWrapper = styled(Container)`
 `
 
 export const LocationCell = styled(LocationCard)`
+  margin-bottom: 15px;
+`
+
+export const LocationCellSkeleton = styled(LocationCardSkeleton)`
   margin-bottom: 15px;
 `

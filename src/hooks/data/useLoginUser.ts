@@ -16,7 +16,7 @@ type OutputProps = {
 }
 
 export const useLoginUser = () => {
-  const { mutate, user } = useCurrentUser()
+  const { mutate } = useCurrentUser()
   const { fetching, execute } = useMutation<OutputProps, InputProps>(apiEndpoints.AUTH_LOGIN)
   const [, setAccessToken] = useCookies('accessToken')
   const [, setRefreshToken] = useCookies('refreshToken')
@@ -31,8 +31,6 @@ export const useLoginUser = () => {
     []
   )
 
-  console.log(user);
-
   return {
     execute: async (data: InputProps) => {
       const response = await execute(data)
@@ -42,7 +40,7 @@ export const useLoginUser = () => {
         mutate(currentData => ({
           ...currentData,
           ...user,
-          id: user._id,
+          id: user._id
         }))
 
         onSetTokens({

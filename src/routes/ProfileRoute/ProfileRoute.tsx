@@ -4,54 +4,20 @@ import { route } from 'src/hoc/route'
 import { ROUTE_NAMES } from 'src/router/constants'
 import PageHeaderButtonBack from 'src/widgets/PageHeader/components/PageHeaderButtonBack/PageHeaderButtonBack'
 import { withValidateUser } from 'src/hoc/withValidateUser'
-import { useGeoLocation } from 'src/hooks/useGeoLocation'
-import { useNotifications } from 'src/hooks/useNotifications'
 import { useProfileRoute } from './hooks/useProfileRoute'
 import Icon from 'src/components/Icon/Icon'
-import { staticImagesMap } from 'src/data/staticImagesMap'
 import Container from 'src/components/Container/Container'
 import Button from 'src/components/Button/Button'
-import Portal from '../../components/Portal/Portal'
+import { times } from '../../utils/times'
+import LocationCardSkeleton from '../../components/LocationCardSkeleton/LocationCardSkeleton'
+import { LocationCellSkeleton } from './styles'
 
 interface ProfileRouteProps {
   className?: string
 }
 
-const list = [
-  {
-    title: 'От местных',
-    description: 'Куда ходят местные',
-    image: staticImagesMap.manWalkingLightSkinTone
-  },
-  {
-    title: 'Известное',
-    description: 'Места с открыток',
-    image: staticImagesMap.classicalBuilding
-  },
-  {
-    title: 'Поесть',
-    description: 'Где покушать',
-    image: staticImagesMap.potOfFood
-  },
-  {
-    title: 'Маршруты',
-    description: 'Где гулять',
-    image: staticImagesMap.worldMap
-  },
-  {
-    title: 'Пофоткаться',
-    description: 'Для фото в Инстаграм',
-    image: staticImagesMap.cameraWithFlash
-  },
-  {
-    title: 'Бары',
-    description: 'Где пить',
-    image: staticImagesMap.beerMug
-  }
-]
-
 const ProfileRoute: FC<ProfileRouteProps> = ({ className }) => {
-  const { user, fullName, categories, locations, setSelectedCategory } = useProfileRoute()
+  const { user, fullName, categories, locations, setSelectedCategory, locationsFetching } = useProfileRoute()
 
   return (
     <Styled.Root className={className}>
@@ -108,14 +74,16 @@ const ProfileRoute: FC<ProfileRouteProps> = ({ className }) => {
       </Container>
 
       <Styled.LocationsWrapper>
-        {locations?.map(location => (
-          <Styled.LocationCell
-            key={location._id}
-            name={location.title}
-            cover={'https://image.bugsm.co.kr/album/images/500/204702/20470222.jpg'}
-            description={location.description}
-          />
-        ))}
+        {locationsFetching
+          ? times(3).map(index => <Styled.LocationCellSkeleton key={index} />)
+          : locations?.map(location => (
+              <Styled.LocationCell
+                key={location._id}
+                name={location.title}
+                cover={'https://image.bugsm.co.kr/album/images/500/204702/20470222.jpg'}
+                description={location.description}
+              />
+            ))}
       </Styled.LocationsWrapper>
     </Styled.Root>
   )

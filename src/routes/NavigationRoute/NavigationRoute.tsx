@@ -1,22 +1,31 @@
 import { FC } from 'react'
 import * as Styled from './styles'
 import { route } from 'src/hoc/route'
-import { ROUTE_NAMES } from 'src/router/constants'
+import { ROUTE_NAMES, ROUTE_PARAMS } from 'src/router/constants'
 import { useRouter } from 'src/hooks/useRouter'
 import Redirect from 'src/components/Redirect/Redirect'
 import { withValidateUser } from 'src/hoc/withValidateUser'
 import { useLinkConfig } from 'src/widgets/Link/hooks/useLinkConfig'
+import { buildName } from 'src/utils/buildName'
 
 interface NavigationRouteProps {
   className?: string
 }
 
 const NavigationRoute: FC<NavigationRouteProps> = ({ className, children }) => {
-  const { citySlug } = useRouter()
-  const { link } = useLinkConfig('cityList')
+  const { citySlug, getParam, route } = useRouter()
+  const paramCitySlug = getParam(ROUTE_PARAMS.citySlug)
+  const isNavigationRoute = route.name === buildName(ROUTE_NAMES.navigation)
 
+  const { link: cityListLink } = useLinkConfig('cityList')
+  const { link: cityInfoLink, routeParams } = useLinkConfig('cityInfo', { citySlug: citySlug || 'empty' })
+
+  if (isNavigationRoute) {
     if (!citySlug) {
-    // return <Redirect routeName={link.name} />
+      return <Redirect routeName={cityListLink.name} />
+    } else if (citySlug && !paramCitySlug) {
+      return <Redirect routeName={cityInfoLink.name} params={routeParams} />
+    }
   }
 
   return (

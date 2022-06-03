@@ -15,7 +15,8 @@ interface ProfileRouteProps {
 }
 
 const ProfileRoute: FC<ProfileRouteProps> = ({ className }) => {
-  const { user, fullName, categories, locations, setSelectedCategory, locationsFetching } = useProfileRoute()
+  const { user, fullName, categories, locations, setSelectedCategory, locationsFetching, followers, subscribers } =
+    useProfileRoute()
 
   return (
     <Styled.Root className={className}>
@@ -40,17 +41,21 @@ const ProfileRoute: FC<ProfileRouteProps> = ({ className }) => {
         </Styled.NameWrapper>
       </Styled.Head>
 
+      <Button stretched size='l' mode='tertiary'>
+        Подписаться
+      </Button>
+
       <Styled.Metrics>
         <Styled.MetricCell>
           <Styled.MetricValue>83</Styled.MetricValue>
           <Styled.MetricLabel>публикаций</Styled.MetricLabel>
         </Styled.MetricCell>
         <Styled.MetricCell>
-          <Styled.MetricValue>152</Styled.MetricValue>
+          <Styled.MetricValue>{followers.length}</Styled.MetricValue>
           <Styled.MetricLabel>подписчиков</Styled.MetricLabel>
         </Styled.MetricCell>
         <Styled.MetricCell>
-          <Styled.MetricValue>36</Styled.MetricValue>
+          <Styled.MetricValue>{subscribers.length}</Styled.MetricValue>
           <Styled.MetricLabel>подписок</Styled.MetricLabel>
         </Styled.MetricCell>
       </Styled.Metrics>

@@ -20,6 +20,7 @@ export const useLinkConfig = <T extends LinkType>(type: T, props?: Props & LinkN
     })
   }
 
+
   const href = router.routerInstance.buildUrl(link?.name || 'root', routeParams)
   const isSamePage = route?.path === href
 

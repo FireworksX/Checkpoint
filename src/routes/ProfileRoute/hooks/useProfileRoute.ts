@@ -38,6 +38,8 @@ export const useProfileRoute = () => {
     user,
     categories,
     fullName,
+    followers: user?.followers || [],
+    subscribers: user?.subscribers || [],
     setSelectedCategory
   }
 }

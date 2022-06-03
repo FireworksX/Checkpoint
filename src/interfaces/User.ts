@@ -8,6 +8,8 @@ export interface BaseUser {
   bio?: string
   phone?: string
   categories: Category[]
+  followers?: BaseUser[]
+  subscribers?: BaseUser[]
 }
 
 export interface AuthUser extends BaseUser {}

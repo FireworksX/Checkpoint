@@ -8,9 +8,7 @@ import { useProfileRoute } from './hooks/useProfileRoute'
 import Icon from 'src/components/Icon/Icon'
 import Container from 'src/components/Container/Container'
 import Button from 'src/components/Button/Button'
-import { times } from '../../utils/times'
-import LocationCardSkeleton from '../../components/LocationCardSkeleton/LocationCardSkeleton'
-import { LocationCellSkeleton } from './styles'
+import { times } from 'src/utils/times'
 
 interface ProfileRouteProps {
   className?: string
@@ -34,7 +32,10 @@ const ProfileRoute: FC<ProfileRouteProps> = ({ className }) => {
       <Styled.Head>
         <Styled.Avatar src='https://avatars.githubusercontent.com/u/22668125?v=4' />
         <Styled.NameWrapper>
-          <Styled.Name>{fullName}</Styled.Name>
+          <Styled.Name>
+            {fullName}
+            <Styled.VerifyIcon />
+          </Styled.Name>
           <Styled.Description>{user?.bio}</Styled.Description>
         </Styled.NameWrapper>
       </Styled.Head>

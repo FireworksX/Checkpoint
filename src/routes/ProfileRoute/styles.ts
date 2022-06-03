@@ -3,10 +3,11 @@ import PageHeader from 'src/widgets/PageHeader/PageHeader'
 import CommonLogo from 'src/components/CommonLogo/CommonLogo'
 import Touchable from 'src/components/Touchable/Touchable'
 import Container from 'src/components/Container/Container'
-import CompilationCell from '../../components/CompilationCell/CompilationCell'
-import HorizontalScroll from '../../components/HorizontalScroll/HorizontalScroll'
-import LocationCard from '../../components/LocationCard/LocationCard'
-import LocationCardSkeleton from '../../components/LocationCardSkeleton/LocationCardSkeleton'
+import CompilationCell from 'src/components/CompilationCell/CompilationCell'
+import HorizontalScroll from 'src/components/HorizontalScroll/HorizontalScroll'
+import LocationCard from 'src/components/LocationCard/LocationCard'
+import LocationCardSkeleton from 'src/components/LocationCardSkeleton/LocationCardSkeleton'
+import Icon from 'src/components/Icon/Icon'
 
 export const Root = styled.div``
 
@@ -41,6 +42,15 @@ export const Name = styled.h2`
   ${({ theme }) => theme.typography.text_20_24}
   color: ${({ theme }) => theme.colors.textColor};
   font-weight: bold;
+  display: flex;
+  align-items: center;
+`
+
+export const VerifyIcon = styled(Icon).attrs({
+  name: 'check-star'
+})`
+  color: ${({ theme }) => theme.colors.primary};
+  margin-left: 10px;
 `
 
 export const Description = styled.p`

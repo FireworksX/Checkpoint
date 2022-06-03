@@ -4,7 +4,7 @@ import { ApiResponseBody } from 'src/interfaces/Request'
 
 interface RequestOptions {
   revalidate?: boolean
-  params: Record<string, any>
+  params?: Record<string, any>
   pause?: boolean
 }
 

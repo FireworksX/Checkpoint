@@ -1,4 +1,4 @@
-import { Category } from "./Category";
+import { Category } from './Category'
 
 export interface BaseUser {
   id: string
@@ -7,10 +7,9 @@ export interface BaseUser {
   username?: string
   bio?: string
   phone?: string
-}
-
-export interface AuthUser extends BaseUser{
   categories: Category[]
 }
+
+export interface AuthUser extends BaseUser {}
 
 export type AuthUserResponse = Omit<AuthUser, 'id'> & { _id: string }

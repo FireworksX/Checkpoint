@@ -50,7 +50,7 @@ const UserRoute: FC<UserRouteProps> = ({ className }) => {
       <UserHeader name={fullName} bio={user?.bio} />
 
       <Styled.SubscribeContainer>
-        <Styled.SubscribeButton onClick={following.isFollowing ? following.onUnsubscribe : following.onSubscribe}>
+        <Styled.SubscribeButton  onClick={following.isFollowing ? following.onUnsubscribe : following.onSubscribe}>
           {following.isFollowing ? 'Отписаться' : 'Подписаться'}
         </Styled.SubscribeButton>
       </Styled.SubscribeContainer>

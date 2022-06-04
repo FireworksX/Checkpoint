@@ -1,4 +1,6 @@
 declare type SvgNames =
+  | 'heart'
+  | 'heart-fill'
   | 'group'
   | 'location'
   | 'home'

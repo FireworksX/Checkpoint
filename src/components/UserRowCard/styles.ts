@@ -6,8 +6,6 @@ export const Root = styled(Link)`
   display: flex;
   align-items: center;
   padding: 10px;
-  background: ${({ theme }) => theme.colors.backgroundWhite};
-  border-radius: ${({ theme }) => theme.baseStyles.radius.radiusMain};
 `
 
 export const Avatar = styled(CommonLogo).attrs({

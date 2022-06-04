@@ -27,15 +27,15 @@ const CityInfoFacts: FC<CityInfoFactsProps> = ({ className }) => {
         <Styled.FactsMore onClick={toggleIsOpen}>{isOpen ? 'Меньше фактов' : 'Больше фактов'}</Styled.FactsMore>
       </Styled.FactsSection>
 
-      <Styled.TransferSection>
-        <Styled.TransferImage src={staticImagesMap.automobile} />
-        <div>
-          <Styled.TransferText>
-            Удобнее всего добравть в город из аеропорта "Пулково" на автобусе №120Н
-          </Styled.TransferText>
-          <Styled.TransferDescription>Стоимость проезда: 45 руб.</Styled.TransferDescription>
-        </div>
-      </Styled.TransferSection>
+      {/*<Styled.TransferSection>*/}
+      {/*  <Styled.TransferImage src={staticImagesMap.automobile} />*/}
+      {/*  <div>*/}
+      {/*    <Styled.TransferText>*/}
+      {/*      Удобнее всего добравть в город из аеропорта "Пулково" на автобусе №120Н*/}
+      {/*    </Styled.TransferText>*/}
+      {/*    <Styled.TransferDescription>Стоимость проезда: 45 руб.</Styled.TransferDescription>*/}
+      {/*  </div>*/}
+      {/*</Styled.TransferSection>*/}
     </Styled.Root>
   )
 }

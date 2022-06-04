@@ -23,8 +23,8 @@ const colorsMap = (theme: DefaultTheme) => ({
   },
 
   positive: {
-    color: theme.colors.primary,
-    active: rgbToRgba(theme.colors.primaryBg, 0.9)
+    color: theme.colors.statusSuccessText,
+    active: rgbToRgba(theme.colors.statusSuccessText, 0.9)
   },
 
   negative: {

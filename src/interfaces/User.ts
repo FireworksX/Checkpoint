@@ -7,9 +7,14 @@ export interface BaseUser {
   username?: string
   bio?: string
   phone?: string
-  categories: Category[]
+  categories?: Category[]
   followers?: BaseUser[]
   subscribers?: BaseUser[]
+  counters?: {
+    followers: number
+    subscribers: number
+    locations: number
+  }
 }
 
 export interface AuthUser extends BaseUser {}

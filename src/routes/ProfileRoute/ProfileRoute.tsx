@@ -9,14 +9,17 @@ import Icon from 'src/components/Icon/Icon'
 import Container from 'src/components/Container/Container'
 import Button from 'src/components/Button/Button'
 import { times } from 'src/utils/times'
+import Placeholder from '../../components/Placeholder/Placeholder'
+import BaseImage from '../../components/BaseImage/BaseImage'
+import { staticImagesMap } from '../../data/staticImagesMap'
+import { PlaceholderImage } from './styles'
 
 interface ProfileRouteProps {
   className?: string
 }
 
 const ProfileRoute: FC<ProfileRouteProps> = ({ className }) => {
-  const { user, fullName, categories, locations, setSelectedCategory, locationsFetching, followers, subscribers } =
-    useProfileRoute()
+  const { user, fullName, categories, locations, setSelectedCategory, locationsFetching, counters } = useProfileRoute()
 
   return (
     <Styled.Root className={className}>
@@ -41,21 +44,17 @@ const ProfileRoute: FC<ProfileRouteProps> = ({ className }) => {
         </Styled.NameWrapper>
       </Styled.Head>
 
-      <Button stretched size='l' mode='tertiary'>
-        Подписаться
-      </Button>
-
       <Styled.Metrics>
         <Styled.MetricCell>
-          <Styled.MetricValue>83</Styled.MetricValue>
+          <Styled.MetricValue>{counters.locations}</Styled.MetricValue>
           <Styled.MetricLabel>публикаций</Styled.MetricLabel>
         </Styled.MetricCell>
         <Styled.MetricCell>
-          <Styled.MetricValue>{followers.length}</Styled.MetricValue>
+          <Styled.MetricValue>{counters.followers}</Styled.MetricValue>
           <Styled.MetricLabel>подписчиков</Styled.MetricLabel>
         </Styled.MetricCell>
         <Styled.MetricCell>
-          <Styled.MetricValue>{subscribers.length}</Styled.MetricValue>
+          <Styled.MetricValue>{counters.subscribers}</Styled.MetricValue>
           <Styled.MetricLabel>подписок</Styled.MetricLabel>
         </Styled.MetricCell>
       </Styled.Metrics>
@@ -73,12 +72,19 @@ const ProfileRoute: FC<ProfileRouteProps> = ({ className }) => {
         ))}
       </Styled.CompilationWrapper>
 
-      <Container>
-        <Button stretched size='l'>
-          Показать на карте
-        </Button>
-      </Container>
+      {(locations?.length || 0) > 0 && (
+        <Container>
+          <Button stretched size='l'>
+            Показать на карте
+          </Button>
+        </Container>
+      )}
 
+      {(locations?.length || 0) === 0 && !locationsFetching && (
+        <Placeholder header='Пока ничего нет' icon={<Styled.PlaceholderImage src={staticImagesMap.dottedLineFace} />}>
+          В этой категории пока ничего нет, пустота...
+        </Placeholder>
+      )}
       <Styled.LocationsWrapper>
         {locationsFetching
           ? times(3).map(index => <Styled.LocationCellSkeleton key={index} />)

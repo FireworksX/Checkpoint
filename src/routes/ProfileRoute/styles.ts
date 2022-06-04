@@ -8,6 +8,7 @@ import HorizontalScroll from 'src/components/HorizontalScroll/HorizontalScroll'
 import LocationCard from 'src/components/LocationCard/LocationCard'
 import LocationCardSkeleton from 'src/components/LocationCardSkeleton/LocationCardSkeleton'
 import Icon from 'src/components/Icon/Icon'
+import BaseImage from 'src/components/BaseImage/BaseImage'
 
 export const Root = styled.div``
 
@@ -107,4 +108,8 @@ export const LocationCell = styled(LocationCard)`
 
 export const LocationCellSkeleton = styled(LocationCardSkeleton)`
   margin-bottom: 15px;
+`
+
+export const PlaceholderImage = styled(BaseImage)`
+  width: 60px;
 `

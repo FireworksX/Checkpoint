@@ -10,6 +10,9 @@ import automobile from '../../public/assets/images/emoji/automobile.png'
 import wrench from '../../public/assets/images/emoji/wrench.png'
 import stopwatch from '../../public/assets/images/emoji/stopwatch.png'
 import personInLotusPosition from '../../public/assets/images/emoji/person-in-lotus-position.png'
+import plus from '../../public/assets/images/emoji/plus.png'
+import redHeart from '../../public/assets/images/emoji/red-heart.png'
+import dottedLineFace from '../../public/assets/images/emoji/dotted-line-face.png'
 
 export const staticImagesMap = {
   classicalBuilding,
@@ -23,7 +26,10 @@ export const staticImagesMap = {
   automobile,
   wrench,
   stopwatch,
-  personInLotusPosition
+  personInLotusPosition,
+  plus,
+  redHeart,
+  dottedLineFace
 } as const
 
 type Key = keyof typeof staticImagesMap

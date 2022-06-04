@@ -38,7 +38,6 @@ export const useWelcomeRegister = ({ onRegister }: Props) => {
       return
     }
 
-    console.log(user, 'on register');
     const response = await execute({
       phone: user?.phone,
       ...data

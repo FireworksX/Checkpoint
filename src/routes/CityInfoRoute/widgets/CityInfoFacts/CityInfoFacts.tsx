@@ -1,14 +1,14 @@
 import { FC } from 'react'
 import * as Styled from './styles'
 import { staticImagesMap } from 'src/data/staticImagesMap'
-import { useCityInfo } from 'src/routes/CityInfoRoute/hooks/useCityInfo'
+import { useCityInfoFacts } from './hooks/useCityInfoFacts'
 
 interface CityInfoFactsProps {
   className?: string
 }
 
 const CityInfoFacts: FC<CityInfoFactsProps> = ({ className }) => {
-  const { facts } = useCityInfo()
+  const { facts, isOpen, toggleIsOpen } = useCityInfoFacts()
 
   if (facts.length === 0) {
     return null
@@ -24,7 +24,7 @@ const CityInfoFacts: FC<CityInfoFactsProps> = ({ className }) => {
             <Styled.FactValue>{fact.value}</Styled.FactValue>
           </Styled.Fact>
         ))}
-        <Styled.FactsMore>Больше фактов</Styled.FactsMore>
+        <Styled.FactsMore onClick={toggleIsOpen}>{isOpen ? 'Меньше фактов' : 'Больше фактов'}</Styled.FactsMore>
       </Styled.FactsSection>
 
       <Styled.TransferSection>

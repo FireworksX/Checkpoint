@@ -6,8 +6,13 @@ export const apiEndpoints = {
   AUTH_REFRESH_TOKEN: '/auth/refresh-token',
   AUTH_LOGIN: '/auth/login',
   AUTH_REGISTER: '/auth/register',
+
   CURRENT_USER: '/users/profile',
+  CURRENT_USER_SUBSCRIBE: '/users/profile/subscribe',
+  CURRENT_USER_UNSUBSCRIBE: '/users/profile/unsubscribe',
+  CURRENT_USER_CHECK_SUBSCRIBE: '/users/profile/checkSubscribe',
   USER_IS_REGISTER: '/users/check',
+  USERS_DETAIL: '/users/detail',
 
   LOCATIONS_LIST: '/locations/list',
 

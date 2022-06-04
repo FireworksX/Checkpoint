@@ -4,19 +4,22 @@ import { route } from 'src/hoc/route'
 import { ROUTE_NAMES } from 'src/router/constants'
 import PageHeaderButtonBack from 'src/widgets/PageHeader/components/PageHeaderButtonBack/PageHeaderButtonBack'
 import { withValidateUser } from 'src/hoc/withValidateUser'
-import { useProfileFollowersRoute } from './hooks/useProfileFollowersRoute'
+import { useUserSubscribersRoute } from './hooks/useUserSubscribersRoute'
+import Username from 'src/components/Username/Username'
 
 interface ProfileRouteProps {
   className?: string
 }
 
-const ProfileFollowersRoute: FC<ProfileRouteProps> = ({ className }) => {
-  const { user, followers } = useProfileFollowersRoute()
+const UserSubscribersRoute: FC<ProfileRouteProps> = ({ className }) => {
+  const { user, followers } = useUserSubscribersRoute()
 
   return (
     <Styled.Root className={className}>
       <Styled.Header left={<PageHeaderButtonBack />}>
-        <Styled.HeaderTitle>@{user?.username}</Styled.HeaderTitle>
+        <Styled.HeaderTitle>
+          <Username>{user?.username}</Username>
+        </Styled.HeaderTitle>
       </Styled.Header>
 
       <Styled.Wrapper>
@@ -24,7 +27,7 @@ const ProfileFollowersRoute: FC<ProfileRouteProps> = ({ className }) => {
           <Styled.UserCard
             key={follower.id}
             avatar='https://avatars.githubusercontent.com/u/22668125?v=4'
-            title={follower.username}
+            title={<Username>{follower?.username}</Username>}
             description={[follower?.firstName, follower?.lastName].join(' ')}
             appLinkProps={{
               type: 'user',
@@ -37,4 +40,4 @@ const ProfileFollowersRoute: FC<ProfileRouteProps> = ({ className }) => {
   )
 }
 
-export default route(withValidateUser(ProfileFollowersRoute), ROUTE_NAMES.profileFollowers)
+export default route(withValidateUser(UserSubscribersRoute), ROUTE_NAMES.userSubscribers)

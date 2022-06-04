@@ -10,6 +10,9 @@ import WelcomeRoute from './WelcomeRoute/WelcomeRoute'
 import CityListRoute from './CityListRoute/CityListRoute'
 import CityInfoRoute from './CityInfoRoute/CityInfoRoute'
 import NavigationRoute from './NavigationRoute/NavigationRoute'
+import UserRoute from './UserRoute/UserRoute'
+import UserFollowersRoute from './UserFollowersRoute/UserFollowersRoute'
+import UserSubscribersRoute from './UserSubscribersRoute/UserSubscribersRoute'
 
 export default {
   RootRoute,
@@ -23,5 +26,8 @@ export default {
   WelcomeRoute,
   CityListRoute,
   CityInfoRoute,
-  NavigationRoute
+  NavigationRoute,
+  UserRoute,
+  UserFollowersRoute,
+  UserSubscribersRoute
 }

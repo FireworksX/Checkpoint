@@ -7,16 +7,28 @@ const linkConfig = {
     params: { required: [], optional: [] }
   },
   profile: {
-    name: buildName(ROUTE_NAMES.navigation, ROUTE_NAMES.profile),
+    name: buildName(ROUTE_NAMES.navigation, ROUTE_NAMES.profile, ROUTE_NAMES.profileReview),
     params: { required: [], optional: [] }
   },
   profileFollowers: {
-    name: buildName(ROUTE_NAMES.navigation, ROUTE_NAMES.profileFollowers),
+    name: buildName(ROUTE_NAMES.navigation, ROUTE_NAMES.profile, ROUTE_NAMES.profileFollowers),
     params: { required: [], optional: [] }
   },
   profileSubscribers: {
-    name: buildName(ROUTE_NAMES.navigation, ROUTE_NAMES.profileSubscribers),
+    name: buildName(ROUTE_NAMES.navigation, ROUTE_NAMES.profile, ROUTE_NAMES.profileSubscribers),
     params: { required: [], optional: [] }
+  },
+  user: {
+    name: buildName(ROUTE_NAMES.navigation, ROUTE_NAMES.user, ROUTE_NAMES.userReview),
+    params: { required: [ROUTE_PARAMS.userSlug], optional: [] }
+  },
+  userFollowers: {
+    name: buildName(ROUTE_NAMES.navigation, ROUTE_NAMES.user, ROUTE_NAMES.userFollowers),
+    params: { required: [ROUTE_PARAMS.userSlug], optional: [] }
+  },
+  userSubscribers: {
+    name: buildName(ROUTE_NAMES.navigation, ROUTE_NAMES.user, ROUTE_NAMES.userSubscribers),
+    params: { required: [ROUTE_PARAMS.userSlug], optional: [] }
   },
   trends: {
     name: buildName(ROUTE_NAMES.navigation, ROUTE_NAMES.trends),

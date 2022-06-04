@@ -4,6 +4,7 @@ import { ROUTE_NAMES } from 'src/router/constants'
 import { route } from 'src/hoc/route'
 import { withValidateUser } from 'src/hoc/withValidateUser'
 import { useCityInfo } from './hooks/useCityInfo'
+import Link from '../../widgets/Link/Link'
 
 interface CityListRouteProps {
   className?: string
@@ -21,6 +22,9 @@ const CityInfoRoute: FC<CityListRouteProps> = ({ className }) => {
       <Styled.Facts />
       <Styled.Rates />
       <Styled.Ambassadors />
+      <Link type='user' userSlug='fireworks2'>
+        На страницу пользователя
+      </Link>
     </Styled.Root>
   )
 }

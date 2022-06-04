@@ -33,17 +33,44 @@ export const routes: Route[] = [
           {
             name: ROUTE_NAMES.profile,
             path: `profile`,
-            component: routeComponents.ProfileRoute,
+            children: [
+              {
+                name: ROUTE_NAMES.profileReview,
+                path: `/`,
+                component: routeComponents.ProfileRoute
+              },
+              {
+                name: ROUTE_NAMES.profileFollowers,
+                path: `/followers`,
+                component: routeComponents.ProfileFollowersRoute
+              },
+              {
+                name: ROUTE_NAMES.profileSubscribers,
+                path: `/subscribers`,
+                component: routeComponents.ProfileSubscribersRoute
+              }
+            ]
           },
           {
-            name: ROUTE_NAMES.profileFollowers,
-            path: `profile/followers`,
-            component: routeComponents.ProfileFollowersRoute
-          },
-          {
-            name: ROUTE_NAMES.profileSubscribers,
-            path: `profile/subscribers`,
-            component: routeComponents.ProfileSubscribersRoute
+            name: ROUTE_NAMES.user,
+            path: `user/:${ROUTE_PARAMS.userSlug}`,
+            children: [
+              {
+                name: ROUTE_NAMES.userReview,
+                path: `/`,
+                component: routeComponents.UserRoute
+              },
+              {
+                name: ROUTE_NAMES.userFollowers,
+                path: `/followers`,
+                component: routeComponents.UserFollowersRoute
+              },
+              {
+                name: ROUTE_NAMES.userSubscribers,
+                path: `/subscribers`,
+                component: routeComponents.UserSubscribersRoute
+              }
+            ]
           },
           {
             name: ROUTE_NAMES.notifications,

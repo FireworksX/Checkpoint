@@ -1,7 +1,8 @@
 import styled from 'styled-components'
 import CommonLogo from 'src/components/CommonLogo/CommonLogo'
+import Link from 'src/widgets/Link/Link'
 
-export const Root = styled.div`
+export const Root = styled(Link)`
   display: flex;
   align-items: center;
   padding: 10px;

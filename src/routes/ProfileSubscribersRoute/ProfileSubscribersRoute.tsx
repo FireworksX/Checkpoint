@@ -20,12 +20,16 @@ const ProfileSubscribersRoute: FC<ProfileRouteProps> = ({ className }) => {
       </Styled.Header>
 
       <Styled.Wrapper>
-        {subscribers?.map(subscriber => (
+        {subscribers?.map((subscriber) => (
           <Styled.UserCard
             key={subscriber.id}
             avatar='https://avatars.githubusercontent.com/u/22668125?v=4'
             title={subscriber.username}
             description={[subscriber?.firstName, subscriber?.lastName].join(' ')}
+            appLinkProps={{
+              type: 'user',
+              userSlug: subscriber.username!
+            }}
           />
         ))}
       </Styled.Wrapper>

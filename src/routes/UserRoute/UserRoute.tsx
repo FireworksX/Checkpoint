@@ -4,7 +4,7 @@ import { route } from 'src/hoc/route'
 import { ROUTE_NAMES } from 'src/router/constants'
 import PageHeaderButtonBack from 'src/widgets/PageHeader/components/PageHeaderButtonBack/PageHeaderButtonBack'
 import { withValidateUser } from 'src/hoc/withValidateUser'
-import { useProfileRoute } from './hooks/useProfileRoute'
+import { useUserRoute } from './hooks/useUserRoute'
 import Icon from 'src/components/Icon/Icon'
 import Container from 'src/components/Container/Container'
 import Button from 'src/components/Button/Button'
@@ -12,13 +12,25 @@ import Placeholder from 'src/components/Placeholder/Placeholder'
 import { staticImagesMap } from 'src/data/staticImagesMap'
 import UserHeader from 'src/components/UserHeader/UserHeader'
 import UserMetrics from 'src/components/UserMetrics/UserMetrics'
+import Username from '../../components/Username/Username'
+import { SubscribeButton, SubscribeContainer } from './styles'
 
-interface ProfileRouteProps {
+interface UserRouteProps {
   className?: string
 }
 
-const ProfileRoute: FC<ProfileRouteProps> = ({ className }) => {
-  const { user, fullName, categories, locations, setSelectedCategory, locationsFetching, counters } = useProfileRoute()
+const UserRoute: FC<UserRouteProps> = ({ className }) => {
+  const {
+    user,
+    fullName,
+    categories,
+    locations,
+    locationsFetching,
+    counters,
+    userSlug,
+    following,
+    setSelectedCategory
+  } = useUserRoute()
 
   return (
     <Styled.Root className={className}>
@@ -30,15 +42,23 @@ const ProfileRoute: FC<ProfileRouteProps> = ({ className }) => {
           </Styled.HeaderButton>
         }
       >
-        <Styled.HeaderTitle>@{user?.username}</Styled.HeaderTitle>
+        <Styled.HeaderTitle>
+          <Username>{user?.username}</Username>
+        </Styled.HeaderTitle>
       </Styled.Header>
 
       <UserHeader name={fullName} bio={user?.bio} />
 
+      <Styled.SubscribeContainer>
+        <Styled.SubscribeButton onClick={following.isFollowing ? following.onUnsubscribe : following.onSubscribe}>
+          {following.isFollowing ? 'Отписаться' : 'Подписаться'}
+        </Styled.SubscribeButton>
+      </Styled.SubscribeContainer>
+
       <UserMetrics
         locations={{ count: counters?.locations }}
-        followers={{ count: counters?.followers, appLinkProps: { type: 'profileFollowers' } }}
-        subscribers={{ count: counters?.subscribers, appLinkProps: { type: 'profileSubscribers' } }}
+        followers={{ count: counters?.followers, appLinkProps: { type: 'userFollowers', userSlug } }}
+        subscribers={{ count: counters?.subscribers, appLinkProps: { type: 'userSubscribers', userSlug } }}
       />
 
       <Styled.CompilationWrapper>
@@ -81,4 +101,4 @@ const ProfileRoute: FC<ProfileRouteProps> = ({ className }) => {
   )
 }
 
-export default route(withValidateUser(ProfileRoute), ROUTE_NAMES.profileReview)
+export default route(withValidateUser(UserRoute), ROUTE_NAMES.userReview)

@@ -8,6 +8,7 @@ const ROUTE_NAMES = createConstants(
   'navigation',
   'home',
   'profile',
+  'profileReview',
   'profileFollowers',
   'profileSubscribers',
   'trends',
@@ -19,11 +20,15 @@ const ROUTE_NAMES = createConstants(
   'cityList',
   'cityDetail',
   'cityInfo',
-  'cityMap'
+  'cityMap',
+  'user',
+  'userReview',
+  'userFollowers',
+  'userSubscribers'
 )
 type RouteNamesType = keyof typeof ROUTE_NAMES
 
-const ROUTE_PARAMS = createConstants('citySlug')
+const ROUTE_PARAMS = createConstants('citySlug', 'userSlug')
 
 const STORE_NAMES = createConstants(
   'mapCenterAtom',
@@ -33,7 +38,7 @@ const STORE_NAMES = createConstants(
   'hasNavigationAtom',
   'geoLocationAtom',
   'userAgentAtom',
-  'hasNavigationMapHelpersAtom',
+  'hasNavigationMapHelpersAtom'
 )
 
 export { langSlugs, ROUTE_NAMES, ROUTE_PARAMS, STORE_NAMES, RouteNamesType }

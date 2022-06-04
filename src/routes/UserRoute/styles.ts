@@ -1,15 +1,13 @@
 import styled from 'styled-components'
 import PageHeader from 'src/widgets/PageHeader/PageHeader'
-import CommonLogo from 'src/components/CommonLogo/CommonLogo'
 import Touchable from 'src/components/Touchable/Touchable'
 import Container from 'src/components/Container/Container'
 import CompilationCell from 'src/components/CompilationCell/CompilationCell'
 import HorizontalScroll from 'src/components/HorizontalScroll/HorizontalScroll'
 import LocationCard from 'src/components/LocationCard/LocationCard'
 import LocationCardSkeleton from 'src/components/LocationCardSkeleton/LocationCardSkeleton'
-import Icon from 'src/components/Icon/Icon'
 import BaseImage from 'src/components/BaseImage/BaseImage'
-import Link from '../../widgets/Link/Link'
+import Button from '../../components/Button/Button'
 
 export const Root = styled.div``
 
@@ -57,4 +55,13 @@ export const LocationCellSkeleton = styled(LocationCardSkeleton)`
 
 export const PlaceholderImage = styled(BaseImage)`
   width: 60px;
+`
+
+export const SubscribeContainer = styled(Container)`
+  text-align: center;
+  margin-bottom: 15px;
+`
+
+export const SubscribeButton = styled(Button)`
+  font-weight: bold;
 `

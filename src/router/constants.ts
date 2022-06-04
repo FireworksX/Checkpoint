@@ -41,4 +41,9 @@ const STORE_NAMES = createConstants(
   'hasNavigationMapHelpersAtom'
 )
 
-export { langSlugs, ROUTE_NAMES, ROUTE_PARAMS, STORE_NAMES, RouteNamesType }
+const zIndex = {
+  navigation: 10,
+  modal: 20
+}
+
+export { langSlugs, ROUTE_NAMES, ROUTE_PARAMS, STORE_NAMES, RouteNamesType, zIndex }

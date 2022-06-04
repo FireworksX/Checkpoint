@@ -12,13 +12,14 @@ import Placeholder from 'src/components/Placeholder/Placeholder'
 import { staticImagesMap } from 'src/data/staticImagesMap'
 import UserHeader from 'src/components/UserHeader/UserHeader'
 import UserMetrics from 'src/components/UserMetrics/UserMetrics'
+import CreateCategoryModal from './widgets/CreateCategoryModal/CreateCategoryModal'
 
 interface ProfileRouteProps {
   className?: string
 }
 
 const ProfileRoute: FC<ProfileRouteProps> = ({ className }) => {
-  const { user, fullName, categories, locations, setSelectedCategory, locationsFetching, counters } = useProfileRoute()
+  const { user, fullName, categories, locations, onSelectCategory, locationsFetching, counters, isOpenCreate, toggleIsOpenCreate } = useProfileRoute()
 
   return (
     <Styled.Root className={className}>
@@ -49,7 +50,7 @@ const ProfileRoute: FC<ProfileRouteProps> = ({ className }) => {
             image={el.icon}
             description={el.description}
             isActive={el.isActive}
-            onClick={() => setSelectedCategory(el.slug)}
+            onClick={() => onSelectCategory(el.slug)}
           />
         ))}
       </Styled.CompilationWrapper>
@@ -77,6 +78,8 @@ const ProfileRoute: FC<ProfileRouteProps> = ({ className }) => {
           />
         ))}
       </Styled.LocationsWrapper>
+
+      <CreateCategoryModal isOpen={isOpenCreate} onClose={toggleIsOpenCreate} />
     </Styled.Root>
   )
 }

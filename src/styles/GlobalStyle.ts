@@ -1,5 +1,6 @@
 import { createGlobalStyle } from 'styled-components'
 import { reboot } from './reboot'
+import {zIndex} from "../router/constants";
 
 const GlobalStyle = createGlobalStyle`
   ${reboot};
@@ -39,6 +40,14 @@ const GlobalStyle = createGlobalStyle`
   h4 { font-size: 24px; }
   h5 { font-size: 20px; }
   h6 { font-size: 16px; }
+  
+  [data-rsbs-overlay] {
+    z-index: ${zIndex.modal} !important;
+  }
+  
+  [data-rsbs-backdrop] {
+    z-index: ${zIndex.modal - 1} !important;
+  }
 `
 
 export { GlobalStyle }

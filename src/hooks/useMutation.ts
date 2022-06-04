@@ -19,7 +19,7 @@ export const useMutation = <RESDATA = any, DATA = undefined>(path: string, optio
   const { mutate, cache } = useSWRConfig()
 
   const execute = useCallback(
-    async (data: DATA) => {
+    async (data: DATA): Promise<ApiResponseBody<RESDATA>> => {
       const cacheKey = getCacheKey(path, data)
 
       if (useCache && cache.get(cacheKey)) {

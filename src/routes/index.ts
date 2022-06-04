@@ -1,6 +1,8 @@
 import RootRoute from './RootRoute/RootRoute'
 import CityMapRoute from './CityMapRoute/CityMapRoute'
 import ProfileRoute from './ProfileRoute/ProfileRoute'
+import ProfileFollowersRoute from './ProfileFollowersRoute/ProfileFollowersRoute'
+import ProfileSubscribersRoute from './ProfileSubscribersRoute/ProfileSubscribersRoute'
 import NotificationsRoute from './NotificationsRoute/NotificationsRoute'
 import TrendsRoute from './TrendsRoute/TrendsRoute'
 import CreatePlaceRoute from './CreatePlaceRoute/CreatePlaceRoute'
@@ -13,6 +15,8 @@ export default {
   RootRoute,
   CityMapRoute,
   ProfileRoute,
+  ProfileFollowersRoute,
+  ProfileSubscribersRoute,
   NotificationsRoute,
   TrendsRoute,
   CreatePlaceRoute,

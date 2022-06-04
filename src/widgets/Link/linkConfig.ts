@@ -10,6 +10,14 @@ const linkConfig = {
     name: buildName(ROUTE_NAMES.navigation, ROUTE_NAMES.profile),
     params: { required: [], optional: [] }
   },
+  profileFollowers: {
+    name: buildName(ROUTE_NAMES.navigation, ROUTE_NAMES.profileFollowers),
+    params: { required: [], optional: [] }
+  },
+  profileSubscribers: {
+    name: buildName(ROUTE_NAMES.navigation, ROUTE_NAMES.profileSubscribers),
+    params: { required: [], optional: [] }
+  },
   trends: {
     name: buildName(ROUTE_NAMES.navigation, ROUTE_NAMES.trends),
     params: { required: [], optional: [] }

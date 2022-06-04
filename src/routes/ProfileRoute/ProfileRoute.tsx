@@ -8,11 +8,8 @@ import { useProfileRoute } from './hooks/useProfileRoute'
 import Icon from 'src/components/Icon/Icon'
 import Container from 'src/components/Container/Container'
 import Button from 'src/components/Button/Button'
-import { times } from 'src/utils/times'
-import Placeholder from '../../components/Placeholder/Placeholder'
-import BaseImage from '../../components/BaseImage/BaseImage'
-import { staticImagesMap } from '../../data/staticImagesMap'
-import { PlaceholderImage } from './styles'
+import Placeholder from 'src/components/Placeholder/Placeholder'
+import { staticImagesMap } from 'src/data/staticImagesMap'
 
 interface ProfileRouteProps {
   className?: string
@@ -49,11 +46,11 @@ const ProfileRoute: FC<ProfileRouteProps> = ({ className }) => {
           <Styled.MetricValue>{counters.locations}</Styled.MetricValue>
           <Styled.MetricLabel>публикаций</Styled.MetricLabel>
         </Styled.MetricCell>
-        <Styled.MetricCell>
+        <Styled.MetricCell type='profileFollowers'>
           <Styled.MetricValue>{counters.followers}</Styled.MetricValue>
           <Styled.MetricLabel>подписчиков</Styled.MetricLabel>
         </Styled.MetricCell>
-        <Styled.MetricCell>
+        <Styled.MetricCell type='profileSubscribers'>
           <Styled.MetricValue>{counters.subscribers}</Styled.MetricValue>
           <Styled.MetricLabel>подписок</Styled.MetricLabel>
         </Styled.MetricCell>
@@ -86,16 +83,14 @@ const ProfileRoute: FC<ProfileRouteProps> = ({ className }) => {
         </Placeholder>
       )}
       <Styled.LocationsWrapper>
-        {locationsFetching
-          ? times(3).map(index => <Styled.LocationCellSkeleton key={index} />)
-          : locations?.map(location => (
-              <Styled.LocationCell
-                key={location._id}
-                name={location.title}
-                cover={'https://image.bugsm.co.kr/album/images/500/204702/20470222.jpg'}
-                description={location.description}
-              />
-            ))}
+        {locations?.map(location => (
+          <Styled.LocationCell
+            key={location._id}
+            name={location.title}
+            cover={'https://image.bugsm.co.kr/album/images/500/204702/20470222.jpg'}
+            description={location.description}
+          />
+        ))}
       </Styled.LocationsWrapper>
     </Styled.Root>
   )

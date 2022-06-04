@@ -20,6 +20,7 @@ const Noop: FC = ({ children }) => <>{children}</>
 export const useRouteChildren = (parentRouteName: RouteNamesType) => {
   const { route, router } = useRoute()
   const { routes } = router.getDependencies()
+
   const renderComponents = getRenderRoutes(routes, route.name, 0, []).filter(({ component }) => !!component)
   const currentRouteIndex = renderComponents.findIndex(({ name }) => name === parentRouteName)
   const nextRouteIndex = currentRouteIndex !== -1 ? currentRouteIndex + 1 : -1

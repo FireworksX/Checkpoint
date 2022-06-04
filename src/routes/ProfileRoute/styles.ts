@@ -9,6 +9,7 @@ import LocationCard from 'src/components/LocationCard/LocationCard'
 import LocationCardSkeleton from 'src/components/LocationCardSkeleton/LocationCardSkeleton'
 import Icon from 'src/components/Icon/Icon'
 import BaseImage from 'src/components/BaseImage/BaseImage'
+import Link from "../../widgets/Link/Link";
 
 export const Root = styled.div``
 
@@ -65,7 +66,7 @@ export const Metrics = styled.div`
   border-top: 2px solid ${({ theme }) => theme.colors.border};
 `
 
-export const MetricCell = styled.div`
+export const MetricCell = styled(Link)`
   text-align: center;
   padding: 10px 0;
 `

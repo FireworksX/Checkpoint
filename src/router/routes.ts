@@ -33,7 +33,17 @@ export const routes: Route[] = [
           {
             name: ROUTE_NAMES.profile,
             path: `profile`,
-            component: routeComponents.ProfileRoute
+            component: routeComponents.ProfileRoute,
+          },
+          {
+            name: ROUTE_NAMES.profileFollowers,
+            path: `profile/followers`,
+            component: routeComponents.ProfileFollowersRoute
+          },
+          {
+            name: ROUTE_NAMES.profileSubscribers,
+            path: `profile/subscribers`,
+            component: routeComponents.ProfileSubscribersRoute
           },
           {
             name: ROUTE_NAMES.notifications,

@@ -61,7 +61,3 @@ export const SubscribeContainer = styled(Container)`
   text-align: center;
   margin-bottom: 15px;
 `
-
-export const SubscribeButton = styled(Button)`
-  font-weight: bold;
-`

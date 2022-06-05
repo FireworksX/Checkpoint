@@ -2,12 +2,16 @@ import { FC } from 'react'
 import * as Styled from './styles'
 import Container from 'src/components/Container/Container'
 import HorizontalScroll from 'src/components/HorizontalScroll/HorizontalScroll'
+import { useCityInfo } from '../../hooks/useCityInfo'
+import { buildFullName } from '../../../../utils/buildFullName'
 
 interface CityInfoAmbassadorsProps {
   className?: string
 }
 
 const CityInfoAmbassadors: FC<CityInfoAmbassadorsProps> = ({ className }) => {
+  const { ambassadors } = useCityInfo()
+
   return (
     <Styled.Root className={className}>
       <Container>
@@ -15,13 +19,9 @@ const CityInfoAmbassadors: FC<CityInfoAmbassadorsProps> = ({ className }) => {
         <Styled.Description>Вы можете им написать и договориться об экскурсии или фотопрогулке</Styled.Description>
       </Container>
       <HorizontalScroll>
-        <Styled.Card />
-        <Styled.Card />
-        <Styled.Card />
-        <Styled.Card />
-        <Styled.Card />
-        <Styled.Card />
-        <Styled.Card />
+        {ambassadors.map(el => (
+          <Styled.Card key={el._id} _id={el._id} title={buildFullName(el.firstName, el.lastName)} description={el.bio} />
+        ))}
       </HorizontalScroll>
     </Styled.Root>
   )

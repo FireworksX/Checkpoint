@@ -8,7 +8,7 @@ import { useRouter } from 'src/hooks/useRouter'
 import { ROUTE_PARAMS } from 'src/router/constants'
 import { AuthUserResponse } from 'src/interfaces/User'
 import { buildFullName } from 'src/utils/buildFullName'
-import {useFollowingUser} from "../../../hooks/data/useFollowingUser";
+import { useFollowingUser } from '../../../hooks/data/useFollowingUser'
 
 const DEFAULT_ALL_CATEGORY: Category = {
   _id: '',
@@ -33,8 +33,6 @@ export const useUserRoute = () => {
     category: user?.categories?.find(category => category.slug === selectedCategory)?._id
   })
 
-  const following = useFollowingUser(user?._id || '')
-
   const categories = useMemo(
     () =>
       ([DEFAULT_ALL_CATEGORY, ...(user?.categories || [])] || []).map(category => ({
@@ -42,9 +40,8 @@ export const useUserRoute = () => {
         icon: category.icon ? staticImagesMapKebab[category.icon] : undefined,
         isActive: selectedCategory === category.slug
       })),
-    [selectedCategory]
+    [selectedCategory, user]
   )
-
 
   return {
     userSlug,
@@ -55,7 +52,6 @@ export const useUserRoute = () => {
     fullName: buildFullName(user?.firstName, user?.lastName),
     followers: user?.followers || [],
     subscribers: user?.subscribers || [],
-    following,
     counters: {
       locations: user?.counters?.locations || 0,
       followers: user?.counters?.followers || 0,

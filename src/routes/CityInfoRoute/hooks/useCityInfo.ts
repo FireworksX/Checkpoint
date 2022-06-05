@@ -24,6 +24,7 @@ export const useCityInfo = () => {
     city: data?.data,
     facts: data?.data?.facts || [],
     rates: data?.data?.rates || [],
-    categories
+    categories,
+    ambassadors: data?.data?.owner?.subscribers || []
   }
 }

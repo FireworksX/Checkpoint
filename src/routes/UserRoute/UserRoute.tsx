@@ -13,24 +13,16 @@ import { staticImagesMap } from 'src/data/staticImagesMap'
 import UserHeader from 'src/components/UserHeader/UserHeader'
 import UserMetrics from 'src/components/UserMetrics/UserMetrics'
 import Username from '../../components/Username/Username'
-import { SubscribeButton, SubscribeContainer } from './styles'
+import SubscribeContainer from '../../widgets/SubscribeContainer/SubscribeContainer'
+import SubscribeButton from '../../widgets/SubscribeContainer/components/SubscribeButton/SubscribeButton'
 
 interface UserRouteProps {
   className?: string
 }
 
 const UserRoute: FC<UserRouteProps> = ({ className }) => {
-  const {
-    user,
-    fullName,
-    categories,
-    locations,
-    locationsFetching,
-    counters,
-    userSlug,
-    following,
-    setSelectedCategory
-  } = useUserRoute()
+  const { user, fullName, categories, locations, locationsFetching, counters, userSlug, setSelectedCategory } =
+    useUserRoute()
 
   return (
     <Styled.Root className={className}>
@@ -50,9 +42,9 @@ const UserRoute: FC<UserRouteProps> = ({ className }) => {
       <UserHeader name={fullName} bio={user?.bio} />
 
       <Styled.SubscribeContainer>
-        <Styled.SubscribeButton  onClick={following.isFollowing ? following.onUnsubscribe : following.onSubscribe}>
-          {following.isFollowing ? 'Отписаться' : 'Подписаться'}
-        </Styled.SubscribeButton>
+        <SubscribeContainer targetId={user?._id}>
+          {({ isFollowing, onClick }) => <SubscribeButton isFollowing={isFollowing} onClick={onClick} />}
+        </SubscribeContainer>
       </Styled.SubscribeContainer>
 
       <UserMetrics

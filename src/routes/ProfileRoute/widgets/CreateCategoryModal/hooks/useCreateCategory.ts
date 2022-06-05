@@ -23,7 +23,7 @@ export const useCreateCategory = (onClose: BottomSheetProps['onClose']) => {
   })
 
   return {
-    name: register('name', { maxLength: 30, required: true }),
+    name: register('name', { maxLength: 30, minLength: 3, required: true }),
     description: register('description', { maxLength: 30 }),
     onSubmit
   }

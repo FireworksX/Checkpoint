@@ -64,7 +64,7 @@ export const useProfileRoute = () => {
 
       setSelectedCategory(slug)
     },
-    [setSelectedCategory]
+    [setSelectedCategory, toggleIsOpenCreate]
   )
 
   return {

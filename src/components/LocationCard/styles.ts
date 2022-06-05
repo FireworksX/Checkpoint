@@ -33,7 +33,6 @@ export const Description = styled.div`
 export const Footer = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
   margin-top: 10px;
 `
 
@@ -41,9 +40,21 @@ export const Like = styled(Touchable)`
   display: flex;
   align-items: center;
   color: ${({ theme }) => theme.colors.secondary};
+  margin-right: 15px;
 `
 
 export const LikeCount = styled.div`
+  ${({ theme }) => theme.typography.text_10_12};
+  margin-left: 3px;
+`
+
+export const Views = styled.div`
+  display: flex;
+  align-items: center;
+  color: ${({ theme }) => theme.colors.secondary};
+`
+
+export const ViewsCount = styled.div`
   ${({ theme }) => theme.typography.text_10_12};
   margin-left: 3px;
 `

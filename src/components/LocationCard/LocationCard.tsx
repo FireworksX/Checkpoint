@@ -26,6 +26,10 @@ const LocationCard: FC<LocationCardProps> = ({ className, cover, name, descripti
             <Icon name='heart' />
             <Styled.LikeCount>24</Styled.LikeCount>
           </Styled.Like>
+          <Styled.Views>
+            <Icon name='eye' />
+            <Styled.ViewsCount>87.4к</Styled.ViewsCount>
+          </Styled.Views>
         </Styled.Footer>
       </div>
     </Styled.Root>

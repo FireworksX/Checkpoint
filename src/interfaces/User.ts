@@ -1,7 +1,7 @@
 import { Category } from './Category'
 
 export interface BaseUser {
-  id: string
+  _id: string
   firstName?: string
   lastName?: string
   username?: string

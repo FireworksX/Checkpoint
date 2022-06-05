@@ -1,9 +1,10 @@
 import { useCallback, useMemo, useState } from 'react'
-import { useToggle } from 'react-use'
 import { useCurrentUser } from 'src/hooks/data/useCurrentUser'
 import { staticImagesMapKebab } from 'src/data/staticImagesMap'
 import { useUserLocations } from 'src/hooks/data/useUserLocations'
 import { Category } from 'src/interfaces/Category'
+import { useModal } from 'src/hooks/useModal'
+import { MODAL_NAMES } from '../../../router/constants'
 
 const DEFAULT_ALL_CATEGORY: Category = {
   _id: '',
@@ -36,7 +37,7 @@ const FAVORITE_CATEGORY: Category = {
 }
 
 export const useProfileRoute = () => {
-  const [isOpenCreate, toggleIsOpenCreate] = useToggle(false)
+  const { open } = useModal(MODAL_NAMES.createCategory)
   const [selectedCategory, setSelectedCategory] = useState(DEFAULT_ALL_CATEGORY.slug)
 
   const { user, fullName } = useCurrentUser()
@@ -58,13 +59,13 @@ export const useProfileRoute = () => {
   const onSelectCategory = useCallback(
     (slug: string) => {
       if (slug === CREATE_CATEGORY.slug) {
-        toggleIsOpenCreate()
+        open()
         return
       }
 
       setSelectedCategory(slug)
     },
-    [setSelectedCategory, toggleIsOpenCreate]
+    [setSelectedCategory, open]
   )
 
   return {
@@ -80,8 +81,6 @@ export const useProfileRoute = () => {
       followers: user?.counters?.followers || 0,
       subscribers: user?.counters?.subscribers || 0
     },
-    onSelectCategory,
-    isOpenCreate,
-    toggleIsOpenCreate
+    onSelectCategory
   }
 }

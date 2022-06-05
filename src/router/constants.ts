@@ -38,12 +38,17 @@ const STORE_NAMES = createConstants(
   'hasNavigationAtom',
   'geoLocationAtom',
   'userAgentAtom',
-  'hasNavigationMapHelpersAtom'
+  'hasNavigationMapHelpersAtom',
+  'modalAtom'
 )
 
 const zIndex = {
   navigation: 10,
   modal: 20
 }
+
+export const MODAL_NAMES = createConstants('createCategory')
+
+export type ModalName = keyof typeof MODAL_NAMES
 
 export { langSlugs, ROUTE_NAMES, ROUTE_PARAMS, STORE_NAMES, RouteNamesType, zIndex }

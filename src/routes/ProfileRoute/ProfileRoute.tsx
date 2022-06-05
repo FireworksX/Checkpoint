@@ -26,8 +26,6 @@ const ProfileRoute: FC<ProfileRouteProps> = ({ className }) => {
     onSelectCategory,
     locationsFetching,
     counters,
-    isOpenCreate,
-    toggleIsOpenCreate
   } = useProfileRoute()
 
   return (
@@ -95,7 +93,7 @@ const ProfileRoute: FC<ProfileRouteProps> = ({ className }) => {
         ))}
       </Styled.LocationsWrapper>
 
-      <CreateCategoryModal isOpen={isOpenCreate} onClose={toggleIsOpenCreate} />
+      <CreateCategoryModal />
     </Styled.Root>
   )
 }

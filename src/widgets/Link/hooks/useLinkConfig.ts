@@ -1,25 +1,27 @@
 import { useRoute } from 'react-router5'
-import linkConfig, { LinkNavigationTypeProps, LinkType } from '../linkConfig'
+import linkConfig, { LinkType } from '../linkConfig'
 import { useRouter } from 'src/hooks/useRouter'
+import { useLinkFinalType } from './useLinkFinalType'
 
-interface Props {}
+export type LinkProps = Record<string, any>
 
-export const useLinkConfig = <T extends LinkType>(type: T, props?: Props & LinkNavigationTypeProps<T>) => {
+export const useLinkConfig = (type: LinkType, props?: LinkProps) => {
   const router = useRouter()
   const { route } = useRoute()
 
   const routeParams: { [key: string]: any } = {}
-  const link = type && linkConfig[type]
+  const { type: finalType, props: finalProps } = useLinkFinalType(type, props)
 
-  if (type && link) {
-    linkConfig[type].params.optional.forEach(key => {
-      routeParams[key] = props?.[key] || router.getParam(key)
+  const link = finalType && linkConfig[finalType]
+
+  if (finalType && link) {
+    linkConfig[finalType].params.optional.forEach(key => {
+      routeParams[key] = finalProps?.[key] || router.getParam(key)
     })
-    linkConfig[type].params.required.forEach(key => {
-      routeParams[key] = props?.[key]
+    linkConfig[finalType].params.required.forEach(key => {
+      routeParams[key] = finalProps?.[key]
     })
   }
-
 
   const href = router.routerInstance.buildUrl(link?.name || 'root', routeParams)
   const isSamePage = route?.path === href

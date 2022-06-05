@@ -9,24 +9,15 @@ import { buildFullName } from 'src/utils/buildFullName'
 import Avatar from 'src/widgets/Avatar/Avatar'
 import { useInitialAvatarPlaceholder } from 'src/widgets/Avatar/hooks/useInitialAvatarPlaceholder'
 
-interface AmbassadorCardProps
-  extends Pick<BaseUser, '_id' | 'username' | 'firstName' | 'lastName' | 'phone' | 'bio'> {
+interface AmbassadorCardProps extends Pick<BaseUser, '_id' | 'username' | 'firstName' | 'lastName' | 'phone' | 'bio'> {
   className?: string
 }
 
-const AmbassadorCard: FC<AmbassadorCardProps> = ({
-  className,
-  _id,
-  firstName,
-  lastName,
-  username,
-  phone,
-  bio
-}) => {
+const AmbassadorCard: FC<AmbassadorCardProps> = ({ className, _id, firstName, lastName, username, phone, bio }) => {
   const avatarText = useInitialAvatarPlaceholder({ username, firstName, lastName })
 
   return (
-    <Styled.Root className={className} type='user' userSlug={username || ''}>
+    <Styled.Root className={className} type='user' userSlug={username || 'empty'}>
       <Styled.AvatarWrapper>
         <Avatar size={60} uniqueId={phone}>
           {avatarText}
@@ -36,9 +27,7 @@ const AmbassadorCard: FC<AmbassadorCardProps> = ({
         <Styled.Name>{buildFullName(firstName, lastName)}</Styled.Name>
         <Styled.Description>{bio}</Styled.Description>
       </Container>
-      <SubscribeContainer targetId={_id}>
-        {(args) => <SubscribeButton {...args} />}
-      </SubscribeContainer>
+      <SubscribeContainer targetId={_id}>{args => <SubscribeButton {...args} />}</SubscribeContainer>
     </Styled.Root>
   )
 }

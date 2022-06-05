@@ -13,7 +13,6 @@ import { staticImagesMap } from 'src/data/staticImagesMap'
 import UserHeader from 'src/components/UserHeader/UserHeader'
 import UserMetrics from 'src/components/UserMetrics/UserMetrics'
 import CreateCategoryModal from './widgets/CreateCategoryModal/CreateCategoryModal'
-import { useInitialAvatarPlaceholder } from '../../widgets/Avatar/hooks/useInitialAvatarPlaceholder'
 
 interface ProfileRouteProps {
   className?: string
@@ -22,7 +21,6 @@ interface ProfileRouteProps {
 const ProfileRoute: FC<ProfileRouteProps> = ({ className }) => {
   const {
     user,
-    fullName,
     categories,
     locations,
     onSelectCategory,
@@ -31,7 +29,6 @@ const ProfileRoute: FC<ProfileRouteProps> = ({ className }) => {
     isOpenCreate,
     toggleIsOpenCreate
   } = useProfileRoute()
-  const avatarText = useInitialAvatarPlaceholder(user)
 
   return (
     <Styled.Root className={className}>
@@ -46,7 +43,14 @@ const ProfileRoute: FC<ProfileRouteProps> = ({ className }) => {
         <Styled.HeaderTitle>@{user?.username}</Styled.HeaderTitle>
       </Styled.Header>
 
-      <UserHeader name={fullName} bio={user?.bio} phone={user?.phone} avatarText={avatarText} />
+      <UserHeader
+        username={user?.username}
+        firstName={user?.firstName}
+        lastName={user?.lastName}
+        verify={user?.verify}
+        bio={user?.bio}
+        phone={user?.phone}
+      />
 
       <UserMetrics
         locations={{ count: counters?.locations }}

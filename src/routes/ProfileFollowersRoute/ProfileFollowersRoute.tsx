@@ -26,6 +26,7 @@ const ProfileFollowersRoute: FC<ProfileRouteProps> = ({ className }) => {
             username={follower?.username}
             firstName={follower?.firstName}
             lastName={follower?.lastName}
+            verify={follower?.verify}
             phone={follower?.phone}
             appLinkProps={{
               type: 'user',

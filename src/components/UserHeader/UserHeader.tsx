@@ -1,26 +1,23 @@
 import { FC } from 'react'
 import * as Styled from './styles'
-import { AvatarComponent } from './styles'
+import { BaseUser } from 'src/interfaces/User'
+import { useInitialAvatarPlaceholder } from 'src/widgets/Avatar/hooks/useInitialAvatarPlaceholder'
+import { buildFullName } from 'src/utils/buildFullName'
 
-interface UserHeaderProps {
-  name: string
-  avatar?: string
-  avatarText?: string
-  phone?: string
-  bio?: string
+interface UserHeaderProps extends Pick<BaseUser, 'firstName' | 'lastName' | 'phone' | 'bio' | 'username' | 'verify'> {
   className?: string
 }
 
-const UserHeader: FC<UserHeaderProps> = ({ className, name, bio, avatar, avatarText, phone }) => {
+const UserHeader: FC<UserHeaderProps> = ({ className, bio, firstName, lastName, verify, username, phone }) => {
+  const avatarText = useInitialAvatarPlaceholder({ username, firstName, lastName })
+
   return (
     <Styled.Root className={className}>
-      <Styled.AvatarComponent src={avatar} uniqueId={phone}>
-        {avatarText}
-      </Styled.AvatarComponent>
+      <Styled.AvatarComponent uniqueId={phone}>{avatarText}</Styled.AvatarComponent>
       <Styled.NameWrapper>
         <Styled.Name>
-          {name}
-          <Styled.VerifyIcon />
+          {buildFullName(firstName, lastName)}
+          {verify && <Styled.VerifyIcon />}
         </Styled.Name>
         <Styled.Description>{bio}</Styled.Description>
       </Styled.NameWrapper>

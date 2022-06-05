@@ -29,6 +29,7 @@ const UserSubscribersRoute: FC<ProfileRouteProps> = ({ className }) => {
             username={subscriber?.username}
             firstName={subscriber?.firstName}
             lastName={subscriber?.lastName}
+            verify={subscriber?.verify}
             phone={subscriber?.phone}
             appLinkProps={{
               type: 'user',

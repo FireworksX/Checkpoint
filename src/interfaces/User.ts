@@ -4,6 +4,7 @@ export interface BaseUser {
   _id: string
   firstName?: string
   lastName?: string
+  verify?: boolean
   username?: string
   bio?: string
   phone?: string

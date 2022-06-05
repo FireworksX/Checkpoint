@@ -3,18 +3,20 @@ import { useForm } from 'src/hooks/useForm'
 import { useRegisterUser } from 'src/hooks/data/useRegisterUser'
 import { useUserIsRegister } from 'src/hooks/data/useUserIsRegister'
 import { useCurrentUser } from 'src/hooks/data/useCurrentUser'
+import { useForceUpdate } from 'src/hooks/useForceUpdate'
 
 interface Props {
   onRegister(): void
 }
 
 export const useWelcomeRegister = ({ onRegister }: Props) => {
-  const { register, handleSubmit } = useForm()
+  const { register, handleSubmit, getValues } = useForm()
   const { execute } = useRegisterUser()
+  const forceUpdate = useForceUpdate()
 
   const { user } = useCurrentUser()
   const [proxyUsername, setProxyUsername] = useState('')
-  const { data: isRegisterUser, fetching } = useUserIsRegister({
+  const { data: isRegisterUser } = useUserIsRegister({
     username: proxyUsername
   })
 
@@ -31,7 +33,7 @@ export const useWelcomeRegister = ({ onRegister }: Props) => {
         }
       }
     }
-  }, [isRegisterUser, fetching])
+  }, [isRegisterUser, proxyUsername.length])
 
   const onSubmit = handleSubmit(async data => {
     if (usernameFieldOptions?.status === 'error') {
@@ -57,10 +59,12 @@ export const useWelcomeRegister = ({ onRegister }: Props) => {
         }),
         ...usernameFieldOptions
       },
-      firstName: register('firstName', { maxLength: 30 }),
-      lastName: register('lastName', { maxLength: 30 }),
-      bio: register('bio', { maxLength: 200 })
+      firstName: register('firstName', { maxLength: 30, onChange: forceUpdate }),
+      lastName: register('lastName', { maxLength: 30, onChange: forceUpdate }),
+      bio: register('bio', { maxLength: 200 }),
+      phone: user?.phone
     },
+    getValues,
     onSubmit
   }
 }

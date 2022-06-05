@@ -22,10 +22,11 @@ const ProfileFollowersRoute: FC<ProfileRouteProps> = ({ className }) => {
       <Styled.Wrapper>
         {followers?.map(follower => (
           <Styled.UserCard
-            key={follower.id}
-            avatar='https://avatars.githubusercontent.com/u/22668125?v=4'
-            title={follower.username}
-            description={[follower?.firstName, follower?.lastName].join(' ')}
+            key={follower._id}
+            username={follower?.username}
+            firstName={follower?.firstName}
+            lastName={follower?.lastName}
+            phone={follower?.phone}
             appLinkProps={{
               type: 'user',
               userSlug: follower.username!

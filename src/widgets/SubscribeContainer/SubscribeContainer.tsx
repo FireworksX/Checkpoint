@@ -1,10 +1,11 @@
-import { FC, useCallback } from 'react'
+import React, { FC, useCallback } from 'react'
 import { useFollowingUser } from 'src/hooks/data/useFollowingUser'
 
 interface RenderProps {
+  isSameUser: boolean
   isFollowing: boolean
   fetching: boolean
-  onClick(): Promise<void>
+  onClick(e: React.MouseEvent): Promise<void>
 }
 
 interface SubscribeContainerProps {
@@ -14,17 +15,23 @@ interface SubscribeContainerProps {
 }
 
 const SubscribeContainer: FC<SubscribeContainerProps> = ({ targetId, children }) => {
-  const { isFollowing, fetching, onSubscribe, onUnsubscribe } = useFollowingUser(targetId)
+  const { isFollowing, fetching, isSameUser, onSubscribe, onUnsubscribe } = useFollowingUser(targetId)
 
-  const onClick = useCallback(async () => {
-    if (isFollowing) {
-      await onUnsubscribe()
-    } else {
-      await onSubscribe()
-    }
-  }, [isFollowing, onUnsubscribe, onSubscribe])
+  const onClick = useCallback(
+    async (e: React.MouseEvent) => {
+      e.preventDefault()
+      e.stopPropagation()
 
-  return children({ isFollowing, onClick, fetching })
+      if (isFollowing) {
+        await onUnsubscribe()
+      } else {
+        await onSubscribe()
+      }
+    },
+    [isFollowing, onUnsubscribe, onSubscribe]
+  )
+
+  return children({ isFollowing, isSameUser, onClick, fetching })
 }
 
 export default SubscribeContainer

@@ -15,6 +15,7 @@ import UserMetrics from 'src/components/UserMetrics/UserMetrics'
 import Username from '../../components/Username/Username'
 import SubscribeContainer from '../../widgets/SubscribeContainer/SubscribeContainer'
 import SubscribeButton from '../../widgets/SubscribeContainer/components/SubscribeButton/SubscribeButton'
+import { useInitialAvatarPlaceholder } from '../../widgets/Avatar/hooks/useInitialAvatarPlaceholder'
 
 interface UserRouteProps {
   className?: string
@@ -23,6 +24,8 @@ interface UserRouteProps {
 const UserRoute: FC<UserRouteProps> = ({ className }) => {
   const { user, fullName, categories, locations, locationsFetching, counters, userSlug, setSelectedCategory } =
     useUserRoute()
+
+  const avatarText = useInitialAvatarPlaceholder(user)
 
   return (
     <Styled.Root className={className}>
@@ -39,7 +42,7 @@ const UserRoute: FC<UserRouteProps> = ({ className }) => {
         </Styled.HeaderTitle>
       </Styled.Header>
 
-      <UserHeader name={fullName} bio={user?.bio} />
+      <UserHeader name={fullName} bio={user?.bio} phone={user?.phone} avatarText={avatarText} />
 
       <Styled.SubscribeContainer>
         <SubscribeContainer targetId={user?._id}>

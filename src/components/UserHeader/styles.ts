@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import Container from '../Container/Container'
-import CommonLogo from '../CommonLogo/CommonLogo'
 import Icon from '../Icon/Icon'
+import Avatar from "src/widgets/Avatar/Avatar";
 
 export const Root = styled(Container)`
   display: flex;
@@ -9,7 +9,7 @@ export const Root = styled(Container)`
   padding-bottom: 20px;
 `
 
-export const Avatar = styled(CommonLogo).attrs({ size: 90, withRadius: true })`
+export const AvatarComponent = styled(Avatar).attrs({ size: 90 })`
   margin-right: 30px;
 `
 

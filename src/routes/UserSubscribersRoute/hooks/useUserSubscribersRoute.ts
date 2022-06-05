@@ -13,6 +13,6 @@ export const useUserSubscribersRoute = () => {
 
   return {
     user,
-    followers: user?.followers || []
+    subscribers: user?.subscribers || []
   }
 }

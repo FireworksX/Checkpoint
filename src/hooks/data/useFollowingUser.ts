@@ -2,6 +2,7 @@ import { useRequest } from 'src/hooks/useRequest'
 import { apiEndpoints } from 'src/data/apiEndpoints'
 import { useMutation } from 'src/hooks/useMutation'
 import { useCallback } from 'react'
+import { useCurrentUser } from './useCurrentUser'
 
 interface SubscribeInput {
   target: string
@@ -18,6 +19,8 @@ export const useFollowingUser = (targetId?: string) => {
     },
     pause: !targetId
   })
+
+  const { user } = useCurrentUser()
 
   const { execute: executeSubscribe, fetching: subscribeFetching } = useMutation<unknown, SubscribeInput>(
     apiEndpoints.CURRENT_USER_SUBSCRIBE,
@@ -48,6 +51,7 @@ export const useFollowingUser = (targetId?: string) => {
   }, [executeUnsubscribe, targetId, mutate])
 
   return {
+    isSameUser: user?._id === targetId,
     isFollowing: !!data?.data, // Подписан ли авторизованный пользователь на того кого запросили
     fetching: checkFetching || subscribeFetching || unsubscribeFetching,
     onSubscribe,

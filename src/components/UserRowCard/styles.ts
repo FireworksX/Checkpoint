@@ -1,6 +1,6 @@
 import styled from 'styled-components'
-import CommonLogo from 'src/components/CommonLogo/CommonLogo'
 import Link from 'src/widgets/Link/Link'
+import Avatar from 'src/widgets/Avatar/Avatar'
 
 export const Root = styled(Link)`
   display: flex;
@@ -8,8 +8,7 @@ export const Root = styled(Link)`
   padding: 10px;
 `
 
-export const Avatar = styled(CommonLogo).attrs({
-  withRadius: true,
+export const AvatarComponent = styled(Avatar).attrs({
   size: 44
 })`
   margin-right: 15px;

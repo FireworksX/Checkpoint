@@ -15,6 +15,8 @@ export interface CommonLogoProps {
   className?: string
 }
 
+export const DEFAULT_LOGO_SIZE: CommonLogoSize = 44
+
 const CommonLogo: React.FC<CommonLogoProps> = ({
   iso,
   src,

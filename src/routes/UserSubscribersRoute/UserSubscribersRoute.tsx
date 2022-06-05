@@ -12,7 +12,7 @@ interface ProfileRouteProps {
 }
 
 const UserSubscribersRoute: FC<ProfileRouteProps> = ({ className }) => {
-  const { user, followers } = useUserSubscribersRoute()
+  const { user, subscribers } = useUserSubscribersRoute()
 
   return (
     <Styled.Root className={className}>
@@ -23,15 +23,16 @@ const UserSubscribersRoute: FC<ProfileRouteProps> = ({ className }) => {
       </Styled.Header>
 
       <Styled.Wrapper>
-        {followers?.map(follower => (
+        {subscribers?.map(subscriber => (
           <Styled.UserCard
-            key={follower.id}
-            avatar='https://avatars.githubusercontent.com/u/22668125?v=4'
-            title={<Username>{follower?.username}</Username>}
-            description={[follower?.firstName, follower?.lastName].join(' ')}
+            key={subscriber._id}
+            username={subscriber?.username}
+            firstName={subscriber?.firstName}
+            lastName={subscriber?.lastName}
+            phone={subscriber?.phone}
             appLinkProps={{
               type: 'user',
-              userSlug: follower.username!
+              userSlug: subscriber.username!
             }}
           />
         ))}

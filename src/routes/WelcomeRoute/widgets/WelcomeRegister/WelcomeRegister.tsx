@@ -1,9 +1,13 @@
-import { FC } from 'react'
+import { FC, useEffect } from 'react'
 import * as Styled from './styles'
 import Container from 'src/components/Container/Container'
 import Button from 'src/components/Button/Button'
 import { useWelcomeRegister } from './hooks/useWelcomeRegister'
 import PageHeaderButton from 'src/widgets/PageHeader/components/PageHeaderButton/PageHeaderButton'
+import InitialsAvatar from '../../../../widgets/Avatar/components/InitialsAvatar/InitialsAvatar'
+import { useInitialAvatarPlaceholder } from '../../../../widgets/Avatar/hooks/useInitialAvatarPlaceholder'
+import Avatar from '../../../../widgets/Avatar/Avatar'
+import { AvatarComponent, AvatarWrapper } from './styles'
 
 interface WelcomeRegisterProps {
   className?: string
@@ -14,7 +18,13 @@ interface WelcomeRegisterProps {
 }
 
 const WelcomeRegister: FC<WelcomeRegisterProps> = ({ className, onRegister, onBack }) => {
-  const { fields, onSubmit } = useWelcomeRegister({ onRegister })
+  const { fields, getValues, onSubmit } = useWelcomeRegister({ onRegister })
+
+  const avatarText = useInitialAvatarPlaceholder({
+    username: getValues('username'),
+    firstName: getValues('firstName'),
+    lastName: getValues('lastName')
+  })
 
   return (
     <Styled.Root className={className}>
@@ -29,10 +39,9 @@ const WelcomeRegister: FC<WelcomeRegisterProps> = ({ className, onRegister, onBa
             }
           />
 
-          <Styled.Avatar src='https://avatars.githubusercontent.com/u/22668125?v=4' />
-          <Button size='l' mode='tertiary' stretched>
-            Set new avatar
-          </Button>
+          <Styled.AvatarWrapper>
+            <Styled.AvatarComponent uniqueId={fields.phone}>{avatarText}</Styled.AvatarComponent>
+          </Styled.AvatarWrapper>
 
           <Styled.Field placeholder='Username' {...fields.username} />
           <Styled.Field placeholder='First name' {...fields.firstName} />

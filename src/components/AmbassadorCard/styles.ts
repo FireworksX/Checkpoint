@@ -1,8 +1,8 @@
 import styled from 'styled-components'
-import Touchable from '../Touchable/Touchable'
 import Button from '../Button/Button'
+import Link from 'src/widgets/Link/Link'
 
-export const Root = styled.div`
+export const Root = styled(Link)`
   background: ${({ theme }) => theme.colors.backgroundWhite};
   border-radius: ${({ theme }) => theme.baseStyles.radius.radiusMain};
   min-width: 256px;

@@ -1,13 +1,18 @@
-import { FC } from 'react'
+import React, { FC } from 'react'
 import * as Styled from './styles'
 
 interface SubscribeButtonProps {
+  isSameUser?: boolean
   isFollowing?: boolean
   className?: string
-  onClick(): Promise<void>
+  onClick(e: React.MouseEvent): Promise<void>
 }
 
-const SubscribeButton: FC<SubscribeButtonProps> = ({ className, children, isFollowing, onClick }) => {
+const SubscribeButton: FC<SubscribeButtonProps> = ({ className, children, isSameUser, isFollowing, onClick }) => {
+  if (isSameUser) {
+    return null
+  }
+
   return (
     <Styled.Root mode={isFollowing ? 'secondary' : 'primary'} className={className} onClick={onClick}>
       {children ? children : isFollowing ? 'Отписаться' : 'Подписаться'}

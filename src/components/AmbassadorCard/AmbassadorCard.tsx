@@ -4,26 +4,40 @@ import CommonLogo from 'src/components/CommonLogo/CommonLogo'
 import Container from 'src/components/Container/Container'
 import SubscribeContainer from 'src/widgets/SubscribeContainer/SubscribeContainer'
 import SubscribeButton from 'src/widgets/SubscribeContainer/components/SubscribeButton/SubscribeButton'
+import { BaseUser } from 'src/interfaces/User'
+import { buildFullName } from 'src/utils/buildFullName'
+import Avatar from 'src/widgets/Avatar/Avatar'
+import { useInitialAvatarPlaceholder } from 'src/widgets/Avatar/hooks/useInitialAvatarPlaceholder'
 
-interface AmbassadorCardProps {
-  _id?: string
-  title: string
-  description?: string
+interface AmbassadorCardProps
+  extends Pick<BaseUser, '_id' | 'username' | 'firstName' | 'lastName' | 'phone' | 'bio'> {
   className?: string
 }
 
-const AmbassadorCard: FC<AmbassadorCardProps> = ({ className, _id, title, description }) => {
+const AmbassadorCard: FC<AmbassadorCardProps> = ({
+  className,
+  _id,
+  firstName,
+  lastName,
+  username,
+  phone,
+  bio
+}) => {
+  const avatarText = useInitialAvatarPlaceholder({ username, firstName, lastName })
+
   return (
-    <Styled.Root className={className}>
+    <Styled.Root className={className} type='user' userSlug={username || ''}>
       <Styled.AvatarWrapper>
-        <CommonLogo src='https://a.wattpad.com/useravatar/_Alone_Angel_14.256.232424.jpg' size={60} withRadius />
+        <Avatar size={60} uniqueId={phone}>
+          {avatarText}
+        </Avatar>
       </Styled.AvatarWrapper>
       <Container>
-        <Styled.Name>{title}</Styled.Name>
-        <Styled.Description>{description}</Styled.Description>
+        <Styled.Name>{buildFullName(firstName, lastName)}</Styled.Name>
+        <Styled.Description>{bio}</Styled.Description>
       </Container>
       <SubscribeContainer targetId={_id}>
-        {({ isFollowing, onClick }) => <SubscribeButton isFollowing={isFollowing} onClick={onClick} />}
+        {(args) => <SubscribeButton {...args} />}
       </SubscribeContainer>
     </Styled.Root>
   )

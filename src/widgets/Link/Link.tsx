@@ -30,7 +30,7 @@ const Link: React.FC<LinkProps> = props => {
     if (link) {
       router.routerInstance.navigate(link?.name, routeParams)
     }
-  }, [])
+  }, [onClick, router, link, routeParams])
 
   return (
     <Styled.Root

@@ -43,6 +43,8 @@ export const Compilation = styled(CompilationCell)`
   }
 `
 
+export const CompilationInfo = styled(Touchable)``
+
 export const LocationsWrapper = styled(Container)`
   margin-top: 15px;
 `

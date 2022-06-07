@@ -47,7 +47,7 @@ const zIndex = {
   modal: 20
 }
 
-export const MODAL_NAMES = createConstants('createCategory')
+export const MODAL_NAMES = createConstants('createCategory', 'profileSettings')
 
 export type ModalName = keyof typeof MODAL_NAMES
 

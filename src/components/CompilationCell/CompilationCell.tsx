@@ -1,6 +1,7 @@
-import { FC } from 'react'
+import { FC, ReactNode } from 'react'
 import * as Styled from './styles'
 import { TouchableProps } from 'src/components/Touchable/Touchable'
+import { After } from './styles'
 
 interface CompilationCellProps extends TouchableProps {
   title: string
@@ -8,9 +9,18 @@ interface CompilationCellProps extends TouchableProps {
   description?: string
   className?: string
   isActive?: boolean
+  after?: ReactNode
 }
 
-const CompilationCell: FC<CompilationCellProps> = ({ className, image, title, isActive, description, ...rest }) => {
+const CompilationCell: FC<CompilationCellProps> = ({
+  className,
+  image,
+  title,
+  isActive,
+  description,
+  after,
+  ...rest
+}) => {
   return (
     <Styled.Root className={className} isActive={isActive} {...rest}>
       {image && <Styled.Image src={image} />}
@@ -18,6 +28,7 @@ const CompilationCell: FC<CompilationCellProps> = ({ className, image, title, is
         <Styled.Title>{title}</Styled.Title>
         <Styled.Description>{description}</Styled.Description>
       </div>
+      {after && <Styled.After>{after}</Styled.After>}
     </Styled.Root>
   )
 }

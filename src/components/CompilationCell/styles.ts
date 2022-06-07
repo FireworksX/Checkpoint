@@ -30,3 +30,7 @@ export const Description = styled.div`
   ${({ theme }) => theme.typography.text_10_12};
   color: ${({ theme }) => theme.colors.secondary};
 `
+
+export const After = styled.div`
+  margin-left: 10px;
+`

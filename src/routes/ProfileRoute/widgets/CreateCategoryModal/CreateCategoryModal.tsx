@@ -15,7 +15,7 @@ const CreateCategoryModal: FC<CreateCategoryModalProps> = ({ className, onClose 
   const { name, description, onSubmit } = useCreateCategory(onClose)
 
   return (
-    <BottomSheet name={MODAL_NAMES.createCategory} autoClose onClose={onClose}>
+    <BottomSheet name={MODAL_NAMES.createCategory} withHeader autoClose onClose={onClose}>
       <Styled.Root className={className}>
         <BottomSheetHeader>Создать категорию</BottomSheetHeader>
         <form onSubmit={onSubmit}>

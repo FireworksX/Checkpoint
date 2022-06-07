@@ -1,8 +1,18 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
+import { TouchableProps } from './Touchable'
 
-export const Root = styled.div`
+interface Props {
+  effect?: TouchableProps['effect']
+}
+
+export const Root = styled.div<Props>`
   transition: ${({ theme }) => theme.animation.transitionDuration};
-  &:active {
-    transform: scale(0.9);
-  }
+
+  ${({ effect }) =>
+    effect !== 'none' &&
+    css`
+      &:active {
+        transform: scale(0.9);
+      }
+    `};
 `

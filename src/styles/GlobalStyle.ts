@@ -1,6 +1,6 @@
 import { createGlobalStyle } from 'styled-components'
 import { reboot } from './reboot'
-import {zIndex} from "../router/constants";
+import { zIndex } from '../router/constants'
 
 const GlobalStyle = createGlobalStyle`
   ${reboot};

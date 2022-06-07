@@ -16,7 +16,7 @@ const baseColors = {
   secondaryDisable: 'rgb(229, 230, 233)',
   secondaryBg: 'rgb(242, 243, 244)',
 
-  accentBlue: 'rgb(74, 144, 226)',
+  accentBlue: 'rgb(38, 136, 235)',
   accentBlueBg: 'rgb(237, 244, 252)',
 
   accentRed: 'rgb(241, 76, 69)',

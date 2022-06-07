@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import * as Styled from './styles'
 import { route } from 'src/hoc/route'
-import { ROUTE_NAMES } from 'src/router/constants'
+import { MODAL_NAMES, ROUTE_NAMES } from 'src/router/constants'
 import PageHeaderButtonBack from 'src/widgets/PageHeader/components/PageHeaderButtonBack/PageHeaderButtonBack'
 import { withValidateUser } from 'src/hoc/withValidateUser'
 import { useProfileRoute } from './hooks/useProfileRoute'
@@ -13,27 +13,25 @@ import { staticImagesMap } from 'src/data/staticImagesMap'
 import UserHeader from 'src/components/UserHeader/UserHeader'
 import UserMetrics from 'src/components/UserMetrics/UserMetrics'
 import CreateCategoryModal from './widgets/CreateCategoryModal/CreateCategoryModal'
+import { CompilationInfo } from './styles'
+import ActionSheet from '../../widgets/ActionSheet/ActionSheet'
+import { useModal } from '../../hooks/useModal'
+import ActionSheetItem from '../../widgets/ActionSheet/components/ActionSheetItem/ActionSheetItem'
 
 interface ProfileRouteProps {
   className?: string
 }
 
 const ProfileRoute: FC<ProfileRouteProps> = ({ className }) => {
-  const {
-    user,
-    categories,
-    locations,
-    onSelectCategory,
-    locationsFetching,
-    counters,
-  } = useProfileRoute()
+  const { open } = useModal(MODAL_NAMES.profileSettings)
+  const { user, categories, locations, onSelectCategory, locationsFetching, counters } = useProfileRoute()
 
   return (
     <Styled.Root className={className}>
       <Styled.Header
         left={<PageHeaderButtonBack />}
         right={
-          <Styled.HeaderButton>
+          <Styled.HeaderButton onClick={open}>
             <Icon name='ellipsis' />
           </Styled.HeaderButton>
         }
@@ -94,6 +92,12 @@ const ProfileRoute: FC<ProfileRouteProps> = ({ className }) => {
       </Styled.LocationsWrapper>
 
       <CreateCategoryModal />
+
+      <ActionSheet name={MODAL_NAMES.profileSettings} withHeader={false} withBackground={false} autoClose>
+        <ActionSheetItem>Настройки</ActionSheetItem>
+        <ActionSheetItem>Изменить категории</ActionSheetItem>
+        <ActionSheetItem mode='destructive'>Выход</ActionSheetItem>
+      </ActionSheet>
     </Styled.Root>
   )
 }

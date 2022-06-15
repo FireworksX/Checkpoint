@@ -48,6 +48,11 @@ export const routes: Route[] = [
                 name: ROUTE_NAMES.profileSubscribers,
                 path: `/subscribers`,
                 component: routeComponents.ProfileSubscribersRoute
+              },
+              {
+                name: ROUTE_NAMES.profileEdit,
+                path: `/edit`,
+                component: routeComponents.ProfileEditRoute
               }
             ]
           },

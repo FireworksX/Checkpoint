@@ -9,7 +9,7 @@ interface Options {
 }
 
 const DEFAULT_OPTIONS: Options = {
-  useCache: true
+  useCache: false
 }
 
 export const useMutation = <RESDATA = any, DATA = undefined>(path: string, options = DEFAULT_OPTIONS) => {

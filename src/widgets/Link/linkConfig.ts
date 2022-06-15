@@ -10,6 +10,10 @@ const linkConfig = {
     name: buildName(ROUTE_NAMES.navigation, ROUTE_NAMES.profile, ROUTE_NAMES.profileReview),
     params: { required: [], optional: [] }
   },
+  profileEdit: {
+    name: buildName(ROUTE_NAMES.navigation, ROUTE_NAMES.profile, ROUTE_NAMES.profileEdit),
+    params: { required: [], optional: [] }
+  },
   profileFollowers: {
     name: buildName(ROUTE_NAMES.navigation, ROUTE_NAMES.profile, ROUTE_NAMES.profileFollowers),
     params: { required: [], optional: [] }

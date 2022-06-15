@@ -9,6 +9,7 @@ const ROUTE_NAMES = createConstants(
   'home',
   'profile',
   'profileReview',
+  'profileEdit',
   'profileFollowers',
   'profileSubscribers',
   'trends',

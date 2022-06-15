@@ -4,42 +4,17 @@ import { useRegisterUser } from 'src/hooks/data/useRegisterUser'
 import { useUserIsRegister } from 'src/hooks/data/useUserIsRegister'
 import { useCurrentUser } from 'src/hooks/data/useCurrentUser'
 import { useForceUpdate } from 'src/hooks/useForceUpdate'
+import { useProfileInfoFields, UserFields } from '../../../../../widgets/ProfileInfoFields/hooks/useProfileInfoFields'
 
 interface Props {
   onRegister(): void
 }
 
 export const useWelcomeRegister = ({ onRegister }: Props) => {
-  const { register, handleSubmit, getValues } = useForm()
-  const { execute } = useRegisterUser()
-  const forceUpdate = useForceUpdate()
-
   const { user } = useCurrentUser()
-  const [proxyUsername, setProxyUsername] = useState('')
-  const { data: isRegisterUser } = useUserIsRegister({
-    username: proxyUsername
-  })
+  const { execute } = useRegisterUser()
 
-  const usernameFieldOptions = useMemo(() => {
-    if (proxyUsername.length > 3) {
-      if (isRegisterUser?.data) {
-        return {
-          status: 'error' as const,
-          statusText: 'This username already exists.'
-        }
-      } else {
-        return {
-          status: 'success' as const
-        }
-      }
-    }
-  }, [isRegisterUser, proxyUsername.length])
-
-  const onSubmit = handleSubmit(async data => {
-    if (usernameFieldOptions?.status === 'error') {
-      return
-    }
-
+  const onSubmit = async (data: UserFields) => {
     const response = await execute({
       phone: user?.phone,
       ...data
@@ -48,23 +23,17 @@ export const useWelcomeRegister = ({ onRegister }: Props) => {
     if (response.success) {
       onRegister()
     }
-  })
+  }
+
+  const { fields, getValues, avatarText, onSubmitForm } = useProfileInfoFields(onSubmit)
 
   return {
     fields: {
-      username: {
-        ...register('username', {
-          maxLength: 30,
-          onChange: ({ target: { value } }) => setProxyUsername(value)
-        }),
-        ...usernameFieldOptions
-      },
-      firstName: register('firstName', { maxLength: 30, onChange: forceUpdate }),
-      lastName: register('lastName', { maxLength: 30, onChange: forceUpdate }),
-      bio: register('bio', { maxLength: 200 }),
-      phone: user?.phone
+      ...fields,
+      phone: user?.phone || ''
     },
+    avatarText,
     getValues,
-    onSubmit
+    onSubmitForm
   }
 }

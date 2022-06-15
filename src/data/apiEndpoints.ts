@@ -8,6 +8,7 @@ export const apiEndpoints = {
   AUTH_REGISTER: '/auth/register',
 
   CURRENT_USER: '/users/profile',
+  CURRENT_USER_UPDATE: '/users/profile/update',
   CURRENT_USER_SUBSCRIBE: '/users/profile/subscribe',
   CURRENT_USER_UNSUBSCRIBE: '/users/profile/unsubscribe',
   CURRENT_USER_CHECK_SUBSCRIBE: '/users/profile/checkSubscribe',

@@ -1,6 +1,7 @@
 import RootRoute from './RootRoute/RootRoute'
 import CityMapRoute from './CityMapRoute/CityMapRoute'
 import ProfileRoute from './ProfileRoute/ProfileRoute'
+import ProfileEditRoute from './ProfileEditRoute/ProfileEditRoute'
 import ProfileFollowersRoute from './ProfileFollowersRoute/ProfileFollowersRoute'
 import ProfileSubscribersRoute from './ProfileSubscribersRoute/ProfileSubscribersRoute'
 import NotificationsRoute from './NotificationsRoute/NotificationsRoute'
@@ -18,6 +19,7 @@ export default {
   RootRoute,
   CityMapRoute,
   ProfileRoute,
+  ProfileEditRoute,
   ProfileFollowersRoute,
   ProfileSubscribersRoute,
   NotificationsRoute,

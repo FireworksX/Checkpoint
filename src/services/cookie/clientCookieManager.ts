@@ -1,5 +1,5 @@
 import { CookieManager, CookiesType } from 'src/interfaces/CookieManager'
-import { isPrimitive } from 'src/utils/isPremitive'
+import { isPrimitive } from 'src/utils/isPrimitive'
 
 export const clientCookieManager = <T extends CookiesType = CookiesType>(prefix = ''): CookieManager<T> => {
   const get = <K extends keyof T>(name: keyof T): T[K] => {

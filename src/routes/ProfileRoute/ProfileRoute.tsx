@@ -17,6 +17,7 @@ import { CompilationInfo } from './styles'
 import ActionSheet from '../../widgets/ActionSheet/ActionSheet'
 import { useModal } from '../../hooks/useModal'
 import ActionSheetItem from '../../widgets/ActionSheet/components/ActionSheetItem/ActionSheetItem'
+import ProfileSettingsModal from './widgets/ProfileSettingsModal/ProfileSettingsModal'
 
 interface ProfileRouteProps {
   className?: string
@@ -92,12 +93,7 @@ const ProfileRoute: FC<ProfileRouteProps> = ({ className }) => {
       </Styled.LocationsWrapper>
 
       <CreateCategoryModal />
-
-      <ActionSheet name={MODAL_NAMES.profileSettings} withHeader={false} withBackground={false} autoClose>
-        <ActionSheetItem>Настройки</ActionSheetItem>
-        <ActionSheetItem>Изменить категории</ActionSheetItem>
-        <ActionSheetItem mode='destructive'>Выход</ActionSheetItem>
-      </ActionSheet>
+      <ProfileSettingsModal />
     </Styled.Root>
   )
 }

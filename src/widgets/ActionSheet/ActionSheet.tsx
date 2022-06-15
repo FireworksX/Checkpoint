@@ -4,16 +4,16 @@ import { ModalName } from 'src/router/constants'
 import { BottomSheetProps } from 'src/widgets/BottomSheet/BottomSheet'
 import { useModal } from 'src/hooks/useModal'
 
-interface ActionSheetProps extends BottomSheetProps {
+interface ActionSheetProps {
   name: ModalName
   className?: string
 }
 
-const ActionSheet: FC<ActionSheetProps> = ({ className, name, children, ...rest }) => {
+const ActionSheet: FC<ActionSheetProps> = ({ className, name, children }) => {
   const { close } = useModal(name)
 
   return (
-    <Styled.Root name={name} className={className} {...rest}>
+    <Styled.Root name={name} className={className} withHeader={false} withBackground={false} autoClose>
       <Styled.Body>{children}</Styled.Body>
       <Styled.CancelButton onClick={close}>Отменить</Styled.CancelButton>
     </Styled.Root>

@@ -1,10 +1,11 @@
 import { apiEndpoints } from 'src/data/apiEndpoints'
 import { useMutation } from 'src/hooks/useMutation'
-import { AuthUser, AuthUserResponse } from 'src/interfaces/User'
+import { AuthUserResponse } from 'src/interfaces/User'
 import { GeneratedTokenResponse } from 'src/interfaces/Request'
 import useCookies from '../useCookies'
 import { useCallback } from 'react'
 import { useCurrentUser } from './useCurrentUser'
+import { userTokens } from '../../utils/userTokens'
 
 type InputProps = {
   phone: string
@@ -16,20 +17,9 @@ type OutputProps = {
 }
 
 export const useLoginUser = () => {
+  const userTokensManager = userTokens()
   const { mutate } = useCurrentUser()
   const { fetching, execute } = useMutation<OutputProps, InputProps>(apiEndpoints.AUTH_LOGIN)
-  const [, setAccessToken] = useCookies('accessToken')
-  const [, setRefreshToken] = useCookies('refreshToken')
-  const [, setUserPhone] = useCookies('userPhone')
-
-  const onSetTokens = useCallback(
-    (options: Partial<{ userPhone: string; accessToken: string; refreshToken: string }>) => {
-      setAccessToken(options.accessToken)
-      setRefreshToken(options.refreshToken)
-      setUserPhone(options.userPhone)
-    },
-    []
-  )
 
   return {
     execute: async (data: InputProps) => {
@@ -43,7 +33,7 @@ export const useLoginUser = () => {
           id: user._id
         }))
 
-        onSetTokens({
+        userTokensManager.setTokens({
           accessToken: token.accessToken,
           refreshToken: token.refreshToken,
           userPhone: user.phone
@@ -52,7 +42,7 @@ export const useLoginUser = () => {
 
       return response
     },
-    onSetTokens,
+    onSetTokens: userTokensManager.setTokens,
     fetching
   }
 }

@@ -23,6 +23,7 @@ export const useCurrentUser = () => {
     success: response?.success,
     fullName: [response?.data?.firstName, response?.data?.lastName].join(' '),
     error,
+    revalidate: mutate,
     mutate: (callback: MutateCallback) => {
       return mutate(apiUser => ({
         success: true,

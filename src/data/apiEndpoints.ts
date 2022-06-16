@@ -25,4 +25,5 @@ export const apiEndpoints = {
 
   CATEGORIES_CREATE: '/categories/create',
   CATEGORIES_UPDATE: '/categories/update',
+  CATEGORIES_REMOVE: '/categories/remove',
 }

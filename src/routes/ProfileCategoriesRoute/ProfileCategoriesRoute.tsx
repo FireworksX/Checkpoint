@@ -9,7 +9,7 @@ import { useRouter } from 'src/hooks/useRouter'
 import { useProfileCategoriesRoute } from './hooks/useProfileCategoriesRoute'
 import Icon from 'src/components/Icon/Icon'
 import Button from 'src/components/Button/Button'
-import Container from "src/components/Container/Container";
+import Container from 'src/components/Container/Container'
 
 interface ProfileCategoriesRouteProps {
   className?: string
@@ -17,7 +17,7 @@ interface ProfileCategoriesRouteProps {
 
 const ProfileCategoriesRoute: FC<ProfileCategoriesRouteProps> = ({ className }) => {
   const { back } = useRouter()
-  const { list, editCategory, createCategory } = useProfileCategoriesRoute()
+  const { list, editCategory, createCategory, removeCategory } = useProfileCategoriesRoute()
 
   return (
     <Styled.Root className={className}>
@@ -40,7 +40,7 @@ const ProfileCategoriesRoute: FC<ProfileCategoriesRouteProps> = ({ className }) 
                 <Styled.ControlButton color='neutral' onClick={() => editCategory(category)}>
                   <Icon name='pencil' width={16} height={16} />
                 </Styled.ControlButton>
-                <Styled.ControlButton color='negative'>
+                <Styled.ControlButton color='negative' onClick={() => removeCategory(category)}>
                   <Icon name='close' width={16} height={16} />
                 </Styled.ControlButton>
               </Styled.CategoryControls>

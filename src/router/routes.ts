@@ -53,6 +53,11 @@ export const routes: Route[] = [
                 name: ROUTE_NAMES.profileEdit,
                 path: `/edit`,
                 component: routeComponents.ProfileEditRoute
+              },
+              {
+                name: ROUTE_NAMES.profileCategories,
+                path: `/categories`,
+                component: routeComponents.ProfileCategoriesRoute
               }
             ]
           },

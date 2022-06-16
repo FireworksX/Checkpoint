@@ -12,12 +12,7 @@ import Placeholder from 'src/components/Placeholder/Placeholder'
 import { staticImagesMap } from 'src/data/staticImagesMap'
 import UserHeader from 'src/components/UserHeader/UserHeader'
 import UserMetrics from 'src/components/UserMetrics/UserMetrics'
-import CreateCategoryModal from './widgets/CreateCategoryModal/CreateCategoryModal'
-import { CompilationInfo } from './styles'
-import ActionSheet from '../../widgets/ActionSheet/ActionSheet'
-import { useModal } from '../../hooks/useModal'
-import ActionSheetItem from '../../widgets/ActionSheet/components/ActionSheetItem/ActionSheetItem'
-import ProfileSettingsModal from './widgets/ProfileSettingsModal/ProfileSettingsModal'
+import { useModal } from 'src/hooks/useModal'
 
 interface ProfileRouteProps {
   className?: string
@@ -91,9 +86,6 @@ const ProfileRoute: FC<ProfileRouteProps> = ({ className }) => {
           />
         ))}
       </Styled.LocationsWrapper>
-
-      <CreateCategoryModal />
-      <ProfileSettingsModal />
     </Styled.Root>
   )
 }

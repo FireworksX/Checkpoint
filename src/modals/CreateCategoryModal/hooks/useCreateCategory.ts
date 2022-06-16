@@ -2,11 +2,13 @@ import { apiEndpoints } from 'src/data/apiEndpoints'
 import { useForm } from 'src/hooks/useForm'
 import { useMutation } from 'src/hooks/useMutation'
 import { Category } from 'src/interfaces/Category'
-import { BottomSheetProps } from 'src/widgets/BottomSheet/BottomSheet'
+import { useModal } from 'src/hooks/useModal'
+import { MODAL_NAMES } from 'src/router/constants'
 
 type InputCategory = Pick<Category, 'name' | 'description'>
 
-export const useCreateCategory = (onClose: BottomSheetProps['onClose']) => {
+export const useCreateCategory = () => {
+  const { close } = useModal(MODAL_NAMES.createCategory)
   const { register, handleSubmit } = useForm()
   const { execute, mutate } = useMutation<Category, InputCategory>(apiEndpoints.CATEGORIES_CREATE)
 
@@ -16,9 +18,7 @@ export const useCreateCategory = (onClose: BottomSheetProps['onClose']) => {
     if (success) {
       await mutate(apiEndpoints.CURRENT_USER)
 
-      if (onClose) {
-        onClose()
-      }
+      close()
     }
   })
 

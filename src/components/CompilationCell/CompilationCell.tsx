@@ -8,12 +8,14 @@ interface CompilationCellProps extends TouchableProps {
   image?: string
   description?: string
   className?: string
+  afterClassName?: string
   isActive?: boolean
   after?: ReactNode
 }
 
 const CompilationCell: FC<CompilationCellProps> = ({
   className,
+                                                     afterClassName,
   image,
   title,
   isActive,
@@ -28,7 +30,7 @@ const CompilationCell: FC<CompilationCellProps> = ({
         <Styled.Title>{title}</Styled.Title>
         <Styled.Description>{description}</Styled.Description>
       </div>
-      {after && <Styled.After>{after}</Styled.After>}
+      {after && <Styled.After className={afterClassName}>{after}</Styled.After>}
     </Styled.Root>
   )
 }

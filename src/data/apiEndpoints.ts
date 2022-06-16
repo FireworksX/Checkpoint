@@ -23,5 +23,6 @@ export const apiEndpoints = {
   CITY_UPDATE: '/cities/update',
   CITY_DELETE: '/cities/delete',
 
-  CATEGORIES_CREATE: '/categories/create'
+  CATEGORIES_CREATE: '/categories/create',
+  CATEGORIES_UPDATE: '/categories/update',
 }

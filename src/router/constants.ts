@@ -10,6 +10,7 @@ const ROUTE_NAMES = createConstants(
   'profile',
   'profileReview',
   'profileEdit',
+  'profileCategories',
   'profileFollowers',
   'profileSubscribers',
   'trends',
@@ -40,7 +41,8 @@ const STORE_NAMES = createConstants(
   'geoLocationAtom',
   'userAgentAtom',
   'hasNavigationMapHelpersAtom',
-  'modalAtom'
+  'modalAtom',
+  'modalContextAtom',
 )
 
 const zIndex = {
@@ -48,7 +50,7 @@ const zIndex = {
   modal: 20
 }
 
-export const MODAL_NAMES = createConstants('createCategory', 'profileSettings')
+export const MODAL_NAMES = createConstants('createCategory', 'editCategory', 'profileSettings')
 
 export type ModalName = keyof typeof MODAL_NAMES
 

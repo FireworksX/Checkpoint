@@ -16,6 +16,7 @@ const MODAL_NAME = MODAL_NAMES.profileSettings
 const ProfileSettingsModal: FC<ProfileSettingsModalProps> = ({ className }) => {
   const { close } = useModal(MODAL_NAMES.profileSettings)
   const profileEditLink = useLinkConfig('profileEdit')
+  const profileCategoriesLink = useLinkConfig('profileCategories')
   const { logout } = useCurrentUser()
   const { routerInstance } = useRouter()
 
@@ -24,11 +25,21 @@ const ProfileSettingsModal: FC<ProfileSettingsModalProps> = ({ className }) => {
     routerInstance.navigate(profileEditLink.link.name)
   }, [profileEditLink, routerInstance, close])
 
+  const navigateToProfileCategories = useCallback(async () => {
+    await close()
+    routerInstance.navigate(profileCategoriesLink.link.name)
+  }, [profileCategoriesLink, routerInstance, close])
+
+  const onLogout = useCallback(async () => {
+    await close()
+    await logout()
+  }, [close, logout])
+
   return (
     <ActionSheet className={className} name={MODAL_NAME}>
       <ActionSheetItem onClick={navigateToProfileEdit}>Настройки</ActionSheetItem>
-      {/*<ActionSheetItem>Изменить категории</ActionSheetItem>*/}
-      <ActionSheetItem mode='destructive' onClick={logout}>
+      <ActionSheetItem onClick={navigateToProfileCategories}>Изменить категории</ActionSheetItem>
+      <ActionSheetItem mode='destructive' onClick={onLogout}>
         Выход
       </ActionSheetItem>
     </ActionSheet>

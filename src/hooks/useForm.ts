@@ -5,7 +5,7 @@ import { FieldValues } from 'react-hook-form/dist/types'
 import { FieldPath } from 'react-hook-form/dist/types/path'
 
 export const useForm = <T extends FieldValues = FieldValues>() => {
-  const { register: parentRegister, handleSubmit, formState, setValue, getValues } = useFormParent<T>()
+  const { register: parentRegister, handleSubmit, formState, setValue, getValues, reset } = useFormParent<T>()
   const { errors, dirtyFields, isSubmitted } = formState
 
   const register = useCallback(
@@ -25,6 +25,7 @@ export const useForm = <T extends FieldValues = FieldValues>() => {
   )
 
   return {
+    reset,
     dirtyFields,
     getValues,
     setValue,

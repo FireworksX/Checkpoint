@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import * as Styled from './styles'
-import BottomSheet, { BottomSheetProps } from 'src/widgets/BottomSheet/BottomSheet'
+import BottomSheet from 'src/widgets/BottomSheet/BottomSheet'
 import Button from 'src/components/Button/Button'
 import BottomSheetHeader from 'src/widgets/BottomSheet/components/BottomSheetHeader/BottomSheetHeader'
 import { useCreateCategory } from './hooks/useCreateCategory'
@@ -8,14 +8,13 @@ import { MODAL_NAMES } from 'src/router/constants'
 
 interface CreateCategoryModalProps {
   className?: string
-  onClose?: BottomSheetProps['onClose']
 }
 
-const CreateCategoryModal: FC<CreateCategoryModalProps> = ({ className, onClose }) => {
-  const { name, description, onSubmit } = useCreateCategory(onClose)
+const CreateCategoryModal: FC<CreateCategoryModalProps> = ({ className }) => {
+  const { name, description, onSubmit } = useCreateCategory()
 
   return (
-    <BottomSheet name={MODAL_NAMES.createCategory} withHeader autoClose onClose={onClose}>
+    <BottomSheet name={MODAL_NAMES.createCategory} withHeader autoClose>
       <Styled.Root className={className}>
         <BottomSheetHeader>Создать категорию</BottomSheetHeader>
         <form onSubmit={onSubmit}>

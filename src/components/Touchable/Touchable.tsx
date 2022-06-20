@@ -3,7 +3,7 @@ import * as Styled from './styles'
 
 export interface TouchableProps {
   className?: string
-  tagName?: 'div' | 'a' | 'button'
+  tagName?: 'div' | 'a' | 'button' | 'span'
   effect?: 'scale' | 'none'
   onClick?: (e?: any) => any
   [key: string]: any

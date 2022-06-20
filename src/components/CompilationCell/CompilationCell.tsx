@@ -15,7 +15,7 @@ interface CompilationCellProps extends TouchableProps {
 
 const CompilationCell: FC<CompilationCellProps> = ({
   className,
-                                                     afterClassName,
+  afterClassName,
   image,
   title,
   isActive,

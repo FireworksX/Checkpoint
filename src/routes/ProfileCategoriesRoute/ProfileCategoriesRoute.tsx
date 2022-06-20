@@ -10,6 +10,7 @@ import { useProfileCategoriesRoute } from './hooks/useProfileCategoriesRoute'
 import Icon from 'src/components/Icon/Icon'
 import Button from 'src/components/Button/Button'
 import Container from 'src/components/Container/Container'
+import Placeholder from 'src/components/Placeholder/Placeholder'
 
 interface ProfileCategoriesRouteProps {
   className?: string
@@ -48,6 +49,9 @@ const ProfileCategoriesRoute: FC<ProfileCategoriesRouteProps> = ({ className }) 
           />
         ))}
       </Styled.Wrapper>
+
+      {list.length === 0 && <Placeholder header='Пока ничего'>Ещё нет ни одной категории</Placeholder>}
+
       <Container>
         <Button size='l' stretched onClick={createCategory}>
           Создать новую категорию

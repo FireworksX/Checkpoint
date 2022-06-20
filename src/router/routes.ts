@@ -62,6 +62,25 @@ export const routes: Route[] = [
             ]
           },
           {
+            name: ROUTE_NAMES.location,
+            path: `location`,
+            children: [
+              {
+                name: ROUTE_NAMES.locationDetail,
+                path: `/:${ROUTE_PARAMS.locationSlug}`,
+                children: [
+                  {
+                    name: ROUTE_NAMES.locationView,
+                    path: '/',
+                    component: routeComponents.LocationView
+                  },
+                  { name: ROUTE_NAMES.locationEdit, path: '/edit' }
+                ]
+              },
+              { name: ROUTE_NAMES.locationCreate, path: '/create', component: routeComponents.LocationCreate }
+            ]
+          },
+          {
             name: ROUTE_NAMES.user,
             path: `user/:${ROUTE_PARAMS.userSlug}`,
             children: [

@@ -15,6 +15,8 @@ import NavigationRoute from './NavigationRoute/NavigationRoute'
 import UserRoute from './UserRoute/UserRoute'
 import UserFollowersRoute from './UserFollowersRoute/UserFollowersRoute'
 import UserSubscribersRoute from './UserSubscribersRoute/UserSubscribersRoute'
+import LocationView from './LocationView/LocationView'
+import LocationCreate from './LocationCreate/LocationCreate'
 
 export default {
   RootRoute,
@@ -33,5 +35,7 @@ export default {
   NavigationRoute,
   UserRoute,
   UserFollowersRoute,
-  UserSubscribersRoute
+  UserSubscribersRoute,
+  LocationView,
+  LocationCreate
 }

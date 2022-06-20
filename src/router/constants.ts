@@ -26,11 +26,16 @@ const ROUTE_NAMES = createConstants(
   'user',
   'userReview',
   'userFollowers',
-  'userSubscribers'
+  'userSubscribers',
+  'location',
+  'locationDetail',
+  'locationView',
+  'locationEdit',
+  'locationCreate'
 )
 type RouteNamesType = keyof typeof ROUTE_NAMES
 
-const ROUTE_PARAMS = createConstants('citySlug', 'userSlug')
+const ROUTE_PARAMS = createConstants('citySlug', 'userSlug', 'locationSlug')
 
 const STORE_NAMES = createConstants(
   'mapCenterAtom',
@@ -42,7 +47,7 @@ const STORE_NAMES = createConstants(
   'userAgentAtom',
   'hasNavigationMapHelpersAtom',
   'modalAtom',
-  'modalContextAtom',
+  'modalContextAtom'
 )
 
 const zIndex = {
@@ -50,7 +55,7 @@ const zIndex = {
   modal: 20
 }
 
-export const MODAL_NAMES = createConstants('createCategory', 'editCategory', 'profileSettings')
+export const MODAL_NAMES = createConstants('createCategory', 'editCategory', 'profileSettings', 'locationFields')
 
 export type ModalName = keyof typeof MODAL_NAMES
 

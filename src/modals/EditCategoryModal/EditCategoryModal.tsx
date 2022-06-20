@@ -16,7 +16,7 @@ const EditCategoryModal: FC<CreateCategoryModalProps> = ({ className }) => {
   return (
     <BottomSheet name={MODAL_NAMES.editCategory} withHeader autoClose>
       <Styled.Root className={className}>
-        <BottomSheetHeader>Создать категорию</BottomSheetHeader>
+        <BottomSheetHeader>Изменить категорию</BottomSheetHeader>
         <form onSubmit={onSubmit}>
           <Styled.BaseInput placeholder='Название категории' {...name} />
           <Styled.BaseInput placeholder='Описание (пару слов)' {...description} />

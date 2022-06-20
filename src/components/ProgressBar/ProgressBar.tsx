@@ -1,9 +1,9 @@
-import { FC } from 'react'
+import {FC, ReactNode} from 'react'
 import * as Styled from './styles'
 
-interface ProgressBarProps {
+export interface ProgressBarProps {
   value: number
-  label?: string
+  label?: ReactNode
   className?: string
   limit?: number
   colorScheme?: {

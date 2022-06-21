@@ -68,6 +68,11 @@ declare module 'styled-components' {
       secondaryDisable: string
       secondaryBg: string
 
+      secondaryLight: string
+      secondaryLightPress: string
+      secondaryLightDisable: string
+      secondaryLightBg: string
+
       accentBlue: string
       accentBlueBg: string
 

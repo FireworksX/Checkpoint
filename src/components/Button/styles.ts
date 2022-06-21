@@ -51,11 +51,11 @@ const modesMap = (theme: DefaultTheme, colorMode: Props['color']) => {
       }
     `,
     secondary: css`
-      background-color: ${theme.colors.secondaryBg};
+      background-color: ${theme.colors.secondaryLight};
       color: ${color};
 
       &:active {
-        background-color: ${theme.colors.secondaryPress};
+        background-color: ${theme.colors.secondaryLightPress};
       }
     `,
 

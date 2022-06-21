@@ -5,15 +5,27 @@ import { MODAL_NAMES, ROUTE_NAMES } from '../../router/constants'
 import PageHeaderButtonBack from '../../widgets/PageHeader/components/PageHeaderButtonBack/PageHeaderButtonBack'
 import PageHeaderButton from 'src/widgets/PageHeader/components/PageHeaderButton/PageHeaderButton'
 import GalleryFieldView from '../../widgets/locationFields/galleryField/GalleryFieldView/GalleryFieldView'
-import { AddFieldWrapper, Category, Description, Gallery, Kitchen, WifiSpeed } from './styles'
+import {
+  AddFieldWrapper,
+  AverageBill,
+  Category,
+  ControlButton,
+  ControlButtons,
+  Description,
+  Gallery,
+  Kitchen, Rating,
+  Separator,
+  Tags,
+  WifiSpeed
+} from './styles'
 import Container from '../../components/Container/Container'
 import Button from '../../components/Button/Button'
 import { useModal } from '../../hooks/useModal'
 import UserRowCard from '../../components/UserRowCard/UserRowCard'
 import { useCurrentUser } from '../../hooks/data/useCurrentUser'
-import Separator from '../../components/Separator/Separator'
 import CompilationCell from '../../components/CompilationCell/CompilationCell'
 import { staticImagesMap } from '../../data/staticImagesMap'
+import Icon from '../../components/Icon/Icon'
 
 interface LocationCreateProps {
   className?: string
@@ -103,12 +115,31 @@ const LocationCreate: FC<LocationCreateProps> = ({ className }) => {
           кордиалом и колд-брю с кокосовой сгущенкой.
         </Styled.Description>
 
-        <Styled.Category title='Корея' description='Вайб Южной Кореи' image={staticImagesMap.potOfFood} />
+        <Styled.ControlButtons>
+          <Styled.ControlButton size='l'>Показать на карте</Styled.ControlButton>
+          <Styled.ControlButton size='l' mode='secondary'>
+            <Icon name='heart' width={24} height={24} /> 150
+          </Styled.ControlButton>
+          <Styled.ControlButton size='l' mode='secondary'>
+            <Icon name='bookmark' width={24} height={24} />
+          </Styled.ControlButton>
+        </Styled.ControlButtons>
 
         <Styled.Kitchen>{['Европейская', 'Авторская']}</Styled.Kitchen>
 
         <Styled.WifiSpeed />
+        <Styled.AverageBill />
+        <Styled.Rating />
+        <Styled.Tags />
 
+        <Styled.AddFieldWrapper>
+          <Button mode='secondary' onClick={open}>
+            Добавить поле
+          </Button>
+        </Styled.AddFieldWrapper>
+
+        <Styled.Separator />
+        <Styled.Category title='Корея' description='Вайб Южной Кореи' image={staticImagesMap.potOfFood} />
         <UserRowCard
           username={user?.username}
           firstName={user?.firstName}
@@ -121,12 +152,6 @@ const LocationCreate: FC<LocationCreateProps> = ({ className }) => {
           }}
         />
       </Container>
-
-      <Styled.AddFieldWrapper>
-        <Button mode='secondary' onClick={open}>
-          Добавить поле
-        </Button>
-      </Styled.AddFieldWrapper>
     </Styled.Root>
   )
 }

@@ -30,6 +30,7 @@ declare type SvgNames =
   | 'bet'
   | 'bookmakers-rating'
   | 'bookmark'
+  | 'bookmark-fill'
   | 'boxing'
   | 'calendar'
   | 'card'

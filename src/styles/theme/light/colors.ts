@@ -16,6 +16,11 @@ const baseColors = {
   secondaryDisable: 'rgb(229, 230, 233)',
   secondaryBg: 'rgb(242, 243, 244)',
 
+  secondaryLight: 'rgb(242, 243, 244)',
+  secondaryLightPress: 'rgb(232,232,232)',
+  secondaryLightDisable: 'rgb(210,210,210)',
+  secondaryLightBg: 'rgb(242, 243, 244)',
+
   accentBlue: 'rgb(38, 136, 235)',
   accentBlueBg: 'rgb(237, 244, 252)',
 
@@ -32,7 +37,7 @@ const baseColors = {
   orangeDark: 'rgb(207, 094, 26)',
 
   accentAmber: 'rgb(247, 181, 0)',
-  accentAmberBg: 'rgb(255, 250, 235)',
+  accentAmberBg: 'rgb(255, 243, 201)',
 
   accentGray: 'rgb(126, 131, 146)',
   accentGrayLight: 'rgb(203, 205, 211)',

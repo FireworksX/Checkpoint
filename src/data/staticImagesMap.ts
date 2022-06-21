@@ -13,8 +13,18 @@ import personInLotusPosition from '../../public/assets/images/emoji/person-in-lo
 import plus from '../../public/assets/images/emoji/plus.png'
 import redHeart from '../../public/assets/images/emoji/red-heart.png'
 import dottedLineFace from '../../public/assets/images/emoji/dotted-line-face.png'
+import perseveringFace from '../../public/assets/images/emoji/persevering-face.png'
+import slightlyFrowningFace from '../../public/assets/images/emoji/slightly-frowning-face.png'
+import neutralFace from '../../public/assets/images/emoji/neutral-face.png'
+import slightlySmilingFace from '../../public/assets/images/emoji/slightly-smiling-face.png'
+import grinningFaceWithSmilingEyes from '../../public/assets/images/emoji/grinning-face-with-smiling-eyes.png'
 
 export const staticImagesMap = {
+  perseveringFace,
+  slightlyFrowningFace,
+  neutralFace,
+  slightlySmilingFace,
+  grinningFaceWithSmilingEyes,
   classicalBuilding,
   manWalkingLightSkinTone,
   potOfFood,

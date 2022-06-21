@@ -15,14 +15,15 @@ const LocationFieldsModal: FC<LocationFieldsModalProps> = ({ className }) => {
       <Styled.Root className={className}>
         <SimpleCell>Описание</SimpleCell>
         <SimpleCell>Теги</SimpleCell>
+        {/*<SimpleCell>Комментарии</SimpleCell>*/}
         <SimpleCell>Тип кухни</SimpleCell>
-        <SimpleCell>Любимые блюда</SimpleCell>
-        <SimpleCell>Любимые напитки</SimpleCell>
+        {/*<SimpleCell>Любимые блюда</SimpleCell>*/}
+        {/*<SimpleCell>Любимые напитки</SimpleCell>*/}
         <SimpleCell>Скорость Wi-Fi</SimpleCell>
-        <SimpleCell>Время работы</SimpleCell>
+        {/*<SimpleCell>Время работы</SimpleCell>*/}
         <SimpleCell>Средний чек</SimpleCell>
-        <SimpleCell expandable>Рейтинг</SimpleCell>
-        <SimpleCell expandable>Подключить бронирование</SimpleCell>
+        <SimpleCell>Рейтинг</SimpleCell>
+        {/*<SimpleCell expandable>Подключить бронирование</SimpleCell>*/}
       </Styled.Root>
     </BottomSheet>
   )

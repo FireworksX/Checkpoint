@@ -12,6 +12,15 @@ import SeparatorComp from '../../components/Separator/Separator'
 import TagsFieldView from '../../widgets/locationFields/tagsField/TagsFieldView/TagsFieldView'
 import Button from '../../components/Button/Button'
 import RatingFieldView from "../../widgets/locationFields/ratingField/RatingFieldView/RatingFieldView";
+import GalleryFieldEdit from "../../widgets/locationFields/galleryField/GalleryFieldEdit/GalleryFieldEdit";
+import TitleFieldEdit from "../../widgets/locationFields/titleField/TitleFieldEdit/TitleFieldEdit";
+import DescriptionFieldEdit
+    from "../../widgets/locationFields/descriptionField/DescriptionFieldEdit/DescriptionFieldEdit";
+import WifispeedFieldEdit from "../../widgets/locationFields/wifispeedField/WifispeedFieldEdit/WifispeedFieldEdit";
+import AverageBillFieldEdit
+    from "../../widgets/locationFields/averageBillField/AverageBillFieldEdit/AverageBillFieldEdit";
+import KitchenTypeFieldEdit
+    from "../../widgets/locationFields/kitchenTypeField/KitchenTypeFieldEdit/KitchenTypeFieldEdit";
 
 export const Root = styled.div``
 
@@ -19,27 +28,27 @@ export const Header = styled(PageHeader)`
   margin-bottom: 30px;
 `
 
-export const Gallery = styled(GalleryFieldView)`
+export const Gallery = styled(GalleryFieldEdit)`
   margin-bottom: 15px;
 `
 
-export const Title = styled(TitleFieldView)`
+export const Title = styled(TitleFieldEdit)`
   margin-bottom: 15px;
 `
 
-export const Description = styled(DescriptionFieldView)`
+export const Description = styled(DescriptionFieldEdit)`
   margin-bottom: 15px;
 `
 
-export const Kitchen = styled(KitchenTypeFieldView)`
+export const Kitchen = styled(KitchenTypeFieldEdit)`
   margin-bottom: 15px;
 `
 
-export const WifiSpeed = styled(WifispeedFieldView)`
+export const WifiSpeed = styled(WifispeedFieldEdit)`
   margin-bottom: 15px;
 `
 
-export const AverageBill = styled(AverageBillFieldView)`
+export const AverageBill = styled(AverageBillFieldEdit)`
   margin-bottom: 15px;
 `
 

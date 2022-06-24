@@ -9,7 +9,9 @@ export const Title = styled.h3`
   margin-bottom: 10px;
 `
 
-export const Wrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
+export const FieldDescription = styled.div`
+  ${({ theme }) => theme.typography.text_12_16};
+  text-align: right;
+  margin-top: 3px;
+  color: ${({ theme }) => theme.colors.secondary};
 `

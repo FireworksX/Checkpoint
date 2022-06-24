@@ -1,4 +1,6 @@
 declare type SvgNames =
+  | 'image'
+  | 'lock'
   | 'heart'
   | 'heart-fill'
   | 'group'

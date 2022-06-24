@@ -13,7 +13,8 @@ import {
   ControlButtons,
   Description,
   Gallery,
-  Kitchen, Rating,
+  Kitchen,
+  Rating,
   Separator,
   Tags,
   WifiSpeed
@@ -26,6 +27,10 @@ import { useCurrentUser } from '../../hooks/data/useCurrentUser'
 import CompilationCell from '../../components/CompilationCell/CompilationCell'
 import { staticImagesMap } from '../../data/staticImagesMap'
 import Icon from '../../components/Icon/Icon'
+import RadioButtons from 'src/widgets/RadioButtons/RadioButtons'
+import RadioButtonIcon from '../../widgets/RadioButtons/components/RadioButtonIcon/RadioButtonIcon'
+import { useRadioButtons } from '../../widgets/RadioButtons/hooks/useRadioButtons'
+import Slider from "../../components/Slider/Slider";
 
 interface LocationCreateProps {
   className?: string
@@ -89,6 +94,15 @@ const mediaList = [
 const LocationCreate: FC<LocationCreateProps> = ({ className }) => {
   const { open } = useModal(MODAL_NAMES.locationFields)
   const { user } = useCurrentUser()
+  const { list, onClick } = useRadioButtons([
+    {
+      label: 'Public',
+      description: 'Открыто всем пользователям',
+      before: <RadioButtonIcon iconName='image' />
+    },
+    { label: 'Private', description: 'Видите только вы', before: <RadioButtonIcon iconName='lock' /> }
+  ])
+
 
   return (
     <Styled.Root className={className}>
@@ -137,6 +151,8 @@ const LocationCreate: FC<LocationCreateProps> = ({ className }) => {
             Добавить поле
           </Button>
         </Styled.AddFieldWrapper>
+
+        {/*<RadioButtons buttons={list} onClick={onClick} />*/}
 
         <Styled.Separator />
         <Styled.Category title='Корея' description='Вайб Южной Кореи' image={staticImagesMap.potOfFood} />

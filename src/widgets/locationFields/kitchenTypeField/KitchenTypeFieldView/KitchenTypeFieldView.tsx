@@ -1,9 +1,9 @@
-import { FC } from 'react'
+import { FC, ReactNode } from 'react'
 import * as Styled from './styles'
 
 interface KitchenTypeFieldViewProps {
   className?: string
-  children: string[]
+  children: ReactNode[]
 }
 
 const KitchenTypeFieldView: FC<KitchenTypeFieldViewProps> = ({ className, children }) => {
@@ -11,9 +11,7 @@ const KitchenTypeFieldView: FC<KitchenTypeFieldViewProps> = ({ className, childr
     <Styled.Root className={className}>
       <Styled.Title>Кухня</Styled.Title>
       <Styled.Wrapper>
-        {children.map(el => (
-          <Styled.Cell key={el}>{el}</Styled.Cell>
-        ))}
+        {children}
       </Styled.Wrapper>
     </Styled.Root>
   )

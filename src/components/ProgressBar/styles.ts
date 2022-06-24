@@ -25,4 +25,5 @@ export const FrontSide = styled.div<Props>`
   height: 100%;
   border-radius: ${({ theme }) => theme.baseStyles.radius.radiusMain};
   width: ${({ value }) => `${value || 0}%`};
+  transition: ${({ theme }) => theme.animation.transitionDuration}
 `

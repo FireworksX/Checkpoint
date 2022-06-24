@@ -8,11 +8,12 @@ interface SimpleCellProps {
   after?: ReactNode
   expandable?: boolean
   description?: string | number
+  onClick?: (...args: any) => any
 }
 
-const SimpleCell: FC<SimpleCellProps> = ({ className, before, after, description, expandable, children }) => {
+const SimpleCell: FC<SimpleCellProps> = ({ className, before, after, description, expandable, children, onClick }) => {
   return (
-    <Styled.Root className={className}>
+    <Styled.Root className={className} onClick={onClick}>
       <Styled.Before>{before}</Styled.Before>
       <Styled.Main>
         {children}

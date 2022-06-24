@@ -1,7 +1,8 @@
 import styled from 'styled-components'
 import HorizontalScroll from 'src/components/HorizontalScroll/HorizontalScroll'
+import Touchable from 'src/components/Touchable/Touchable'
 import BaseImage from 'src/components/BaseImage/BaseImage'
-import Touchable from "src/components/Touchable/Touchable";
+import Icon from '../../../../components/Icon/Icon'
 
 export const Root = styled.div``
 
@@ -21,4 +22,25 @@ export const SlideImage = styled(BaseImage)`
   max-width: 100%;
   height: 100%;
   object-fit: cover;
+`
+
+export const NewWrapper = styled.div`
+  padding: 10px;
+  width: 100%;
+  height: 100%;
+`
+
+export const NewSlide = styled.div`
+  border: 2px dashed ${({ theme }) => theme.colors.secondary};
+  width: 100%;
+  height: 100%;
+  border-radius: ${({ theme }) => theme.baseStyles.radius.radiusMain};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
+
+export const NewIcon = styled(Icon)`
+  margin-bottom: 10px;
+  color: ${({ theme }) => theme.colors.secondary};
 `

@@ -30,11 +30,7 @@ export const useModal = <CTX extends object = any>(modalName: ModalName) => {
   }, [setCurrentModal, isOpen, setModalContext])
 
   const updateContext = useCallback(
-    (fields: Partial<CTX>) =>
-      setModalContext(curValue => {
-        console.log(curValue, fields);
-        return { ...curValue, ...fields } as CTX
-      }),
+    (fields: Partial<CTX>) => setModalContext(curValue => ({ ...curValue, ...fields } as CTX)),
     [setModalContext]
   )
 
@@ -43,7 +39,6 @@ export const useModal = <CTX extends object = any>(modalName: ModalName) => {
     open,
     close,
     context: modalContext,
-    updateContext,
-    setContext: setModalContext
+    updateContext
   }
 }

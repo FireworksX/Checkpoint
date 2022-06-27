@@ -3,7 +3,8 @@ import { useLocationDescriptionField } from './fields/useLocationDescriptionFiel
 import { useLocationTitleField } from './fields/useLocationTitleField'
 import { useLocationKitchenTypeField } from './fields/useLocationKitchenTypeField'
 import { useLocationWifispeedField } from './fields/useLocationWifispeedField'
-import {useLocationAverageBillField} from "./fields/useLocationAverageBillField";
+import { useLocationAverageBillField } from './fields/useLocationAverageBillField'
+import { useLocationTagsField } from './fields/useLocationTagsField'
 
 const text =
   'Бистро и пекарня на набережной реки Карповки. «Футура» работает в отдельном здании во дворе кластера «Ленполиграфмаш» рядом с Ботаническим садом. В кафе сотрудничают с фермерскими хозяйствами и обновляют меню в зависимости от имеющихся сезонных продуктов на кухне. На открытой кухне повара выпекают хлеб, закваску для него готовят сами. Команда «Футуры» поддерживает философию безотходного производства и, например, кофейный жмых превращает в мороженое. По части напитков акцент делают на пиво и сидр. На основе последнего еще замешивают легкие коктейли — «алконады». Кофе варят на зерне от петербургских обжарщиков Verle Coffee Roasters. Помимо стандартного набора «эспрессо-капучино-раф», есть интересные напитки: фильтр-кофе с вишневым кордиалом и колд-брю с кокосовой сгущенкой.'
@@ -24,6 +25,11 @@ export const useLocationControl = () => {
   const { Component: AverageBillComponent, values: averageBillValue } = useLocationAverageBillField({
     isEdit
   })
+  const { Component: TagsComponent, tags: tagsValue } = useLocationTagsField({
+    isEdit
+  })
+
+  console.log(tagsValue);
 
   return {
     isEdit,
@@ -32,6 +38,7 @@ export const useLocationControl = () => {
     DescriptionComponent,
     KitchenComponent,
     WifispeedComponent,
-    AverageBillComponent
+    AverageBillComponent,
+    TagsComponent
   }
 }

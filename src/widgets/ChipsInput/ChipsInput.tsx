@@ -1,6 +1,5 @@
-import { ChangeEvent, FC, KeyboardEvent, ReactNode, useCallback, useState } from 'react'
+import { ChangeEvent, FC, KeyboardEvent, ReactNode } from 'react'
 import * as Styled from './styles'
-import { useChipsInput } from './hooks/useChipsInput'
 
 export type ChipsInputValue = string | number
 
@@ -12,13 +11,14 @@ export interface ChipOption {
 
 export interface ChipsInputProps {
   renderChip: (chipData: ChipOption) => ReactNode
-  value: ChipOption[]
+  input: string
+  tags: ChipOption[]
   className?: string
+  onChange(e: ChangeEvent<HTMLInputElement>): void
+  onKeyDown(e: KeyboardEvent<HTMLInputElement>): void
 }
 
-const ChipsInput: FC<ChipsInputProps> = ({ className, value = [], renderChip }) => {
-  const { input, tags, onChange, onKeyDown } = useChipsInput(value)
-
+const ChipsInput: FC<ChipsInputProps> = ({ className, tags = [], renderChip, input, onChange, onKeyDown }) => {
   return (
     <Styled.Root className={className}>
       {tags.map(tag => renderChip(tag))}

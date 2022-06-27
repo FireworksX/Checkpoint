@@ -9,6 +9,8 @@ import WifispeedFieldEdit from '../../../widgets/locationFields/wifispeedField/W
 import WifispeedFieldView from '../../../widgets/locationFields/wifispeedField/WifispeedFieldView/WifispeedFieldView'
 import AverageBillFieldView from '../../../widgets/locationFields/averageBillField/AverageBillFieldView/AverageBillFieldView'
 import AverageBillFieldEdit from '../../../widgets/locationFields/averageBillField/AverageBillFieldEdit/AverageBillFieldEdit'
+import TagsFieldView from "../../../widgets/locationFields/tagsField/TagsFieldView/TagsFieldView";
+import TagsFieldEdit from "../../../widgets/locationFields/tagsField/TagsFieldEdit/TagsFieldEdit";
 
 type FieldsScheme = typeof fieldsScheme
 type FieldsSchemeName = keyof typeof fieldsScheme
@@ -62,6 +64,10 @@ const fieldsScheme = {
   averageBill: {
     view: AverageBillFieldView,
     edit: AverageBillFieldEdit
+  },
+  tags: {
+    view: TagsFieldView,
+    edit: TagsFieldEdit
   }
 }
 

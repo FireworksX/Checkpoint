@@ -4,14 +4,14 @@ import Chip from 'src/widgets/ChipsInput/components/Chip/Chip'
 import { ChipOption } from 'src/widgets/ChipsInput/ChipsInput'
 
 interface TagsFieldViewProps {
-  list: ChipOption[]
+  tags: ChipOption[]
   className?: string
 }
 
-const TagsFieldView: FC<TagsFieldViewProps> = ({ className, list }) => {
+const TagsFieldView: FC<TagsFieldViewProps> = ({ className, tags }) => {
   return (
     <Styled.Root className={className}>
-      {list.map(tag => (
+      {tags.map(tag => (
         <Chip key={tag.label}>#{tag.label}</Chip>
       ))}
     </Styled.Root>

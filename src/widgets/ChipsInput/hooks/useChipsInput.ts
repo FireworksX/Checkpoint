@@ -8,8 +8,9 @@ const getNewChip = (label: ChipsInputValue): ChipOption => ({
   label: label.toString()
 })
 
-export const useChipsInput = (tags: ChipOption[]) => {
+export const useChipsInput = (initialTags: ChipOption[] = []) => {
   const [input, setInput] = useState<string>('')
+  const [tags, setTags] = useState<ChipOption[]>(initialTags)
 
   const isExists = useCallback(
     (chipValue: ChipsInputValue) => tags.findIndex(({ value }) => value === chipValue) !== -1,

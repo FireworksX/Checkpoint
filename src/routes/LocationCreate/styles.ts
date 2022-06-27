@@ -53,7 +53,7 @@ export const Rating = styled(RatingFieldView)`
   margin-bottom: 15px;
 `
 
-export const Tags = styled(TagsFieldView)`
+export const Tags = styled.div`
   margin-bottom: 15px;
 `
 

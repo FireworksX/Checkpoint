@@ -97,8 +97,15 @@ const mediaList = [
 const LocationCreate: FC<LocationCreateProps> = ({ className }) => {
   const { open } = useModal(MODAL_NAMES.locationFields)
   const { user } = useCurrentUser()
-  const { DescriptionComponent, TitleComponent, KitchenComponent, WifispeedComponent, AverageBillComponent, toggleIsEdit } =
-    useLocationCreate()
+  const {
+    DescriptionComponent,
+    TitleComponent,
+    KitchenComponent,
+    WifispeedComponent,
+    AverageBillComponent,
+    TagsComponent,
+    toggleIsEdit
+  } = useLocationCreate()
   const { list, onClick } = useRadioButtons([
     {
       label: 'Public',
@@ -141,9 +148,7 @@ const LocationCreate: FC<LocationCreateProps> = ({ className }) => {
         <Styled.WifiSpeed>{WifispeedComponent}</Styled.WifiSpeed>
         <Styled.AverageBill>{AverageBillComponent}</Styled.AverageBill>
         <Styled.Rating />
-        <Styled.Tags />
-
-        <ChipsInput renderChip={({ label }) => <Chip>#{label}</Chip>} />
+        <Styled.Tags>{TagsComponent}</Styled.Tags>
 
         <Styled.AddFieldWrapper>
           <Button mode='secondary' onClick={open}>

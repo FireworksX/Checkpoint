@@ -7,12 +7,14 @@ interface KitchenTypeFieldViewProps {
 }
 
 const KitchenTypeFieldView: FC<KitchenTypeFieldViewProps> = ({ className, children }) => {
+  if (children.length === 0) {
+    return null
+  }
+
   return (
     <Styled.Root className={className}>
       <Styled.Title>Кухня</Styled.Title>
-      <Styled.Wrapper>
-        {children}
-      </Styled.Wrapper>
+      <Styled.Wrapper>{children}</Styled.Wrapper>
     </Styled.Root>
   )
 }

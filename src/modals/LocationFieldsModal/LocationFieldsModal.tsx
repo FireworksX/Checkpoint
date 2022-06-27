@@ -15,6 +15,7 @@ const LocationFieldsModal: FC<LocationFieldsModalProps> = ({ className }) => {
       <Styled.Root className={className}>
         <SimpleCell>Описание</SimpleCell>
         <SimpleCell>Теги</SimpleCell>
+        <SimpleCell>Достоинства / недостатки</SimpleCell>
         {/*<SimpleCell>Комментарии</SimpleCell>*/}
         <SimpleCell>Тип кухни</SimpleCell>
         {/*<SimpleCell>Любимые блюда</SimpleCell>*/}

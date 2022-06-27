@@ -30,7 +30,10 @@ import Icon from '../../components/Icon/Icon'
 import RadioButtons from 'src/widgets/RadioButtons/RadioButtons'
 import RadioButtonIcon from '../../widgets/RadioButtons/components/RadioButtonIcon/RadioButtonIcon'
 import { useRadioButtons } from '../../widgets/RadioButtons/hooks/useRadioButtons'
-import Slider from "../../components/Slider/Slider";
+import Slider from '../../components/Slider/Slider'
+import ChipsInput from '../../widgets/ChipsInput/ChipsInput'
+import Chip from '../../widgets/ChipsInput/components/Chip/Chip'
+import { useLocationCreate } from './hooks/useLocationCreate'
 
 interface LocationCreateProps {
   className?: string
@@ -38,7 +41,7 @@ interface LocationCreateProps {
 
 const mediaList = [
   {
-    _id: { $oid: '62ac2bc29fdfa7a54e24b34b' },
+    _id: '62ac2bc29fdfa7a54e24b34b',
     fileName: '1655450562_futura_2.jpeg',
     mimetype: 'image/jpeg',
     path: '/Users/arturabeltins/development/checkpoint-server/uploads/images',
@@ -49,7 +52,7 @@ const mediaList = [
     __v: 0
   },
   {
-    _id: { $oid: '62ac2bb89fdfa7a54e24b348' },
+    _id: '62ac2bb89fdfa7a54e24b348',
     fileName: '1655450552_futura_1.jpeg',
     mimetype: 'image/jpeg',
     path: '/Users/arturabeltins/development/checkpoint-server/uploads/images',
@@ -57,7 +60,7 @@ const mediaList = [
     author: '629a2d8d4a09e83ef51861a7'
   },
   {
-    _id: { $oid: '62ac2bc99fdfa7a54e24b34e' },
+    _id: '62ac2bc99fdfa7a54e24b34e',
     fileName: '1655450569_futura_3.jpeg',
     mimetype: 'image/jpeg',
     path: '/Users/arturabeltins/development/checkpoint-server/uploads/images',
@@ -68,7 +71,7 @@ const mediaList = [
     __v: 0
   },
   {
-    _id: { $oid: '62ac2bd09fdfa7a54e24b351' },
+    _id: '62ac2bd09fdfa7a54e24b351',
     fileName: '1655450576_futura_4.jpeg',
     mimetype: 'image/jpeg',
     path: '/Users/arturabeltins/development/checkpoint-server/uploads/images',
@@ -79,7 +82,7 @@ const mediaList = [
     __v: 0
   },
   {
-    _id: { $oid: '62ac2bd69fdfa7a54e24b354' },
+    _id: '62ac2bd69fdfa7a54e24b354',
     fileName: '1655450582_futura_5.jpeg',
     mimetype: 'image/jpeg',
     path: '/Users/arturabeltins/development/checkpoint-server/uploads/images',
@@ -94,6 +97,8 @@ const mediaList = [
 const LocationCreate: FC<LocationCreateProps> = ({ className }) => {
   const { open } = useModal(MODAL_NAMES.locationFields)
   const { user } = useCurrentUser()
+  const { DescriptionComponent, TitleComponent, KitchenComponent, WifispeedComponent, AverageBillComponent, toggleIsEdit } =
+    useLocationCreate()
   const { list, onClick } = useRadioButtons([
     {
       label: 'Public',
@@ -102,7 +107,6 @@ const LocationCreate: FC<LocationCreateProps> = ({ className }) => {
     },
     { label: 'Private', description: 'Видите только вы', before: <RadioButtonIcon iconName='lock' /> }
   ])
-
 
   return (
     <Styled.Root className={className}>
@@ -117,17 +121,10 @@ const LocationCreate: FC<LocationCreateProps> = ({ className }) => {
 
       <Styled.Gallery mediaFiles={mediaList} />
       <Container>
-        <Styled.Title>Футура</Styled.Title>
-        <Styled.Description>
-          Бистро и пекарня на набережной реки Карповки. «Футура» работает в отдельном здании во дворе кластера
-          «Ленполиграфмаш» рядом с Ботаническим садом. В кафе сотрудничают с фермерскими хозяйствами и обновляют меню в
-          зависимости от имеющихся сезонных продуктов на кухне. На открытой кухне повара выпекают хлеб, закваску для
-          него готовят сами. Команда «Футуры» поддерживает философию безотходного производства и, например, кофейный
-          жмых превращает в мороженое. По части напитков акцент делают на пиво и сидр. На основе последнего еще
-          замешивают легкие коктейли — «алконады». Кофе варят на зерне от петербургских обжарщиков Verle Coffee
-          Roasters. Помимо стандартного набора «эспрессо-капучино-раф», есть интересные напитки: фильтр-кофе с вишневым
-          кордиалом и колд-брю с кокосовой сгущенкой.
-        </Styled.Description>
+        <Styled.Title>{TitleComponent}</Styled.Title>
+        <button onClick={toggleIsEdit}>toggle is edit</button>
+
+        <Styled.Description>{DescriptionComponent}</Styled.Description>
 
         <Styled.ControlButtons>
           <Styled.ControlButton size='l'>Показать на карте</Styled.ControlButton>
@@ -139,20 +136,20 @@ const LocationCreate: FC<LocationCreateProps> = ({ className }) => {
           </Styled.ControlButton>
         </Styled.ControlButtons>
 
-        <Styled.Kitchen>{['Европейская', 'Авторская']}</Styled.Kitchen>
+        <Styled.Kitchen>{KitchenComponent}</Styled.Kitchen>
 
-        <Styled.WifiSpeed />
-        <Styled.AverageBill />
+        <Styled.WifiSpeed>{WifispeedComponent}</Styled.WifiSpeed>
+        <Styled.AverageBill>{AverageBillComponent}</Styled.AverageBill>
         <Styled.Rating />
         <Styled.Tags />
+
+        <ChipsInput renderChip={({ label }) => <Chip>#{label}</Chip>} />
 
         <Styled.AddFieldWrapper>
           <Button mode='secondary' onClick={open}>
             Добавить поле
           </Button>
         </Styled.AddFieldWrapper>
-
-        {/*<RadioButtons buttons={list} onClick={onClick} />*/}
 
         <Styled.Separator />
         <Styled.Category title='Корея' description='Вайб Южной Кореи' image={staticImagesMap.potOfFood} />

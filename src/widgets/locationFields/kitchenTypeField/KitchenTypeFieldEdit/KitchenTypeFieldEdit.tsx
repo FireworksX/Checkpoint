@@ -1,47 +1,15 @@
-import { FC, useCallback, useEffect, useState } from 'react'
+import { FC } from 'react'
 import * as Styled from './styles'
-import { AppendButton } from './styles'
 import KitchenTypeFieldCell from '../KitchenTypeFieldView/components/KitchenTypeFieldCell/KitchenTypeFieldCell'
-import { useModal } from 'src/hooks/useModal'
-import { MODAL_NAMES } from 'src/router/constants'
-import { LocationKitchenTypesModalContext } from 'src/modals/LocationKitchenTypesModal/LocationKitchenTypesModal'
 
 interface KitchenTypeFieldEditProps {
+  list: string[]
+  onOpen(): Promise<void>
+  onRemove(kitchen: string): void
   className?: string
 }
 
-const KitchenTypeFieldEdit: FC<KitchenTypeFieldEditProps> = ({ className }) => {
-  const [list, setList] = useState<string[]>([])
-  const { open, updateContext } = useModal<LocationKitchenTypesModalContext>(MODAL_NAMES.locationKitchenTypes)
-
-  useEffect(() => {
-    updateContext({
-      selected: list
-    })
-  }, [list, updateContext])
-
-  const onOpen = useCallback(
-    () =>
-      open({
-        selected: list,
-        onSelect(kitchen: string) {
-          setList(val => [...val, kitchen])
-        },
-        onAddOther(kitchen: string) {
-          setList(val => [...val, kitchen])
-        }
-      }),
-    [open, setList, list]
-  )
-
-  const onRemove = (kitchen: string) => {
-    const findIndex = list.indexOf(kitchen)
-    const newList = [...list]
-    newList.splice(findIndex, 1)
-
-    setList(newList)
-  }
-
+const KitchenTypeFieldEdit: FC<KitchenTypeFieldEditProps> = ({ className, list, onOpen, onRemove }) => {
   return (
     <Styled.Root className={className}>
       <Styled.View>

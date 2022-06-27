@@ -1,22 +1,18 @@
-import { FC, useState } from 'react'
+import { FC } from 'react'
 import * as Styled from './styles'
-import ProgressBar from 'src/components/ProgressBar/ProgressBar'
 import Slider from 'src/components/Slider/Slider'
 
 interface WifispeedFieldEditProps {
+  value: number
   className?: string
+  onChange(value: number): void
 }
 
-const WifispeedFieldEdit: FC<WifispeedFieldEditProps> = ({ className }) => {
-  const [value, setValue] = useState(0)
-
-  const valueLabel = value === 0 ? 'Интернет говно' : value === 100 ? 'Цифры запредельные' : `${value} мбит/с`
-
+const WifispeedFieldEdit: FC<WifispeedFieldEditProps> = ({ className, value, onChange }) => {
   return (
     <Styled.Root className={className}>
-      <ProgressBar label={<Styled.Title>Скорость WiFi</Styled.Title>} value={value} />
-      <Styled.FieldDescription>{valueLabel}</Styled.FieldDescription>
-      <Slider value={value} onChange={setValue} />
+      <Styled.View value={value} />
+      <Slider value={value} onChange={value => !Array.isArray(value) && onChange(value)} />
     </Styled.Root>
   )
 }

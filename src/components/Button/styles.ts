@@ -8,6 +8,7 @@ interface Props {
   stretched?: ButtonProps['stretched']
   color?: ButtonProps['color']
   mode?: ButtonProps['mode']
+  disabled?: ButtonProps['disabled']
 }
 
 const sizesMap: Record<NonNullable<Props['size']>, string> = {
@@ -19,7 +20,8 @@ const sizesMap: Record<NonNullable<Props['size']>, string> = {
 const colorsMap = (theme: DefaultTheme) => ({
   accent: {
     color: theme.colors.primary,
-    active: theme.colors.primaryPress
+    active: theme.colors.primaryPress,
+    disabled: theme.colors.primaryDisable
   },
 
   positive: {
@@ -39,7 +41,7 @@ const colorsMap = (theme: DefaultTheme) => ({
 })
 
 const modesMap = (theme: DefaultTheme, colorMode: Props['color']) => {
-  const { color, active } = colorsMap(theme)[colorMode || 'accent']
+  const { color, active, disabled } = colorsMap(theme)[colorMode || 'accent']
 
   return {
     primary: css`
@@ -56,6 +58,10 @@ const modesMap = (theme: DefaultTheme, colorMode: Props['color']) => {
 
       &:active {
         background-color: ${theme.colors.secondaryLightPress};
+      }
+
+      &:disabled {
+        color: ${disabled};
       }
     `,
 

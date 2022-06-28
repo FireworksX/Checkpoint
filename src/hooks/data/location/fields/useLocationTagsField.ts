@@ -25,6 +25,7 @@ export const useLocationTagsField = ({ isEdit, initialTags }: Props) => {
   })
 
   return {
+    fieldName: 'tags',
     Component,
     tags
   }

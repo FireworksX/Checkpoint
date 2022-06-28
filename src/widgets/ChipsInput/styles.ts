@@ -5,6 +5,7 @@ export const Root = styled.div`
   border-radius: ${({ theme }) => theme.baseStyles.radius.radiusMain};
   border: 1px solid ${({ theme }) => theme.colors.border};
   background: ${({ theme }) => theme.colors.backgroundWhite};
+  width: 100%;
 `
 
 export const Input = styled.input`

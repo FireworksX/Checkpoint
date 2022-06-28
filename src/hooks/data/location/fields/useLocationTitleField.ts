@@ -24,6 +24,7 @@ export const useLocationTitleField = ({ isEdit, initialText }: Props) => {
   })
 
   return {
+    fieldName: 'title',
     Component,
     value
   }

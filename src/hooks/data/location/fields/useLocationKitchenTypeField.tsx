@@ -24,6 +24,7 @@ export const useLocationKitchenTypeField = ({ isEdit, initialKitchen }: Props) =
   })
 
   return {
+    fieldName: 'kitchen',
     Component,
     list
   }

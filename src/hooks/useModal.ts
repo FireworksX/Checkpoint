@@ -22,12 +22,10 @@ export const useModal = <CTX extends object = any>(modalName: ModalName) => {
   )
 
   const close = useCallback(async () => {
-    if (isOpen) {
-      setCurrentModal(undefined)
-      setModalContext(undefined)
-      await modalPromiseWaiter()
-    }
-  }, [setCurrentModal, isOpen, setModalContext])
+    setCurrentModal(undefined)
+    setModalContext(undefined)
+    await modalPromiseWaiter()
+  }, [setCurrentModal, setModalContext])
 
   const updateContext = useCallback(
     (fields: Partial<CTX>) => {

@@ -1,19 +1,20 @@
 import { FC } from 'react'
 import DescriptionFieldEdit from 'src/widgets/locationFields/descriptionField/DescriptionFieldEdit/DescriptionFieldEdit'
 import DescriptionFieldView from 'src/widgets/locationFields/descriptionField/DescriptionFieldView/DescriptionFieldView'
-import TitleFieldView from '../../../widgets/locationFields/titleField/TitleFieldView/TitleFieldView'
-import TitleFieldEdit from '../../../widgets/locationFields/titleField/TitleFieldEdit/TitleFieldEdit'
-import KitchenTypeFieldView from '../../../widgets/locationFields/kitchenTypeField/KitchenTypeFieldView/KitchenTypeFieldView'
-import KitchenTypeFieldEdit from '../../../widgets/locationFields/kitchenTypeField/KitchenTypeFieldEdit/KitchenTypeFieldEdit'
-import WifispeedFieldEdit from '../../../widgets/locationFields/wifispeedField/WifispeedFieldEdit/WifispeedFieldEdit'
-import WifispeedFieldView from '../../../widgets/locationFields/wifispeedField/WifispeedFieldView/WifispeedFieldView'
-import AverageBillFieldView from '../../../widgets/locationFields/averageBillField/AverageBillFieldView/AverageBillFieldView'
-import AverageBillFieldEdit from '../../../widgets/locationFields/averageBillField/AverageBillFieldEdit/AverageBillFieldEdit'
-import TagsFieldView from "../../../widgets/locationFields/tagsField/TagsFieldView/TagsFieldView";
-import TagsFieldEdit from "../../../widgets/locationFields/tagsField/TagsFieldEdit/TagsFieldEdit";
+import TitleFieldView from 'src/widgets/locationFields/titleField/TitleFieldView/TitleFieldView'
+import TitleFieldEdit from 'src/widgets/locationFields/titleField/TitleFieldEdit/TitleFieldEdit'
+import KitchenTypeFieldView from 'src/widgets/locationFields/kitchenTypeField/KitchenTypeFieldView/KitchenTypeFieldView'
+import KitchenTypeFieldEdit from 'src/widgets/locationFields/kitchenTypeField/KitchenTypeFieldEdit/KitchenTypeFieldEdit'
+import WifispeedFieldEdit from 'src/widgets/locationFields/wifispeedField/WifispeedFieldEdit/WifispeedFieldEdit'
+import WifispeedFieldView from 'src/widgets/locationFields/wifispeedField/WifispeedFieldView/WifispeedFieldView'
+import AverageBillFieldView from 'src/widgets/locationFields/averageBillField/AverageBillFieldView/AverageBillFieldView'
+import AverageBillFieldEdit from 'src/widgets/locationFields/averageBillField/AverageBillFieldEdit/AverageBillFieldEdit'
+import TagsFieldView from 'src/widgets/locationFields/tagsField/TagsFieldView/TagsFieldView'
+import TagsFieldEdit from 'src/widgets/locationFields/tagsField/TagsFieldEdit/TagsFieldEdit'
+import RatingFieldView from 'src/widgets/locationFields/ratingField/RatingFieldView/RatingFieldView'
 
-type FieldsScheme = typeof fieldsScheme
-type FieldsSchemeName = keyof typeof fieldsScheme
+export type FieldsScheme = typeof fieldsScheme
+export type FieldsSchemeName = keyof typeof fieldsScheme
 type ComponentProps<T> = T extends FC<infer PROPS> ? PROPS : T
 
 type LocationFieldsViewProps = {
@@ -44,30 +45,48 @@ type Options<NAME extends FieldsSchemeName> = {
   editProps: LocationFieldEditProps<NAME>
 }
 
-const fieldsScheme = {
+export const fieldsScheme = {
   title: {
+    type: 'title' as const,
+    label: 'Заголовок',
     view: TitleFieldView,
     edit: TitleFieldEdit
   },
   description: {
+    type: 'description' as const,
+    label: 'Описание',
     view: DescriptionFieldView,
     edit: DescriptionFieldEdit
   },
   kitchen: {
+    type: 'kitchen' as const,
+    label: 'Тип кухни',
     view: KitchenTypeFieldView,
     edit: KitchenTypeFieldEdit
   },
   wifi: {
+    type: 'wifi' as const,
+    label: 'Скорость Wi-Fi',
     view: WifispeedFieldView,
     edit: WifispeedFieldEdit
   },
   averageBill: {
+    type: 'averageBill' as const,
+    label: 'Средний чек',
     view: AverageBillFieldView,
     edit: AverageBillFieldEdit
   },
   tags: {
+    type: 'tags' as const,
+    label: 'Теги',
     view: TagsFieldView,
     edit: TagsFieldEdit
+  },
+  polls: {
+    type: 'polls' as const,
+    label: 'Голосовалка',
+    view: RatingFieldView,
+    edit: RatingFieldView
   }
 }
 

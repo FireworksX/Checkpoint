@@ -95,25 +95,8 @@ const mediaList = [
 ]
 
 const LocationCreate: FC<LocationCreateProps> = ({ className }) => {
-  const { open } = useModal(MODAL_NAMES.locationFields)
   const { user } = useCurrentUser()
-  const {
-    DescriptionComponent,
-    TitleComponent,
-    KitchenComponent,
-    WifispeedComponent,
-    AverageBillComponent,
-    TagsComponent,
-    toggleIsEdit
-  } = useLocationCreate()
-  const { list, onClick } = useRadioButtons([
-    {
-      label: 'Public',
-      description: 'Открыто всем пользователям',
-      before: <RadioButtonIcon iconName='image' />
-    },
-    { label: 'Private', description: 'Видите только вы', before: <RadioButtonIcon iconName='lock' /> }
-  ])
+  const { openModal, fields, isExists, isEdit, toggleIsEdit } = useLocationCreate()
 
   return (
     <Styled.Root className={className}>
@@ -128,36 +111,38 @@ const LocationCreate: FC<LocationCreateProps> = ({ className }) => {
 
       <Styled.Gallery mediaFiles={mediaList} />
       <Container>
-        <Styled.Title>{TitleComponent}</Styled.Title>
-        <button onClick={toggleIsEdit}>toggle is edit</button>
+        {isExists('title') && <Styled.Title>{fields.titleField.Component}</Styled.Title>}
 
-        <Styled.Description>{DescriptionComponent}</Styled.Description>
+        {isExists('description') && <Styled.Title>{fields.descriptionField.Component}</Styled.Title>}
 
-        <Styled.ControlButtons>
-          <Styled.ControlButton size='l'>Показать на карте</Styled.ControlButton>
-          <Styled.ControlButton size='l' mode='secondary'>
-            <Icon name='heart' width={24} height={24} /> 150
-          </Styled.ControlButton>
-          <Styled.ControlButton size='l' mode='secondary'>
-            <Icon name='bookmark' width={24} height={24} />
-          </Styled.ControlButton>
-        </Styled.ControlButtons>
+        {/*<Styled.ControlButtons>*/}
+        {/*  <Styled.ControlButton size='l'>Показать на карте</Styled.ControlButton>*/}
+        {/*  <Styled.ControlButton size='l' mode='secondary'>*/}
+        {/*    <Icon name='heart' width={24} height={24} /> 150*/}
+        {/*  </Styled.ControlButton>*/}
+        {/*  <Styled.ControlButton size='l' mode='secondary'>*/}
+        {/*    <Icon name='bookmark' width={24} height={24} />*/}
+        {/*  </Styled.ControlButton>*/}
+        {/*</Styled.ControlButtons>*/}
 
-        <Styled.Kitchen>{KitchenComponent}</Styled.Kitchen>
+        {isExists('kitchen') && <Styled.Kitchen>{fields.kitchenField.Component}</Styled.Kitchen>}
+        {isExists('averageBill') && <Styled.Kitchen>{fields.averageBillField.Component}</Styled.Kitchen>}
 
-        <Styled.WifiSpeed>{WifispeedComponent}</Styled.WifiSpeed>
-        <Styled.AverageBill>{AverageBillComponent}</Styled.AverageBill>
-        <Styled.Rating />
-        <Styled.Tags>{TagsComponent}</Styled.Tags>
+        {isExists('wifi') && <Styled.Kitchen>{fields.wifispeedField.Component}</Styled.Kitchen>}
+
+        {isExists('polls') && <Styled.Rating>{fields.poolsField.Component}</Styled.Rating>}
+        {isExists('tags') && <Styled.Kitchen>{fields.tagsField.Component}</Styled.Kitchen>}
 
         <Styled.AddFieldWrapper>
-          <Button mode='secondary' onClick={open}>
+          <Button mode='secondary' disabled={!isEdit} onClick={openModal}>
             Добавить поле
+          </Button>
+          <Button mode='secondary' onClick={toggleIsEdit}>
+            {isEdit ? 'Предпросмотр' : 'Редактировать'}
           </Button>
         </Styled.AddFieldWrapper>
 
         <Styled.Separator />
-        <Styled.Category title='Корея' description='Вайб Южной Кореи' image={staticImagesMap.potOfFood} />
         <UserRowCard
           username={user?.username}
           firstName={user?.firstName}

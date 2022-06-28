@@ -24,6 +24,7 @@ export const useLocationDescriptionField = ({ isEdit, initialText }: Props) => {
   })
 
   return {
+    fieldName: 'description',
     Component,
     value
   }

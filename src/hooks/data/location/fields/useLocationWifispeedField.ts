@@ -22,6 +22,7 @@ export const useLocationWifispeedField = ({ isEdit, initialValue }: Props) => {
   })
 
   return {
+    fieldName: 'wifi',
     Component,
     value
   }

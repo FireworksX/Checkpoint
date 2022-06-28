@@ -29,6 +29,10 @@ export const Gallery = styled(GalleryFieldEdit)`
   margin-bottom: 15px;
 `
 
+export const Field = styled.div`
+  margin-bottom: 15px;
+`
+
 export const Title = styled.div`
   margin-bottom: 15px;
 `
@@ -49,7 +53,7 @@ export const AverageBill = styled.div`
   margin-bottom: 15px;
 `
 
-export const Rating = styled(RatingFieldView)`
+export const Rating = styled.div`
   margin-bottom: 15px;
 `
 
@@ -62,7 +66,9 @@ export const Category = styled(CompilationCell)`
 `
 
 export const AddFieldWrapper = styled(Container)`
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
   margin: 25px 0;
 `
 

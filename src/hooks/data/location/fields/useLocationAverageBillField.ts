@@ -22,6 +22,7 @@ export const useLocationAverageBillField = ({ isEdit, initialValue }: Props) => 
   })
 
   return {
+    fieldName: 'averageBill',
     Component,
     values
   }

@@ -12,6 +12,8 @@ export const RatingGrid = styled.div`
 
 export const CellWrapper = styled.div`
   text-align: center;
+  background: rgb(252 232 159);
+  border-radius: ${({ theme }) => theme.baseStyles.radius.radiusMain};
 `
 
 export const Cell = styled(Touchable)`
@@ -21,7 +23,6 @@ export const Cell = styled(Touchable)`
   align-items: center;
   justify-content: center;
   padding: 10px 5px;
-  margin-bottom: 7px;
 `
 
 export const CellImage = styled(BaseImage)`
@@ -32,5 +33,8 @@ export const CellImage = styled(BaseImage)`
 export const CellValue = styled.div`
   ${({ theme }) => theme.typography.text_14_24};
   color: ${({ theme }) => theme.colors.textColor};
-  display: none;
+  padding: 3px 0;
+  background: rgb(252 232 159);
+  border-bottom-left-radius: ${({ theme }) => theme.baseStyles.radius.radiusMain};
+  border-bottom-right-radius: ${({ theme }) => theme.baseStyles.radius.radiusMain};
 `

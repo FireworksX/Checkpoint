@@ -10,6 +10,7 @@ interface TagsFieldEditProps extends Pick<ChipsInputProps, 'tags' | 'input' | 'o
 const TagsFieldEdit: FC<TagsFieldEditProps> = ({ className, ...rest }) => {
   return (
     <Styled.Root className={className}>
+      <Styled.Title>Теги</Styled.Title>
       <ChipsInput {...rest} renderChip={({ label }) => <Chip>#{label}</Chip>} />
     </Styled.Root>
   )

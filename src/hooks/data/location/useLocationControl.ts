@@ -6,6 +6,7 @@ import { useLocationWifispeedField } from './fields/useLocationWifispeedField'
 import { useLocationAverageBillField } from './fields/useLocationAverageBillField'
 import { useLocationTagsField } from './fields/useLocationTagsField'
 import { useLocationPollsField } from './fields/useLocationPollsField'
+import { useLocationGalleryField } from './fields/useLocationGalleryField'
 
 export const useLocationControl = (initialIsEdit = false) => {
   const [isEdit, toggleIsEdit] = useToggle(initialIsEdit)
@@ -28,10 +29,14 @@ export const useLocationControl = (initialIsEdit = false) => {
   const poolsField = useLocationPollsField({
     isEdit
   })
+  const galleryField = useLocationGalleryField({
+    isEdit,
+  })
 
   return {
     isEdit,
     toggleIsEdit,
+    galleryField,
     titleField,
     descriptionField,
     kitchenField,

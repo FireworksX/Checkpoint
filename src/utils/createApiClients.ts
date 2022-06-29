@@ -16,6 +16,7 @@ interface RefreshTokenResponse {
 
 export interface ApiClient {
   get<T>(path: string, config?: AxiosRequestConfig): Promise<T>
+  post<T, D>(path: string, data?: D, config?: AxiosRequestConfig): Promise<T>
 }
 
 const DEFAULT_OPTIONS: ApiClientOptions = {}

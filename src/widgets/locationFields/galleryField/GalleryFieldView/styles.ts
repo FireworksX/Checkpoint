@@ -1,7 +1,8 @@
 import styled from 'styled-components'
 import HorizontalScroll from 'src/components/HorizontalScroll/HorizontalScroll'
 import BaseImage from 'src/components/BaseImage/BaseImage'
-import Touchable from "src/components/Touchable/Touchable";
+import Touchable from 'src/components/Touchable/Touchable'
+import CircleProgress from 'src/components/CircleProgress/CircleProgress'
 
 export const Root = styled.div``
 
@@ -13,7 +14,8 @@ export const Slide = styled(Touchable)`
   border-radius: ${({ theme }) => theme.baseStyles.radius.radiusMain};
   background: ${({ theme }) => theme.colors.backgroundWhite};
   overflow: hidden;
-  margin: 0 ${({ theme }) => theme.baseStyles.paddings.gutterMobile}; ;
+  margin: 0 ${({ theme }) => theme.baseStyles.paddings.gutterMobile};
+  position: relative;
 `
 
 export const SlideImage = styled(BaseImage)`
@@ -21,4 +23,12 @@ export const SlideImage = styled(BaseImage)`
   max-width: 100%;
   height: 100%;
   object-fit: cover;
+`
+
+export const Progress = styled(CircleProgress).attrs({ size: 50 })`
+  z-index: 2;
+      top: 50%;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
 `

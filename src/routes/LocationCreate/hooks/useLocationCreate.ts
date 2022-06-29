@@ -11,29 +11,11 @@ export const useLocationCreate = () => {
     updateContext,
     close
   } = useModal<LocationFieldsModalContext>(MODAL_NAMES.locationFields)
-  const [availableFields, setAvailableFields] = useState<FieldsSchemeName[]>(['title'])
 
-  const {
-    titleField,
-    descriptionField,
-    wifispeedField,
-    averageBillField,
-    kitchenField,
-    tagsField,
-    poolsField,
-    toggleIsEdit,
-    isEdit
-  } = useLocationControl(true)
+  const [availableFields, setAvailableFields] = useState<FieldsSchemeName[]>(['gallery', 'title'])
+  const { toggleIsEdit, isEdit, ...fields } = useLocationControl(true)
 
-  const resultFields = [
-    titleField,
-    descriptionField,
-    kitchenField,
-    wifispeedField,
-    averageBillField,
-    tagsField,
-    poolsField
-  ].filter(({ fieldName }) => availableFields.includes(fieldName as FieldsSchemeName))
+  const resultFields = Object.values(fields).filter(({ fieldName }) => availableFields.includes(fieldName as FieldsSchemeName))
 
   const isExists = useCallback((fieldName: FieldsSchemeName) => availableFields.includes(fieldName), [availableFields])
 
@@ -56,15 +38,7 @@ export const useLocationCreate = () => {
   }, [availableFields, updateContext])
 
   return {
-    fields: {
-      titleField,
-      descriptionField,
-      wifispeedField,
-      averageBillField,
-      kitchenField,
-      tagsField,
-      poolsField
-    },
+    fields,
     isEdit,
     isExists,
     resultFields,

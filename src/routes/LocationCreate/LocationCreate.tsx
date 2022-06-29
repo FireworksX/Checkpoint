@@ -12,6 +12,7 @@ import {
   ControlButton,
   ControlButtons,
   Description,
+  Field,
   Gallery,
   Kitchen,
   Rating,
@@ -39,61 +40,6 @@ interface LocationCreateProps {
   className?: string
 }
 
-const mediaList = [
-  {
-    _id: '62ac2bc29fdfa7a54e24b34b',
-    fileName: '1655450562_futura_2.jpeg',
-    mimetype: 'image/jpeg',
-    path: '/Users/arturabeltins/development/checkpoint-server/uploads/images',
-    size: 177897,
-    author: { $oid: '629a2d8d4a09e83ef51861a7' },
-    createdAt: { $date: { $numberLong: '1655450562492' } },
-    updatedAt: { $date: { $numberLong: '1655450562492' } },
-    __v: 0
-  },
-  {
-    _id: '62ac2bb89fdfa7a54e24b348',
-    fileName: '1655450552_futura_1.jpeg',
-    mimetype: 'image/jpeg',
-    path: '/Users/arturabeltins/development/checkpoint-server/uploads/images',
-    size: 161442,
-    author: '629a2d8d4a09e83ef51861a7'
-  },
-  {
-    _id: '62ac2bc99fdfa7a54e24b34e',
-    fileName: '1655450569_futura_3.jpeg',
-    mimetype: 'image/jpeg',
-    path: '/Users/arturabeltins/development/checkpoint-server/uploads/images',
-    size: 329669,
-    author: { $oid: '629a2d8d4a09e83ef51861a7' },
-    createdAt: { $date: { $numberLong: '1655450569394' } },
-    updatedAt: { $date: { $numberLong: '1655450569394' } },
-    __v: 0
-  },
-  {
-    _id: '62ac2bd09fdfa7a54e24b351',
-    fileName: '1655450576_futura_4.jpeg',
-    mimetype: 'image/jpeg',
-    path: '/Users/arturabeltins/development/checkpoint-server/uploads/images',
-    size: 124517,
-    author: { $oid: '629a2d8d4a09e83ef51861a7' },
-    createdAt: { $date: { $numberLong: '1655450576751' } },
-    updatedAt: { $date: { $numberLong: '1655450576751' } },
-    __v: 0
-  },
-  {
-    _id: '62ac2bd69fdfa7a54e24b354',
-    fileName: '1655450582_futura_5.jpeg',
-    mimetype: 'image/jpeg',
-    path: '/Users/arturabeltins/development/checkpoint-server/uploads/images',
-    size: 202092,
-    author: { $oid: '629a2d8d4a09e83ef51861a7' },
-    createdAt: { $date: { $numberLong: '1655450582488' } },
-    updatedAt: { $date: { $numberLong: '1655450582488' } },
-    __v: 0
-  }
-]
-
 const LocationCreate: FC<LocationCreateProps> = ({ className }) => {
   const { user } = useCurrentUser()
   const { openModal, fields, isExists, isEdit, toggleIsEdit } = useLocationCreate()
@@ -109,11 +55,12 @@ const LocationCreate: FC<LocationCreateProps> = ({ className }) => {
         right={<PageHeaderButton>Сохранить</PageHeaderButton>}
       />
 
-      <Styled.Gallery mediaFiles={mediaList} />
+      {isExists('gallery') && <Styled.Field>{fields.galleryField.Component}</Styled.Field>}
+
       <Container>
         {isExists('title') && <Styled.Title>{fields.titleField.Component}</Styled.Title>}
 
-        {isExists('description') && <Styled.Title>{fields.descriptionField.Component}</Styled.Title>}
+        {isExists('description') && <Styled.Field>{fields.descriptionField.Component}</Styled.Field>}
 
         {/*<Styled.ControlButtons>*/}
         {/*  <Styled.ControlButton size='l'>Показать на карте</Styled.ControlButton>*/}
@@ -125,13 +72,13 @@ const LocationCreate: FC<LocationCreateProps> = ({ className }) => {
         {/*  </Styled.ControlButton>*/}
         {/*</Styled.ControlButtons>*/}
 
-        {isExists('kitchen') && <Styled.Kitchen>{fields.kitchenField.Component}</Styled.Kitchen>}
-        {isExists('averageBill') && <Styled.Kitchen>{fields.averageBillField.Component}</Styled.Kitchen>}
+        {isExists('kitchen') && <Styled.Field>{fields.kitchenField.Component}</Styled.Field>}
+        {isExists('averageBill') && <Styled.Field>{fields.averageBillField.Component}</Styled.Field>}
 
-        {isExists('wifi') && <Styled.Kitchen>{fields.wifispeedField.Component}</Styled.Kitchen>}
+        {isExists('wifi') && <Styled.Field>{fields.wifispeedField.Component}</Styled.Field>}
 
-        {isExists('polls') && <Styled.Rating>{fields.poolsField.Component}</Styled.Rating>}
-        {isExists('tags') && <Styled.Kitchen>{fields.tagsField.Component}</Styled.Kitchen>}
+        {isExists('polls') && <Styled.Field>{fields.poolsField.Component}</Styled.Field>}
+        {isExists('tags') && <Styled.Field>{fields.tagsField.Component}</Styled.Field>}
 
         <Styled.AddFieldWrapper>
           <Button mode='secondary' disabled={!isEdit} onClick={openModal}>

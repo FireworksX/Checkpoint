@@ -3,8 +3,9 @@ import { useCallback, useState } from 'react'
 import { useApiClient } from './useApiClient'
 import { ApiResponseBody } from 'src/interfaces/Request'
 import { getCacheKey } from '../utils/getCacheKey'
+import { AxiosRequestConfig } from 'axios'
 
-interface Options {
+interface Options extends AxiosRequestConfig {
   useCache?: boolean
 }
 
@@ -13,7 +14,7 @@ const DEFAULT_OPTIONS: Options = {
 }
 
 export const useMutation = <RESDATA = any, DATA = undefined>(path: string, options = DEFAULT_OPTIONS) => {
-  const { useCache } = options
+  const { useCache, ...config } = options
   const apiClient = useApiClient()
   const [fetching, setFetching] = useState(false)
   const { mutate, cache } = useSWRConfig()
@@ -27,7 +28,9 @@ export const useMutation = <RESDATA = any, DATA = undefined>(path: string, optio
       }
 
       setFetching(true)
-      const response = (await apiClient.post<ApiResponseBody<RESDATA>>(path, data)).data
+      const response = (
+        await (apiClient?.post<ApiResponseBody<RESDATA>, DATA>(path, data, config) || Promise.resolve({ data: undefined }))
+      ).data
       setFetching(false)
 
       if (useCache) {
@@ -36,7 +39,7 @@ export const useMutation = <RESDATA = any, DATA = undefined>(path: string, optio
 
       return response
     },
-    [path]
+    [path, apiClient, cache, useCache]
   )
 
   return {

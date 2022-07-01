@@ -4,6 +4,7 @@ import { STORE_NAMES } from 'src/router/constants'
 
 interface Props {
   currentLocation?: Coords
+  zoom?: number
   hasPermissions: boolean
 }
 

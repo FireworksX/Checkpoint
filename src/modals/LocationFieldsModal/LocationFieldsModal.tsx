@@ -19,7 +19,7 @@ const LocationFieldsModal: FC<LocationFieldsModalProps> = ({ className }) => {
   const { context } = useModal<LocationFieldsModalContext>(MODAL_NAMES.locationFields)
 
   const fieldsList = Object.keys(fieldsScheme)
-    .filter(key => !context?.selected.includes(key as FieldsSchemeName))
+    .filter(key => !context?.selected?.includes(key as FieldsSchemeName))
     .map(key => fieldsScheme[key as FieldsSchemeName])
 
   return (

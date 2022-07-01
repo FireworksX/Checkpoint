@@ -30,7 +30,7 @@ export const asideButtonCss = css`
   z-index: 2;
 `
 
-export const CreateButton = styled(Link)<Props>`
+export const CreateButton = styled(Touchable)<Props>`
   ${asideButtonCss}
   bottom: 100px;
   left: ${({ theme }) => theme.baseStyles.paddings.gutterMobile};

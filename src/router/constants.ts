@@ -47,7 +47,8 @@ const STORE_NAMES = createConstants(
   'userAgentAtom',
   'hasNavigationMapHelpersAtom',
   'modalAtom',
-  'modalContextAtom'
+  'modalContextAtom',
+  'userLocationAtom'
 )
 
 const zIndex = {

@@ -1,9 +1,11 @@
 import { Request, Response } from 'express'
+import { DeepPartial } from './utils'
 
-export type CookiesType = Partial<{
+export type CookiesType = DeepPartial<{
   selfLocation: {
     lat: number
     lng: number
+    zoom: number
   }
   userPhone: string
   accessToken: string

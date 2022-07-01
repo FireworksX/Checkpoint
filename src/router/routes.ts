@@ -112,11 +112,6 @@ export const routes: Route[] = [
             component: routeComponents.TrendsRoute
           },
           {
-            name: ROUTE_NAMES.createPlace,
-            path: `createPlace`,
-            component: routeComponents.CreatePlaceRoute
-          },
-          {
             name: ROUTE_NAMES.city,
             path: `city`,
             children: [

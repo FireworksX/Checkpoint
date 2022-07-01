@@ -1,66 +1,63 @@
-import { useCallback, useEffect } from 'react'
-import { useRecoilState, useRecoilValue } from 'recoil'
-import { geoLocationAtom } from 'src/store/userStore'
-import { userAgentAtom } from '../store/configStore'
+import { useMemo } from 'react'
 import useCookies from './useCookies'
+import { useUserLocation } from './data/useUserLocation'
+import { useCityInfo } from '../routes/CityInfoRoute/hooks/useCityInfo'
+
+/*
+Нужен для того чтобы карта подстраивалась под пользователя только 1 раз
+ */
+let isOnceTrigger = true
+
+const DEFAULT_ZOOM_CITY = 10
+const DEFAULT_ZOOM_USER = 14
 
 export const useGeoLocation = () => {
-  const [_, setSelfLocation] = useCookies('selfLocation')
-  const [geoLocation, setGeoLocation] = useRecoilState(geoLocationAtom)
-  const userAgentValue = useRecoilValue(userAgentAtom)
+  const { city } = useCityInfo()
+  const [cookieSelfLocation, setSelfLocation] = useCookies('selfLocation')
+  const { userLocation } = useUserLocation()
 
-  const onValidatePermissions = useCallback(
-    (state: PermissionStatus['state']) => {
-      setGeoLocation(val => ({ ...val, hasPermissions: state === 'granted' }))
-    },
-    [setGeoLocation]
-  )
+  const zoom = useMemo(() => {
+    if (cookieSelfLocation?.zoom || (userLocation?.lng && userLocation?.lat)) {
+      return DEFAULT_ZOOM_USER
+    }
 
-  const onSubmitLocation = useCallback((coords: GeolocationPosition['coords']) => {
-    setGeoLocation(val => ({
-      ...val,
-      currentLocation: {
-        lat: coords?.latitude,
-        lng: coords?.longitude
+    return city?.geo?.zoom || DEFAULT_ZOOM_CITY
+  }, [userLocation, cookieSelfLocation, city])
+
+  const center = useMemo(() => {
+    if (isOnceTrigger && userLocation?.lat && userLocation?.lng) {
+      isOnceTrigger = false
+
+      return userLocation
+    }
+
+    if (cookieSelfLocation?.lat && cookieSelfLocation?.lng) {
+      return {
+        lat: cookieSelfLocation.lat,
+        lng: cookieSelfLocation.lng
       }
-    }))
-
-    if (coords) {
-      setSelfLocation({ lat: coords.latitude, lng: coords.longitude })
     }
-  }, [])
 
-  const onGetPermissions = useCallback(() => {
-    navigator.geolocation.getCurrentPosition(({ coords }) => onSubmitLocation(coords))
-  }, [setGeoLocation])
-
-  useEffect(() => {
-    if (userAgentValue?.isSafari) {
-      navigator.geolocation.getCurrentPosition(
-        ({ coords }) => {
-          onValidatePermissions('granted')
-          onSubmitLocation(coords)
-        },
-        () => {
-          onValidatePermissions('denied')
-        }
-      )
-    } else {
-      navigator.permissions.query({ name: 'geolocation' }).then(result => {
-        onValidatePermissions(result.state)
-        result.addEventListener('change', () => onValidatePermissions(result.state))
-      })
+    return {
+      lat: city?.geo.lat,
+      lng: city?.geo.lng
     }
-  }, [])
+  }, [city, cookieSelfLocation, userLocation])
 
-  useEffect(() => {
-    if (!geoLocation.hasPermissions) {
-      onGetPermissions()
-    }
-  }, [geoLocation])
+  // useIsomorphicEffect(() => {
+  //   if (cookieSelfLocation?.lat && cookieSelfLocation?.lng) {
+  //     setCenter({
+  //       lat: cookieSelfLocation?.lat,
+  //       lng: cookieSelfLocation?.lng
+  //     })
+  //   }
+  // }, [])
+  //
+  // useEffect(() => {}, [userLocation])
 
   return {
-    ...geoLocation,
-    onGetPermissions
+    center,
+    zoom,
+    setSelfLocation
   }
 }

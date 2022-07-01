@@ -35,6 +35,7 @@ import Slider from '../../components/Slider/Slider'
 import ChipsInput from '../../widgets/ChipsInput/ChipsInput'
 import Chip from '../../widgets/ChipsInput/components/Chip/Chip'
 import { useLocationCreate } from './hooks/useLocationCreate'
+import ProsAndConsFieldVIew from '../../widgets/locationFields/prosAndConsField/ProsAndConsFieldVIew/ProsAndConsFieldVIew'
 
 interface LocationCreateProps {
   className?: string

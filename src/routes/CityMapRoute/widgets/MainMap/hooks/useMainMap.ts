@@ -4,24 +4,43 @@ import { mapCenterAtom, mapPlacemarksAtom, mapSaveCenterAtom, mapZoomAtom } from
 import { useIsomorphicEffect } from 'src/hooks/useIsomorphicEffect'
 import { useCurrentUserPlaces } from 'src/hooks/data/useCurrentUserPlaces'
 import { useCallback } from 'react'
+import { useCityInfo } from 'src/routes/CityInfoRoute/hooks/useCityInfo'
+import { useUserLocation } from 'src/hooks/data/useUserLocation'
 
 export const useMainMap = () => {
   const { data: userPlaces } = useCurrentUserPlaces()
+  const { city } = useCityInfo()
   const [placemarks, setPlacemarks] = useRecoilState(mapPlacemarksAtom)
   const [saveCenter, setSaveCenter] = useRecoilState(mapSaveCenterAtom)
   const [center, setCenter] = useRecoilState(mapCenterAtom)
   const [zoom, setZoom] = useRecoilState(mapZoomAtom)
-  const { currentLocation } = useGeoLocation()
+  const { zoom: geoZoom, center: geoCenter } = useGeoLocation()
+  const { userLocation } = useUserLocation()
+
+  // const proxyCenter = isDetectedLocation ? currentLocation : city?.geo
+  // const initialZoom = profileZoom || city?.geo?.zoom
 
   useIsomorphicEffect(() => {
-    if (currentLocation) {
-      setCenter(currentLocation)
-      setSaveCenter(currentLocation)
+    setZoom(geoZoom)
+
+    if (saveCenter.lat > 0 && saveCenter.lng > 0) {
+      setCenter(saveCenter)
+    } else {
+      setCenter(geoCenter)
+      setSaveCenter(geoCenter)
     }
+
+    // if (proxyCenter) {
+    // }
+    //
+    // console.log(initialZoom);
+    // if (initialZoom) {
+    //   setZoom(initialZoom)
+    // }
   }, [])
 
   useIsomorphicEffect(() => {
-    setPlacemarks(userPlaces?.data || [])
+    // setPlacemarks(userPlaces?.data || [])
   }, [userPlaces])
 
   const onDragend = useCallback((map: any) => {
@@ -41,7 +60,7 @@ export const useMainMap = () => {
     setZoom,
     center,
     saveCenter,
-    currentLocation,
+    userLocation,
     onDragend,
     onZoomChange
   }

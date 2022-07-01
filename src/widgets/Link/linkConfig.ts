@@ -46,10 +46,6 @@ const linkConfig = {
     name: buildName(ROUTE_NAMES.navigation, ROUTE_NAMES.notifications),
     params: { required: [], optional: [] }
   },
-  createPlace: {
-    name: buildName(ROUTE_NAMES.navigation, ROUTE_NAMES.createPlace),
-    params: { required: [], optional: [] }
-  },
   cityList: {
     name: buildName(ROUTE_NAMES.cityList),
     params: { required: [], optional: [] }

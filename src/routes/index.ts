@@ -7,7 +7,6 @@ import ProfileFollowersRoute from './ProfileFollowersRoute/ProfileFollowersRoute
 import ProfileSubscribersRoute from './ProfileSubscribersRoute/ProfileSubscribersRoute'
 import NotificationsRoute from './NotificationsRoute/NotificationsRoute'
 import TrendsRoute from './TrendsRoute/TrendsRoute'
-import CreatePlaceRoute from './CreatePlaceRoute/CreatePlaceRoute'
 import WelcomeRoute from './WelcomeRoute/WelcomeRoute'
 import CityListRoute from './CityListRoute/CityListRoute'
 import CityInfoRoute from './CityInfoRoute/CityInfoRoute'
@@ -28,7 +27,6 @@ export default {
   ProfileSubscribersRoute,
   NotificationsRoute,
   TrendsRoute,
-  CreatePlaceRoute,
   WelcomeRoute,
   CityListRoute,
   CityInfoRoute,

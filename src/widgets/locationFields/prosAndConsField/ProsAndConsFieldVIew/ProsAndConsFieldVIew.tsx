@@ -1,0 +1,22 @@
+import { FC } from 'react'
+import * as Styled from './styles'
+import { staticImagesMap } from '../../../../data/staticImagesMap'
+
+interface ProsAndConsFieldVIewProps {
+  cons: string[]
+  pros: string[]
+  className?: string
+}
+
+const ProsAndConsFieldVIew: FC<ProsAndConsFieldVIewProps> = ({ className, pros, cons }) => {
+  return (
+    <Styled.Root className={className}>
+      <Styled.Title>
+        <Styled.TitleIcon src={staticImagesMap.thumbsUp} />
+        Плюсы
+      </Styled.Title>
+    </Styled.Root>
+  )
+}
+
+export default ProsAndConsFieldVIew

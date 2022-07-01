@@ -14,7 +14,8 @@ export const clientCookieManager = <T extends CookiesType = CookiesType>(prefix 
 
     for (let i = 0; i < pairs.length; i++) {
       const pair = pairs[i].split('=')
-      cookies[(pair[0] + '').trim()] = decodeURIComponent(pair[1])
+      const decodeValue = decodeURIComponent(pair[1])
+      cookies[(pair[0] + '').trim()] = decodeValue.includes('{') ? JSON.parse(decodeValue) : decodeValue
     }
 
     return cookies

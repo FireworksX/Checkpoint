@@ -40,11 +40,11 @@ const CityMapRoute: FC<HomeRouteProps> = ({ className }) => {
           <Icon name='less' />
         </Styled.ZoomButton>
       </Styled.ZoomControl>
-      <Styled.CreateButton type='locationCreate' isCreation={isCreation}>
+      <Styled.CreateButton isCreation={isCreation} onClick={onToggleIsCreation}>
         <Icon name='plus-circle' width={24} height={24} />
       </Styled.CreateButton>
       {isCreation && (
-        <Styled.SubmitButton type='createPlace' onClick={onToggleIsCreation}>
+        <Styled.SubmitButton type='locationCreate' onClick={onToggleIsCreation}>
           <Icon name='check-circle' width={24} height={24} />
         </Styled.SubmitButton>
       )}

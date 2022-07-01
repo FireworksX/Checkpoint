@@ -10,5 +10,10 @@ export interface City {
   gallery: MediaFile[]
   facts: { name: string; value: string }[]
   rates: CityRate[]
+  geo: {
+    lat: number
+    lng: number
+    zoom: number
+  }
   createdAt: Date
 }

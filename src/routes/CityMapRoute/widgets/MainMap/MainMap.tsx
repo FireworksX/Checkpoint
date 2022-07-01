@@ -10,13 +10,13 @@ interface MainMapProps {
 }
 
 const MainMap: FC<MainMapProps> = ({ className }) => {
-  const { center, zoom, currentLocation, placemarks, onDragend, onZoomChange } = useMainMap()
+  const { center, zoom, userLocation, placemarks, onDragend, onZoomChange } = useMainMap()
 
-  return (
+    return (
     <Styled.Root className={className}>
       <MapWrapper zoom={zoom} center={center} onDragend={onDragend} onZoomChange={onZoomChange}>
-        {currentLocation?.lat && currentLocation?.lng && (
-          <SelfPlacemark lat={currentLocation?.lat} lng={currentLocation?.lng} />
+        {userLocation?.lat && userLocation?.lng && (
+          <SelfPlacemark lat={userLocation?.lat} lng={userLocation?.lng} />
         )}
         {placemarks.map(placemark => (
           <Placemark key={placemark.id} lat={placemark.lat} lng={placemark.lng} />

@@ -12,6 +12,7 @@ import ProfileSettingsModal from 'src/modals/ProfileSettingsModal/ProfileSetting
 import EditCategoryModal from 'src/modals/EditCategoryModal/EditCategoryModal'
 import LocationFieldsModal from 'src/modals/LocationFieldsModal/LocationFieldsModal'
 import LocationKitchenTypesModal from 'src/modals/LocationKitchenTypesModal/LocationKitchenTypesModal'
+import ChooseCategoryModal from 'src/modals/ChooseCategoryModal/ChooseCategoryModal'
 
 interface NavigationRouteProps {
   className?: string
@@ -43,6 +44,7 @@ const NavigationRoute: FC<NavigationRouteProps> = ({ className, children }) => {
       <ProfileSettingsModal />
       <LocationFieldsModal />
       <LocationKitchenTypesModal />
+      <ChooseCategoryModal />
     </Styled.Root>
   )
 }

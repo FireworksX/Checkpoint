@@ -17,6 +17,7 @@ const GalleryFieldEdit: FC<GalleryFieldEditProps> = ({
   Selector,
   select
 }) => {
+
   return (
     <Styled.Root className={className}>
       {Selector}

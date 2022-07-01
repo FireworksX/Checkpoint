@@ -7,6 +7,7 @@ interface Props {
 
 export const Root = styled.div<Props>`
   transition: ${({ theme }) => theme.animation.transitionDuration};
+  outline: none;
 
   ${({ effect }) =>
     effect !== 'none' &&

@@ -13,14 +13,14 @@ const DEFAULT_OPTIONS: Options = {
   useCache: false
 }
 
-export const useMutation = <RESDATA = any, DATA = undefined>(path: string, options = DEFAULT_OPTIONS) => {
+export const useMutation = <OUTPUT = any, INPUT = undefined>(path: string, options = DEFAULT_OPTIONS) => {
   const { useCache, ...config } = options
   const apiClient = useApiClient()
   const [fetching, setFetching] = useState(false)
   const { mutate, cache } = useSWRConfig()
 
   const execute = useCallback(
-    async (data: DATA): Promise<ApiResponseBody<RESDATA>> => {
+    async (data: INPUT): Promise<ApiResponseBody<OUTPUT>> => {
       const cacheKey = getCacheKey(path, data)
 
       if (useCache && cache.get(cacheKey)) {
@@ -29,7 +29,7 @@ export const useMutation = <RESDATA = any, DATA = undefined>(path: string, optio
 
       setFetching(true)
       const response = (
-        await (apiClient?.post<ApiResponseBody<RESDATA>, DATA>(path, data, config) || Promise.resolve({ data: undefined }))
+        await (apiClient?.post<ApiResponseBody<OUTPUT>, INPUT>(path, data, config) || Promise.resolve({ data: undefined }))
       ).data
       setFetching(false)
 

@@ -24,17 +24,17 @@ const GalleryFieldView: FC<GalleryFieldViewProps> = ({ className, mediaFiles, pr
   return (
     <Styled.Root className={className}>
       <Styled.Wrapper>
-        {preloadMediaFiles.map((file, index) => (
-          <Styled.Slide key={index}>
-            <Styled.SlideImage src={file.src} />
-            {file.isLoading && <Styled.Progress progress={file.progress} />}
-          </Styled.Slide>
-        ))}
-
         {parsedMediaFiles.map(file => (
           <Styled.Slide key={file._id}>
             <Styled.SlideImage src={file.path} />
           </Styled.Slide>
+        ))}
+
+        {preloadMediaFiles.map((file, index) => (
+            <Styled.Slide key={index}>
+              <Styled.SlideImage src={file.src} />
+              {file.isLoading && <Styled.Progress progress={file.progress} />}
+            </Styled.Slide>
         ))}
       </Styled.Wrapper>
     </Styled.Root>

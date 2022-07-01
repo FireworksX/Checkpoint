@@ -8,7 +8,7 @@ interface PageHeaderButtonProps extends TouchableProps {
 
 const PageHeaderButton: FC<PageHeaderButtonProps> = ({ className, children, ...rest }) => {
   return (
-    <Styled.Root className={className} {...rest}>
+    <Styled.Root className={className} tagName='button' {...rest}>
       {children}
     </Styled.Root>
   )

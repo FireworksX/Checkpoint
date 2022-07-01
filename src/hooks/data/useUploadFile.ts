@@ -49,6 +49,7 @@ export const useUploadFile = (files?: File[] | null) => {
     fetching,
     currentIndex,
     progress,
-    resultFiles
+    resultFiles,
+    hasNext
   }
 }

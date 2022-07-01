@@ -1,41 +1,17 @@
 import { FC } from 'react'
 import * as Styled from './styles'
 import { route } from '../../hoc/route'
-import { MODAL_NAMES, ROUTE_NAMES } from '../../router/constants'
+import { ROUTE_NAMES } from '../../router/constants'
 import PageHeaderButtonBack from '../../widgets/PageHeader/components/PageHeaderButtonBack/PageHeaderButtonBack'
 import PageHeaderButton from 'src/widgets/PageHeader/components/PageHeaderButton/PageHeaderButton'
-import GalleryFieldView from '../../widgets/locationFields/galleryField/GalleryFieldView/GalleryFieldView'
-import {
-  AddFieldWrapper,
-  AverageBill,
-  Category,
-  ControlButton,
-  ControlButtons,
-  Description,
-  Field,
-  Gallery,
-  Kitchen,
-  Rating,
-  Separator,
-  Tags,
-  WifiSpeed
-} from './styles'
 import Container from '../../components/Container/Container'
 import Button from '../../components/Button/Button'
-import { useModal } from '../../hooks/useModal'
 import UserRowCard from '../../components/UserRowCard/UserRowCard'
 import { useCurrentUser } from '../../hooks/data/useCurrentUser'
+import { useLocationCreate } from './hooks/useLocationCreate'
 import CompilationCell from '../../components/CompilationCell/CompilationCell'
 import { staticImagesMap } from '../../data/staticImagesMap'
-import Icon from '../../components/Icon/Icon'
-import RadioButtons from 'src/widgets/RadioButtons/RadioButtons'
-import RadioButtonIcon from '../../widgets/RadioButtons/components/RadioButtonIcon/RadioButtonIcon'
-import { useRadioButtons } from '../../widgets/RadioButtons/hooks/useRadioButtons'
-import Slider from '../../components/Slider/Slider'
-import ChipsInput from '../../widgets/ChipsInput/ChipsInput'
-import Chip from '../../widgets/ChipsInput/components/Chip/Chip'
-import { useLocationCreate } from './hooks/useLocationCreate'
-import ProsAndConsFieldVIew from '../../widgets/locationFields/prosAndConsField/ProsAndConsFieldVIew/ProsAndConsFieldVIew'
+import {iconToImage} from "../../utils/iconToImage";
 
 interface LocationCreateProps {
   className?: string
@@ -43,7 +19,8 @@ interface LocationCreateProps {
 
 const LocationCreate: FC<LocationCreateProps> = ({ className }) => {
   const { user } = useCurrentUser()
-  const { openModal, fields, isExists, isEdit, toggleIsEdit } = useLocationCreate()
+  const { openModal, fields, isExists, isEdit, canCreate, category, toggleIsEdit, openChooseCategory, handleSubmit } =
+    useLocationCreate()
 
   return (
     <Styled.Root className={className}>
@@ -53,7 +30,11 @@ const LocationCreate: FC<LocationCreateProps> = ({ className }) => {
             <PageHeaderButtonBack />
           </PageHeaderButton>
         }
-        right={<PageHeaderButton>Сохранить</PageHeaderButton>}
+        right={
+          <PageHeaderButton disabled={!canCreate} onClick={handleSubmit}>
+            {category ? 'Сохранить' : 'Далее'}
+          </PageHeaderButton>
+        }
       />
 
       {isExists('gallery') && <Styled.Field>{fields.galleryField.Component}</Styled.Field>}
@@ -80,6 +61,24 @@ const LocationCreate: FC<LocationCreateProps> = ({ className }) => {
 
         {isExists('polls') && <Styled.Field>{fields.poolsField.Component}</Styled.Field>}
         {isExists('tags') && <Styled.Field>{fields.tagsField.Component}</Styled.Field>}
+
+        <Styled.Field>
+          {category ? (
+            <CompilationCell
+              title={category.name}
+              description={category.description}
+              image={iconToImage(category.icon)}
+              onClick={openChooseCategory}
+            />
+          ) : (
+            <CompilationCell
+              title='Категория'
+              description='Нужно выбрать категорию'
+              image={staticImagesMap.plus}
+              onClick={openChooseCategory}
+            />
+          )}
+        </Styled.Field>
 
         <Styled.AddFieldWrapper>
           <Button mode='secondary' disabled={!isEdit} onClick={openModal}>

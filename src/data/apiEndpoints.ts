@@ -16,6 +16,7 @@ export const apiEndpoints = {
   USERS_DETAIL: '/users/detail',
 
   LOCATIONS_LIST: '/locations/list',
+  LOCATIONS_CREATE: '/locations/create',
 
   CITY_LIST: '/cities/list',
   CITY_DETAIL: '/cities/detail',

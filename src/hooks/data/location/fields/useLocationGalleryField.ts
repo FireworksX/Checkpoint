@@ -11,16 +11,13 @@ interface Props {
 
 export const useLocationGalleryField = ({ isEdit, initialMediaFiles }: Props) => {
   const { select, Selector, files: innerFiles, readFiles } = useFileSelector({ multiple: true })
-  const [files, setFiles] = useState<MediaFile[]>(initialMediaFiles || [])
-  const { progress, currentIndex, resultFiles, runHandler } = useUploadFile(innerFiles)
+  const { progress, currentIndex, hasNext, resultFiles, runHandler } = useUploadFile(innerFiles)
 
-  const preloadFiles = readFiles
-    .map((src, index) => ({
-      src,
-      progress: index === currentIndex ? progress : 0,
-      isLoading: index >= currentIndex
-    }))
-    .slice(resultFiles.length - 1, -1)
+  const preloadFiles = readFiles.map((src, index) => ({
+    src,
+    progress: index === currentIndex ? progress : 0,
+    isLoading: index >= currentIndex
+  }))
 
   useEffect(() => {
     runHandler()
@@ -33,7 +30,7 @@ export const useLocationGalleryField = ({ isEdit, initialMediaFiles }: Props) =>
       mediaFiles: resultFiles
     },
     editProps: {
-      mediaFiles: resultFiles,
+      mediaFiles: !hasNext ? resultFiles : [],
       preloadMediaFiles: preloadFiles,
       select,
       Selector
@@ -43,6 +40,6 @@ export const useLocationGalleryField = ({ isEdit, initialMediaFiles }: Props) =>
   return {
     fieldName: 'gallery',
     Component,
-    files
+    files: resultFiles
   }
 }

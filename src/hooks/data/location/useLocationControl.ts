@@ -7,9 +7,11 @@ import { useLocationAverageBillField } from './fields/useLocationAverageBillFiel
 import { useLocationTagsField } from './fields/useLocationTagsField'
 import { useLocationPollsField } from './fields/useLocationPollsField'
 import { useLocationGalleryField } from './fields/useLocationGalleryField'
+import { omit } from 'src/utils/omit'
 
 export const useLocationControl = (initialIsEdit = false) => {
   const [isEdit, toggleIsEdit] = useToggle(initialIsEdit)
+
   const titleField = useLocationTitleField({ isEdit })
   const descriptionField = useLocationDescriptionField({
     isEdit
@@ -30,12 +32,10 @@ export const useLocationControl = (initialIsEdit = false) => {
     isEdit
   })
   const galleryField = useLocationGalleryField({
-    isEdit,
+    isEdit
   })
 
-  return {
-    isEdit,
-    toggleIsEdit,
+  const fields = {
     galleryField,
     titleField,
     descriptionField,
@@ -44,5 +44,18 @@ export const useLocationControl = (initialIsEdit = false) => {
     averageBillField,
     tagsField,
     poolsField
+  }
+
+  const values: { [P in keyof typeof fields]: Omit<typeof fields[P], 'Component' | 'fieldName'> } = Object.entries(fields).reduce((acc, [key, value]) => {
+    acc[key] = omit(value, 'Component', 'fieldName')
+
+    return acc
+  }, {} as any)
+
+  return {
+    isEdit,
+    toggleIsEdit,
+    fields,
+    values
   }
 }

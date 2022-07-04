@@ -24,6 +24,8 @@ export const useLocationCreate = () => {
     MODAL_NAMES.chooseCategory
   )
 
+  const { open: openSuccess } = useModal(MODAL_NAMES.successCreateLocation)
+
   const { execute } = useMutation<Location, CreateLocation>(apiEndpoints.LOCATIONS_CREATE)
 
   const [availableFields, setAvailableFields] = useState<FieldsSchemeName[]>(['gallery', 'title'])
@@ -96,8 +98,10 @@ export const useLocationCreate = () => {
       }
     })
 
-    console.log(response)
-  }, [openChooseCategory, categorySlug, values, saveCenter, city, category, execute])
+    if (response.success) {
+      openSuccess()
+    }
+  }, [openChooseCategory, categorySlug, values, saveCenter, city, category, execute, openSuccess])
 
   return {
     fields,

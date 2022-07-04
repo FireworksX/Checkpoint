@@ -20,6 +20,7 @@ import slightlySmilingFace from '../../public/assets/images/emoji/slightly-smili
 import grinningFaceWithSmilingEyes from '../../public/assets/images/emoji/grinning-face-with-smiling-eyes.png'
 import thumbsUp from '../../public/assets/images/emoji/thumbs-up.png'
 import thumbsDown from '../../public/assets/images/emoji/thumbs-down.png'
+import star from '../../public/assets/images/emoji/star.png'
 
 export const staticImagesMap = {
   perseveringFace,
@@ -43,7 +44,8 @@ export const staticImagesMap = {
   redHeart,
   dottedLineFace,
   thumbsUp,
-  thumbsDown
+  thumbsDown,
+  star
 } as const
 
 type Key = keyof typeof staticImagesMap

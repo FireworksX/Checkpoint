@@ -62,7 +62,8 @@ export const MODAL_NAMES = createConstants(
   'profileSettings',
   'locationFields',
   'locationKitchenTypes',
-  'chooseCategory'
+  'chooseCategory',
+  'successCreateLocation'
 )
 
 export type ModalName = keyof typeof MODAL_NAMES

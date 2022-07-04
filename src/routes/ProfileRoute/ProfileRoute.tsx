@@ -80,9 +80,9 @@ const ProfileRoute: FC<ProfileRouteProps> = ({ className }) => {
         {locations?.map(location => (
           <Styled.LocationCell
             key={location._id}
-            name={location.title}
+            name={location.fields.title}
             cover={'https://image.bugsm.co.kr/album/images/500/204702/20470222.jpg'}
-            description={location.description}
+            description={location.fields.description}
           />
         ))}
       </Styled.LocationsWrapper>

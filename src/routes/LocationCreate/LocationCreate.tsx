@@ -11,7 +11,8 @@ import { useCurrentUser } from '../../hooks/data/useCurrentUser'
 import { useLocationCreate } from './hooks/useLocationCreate'
 import CompilationCell from '../../components/CompilationCell/CompilationCell'
 import { staticImagesMap } from '../../data/staticImagesMap'
-import {iconToImage} from "../../utils/iconToImage";
+import { iconToImage } from '../../utils/iconToImage'
+import { noop } from '../../utils/helpers'
 
 interface LocationCreateProps {
   className?: string
@@ -68,14 +69,14 @@ const LocationCreate: FC<LocationCreateProps> = ({ className }) => {
               title={category.name}
               description={category.description}
               image={iconToImage(category.icon)}
-              onClick={openChooseCategory}
+              onClick={isEdit ? openChooseCategory : noop}
             />
           ) : (
             <CompilationCell
               title='Категория'
               description='Нужно выбрать категорию'
               image={staticImagesMap.plus}
-              onClick={openChooseCategory}
+              onClick={isEdit ? openChooseCategory : noop}
             />
           )}
         </Styled.Field>

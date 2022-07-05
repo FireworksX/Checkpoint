@@ -13,7 +13,8 @@ import EditCategoryModal from 'src/modals/EditCategoryModal/EditCategoryModal'
 import LocationFieldsModal from 'src/modals/LocationFieldsModal/LocationFieldsModal'
 import LocationKitchenTypesModal from 'src/modals/LocationKitchenTypesModal/LocationKitchenTypesModal'
 import ChooseCategoryModal from 'src/modals/ChooseCategoryModal/ChooseCategoryModal'
-import SuccessCreateLocationModal from '../../modals/SuccessCreateLocationModal/SuccessCreateLocationModal'
+import SuccessCreateLocationModal from 'src/modals/SuccessCreateLocationModal/SuccessCreateLocationModal'
+import LocationViewOptionsModal from 'src/modals/LocationViewOptionsModal/LocationViewOptionsModal'
 
 interface NavigationRouteProps {
   className?: string
@@ -47,6 +48,7 @@ const NavigationRoute: FC<NavigationRouteProps> = ({ className, children }) => {
       <LocationKitchenTypesModal />
       <ChooseCategoryModal />
       <SuccessCreateLocationModal />
+      <LocationViewOptionsModal />
     </Styled.Root>
   )
 }

@@ -1,14 +1,14 @@
 import { useState } from 'react'
 import { useLocationField } from '../useLocationField'
 
-interface Props {
+export interface LocationTitleFieldProps {
   isEdit: boolean
   initialText?: string
 }
 
 const DEFAULT_TEXT = ''
 
-export const useLocationTitleField = ({ isEdit, initialText }: Props) => {
+export const useLocationTitleField = ({ isEdit, initialText }: LocationTitleFieldProps) => {
   const [value, setValue] = useState(initialText || DEFAULT_TEXT)
 
   const Component = useLocationField({

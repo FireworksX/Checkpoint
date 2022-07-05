@@ -1,3 +1,8 @@
+import {BaseUser} from "./User";
+import {Category} from "./Category";
+import {City} from "./City";
+import { MediaFile } from "./MediaFile";
+
 export type LocationTitleField = string
 export type LocationDescriptionField = string
 export type LocationGalleryField = string[]
@@ -15,6 +20,17 @@ export type LocationFieldsMap = Partial<{
   averageBill: LocationAverageBillField
   tags: LocationTagsField
 }>
+
+export type LocationAuthor = Omit<BaseUser, 'counters' | 'subscribers' | 'followers' | 'categories'>
+
+export type LocationDetail = Pick<Location, '_id' | 'fields' | 'slug' | 'coords'> & {
+  author: LocationAuthor
+  category: Category
+  city: City
+  fields: {
+    gallery: MediaFile[]
+  }
+}
 
 export interface Location {
   _id: string

@@ -2,12 +2,12 @@ import { useLocationField } from '../useLocationField'
 import { useChipsInput } from 'src/widgets/ChipsInput/hooks/useChipsInput'
 import { ChipOption } from 'src/widgets/ChipsInput/ChipsInput'
 
-interface Props {
+export interface LocationTagsFieldProps {
   isEdit: boolean
   initialTags?: ChipOption[]
 }
 
-export const useLocationTagsField = ({ isEdit, initialTags }: Props) => {
+export const useLocationTagsField = ({ isEdit, initialTags }: LocationTagsFieldProps) => {
   const { tags, input, onChange, onKeyDown } = useChipsInput(initialTags)
 
   const Component = useLocationField({

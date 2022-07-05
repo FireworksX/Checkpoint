@@ -72,9 +72,9 @@ export const routes: Route[] = [
                   {
                     name: ROUTE_NAMES.locationView,
                     path: '/',
-                    component: routeComponents.LocationView
-                  },
-                  { name: ROUTE_NAMES.locationEdit, path: '/edit' }
+                    component: routeComponents.LocationView,
+                    children: [{ name: ROUTE_NAMES.locationEdit, path: '/edit' }]
+                  }
                 ]
               },
               { name: ROUTE_NAMES.locationCreate, path: '/create', component: routeComponents.LocationCreate }

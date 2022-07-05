@@ -8,6 +8,7 @@ interface PageHeaderButtonBackProps {
 
 const PageHeaderButtonBack: FC<PageHeaderButtonBackProps> = ({ className }) => {
   const { back } = useRouter()
+
   return (
     <Styled.Root className={className} onClick={back}>
       <Styled.BackIcon />

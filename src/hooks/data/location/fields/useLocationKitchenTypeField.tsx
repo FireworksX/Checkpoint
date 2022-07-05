@@ -2,12 +2,12 @@ import { useLocationField } from '../useLocationField'
 import { useKitchenTypeFieldEdit } from 'src/widgets/locationFields/kitchenTypeField/KitchenTypeFieldEdit/hooks/useKitchenTypeFieldEdit'
 import KitchenTypeFieldCell from 'src/widgets/locationFields/kitchenTypeField/KitchenTypeFieldView/components/KitchenTypeFieldCell/KitchenTypeFieldCell'
 
-interface Props {
+export interface LocationKitchenTypeFieldProps {
   isEdit: boolean
   initialKitchen?: string[]
 }
 
-export const useLocationKitchenTypeField = ({ isEdit, initialKitchen }: Props) => {
+export const useLocationKitchenTypeField = ({ isEdit, initialKitchen }: LocationKitchenTypeFieldProps) => {
   const { list, onOpen, onRemove } = useKitchenTypeFieldEdit(initialKitchen)
 
   const Component = useLocationField({

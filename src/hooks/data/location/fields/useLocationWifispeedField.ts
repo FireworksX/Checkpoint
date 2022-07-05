@@ -1,12 +1,12 @@
 import { useState } from 'react'
 import { useLocationField } from '../useLocationField'
 
-interface Props {
+export interface LocationWifispeedFieldProps {
   isEdit: boolean
   initialValue?: number
 }
 
-export const useLocationWifispeedField = ({ isEdit, initialValue }: Props) => {
+export const useLocationWifispeedField = ({ isEdit, initialValue }: LocationWifispeedFieldProps) => {
   const [value, setValue] = useState(initialValue || 25)
 
   const Component = useLocationField({

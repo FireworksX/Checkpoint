@@ -23,8 +23,8 @@ export const useModal = <CTX extends object = any>(modalName: ModalName) => {
 
   const close = useCallback(async () => {
     setCurrentModal(undefined)
-    setModalContext(undefined)
     await modalPromiseWaiter()
+    setModalContext(undefined)
   }, [setCurrentModal, setModalContext])
 
   const updateContext = useCallback(

@@ -35,7 +35,7 @@ export const useLocationCreate = () => {
   const { city } = useCityInfo()
   const saveCenter = useRecoilValue(mapSaveCenterAtom)
 
-  const userCategories = useMemo(() => user?.categories || [], [])
+  const userCategories = useMemo(() => user?.categories || [], [user])
 
   const resultFields = Object.values(fields).filter(({ fieldName }) =>
     availableFields.includes(fieldName as FieldsSchemeName)

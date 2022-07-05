@@ -4,14 +4,21 @@ import { MediaFile } from '../../../../interfaces/MediaFile'
 import { useFileSelector } from '../../../useFileSelector'
 import { useUploadFile } from '../../useUploadFile'
 
-interface Props {
+export interface LocationGalleryFieldProps {
   isEdit: boolean
   initialMediaFiles?: MediaFile[]
 }
 
-export const useLocationGalleryField = ({ isEdit, initialMediaFiles }: Props) => {
+export const useLocationGalleryField = ({ isEdit, initialMediaFiles }: LocationGalleryFieldProps) => {
   const { select, Selector, files: innerFiles, readFiles } = useFileSelector({ multiple: true })
   const { progress, currentIndex, hasNext, resultFiles, runHandler } = useUploadFile(innerFiles)
+  const [proxyResultFiles, setProxyResultFiles] = useState(initialMediaFiles || [])
+
+  useEffect(() => {
+    if (resultFiles.length > 0) {
+      setProxyResultFiles(resultFiles)
+    }
+  }, [resultFiles])
 
   const preloadFiles = readFiles.map((src, index) => ({
     src,
@@ -27,10 +34,10 @@ export const useLocationGalleryField = ({ isEdit, initialMediaFiles }: Props) =>
     fieldName: 'gallery',
     isEdit,
     viewProps: {
-      mediaFiles: resultFiles
+      mediaFiles: proxyResultFiles
     },
     editProps: {
-      mediaFiles: !hasNext ? resultFiles : [],
+      mediaFiles: !hasNext ? proxyResultFiles : [],
       preloadMediaFiles: preloadFiles,
       select,
       Selector

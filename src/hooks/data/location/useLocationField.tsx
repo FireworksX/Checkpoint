@@ -40,7 +40,7 @@ type LocationFieldEditProps<NAME extends FieldsSchemeName> = LocationFieldsEditP
 type LocationFieldView<NAME extends FieldsSchemeName> = LocationFieldsView[NAME]
 type LocationFieldEdit<NAME extends FieldsSchemeName> = LocationFieldsEdit[NAME]
 
-type Options<NAME extends FieldsSchemeName> = {
+export type LocationFieldOptions<NAME extends FieldsSchemeName> = {
   fieldName: NAME
   isEdit: boolean
   viewProps: LocationFieldViewProps<NAME>
@@ -95,6 +95,12 @@ export const fieldsScheme = {
     label: 'Галерея',
     view: GalleryFieldView,
     edit: GalleryFieldEdit
+  },
+  address: {
+    type: 'address' as const,
+    label: 'Адрес',
+    view: GalleryFieldView,
+    edit: GalleryFieldEdit
   }
 }
 
@@ -103,7 +109,7 @@ export const useLocationField = <NAME extends FieldsSchemeName>({
   isEdit,
   viewProps,
   editProps
-}: Options<NAME>) => {
+}: LocationFieldOptions<NAME>) => {
   const ViewComponent = fieldsScheme[fieldName].view
   const EditComponent = fieldsScheme[fieldName].edit
 

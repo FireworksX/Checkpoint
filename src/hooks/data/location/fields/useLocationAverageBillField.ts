@@ -1,12 +1,12 @@
 import { useState } from 'react'
 import { useLocationField } from '../useLocationField'
 
-interface Props {
+export interface LocationAverageBillFieldProps {
   isEdit: boolean
   initialValue?: [number, number]
 }
 
-export const useLocationAverageBillField = ({ isEdit, initialValue }: Props) => {
+export const useLocationAverageBillField = ({ isEdit, initialValue }: LocationAverageBillFieldProps) => {
   const [values, setValues] = useState<[number, number]>(initialValue || [10, 30])
 
   const Component = useLocationField({

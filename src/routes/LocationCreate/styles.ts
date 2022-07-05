@@ -9,15 +9,8 @@ import CompilationCell from '../../components/CompilationCell/CompilationCell'
 import WifispeedFieldView from '../../widgets/locationFields/wifispeedField/WifispeedFieldView/WifispeedFieldView'
 import AverageBillFieldView from '../../widgets/locationFields/averageBillField/AverageBillFieldView/AverageBillFieldView'
 import SeparatorComp from '../../components/Separator/Separator'
-import TagsFieldView from '../../widgets/locationFields/tagsField/TagsFieldView/TagsFieldView'
 import Button from '../../components/Button/Button'
-import RatingFieldView from '../../widgets/locationFields/ratingField/RatingFieldView/RatingFieldView'
 import GalleryFieldEdit from '../../widgets/locationFields/galleryField/GalleryFieldEdit/GalleryFieldEdit'
-import TitleFieldEdit from '../../widgets/locationFields/titleField/TitleFieldEdit/TitleFieldEdit'
-import DescriptionFieldEdit from '../../widgets/locationFields/descriptionField/DescriptionFieldEdit/DescriptionFieldEdit'
-import WifispeedFieldEdit from '../../widgets/locationFields/wifispeedField/WifispeedFieldEdit/WifispeedFieldEdit'
-import AverageBillFieldEdit from '../../widgets/locationFields/averageBillField/AverageBillFieldEdit/AverageBillFieldEdit'
-import KitchenTypeFieldEdit from '../../widgets/locationFields/kitchenTypeField/KitchenTypeFieldEdit/KitchenTypeFieldEdit'
 
 export const Root = styled.div``
 

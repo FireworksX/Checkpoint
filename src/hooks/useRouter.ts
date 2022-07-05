@@ -24,7 +24,9 @@ export const useRouter = () => {
   const defaultParams = useMemo(
     () => ({
       [ROUTE_PARAMS.citySlug]:
-        route?.params?.[ROUTE_PARAMS.citySlug] ?? (cookieCitySlug === 'undefined' ? undefined : cookieCitySlug)
+        route?.params?.[ROUTE_PARAMS.citySlug] ?? (cookieCitySlug === 'undefined' ? undefined : cookieCitySlug),
+      [ROUTE_PARAMS.locationSlug]:
+        route?.params?.[ROUTE_PARAMS.locationSlug]
     }),
     [route, cookieCitySlug]
   )

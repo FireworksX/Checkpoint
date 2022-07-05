@@ -45,16 +45,6 @@ const LocationCreate: FC<LocationCreateProps> = ({ className }) => {
 
         {isExists('description') && <Styled.Field>{fields.descriptionField.Component}</Styled.Field>}
 
-        {/*<Styled.ControlButtons>*/}
-        {/*  <Styled.ControlButton size='l'>Показать на карте</Styled.ControlButton>*/}
-        {/*  <Styled.ControlButton size='l' mode='secondary'>*/}
-        {/*    <Icon name='heart' width={24} height={24} /> 150*/}
-        {/*  </Styled.ControlButton>*/}
-        {/*  <Styled.ControlButton size='l' mode='secondary'>*/}
-        {/*    <Icon name='bookmark' width={24} height={24} />*/}
-        {/*  </Styled.ControlButton>*/}
-        {/*</Styled.ControlButtons>*/}
-
         {isExists('kitchen') && <Styled.Field>{fields.kitchenField.Component}</Styled.Field>}
         {isExists('averageBill') && <Styled.Field>{fields.averageBillField.Component}</Styled.Field>}
 

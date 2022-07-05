@@ -1,9 +1,9 @@
 import { FC } from 'react'
 import * as Styled from './styles'
 import SelfPlacemark from './components/SelfPlacemark/SelfPlacemark'
-import Placemark from './components/Placemark/Placemark'
 import MapWrapper from 'src/widgets/MapWrapper/MapWrapper'
 import { useMainMap } from './hooks/useMainMap'
+import Placemark from "../../../../widgets/Placemark/Placemark";
 
 interface MainMapProps {
   className?: string
@@ -12,7 +12,8 @@ interface MainMapProps {
 const MainMap: FC<MainMapProps> = ({ className }) => {
   const { center, zoom, userLocation, placemarks, onDragend, onZoomChange } = useMainMap()
 
-    return (
+
+  return (
     <Styled.Root className={className}>
       <MapWrapper zoom={zoom} center={center} onDragend={onDragend} onZoomChange={onZoomChange}>
         {userLocation?.lat && userLocation?.lng && (

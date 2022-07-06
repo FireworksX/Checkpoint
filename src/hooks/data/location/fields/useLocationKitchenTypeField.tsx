@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { useLocationField } from '../useLocationField'
 import { useKitchenTypeFieldEdit } from 'src/widgets/locationFields/kitchenTypeField/KitchenTypeFieldEdit/hooks/useKitchenTypeFieldEdit'
 import KitchenTypeFieldCell from 'src/widgets/locationFields/kitchenTypeField/KitchenTypeFieldView/components/KitchenTypeFieldCell/KitchenTypeFieldCell'
@@ -26,6 +27,7 @@ export const useLocationKitchenTypeField = ({ isEdit, initialKitchen }: Location
   return {
     fieldName: 'kitchen',
     Component,
-    list
+    list,
+    isEmpty: list.length === 0
   }
 }

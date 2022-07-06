@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useLocationField } from '../useLocationField'
 
 export interface LocationWifispeedFieldProps {
@@ -6,8 +6,12 @@ export interface LocationWifispeedFieldProps {
   initialValue?: number
 }
 
-export const useLocationWifispeedField = ({ isEdit, initialValue }: LocationWifispeedFieldProps) => {
-  const [value, setValue] = useState(initialValue || 25)
+export const useLocationWifispeedField = ({ isEdit, initialValue = 0 }: LocationWifispeedFieldProps) => {
+  const [value, setValue] = useState(initialValue || 0)
+
+  useEffect(() => {
+    setValue(initialValue)
+  }, [initialValue])
 
   const Component = useLocationField({
     fieldName: 'wifi',
@@ -24,6 +28,7 @@ export const useLocationWifispeedField = ({ isEdit, initialValue }: LocationWifi
   return {
     fieldName: 'wifi',
     Component,
-    value
+    value,
+    isEmpty: value === 0
   }
 }

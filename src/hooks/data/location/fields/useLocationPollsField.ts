@@ -18,5 +18,6 @@ export const useLocationPollsField = ({ isEdit }: Props) => {
   return {
     fieldName: 'wifi',
     Component,
+    isEmpty: false
   }
 }

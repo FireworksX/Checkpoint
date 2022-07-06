@@ -81,6 +81,7 @@ const ProfileRoute: FC<ProfileRouteProps> = ({ className }) => {
           <Styled.LocationCell
             key={location._id}
             name={location.fields.title}
+            slug={location.slug}
             cover={'https://image.bugsm.co.kr/album/images/500/204702/20470222.jpg'}
             description={location.fields.description}
           />

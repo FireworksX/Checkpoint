@@ -19,24 +19,28 @@ const Link: React.FC<LinkProps> = props => {
   const router = useRouter()
   const { isSamePage, link, href, routeParams } = useLinkConfig(type || 'profile', props)
 
-  const onClickHandler = useCallback((e: React.MouseEvent<any>) => {
-    e.preventDefault()
-    e.stopPropagation()
+  const onClickHandler = useCallback(
+    (e: React.MouseEvent<any>) => {
+      e.preventDefault()
+      e.stopPropagation()
 
-    if (onClick) {
-      onClick(e)
-    }
+      if (onClick) {
+        onClick(e)
+      }
 
-    if (link) {
-      router.routerInstance.navigate(link?.name, routeParams)
-    }
-  }, [onClick, router, link, routeParams])
+      if (link) {
+        router.routerInstance.navigate(link?.name, routeParams)
+      }
+    },
+    [onClick, router, link, routeParams]
+  )
 
   return (
     <Styled.Root
       className={cn(className, {
         [activeClassName]: isSamePage
       })}
+      tagName={href ? 'a' : 'span'}
       href={href}
       onClick={onClickHandler}
     >

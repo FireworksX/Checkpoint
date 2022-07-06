@@ -27,6 +27,7 @@ export const useLocationTagsField = ({ isEdit, initialTags }: LocationTagsFieldP
   return {
     fieldName: 'tags',
     Component,
-    tags
+    tags,
+    isEmpty: tags.length === 0
   }
 }

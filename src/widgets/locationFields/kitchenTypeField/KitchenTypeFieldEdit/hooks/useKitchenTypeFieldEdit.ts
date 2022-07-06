@@ -13,6 +13,12 @@ export const useKitchenTypeFieldEdit = (initialKitchen?: string[]) => {
     })
   }, [list, updateContext])
 
+  useEffect(() => {
+    if (initialKitchen) {
+      setList(initialKitchen)
+    }
+  }, [initialKitchen])
+
   const onOpen = useCallback(
     () =>
       open({

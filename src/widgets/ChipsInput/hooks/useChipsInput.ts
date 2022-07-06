@@ -1,4 +1,4 @@
-import { ChangeEvent, KeyboardEvent, useCallback, useState } from 'react'
+import { ChangeEvent, KeyboardEvent, useCallback, useEffect, useState } from 'react'
 import { ChipOption, ChipsInputValue } from '../ChipsInput'
 
 const SUBMIT_KEYS = ['Enter', ',']
@@ -8,9 +8,15 @@ const getNewChip = (label: ChipsInputValue): ChipOption => ({
   label: label.toString()
 })
 
-export const useChipsInput = (initialTags: ChipOption[] = []) => {
+const DEFAULT: ChipOption[] = []
+
+export const useChipsInput = (initialTags: ChipOption[]) => {
   const [input, setInput] = useState<string>('')
-  const [tags, setTags] = useState<ChipOption[]>(initialTags)
+  const [tags, setTags] = useState<ChipOption[]>(initialTags || DEFAULT)
+
+  useEffect(() => {
+    setTags(initialTags || DEFAULT)
+  }, [initialTags])
 
   const isExists = useCallback(
     (chipValue: ChipsInputValue) => tags.findIndex(({ value }) => value === chipValue) !== -1,

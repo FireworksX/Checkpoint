@@ -9,16 +9,22 @@ export interface LocationGalleryFieldProps {
   initialMediaFiles?: MediaFile[]
 }
 
+const DEFAULT: MediaFile[] = []
+
 export const useLocationGalleryField = ({ isEdit, initialMediaFiles }: LocationGalleryFieldProps) => {
   const { select, Selector, files: innerFiles, readFiles } = useFileSelector({ multiple: true })
   const { progress, currentIndex, hasNext, resultFiles, runHandler } = useUploadFile(innerFiles)
-  const [proxyResultFiles, setProxyResultFiles] = useState(initialMediaFiles || [])
+  const [proxyResultFiles, setProxyResultFiles] = useState(initialMediaFiles || DEFAULT)
 
   useEffect(() => {
     if (resultFiles.length > 0) {
       setProxyResultFiles(resultFiles)
     }
   }, [resultFiles])
+
+  useEffect(() => {
+    setProxyResultFiles(initialMediaFiles || DEFAULT)
+  }, [initialMediaFiles])
 
   const preloadFiles = readFiles.map((src, index) => ({
     src,
@@ -47,6 +53,7 @@ export const useLocationGalleryField = ({ isEdit, initialMediaFiles }: LocationG
   return {
     fieldName: 'gallery',
     Component,
-    files: resultFiles
+    files: resultFiles,
+    isEmpty: proxyResultFiles.length === 0
   }
 }

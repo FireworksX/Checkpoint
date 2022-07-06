@@ -1,9 +1,9 @@
 import styled from 'styled-components'
 import BaseImage from 'src/components/BaseImage/BaseImage'
-import LogosStack from '../LogosStack/LogosStack'
 import Touchable from '../Touchable/Touchable'
+import Link from 'src/widgets/Link/Link'
 
-export const Root = styled.div`
+export const Root = styled(Link)`
   padding: 10px ${({ theme }) => theme.baseStyles.paddings.gutterMobile};
   display: flex;
   align-items: center;

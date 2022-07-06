@@ -59,7 +59,7 @@ const linkConfig = {
     params: { required: [], optional: [ROUTE_PARAMS.citySlug] }
   },
   locationView: {
-    name: buildName(ROUTE_NAMES.navigation, ROUTE_NAMES.location, ROUTE_NAMES.locationView),
+    name: buildName(ROUTE_NAMES.navigation, ROUTE_NAMES.location, ROUTE_NAMES.locationDetail, ROUTE_NAMES.locationView),
     params: { required: [], optional: [ROUTE_PARAMS.locationSlug] }
   },
   locationEdit: {

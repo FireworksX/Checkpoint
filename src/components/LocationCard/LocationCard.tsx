@@ -4,6 +4,7 @@ import Icon from '../Icon/Icon'
 
 interface LocationCardProps {
   name: string
+  slug: string
   cover?: string
   description?: string
   className?: string
@@ -12,11 +13,11 @@ interface LocationCardProps {
 const descr =
   'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid atque aut corporis facilis laudantium minus necessitatibus neque nobis officia perspiciatis rem, voluptas? Aspernatur cumque, eligendi laboriosam natus ratione sapiente veritatis.'
 
-const LocationCard: FC<LocationCardProps> = ({ className, cover, name, description = descr }) => {
+const LocationCard: FC<LocationCardProps> = ({ className, cover, slug, name, description = descr }) => {
   const limitedDescription = (description || '').slice(0, 70) + '...'
 
   return (
-    <Styled.Root className={className}>
+    <Styled.Root className={className} type='locationView' locationSlug={slug}>
       {cover && <Styled.Cover src={cover} />}
       <div>
         <Styled.Title>{name}</Styled.Title>

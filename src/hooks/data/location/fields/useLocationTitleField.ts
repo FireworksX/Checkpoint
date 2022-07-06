@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useLocationField } from '../useLocationField'
 
 export interface LocationTitleFieldProps {
@@ -8,8 +8,12 @@ export interface LocationTitleFieldProps {
 
 const DEFAULT_TEXT = ''
 
-export const useLocationTitleField = ({ isEdit, initialText }: LocationTitleFieldProps) => {
-  const [value, setValue] = useState(initialText || DEFAULT_TEXT)
+export const useLocationTitleField = ({ isEdit, initialText = DEFAULT_TEXT }: LocationTitleFieldProps) => {
+  const [value, setValue] = useState(initialText)
+
+  useEffect(() => {
+    setValue(initialText)
+  }, [initialText])
 
   const Component = useLocationField({
     fieldName: 'title',
@@ -26,6 +30,7 @@ export const useLocationTitleField = ({ isEdit, initialText }: LocationTitleFiel
   return {
     fieldName: 'title',
     Component,
-    value
+    value,
+    isEmpty: value === ''
   }
 }

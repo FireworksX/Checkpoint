@@ -23,7 +23,13 @@ export const useLinkConfig = (type: LinkType, props?: LinkProps) => {
     })
   }
 
-  const href = router.routerInstance.buildUrl(link?.name || 'root', routeParams)
+  let href
+
+  try {
+    href = router.routerInstance.buildUrl(link?.name || 'root', routeParams)
+  } catch (e) {
+    console.error(e, link.name, routeParams)
+  }
   const isSamePage = route?.path === href
 
   return {

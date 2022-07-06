@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useLocationField } from '../useLocationField'
 
 export interface LocationAverageBillFieldProps {
@@ -6,8 +6,14 @@ export interface LocationAverageBillFieldProps {
   initialValue?: [number, number]
 }
 
+const DEFAULT = [0, 0] as [number, number]
+
 export const useLocationAverageBillField = ({ isEdit, initialValue }: LocationAverageBillFieldProps) => {
-  const [values, setValues] = useState<[number, number]>(initialValue || [10, 30])
+  const [values, setValues] = useState<[number, number]>(initialValue || DEFAULT)
+
+  useEffect(() => {
+    setValues(initialValue || DEFAULT)
+  }, [initialValue])
 
   const Component = useLocationField({
     fieldName: 'averageBill',
@@ -24,6 +30,7 @@ export const useLocationAverageBillField = ({ isEdit, initialValue }: LocationAv
   return {
     fieldName: 'averageBill',
     Component,
-    values
+    values,
+    isEmpty: values[0] === 0 && values[1] === 0
   }
 }

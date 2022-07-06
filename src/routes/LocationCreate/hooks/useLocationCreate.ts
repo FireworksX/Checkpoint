@@ -28,7 +28,7 @@ export const useLocationCreate = () => {
 
   const { execute } = useMutation<Location, CreateLocation>(apiEndpoints.LOCATIONS_CREATE)
 
-  const [availableFields, setAvailableFields] = useState<FieldsSchemeName[]>(['gallery', 'title'])
+  const [availableFields, setAvailableFields] = useState<FieldsSchemeName[]>([])
   const [categorySlug, setCategorySlug] = useState<string | undefined>()
   const { toggleIsEdit, isEdit, fields, values } = useLocationControl(true)
   const { user } = useCurrentUser()

@@ -8,6 +8,7 @@ import {LocationTagsFieldProps, useLocationTagsField} from './fields/useLocation
 import { useLocationPollsField } from './fields/useLocationPollsField'
 import {LocationGalleryFieldProps, useLocationGalleryField} from './fields/useLocationGalleryField'
 import { omit } from 'src/utils/omit'
+import {useEffect} from "react";
 
 type WrapField<T> = Omit<T, 'isEdit'>
 
@@ -23,6 +24,10 @@ type InitialData = Partial<{
 
 export const useLocationControl = (initialIsEdit = false, initialData: InitialData = {}) => {
   const [isEdit, toggleIsEdit] = useToggle(initialIsEdit)
+
+  useEffect(() => {
+    console.log('initialData was updated');
+  }, [initialData])
 
   const titleField = useLocationTitleField({ isEdit, ...initialData?.title })
 

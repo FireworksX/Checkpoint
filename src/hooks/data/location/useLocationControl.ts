@@ -25,10 +25,6 @@ type InitialData = Partial<{
 export const useLocationControl = (initialIsEdit = false, initialData: InitialData = {}) => {
   const [isEdit, toggleIsEdit] = useToggle(initialIsEdit)
 
-  useEffect(() => {
-    console.log('initialData was updated');
-  }, [initialData])
-
   const titleField = useLocationTitleField({ isEdit, ...initialData?.title })
 
   const descriptionField = useLocationDescriptionField({

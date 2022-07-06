@@ -1,4 +1,5 @@
 declare type SvgNames =
+  | 'trash'
   | 'image'
   | 'lock'
   | 'heart'

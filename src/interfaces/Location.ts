@@ -1,7 +1,7 @@
-import {BaseUser} from "./User";
-import {Category} from "./Category";
-import {City} from "./City";
-import { MediaFile } from "./MediaFile";
+import { BaseUser } from './User'
+import { Category } from './Category'
+import { City } from './City'
+import { MediaFile } from './MediaFile'
 
 export type LocationTitleField = string
 export type LocationDescriptionField = string
@@ -47,3 +47,5 @@ export interface Location {
 }
 
 export type CreateLocation = Omit<Location, '_id' | 'author' | 'slug' | 'createdAt'>
+
+export type RemoveLocation = { slug: string }

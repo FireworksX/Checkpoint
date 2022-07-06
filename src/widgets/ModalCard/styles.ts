@@ -17,6 +17,7 @@ export const Body = styled.div`
 
 export const Icon = styled.div`
   margin: 8px auto 16px;
+  color: ${({ theme }) => theme.colors.primary};
 `
 
 export const Header = styled.div`

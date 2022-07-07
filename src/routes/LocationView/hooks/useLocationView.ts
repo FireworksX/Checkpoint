@@ -15,7 +15,9 @@ import { useLinkConfig } from 'src/widgets/Link/hooks/useLinkConfig'
 export const useLocationView = () => {
   const { user } = useCurrentUser()
   const { locationSlug, citySlug, backSafe } = useRouter()
-  const { data } = useRequest<LocationDetail>(`${apiEndpoints.LOCATIONS_DETAIL}/${locationSlug}`)
+  const { data, fetching, isValidating } = useRequest<LocationDetail>(
+    `${apiEndpoints.LOCATIONS_DETAIL}/${locationSlug}`
+  )
   const afterRemoveLink = useLinkConfig('cityMap', { citySlug })
 
   const { execute: handleRemove } = useMutation<boolean, RemoveLocation>(apiEndpoints.LOCATIONS_REMOVE)
@@ -77,6 +79,10 @@ export const useLocationView = () => {
           onClick: closeOptionsModal
         },
         {
+          label: 'Редактировать',
+          onClick: closeOptionsModal
+        },
+        {
           label: 'Удалить',
           mode: 'destructive',
           onClick: async () => {
@@ -99,6 +105,8 @@ export const useLocationView = () => {
     city: data?.data?.city,
     category: data?.data?.category,
     fields,
-    openOptions
+    openOptions,
+    fetching,
+    isValidating
   }
 }

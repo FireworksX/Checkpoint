@@ -1,26 +1,26 @@
 import { FC } from 'react'
 import * as Styled from './styles'
-import { route } from '../../hoc/route'
-import { ROUTE_NAMES } from '../../router/constants'
-import PageHeaderButton from '../../widgets/PageHeader/components/PageHeaderButton/PageHeaderButton'
-import PageHeaderButtonBack from '../../widgets/PageHeader/components/PageHeaderButtonBack/PageHeaderButtonBack'
-import Container from '../../components/Container/Container'
-import Icon from '../../components/Icon/Icon'
-import UserRowCard from '../../components/UserRowCard/UserRowCard'
+import { route } from 'src/hoc/route'
+import { ROUTE_NAMES } from 'src/router/constants'
+import PageHeaderButton from 'src/widgets/PageHeader/components/PageHeaderButton/PageHeaderButton'
+import PageHeaderButtonBack from 'src/widgets/PageHeader/components/PageHeaderButtonBack/PageHeaderButtonBack'
+import Container from 'src/components/Container/Container'
+import Icon from 'src/components/Icon/Icon'
+import UserRowCard from 'src/components/UserRowCard/UserRowCard'
 import { useLocationView } from './hooks/useLocationView'
-import { iconToImage } from '../../utils/iconToImage'
-import { noop } from '../../utils/helpers'
-import CompilationCell from '../../components/CompilationCell/CompilationCell'
+import { iconToImage } from 'src/utils/iconToImage'
+import { noop } from 'src/utils/helpers'
+import CompilationCell from 'src/components/CompilationCell/CompilationCell'
 
 interface LocationViewProps {
   className?: string
 }
 
 const LocationView: FC<LocationViewProps> = ({ className }) => {
-  const { author, category, fields, openOptions } = useLocationView()
+  const { author, category, fields, openOptions, fetching } = useLocationView()
 
   return (
-    <Styled.Root className={className}>
+    <Styled.Root className={className} fetching={fetching}>
       <Styled.Header
         left={
           <PageHeaderButton>

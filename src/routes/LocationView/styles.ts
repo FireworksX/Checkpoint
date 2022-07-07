@@ -1,9 +1,10 @@
 import styled from 'styled-components'
-import PageHeader from '../../widgets/PageHeader/PageHeader'
-import SeparatorComp from "../../components/Separator/Separator";
-import Button from "../../components/Button/Button";
+import PageHeader from 'src/widgets/PageHeader/PageHeader'
+import SeparatorComp from "src/components/Separator/Separator";
+import Button from "src/components/Button/Button";
+import Page from "src/widgets/Page/Page";
 
-export const Root = styled.div``
+export const Root = styled(Page)``
 
 export const Header = styled(PageHeader)`
   margin-bottom: 30px;

@@ -9,15 +9,22 @@ import { useLinkConfig } from './hooks/useLinkConfig'
 export interface LinkPropsInternal {
   className?: string
   activeClassName?: string
+  waitNavigate?: (navigate: () => void) => void | Promise<void>
   onClick?: (e: React.MouseEvent<any>) => any
 }
 
 export type LinkProps = PropsWithChildren<LinkPropsInternal> & LinkNavigationProps
 
 const Link: React.FC<LinkProps> = props => {
-  const { className, type, children, activeClassName = '', onClick } = props
+  const { className, type, children, activeClassName = '', onClick, waitNavigate } = props
   const router = useRouter()
   const { isSamePage, link, href, routeParams } = useLinkConfig(type || 'profile', props)
+
+  const navigateHandler = useCallback(() => {
+    if (link) {
+      router.routerInstance.navigate(link?.name, routeParams)
+    }
+  }, [link, router, routeParams])
 
   const onClickHandler = useCallback(
     (e: React.MouseEvent<any>) => {
@@ -28,11 +35,13 @@ const Link: React.FC<LinkProps> = props => {
         onClick(e)
       }
 
-      if (link) {
-        router.routerInstance.navigate(link?.name, routeParams)
+      if (waitNavigate) {
+        waitNavigate(navigateHandler)
+      } else {
+        navigateHandler()
       }
     },
-    [onClick, router, link, routeParams]
+    [onClick, navigateHandler, waitNavigate]
   )
 
   return (

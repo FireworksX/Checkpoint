@@ -12,6 +12,7 @@ import { useMainMap } from './widgets/MainMap/hooks/useMainMap'
 import CurrentLocationSelect from './components/CurrentLocationSelect/CurrentLocationSelect'
 import { useRecoilState } from 'recoil'
 import { hasNavigationMapHelpersAtom } from 'src/store/uiStore'
+import CityMapSearch from './components/CityMapSearch/CityMapSearch'
 
 interface HomeRouteProps {
   className?: string
@@ -30,7 +31,7 @@ const CityMapRoute: FC<HomeRouteProps> = ({ className }) => {
   return (
     <Styled.Root className={className}>
       <Styled.Header>
-        <CurrentLocationSelect />
+        <CityMapSearch />
       </Styled.Header>
       <Styled.ZoomControl>
         <Styled.ZoomButton onClick={() => setHelpers(val => !val)}>

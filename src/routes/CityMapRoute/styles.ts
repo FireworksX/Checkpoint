@@ -11,9 +11,8 @@ export const Root = styled.div``
 
 export const Header = styled(PageHeader)`
   position: fixed;
-  top: 0;
+  top: 10px;
   z-index: 2;
-  background: linear-gradient(to bottom, ${({ theme }) => theme.colors.background}, transparent);
   height: 70px;
 `
 

@@ -14,6 +14,14 @@ const GlobalStyle = createGlobalStyle`
     transition: color var(--transition-duration);
   }
   
+  button {
+    outline: none;
+    
+    &:focus {
+      outline: none;
+    }
+  }
+  
   body {
     padding-right: 0 !important;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',

@@ -6,16 +6,19 @@ import { useCurrentUserPlaces } from 'src/hooks/data/useCurrentUserPlaces'
 import { useCallback } from 'react'
 import { useCityInfo } from 'src/routes/CityInfoRoute/hooks/useCityInfo'
 import { useUserLocation } from 'src/hooks/data/useUserLocation'
+import { useCurrentUser } from '../../../../../hooks/data/useCurrentUser'
+import { useMapPlacemarks } from './useMapPlacemarks'
 
 export const useMainMap = () => {
   const { data: userPlaces } = useCurrentUserPlaces()
   const { city } = useCityInfo()
-  const [placemarks, setPlacemarks] = useRecoilState(mapPlacemarksAtom)
   const [saveCenter, setSaveCenter] = useRecoilState(mapSaveCenterAtom)
   const [center, setCenter] = useRecoilState(mapCenterAtom)
   const [zoom, setZoom] = useRecoilState(mapZoomAtom)
   const { zoom: geoZoom, center: geoCenter } = useGeoLocation()
   const { userLocation } = useUserLocation()
+
+  const { placemarks, onClickPlacemark } = useMapPlacemarks()
 
   // const proxyCenter = isDetectedLocation ? currentLocation : city?.geo
   // const initialZoom = profileZoom || city?.geo?.zoom
@@ -56,6 +59,7 @@ export const useMainMap = () => {
 
   return {
     placemarks,
+    onClickPlacemark,
     zoom,
     setZoom,
     center,

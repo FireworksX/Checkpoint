@@ -16,6 +16,7 @@ import ChooseCategoryModal from 'src/modals/ChooseCategoryModal/ChooseCategoryMo
 import SuccessCreateLocationModal from 'src/modals/SuccessCreateLocationModal/SuccessCreateLocationModal'
 import LocationViewOptionsModal from 'src/modals/LocationViewOptionsModal/LocationViewOptionsModal'
 import PreRemoveLocationModal from 'src/modals/PreRemoveLocationModal/PreRemoveLocationModal'
+import LocationPreloadModal from 'src/modals/LocationPreloadModal/LocationPreloadModal'
 
 interface NavigationRouteProps {
   className?: string
@@ -51,6 +52,7 @@ const NavigationRoute: FC<NavigationRouteProps> = ({ className, children }) => {
       <SuccessCreateLocationModal />
       <LocationViewOptionsModal />
       <PreRemoveLocationModal />
+      <LocationPreloadModal />
     </Styled.Root>
   )
 }

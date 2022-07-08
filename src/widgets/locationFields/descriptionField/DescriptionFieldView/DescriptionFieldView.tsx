@@ -4,19 +4,26 @@ import { useToggle } from 'react-use'
 
 interface DescriptionFieldViewProps {
   className?: string
+  limit?: number
+  expandable?: boolean
   children: string
 }
 
 const LIMIT = 250
 
-const DescriptionFieldView: FC<DescriptionFieldViewProps> = ({ className, children }) => {
+const DescriptionFieldView: FC<DescriptionFieldViewProps> = ({
+  className,
+  children,
+  expandable = true,
+  limit = LIMIT
+}) => {
   const [isOpen, toggleIsOpen] = useToggle(false)
 
   const parsedText = useMemo(() => {
-    if (children.length > LIMIT && !isOpen) {
+    if (children.length > limit && !isOpen) {
       return {
         hasMore: true,
-        text: children.slice(0, LIMIT - 3) + '...'
+        text: children.slice(0, limit - 3) + '...'
       }
     }
 
@@ -24,12 +31,12 @@ const DescriptionFieldView: FC<DescriptionFieldViewProps> = ({ className, childr
       hasMore: false,
       text: children
     }
-  }, [children, isOpen])
+  }, [children, isOpen, limit])
 
   return (
     <Styled.Root className={className}>
       {parsedText.text}
-      {children.length > LIMIT && (
+      {children.length > limit && expandable && (
         <Styled.More onClick={toggleIsOpen}>{isOpen ? 'Свернуть' : 'Развернуть'}</Styled.More>
       )}
     </Styled.Root>

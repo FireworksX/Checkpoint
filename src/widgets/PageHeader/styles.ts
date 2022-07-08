@@ -13,6 +13,7 @@ export const Root = styled.header`
 export const Center = styled.div`
   flex-grow: 1;
   text-align: center;
+  width: 100%;
 `
 
 const sidesCss = css`

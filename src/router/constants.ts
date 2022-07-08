@@ -66,6 +66,7 @@ export const MODAL_NAMES = createConstants(
   'successCreateLocation',
   'locationViewOptions',
   'preRemoveLocation',
+  'locationPreloadModal'
 )
 
 export type ModalName = keyof typeof MODAL_NAMES

@@ -3,6 +3,8 @@ import IconComp from 'src/components/Icon/Icon'
 import Touchable from 'src/components/Touchable/Touchable'
 import Link from 'src/widgets/Link/Link'
 import Input from '../../components/Input/Input'
+import HorizontalScroll from '../../components/HorizontalScroll/HorizontalScroll'
+import Chip from '../ChipsInput/components/Chip/Chip'
 
 interface Props {
   offset?: number
@@ -65,27 +67,4 @@ export const Name = styled.span`
   ${({ theme }) => theme.typography.text_11_12};
   color: ${({ theme }) => theme.colors.secondary};
   margin-top: 4px;
-`
-
-export const MapHelpers = styled.div`
-  display: flex;
-  align-items: center;
-  padding: 10px ${({ theme }) => theme.baseStyles.paddings.gutterMobile};
-`
-
-export const SearchInput = styled(Input).attrs({ inputClassName: 'input', placeholder: 'Search your place' })`
-  margin-right: 10px;
-
-  .input {
-    background: ${({ theme }) => theme.colors.secondaryPress};
-    border: none;
-    color: ${({ theme }) => theme.colors.textWhite};
-  }
-`
-
-export const MapFilter = styled(Touchable)`
-  width: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 `

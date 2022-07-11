@@ -39,9 +39,9 @@ export const ControlButtons = styled.div`
 `
 
 export const ControlButton = styled(Button)`
-  margin-right: 15px;
+  margin-left: 15px;
 
-  &:last-child {
-    margin-right: 0;
+  &:first-child {
+    margin-left: 0;
   }
 `

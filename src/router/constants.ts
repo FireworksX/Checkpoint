@@ -35,7 +35,7 @@ const ROUTE_NAMES = createConstants(
 )
 type RouteNamesType = keyof typeof ROUTE_NAMES
 
-const ROUTE_PARAMS = createConstants('citySlug', 'userSlug', 'locationSlug')
+const ROUTE_PARAMS = createConstants('citySlug', 'userSlug', 'locationSlug', 'mapAuthor', 'mapCategory')
 
 const STORE_NAMES = createConstants(
   'mapCenterAtom',

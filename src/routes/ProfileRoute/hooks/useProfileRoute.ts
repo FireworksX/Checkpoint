@@ -6,7 +6,7 @@ import { Category } from 'src/interfaces/Category'
 import { useModal } from 'src/hooks/useModal'
 import { MODAL_NAMES } from '../../../router/constants'
 
-const DEFAULT_ALL_CATEGORY: Category = {
+export const DEFAULT_ALL_CATEGORY: Category = {
   _id: '',
   name: 'Все локации',
   description: 'Всё что есть',
@@ -72,6 +72,7 @@ export const useProfileRoute = () => {
     locations,
     locationsFetching,
     user,
+    selectedCategory,
     categories,
     fullName,
     followers: user?.followers || [],

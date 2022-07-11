@@ -15,13 +15,18 @@ import UserMetrics from 'src/components/UserMetrics/UserMetrics'
 import Username from 'src/components/Username/Username'
 import SubscribeContainer from 'src/widgets/SubscribeContainer/SubscribeContainer'
 import SubscribeButton from 'src/widgets/SubscribeContainer/components/SubscribeButton/SubscribeButton'
+import { DEFAULT_ALL_CATEGORY } from '../ProfileRoute/hooks/useProfileRoute'
+import Link from '../../widgets/Link/Link'
+import { useRouter } from '../../hooks/useRouter'
 
 interface UserRouteProps {
   className?: string
 }
 
 const UserRoute: FC<UserRouteProps> = ({ className }) => {
-  const { user, categories, locations, locationsFetching, counters, userSlug, setSelectedCategory } = useUserRoute()
+  const { citySlug } = useRouter()
+  const { user, categories, locations, locationsFetching, counters, userSlug, selectedCategory, setSelectedCategory } =
+    useUserRoute()
 
   return (
     <Styled.Root className={className}>
@@ -74,9 +79,16 @@ const UserRoute: FC<UserRouteProps> = ({ className }) => {
 
       {(locations?.length || 0) > 0 && (
         <Container>
-          <Button stretched size='l'>
-            Показать на карте
-          </Button>
+          <Link
+            type='cityMap'
+            citySlug={citySlug}
+            mapAuthor={user?.username}
+            mapCategory={selectedCategory === DEFAULT_ALL_CATEGORY.slug ? undefined : selectedCategory}
+          >
+            <Button stretched size='l'>
+              Показать на карте
+            </Button>
+          </Link>
         </Container>
       )}
 

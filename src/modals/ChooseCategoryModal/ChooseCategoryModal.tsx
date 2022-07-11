@@ -15,7 +15,7 @@ interface CreateCategoryModalProps {
   className?: string
 }
 
-type CategoryInner = Pick<Category, '_id' | 'name' | 'description' | 'icon' | 'slug'>
+export type CategoryInner = Pick<Category, '_id' | 'name' | 'description' | 'icon' | 'slug'>
 
 export interface ChooseCategoryModalContext {
   list: CategoryInner[]

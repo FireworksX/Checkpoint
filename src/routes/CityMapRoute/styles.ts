@@ -9,9 +9,10 @@ interface Props {
 
 export const Root = styled.div``
 
-export const Header = styled(PageHeader)`
+export const Header = styled.div`
   position: fixed;
-  top: 10px;
+  width: 100%;
+  top: 0;
   z-index: 2;
   height: 70px;
 `

@@ -4,7 +4,7 @@ import { route } from 'src/hoc/route'
 import { MODAL_NAMES, ROUTE_NAMES } from 'src/router/constants'
 import PageHeaderButtonBack from 'src/widgets/PageHeader/components/PageHeaderButtonBack/PageHeaderButtonBack'
 import { withValidateUser } from 'src/hoc/withValidateUser'
-import { useProfileRoute } from './hooks/useProfileRoute'
+import { DEFAULT_ALL_CATEGORY, useProfileRoute } from './hooks/useProfileRoute'
 import Icon from 'src/components/Icon/Icon'
 import Container from 'src/components/Container/Container'
 import Button from 'src/components/Button/Button'
@@ -13,6 +13,8 @@ import { staticImagesMap } from 'src/data/staticImagesMap'
 import UserHeader from 'src/components/UserHeader/UserHeader'
 import UserMetrics from 'src/components/UserMetrics/UserMetrics'
 import { useModal } from 'src/hooks/useModal'
+import Link from '../../widgets/Link/Link'
+import { useRouter } from '../../hooks/useRouter'
 
 interface ProfileRouteProps {
   className?: string
@@ -20,7 +22,9 @@ interface ProfileRouteProps {
 
 const ProfileRoute: FC<ProfileRouteProps> = ({ className }) => {
   const { open } = useModal(MODAL_NAMES.profileSettings)
-  const { user, categories, locations, onSelectCategory, locationsFetching, counters } = useProfileRoute()
+  const { user, categories, locations, onSelectCategory, locationsFetching, counters, selectedCategory } =
+    useProfileRoute()
+  const { citySlug } = useRouter()
 
   return (
     <Styled.Root className={className}>
@@ -65,9 +69,16 @@ const ProfileRoute: FC<ProfileRouteProps> = ({ className }) => {
 
       {(locations?.length || 0) > 0 && (
         <Container>
-          <Button stretched size='l'>
-            Показать на карте
-          </Button>
+          <Link
+            type='cityMap'
+            citySlug={citySlug}
+            mapAuthor={user?.username}
+            mapCategory={selectedCategory === DEFAULT_ALL_CATEGORY.slug ? undefined : selectedCategory}
+          >
+            <Button stretched size='l'>
+              Показать на карте
+            </Button>
+          </Link>
         </Container>
       )}
 

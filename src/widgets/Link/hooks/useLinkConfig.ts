@@ -1,41 +1,11 @@
-import { useRoute } from 'react-router5'
-import linkConfig, { LinkType } from '../linkConfig'
+import { LinkType } from '../linkConfig'
 import { useRouter } from 'src/hooks/useRouter'
 import { useLinkFinalType } from './useLinkFinalType'
+import { buildLinkConfig, LinkProps } from '../buildLinkConfig'
 
-export type LinkProps = Record<string, any>
-
-export const useLinkConfig = (type: LinkType, props?: LinkProps) => {
+export const useLinkConfig = (type: LinkType, props?: Omit<LinkProps, 'router'>) => {
   const router = useRouter()
-  const { route } = useRoute()
+  const finalType = useLinkFinalType(type, props)
 
-  const routeParams: { [key: string]: any } = {}
-  const { type: finalType, props: finalProps } = useLinkFinalType(type, props)
-
-  const link = finalType && linkConfig[finalType]
-
-  if (finalType && link) {
-    linkConfig[finalType].params.optional.forEach(key => {
-      routeParams[key] = finalProps?.[key] || router.getParam(key)
-    })
-    linkConfig[finalType].params.required.forEach(key => {
-      routeParams[key] = finalProps?.[key]
-    })
-  }
-
-  let href
-
-  try {
-    href = router.routerInstance.buildUrl(link?.name || 'root', routeParams)
-  } catch (e) {
-    console.error(e, link.name, routeParams)
-  }
-  const isSamePage = route?.path === href
-
-  return {
-    routeParams,
-    link,
-    href,
-    isSamePage
-  }
+  return buildLinkConfig(finalType.type, { ...finalType.props, router })
 }

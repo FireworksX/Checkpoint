@@ -4,6 +4,8 @@ import { ROUTE_PARAMS } from 'src/router/constants'
 import useCookies from './useCookies'
 import { Params } from 'router5/dist/types/base'
 
+export type Router = ReturnType<typeof useRouter>
+
 export const useRouter = () => {
   const { route, router } = useRoute()
   const [cookieCitySlug, setCookieCitySlug] = useCookies('citySlug')
@@ -59,6 +61,7 @@ export const useRouter = () => {
     backSafe,
     route,
     history: [],
+    navigate: router.navigate,
     ...defaultParams
   }
 }

@@ -120,7 +120,11 @@ export const routes: Route[] = [
                 path: `/:${ROUTE_PARAMS.citySlug}`,
                 children: [
                   { name: ROUTE_NAMES.cityInfo, path: '/', component: routeComponents.CityInfoRoute },
-                  { name: ROUTE_NAMES.cityMap, path: '/map', component: routeComponents.CityMapRoute }
+                  {
+                    name: ROUTE_NAMES.cityMap,
+                    path: `/map?${ROUTE_PARAMS.mapAuthor}&${ROUTE_PARAMS.mapCategory}`,
+                    component: routeComponents.CityMapRoute
+                  }
                 ]
               }
             ]

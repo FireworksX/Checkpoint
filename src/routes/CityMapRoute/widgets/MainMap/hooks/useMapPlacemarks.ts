@@ -38,7 +38,7 @@ const categories = [
 
 const data: LocationPlacemark[] = [
   {
-    _id: '',
+    _id: 'tast2',
     slug: 'rangerouse',
     title: 'Rangerouse',
     author,
@@ -49,7 +49,7 @@ const data: LocationPlacemark[] = [
     }
   },
   {
-    _id: '',
+    _id: 'sdf',
     slug: 'futura-2',
     title: 'Футура',
     description:

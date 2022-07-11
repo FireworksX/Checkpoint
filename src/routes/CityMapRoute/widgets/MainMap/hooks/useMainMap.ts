@@ -8,6 +8,7 @@ import { useCityInfo } from 'src/routes/CityInfoRoute/hooks/useCityInfo'
 import { useUserLocation } from 'src/hooks/data/useUserLocation'
 import { useCurrentUser } from '../../../../../hooks/data/useCurrentUser'
 import { useMapPlacemarks } from './useMapPlacemarks'
+import {LocationPlacemark} from "../../../../../interfaces/Placemark";
 
 export const useMainMap = () => {
   const { data: userPlaces } = useCurrentUserPlaces()
@@ -57,9 +58,14 @@ export const useMainMap = () => {
     setZoom(map?.getZoom())
   }, [])
 
+  const onClickPlacemarkProxy = useCallback((placemark: LocationPlacemark) => {
+    setCenter(placemark.coords)
+    onClickPlacemark(placemark)
+  }, [onClickPlacemark])
+
   return {
     placemarks,
-    onClickPlacemark,
+    onClickPlacemark: onClickPlacemarkProxy,
     zoom,
     setZoom,
     center,

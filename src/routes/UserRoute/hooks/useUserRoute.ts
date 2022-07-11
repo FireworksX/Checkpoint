@@ -49,6 +49,7 @@ export const useUserRoute = () => {
     locationsFetching,
     user,
     categories,
+    selectedCategory,
     fullName: buildFullName(user?.firstName, user?.lastName),
     followers: user?.followers || [],
     subscribers: user?.subscribers || [],

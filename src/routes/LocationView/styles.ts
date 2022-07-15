@@ -1,8 +1,9 @@
 import styled from 'styled-components'
 import PageHeader from 'src/widgets/PageHeader/PageHeader'
-import SeparatorComp from "src/components/Separator/Separator";
-import Button from "src/components/Button/Button";
-import Page from "src/widgets/Page/Page";
+import SeparatorComp from 'src/components/Separator/Separator'
+import Button from 'src/components/Button/Button'
+import Page from 'src/widgets/Page/Page'
+import LikesControlButton from '../../widgets/LikesContainer/components/LikesControlButton/LikesControlButton'
 
 export const Root = styled(Page)``
 
@@ -29,4 +30,8 @@ export const ControlButton = styled(Button)`
   &:last-child {
     margin-right: 0;
   }
+`
+
+export const LikeButton = styled(LikesControlButton)`
+  margin-right: 15px;
 `

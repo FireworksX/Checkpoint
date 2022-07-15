@@ -4,6 +4,7 @@ import DescriptionFieldView from '../../widgets/locationFields/descriptionField/
 import Container from 'src/components/Container/Container'
 import Touchable from '../../components/Touchable/Touchable'
 import Button from '../../components/Button/Button'
+import LikesControlButton from "../../widgets/LikesContainer/components/LikesControlButton/LikesControlButton";
 
 export const Root = styled(Container)`
   padding-top: 15px;
@@ -44,4 +45,8 @@ export const ControlButton = styled(Button)`
   &:first-child {
     margin-left: 0;
   }
+`
+
+export const LikeButton = styled(LikesControlButton)`
+  margin-left: 15px;
 `

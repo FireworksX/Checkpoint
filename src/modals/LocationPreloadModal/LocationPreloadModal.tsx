@@ -7,6 +7,7 @@ import Icon from 'src/components/Icon/Icon'
 import UserRowCard from '../../components/UserRowCard/UserRowCard'
 import { LocationPlacemark } from '../../interfaces/Placemark'
 import Link, { LinkPropsInternal } from '../../widgets/Link/Link'
+import LikesContainer from "../../widgets/LikesContainer/LikesContainer";
 
 interface LocationPreloadModalProps {
   className?: string
@@ -40,9 +41,9 @@ const LocationPreloadModal: FC<LocationPreloadModalProps> = ({ className }) => {
           <Link type='locationView' locationSlug={data?.slug} waitNavigate={navigateAfterClose}>
             <Styled.ControlButton size='l'>Детальная инфа</Styled.ControlButton>
           </Link>
-          <Styled.ControlButton size='l' mode='secondary'>
-            <Icon name='heart' width={24} height={24} /> 150
-          </Styled.ControlButton>
+          <LikesContainer type='location' target={data?._id || ''} initialLike={data?.likes.isLiked}>
+            {({ ...args }) => <Styled.LikeButton mode='secondary' count={data?.likes.count} {...args} />}
+          </LikesContainer>
           <Styled.ControlButton size='l' mode='secondary'>
             <Icon name='bookmark' width={24} height={24} />
           </Styled.ControlButton>

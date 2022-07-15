@@ -30,5 +30,8 @@ export const apiEndpoints = {
   CATEGORIES_UPDATE: '/categories/update',
   CATEGORIES_REMOVE: '/categories/remove',
 
+  LIKES_ADD: '/likes/add',
+  LIKES_REMOVE: '/likes/remove',
+
   MEDIA_UPLOAD: '/media/upload'
 }

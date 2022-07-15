@@ -23,7 +23,7 @@ export type LocationFieldsMap = Partial<{
 
 export type LocationAuthor = Omit<BaseUser, 'counters' | 'subscribers' | 'followers' | 'categories'>
 
-export type LocationDetail = Pick<Location, '_id' | 'fields' | 'slug' | 'coords'> & {
+export type LocationDetail = Pick<Location, '_id' | 'fields' | 'slug' | 'coords' | 'likes'> & {
   author: LocationAuthor
   category: Category
   city: City
@@ -40,6 +40,10 @@ export interface Location {
   author: string
   city: string
   createdAt: string
+  likes: {
+    count: number
+    isLiked: boolean
+  }
   coords: {
     lat: number
     lng: number

@@ -104,6 +104,7 @@ export const useLocationView = () => {
     author: data?.data?.author,
     city: data?.data?.city,
     category: data?.data?.category,
+    location: data?.data,
     fields,
     openOptions,
     fetching,

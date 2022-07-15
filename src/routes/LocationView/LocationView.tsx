@@ -9,15 +9,17 @@ import Icon from 'src/components/Icon/Icon'
 import UserRowCard from 'src/components/UserRowCard/UserRowCard'
 import { useLocationView } from './hooks/useLocationView'
 import { iconToImage } from 'src/utils/iconToImage'
-import { noop } from 'src/utils/helpers'
 import CompilationCell from 'src/components/CompilationCell/CompilationCell'
+import Link from 'src/widgets/Link/Link'
+import LikesContainer from '../../widgets/LikesContainer/LikesContainer'
+import { LikeButton } from './styles'
 
 interface LocationViewProps {
   className?: string
 }
 
 const LocationView: FC<LocationViewProps> = ({ className }) => {
-  const { author, category, fields, openOptions, fetching } = useLocationView()
+  const { author, category, fields, openOptions, fetching, location } = useLocationView()
 
   return (
     <Styled.Root className={className} fetching={fetching}>
@@ -41,9 +43,9 @@ const LocationView: FC<LocationViewProps> = ({ className }) => {
 
         <Styled.ControlButtons>
           <Styled.ControlButton size='l'>Показать на карте</Styled.ControlButton>
-          <Styled.ControlButton size='l' mode='secondary'>
-            <Icon name='heart' width={24} height={24} /> 150
-          </Styled.ControlButton>
+          <LikesContainer type='location' target={location?._id || ''} initialLike={location?.likes.isLiked}>
+            {({ ...args }) => <Styled.LikeButton mode='secondary' count={location?.likes.count} {...args} />}
+          </LikesContainer>
           <Styled.ControlButton size='l' mode='secondary'>
             <Icon name='bookmark' width={24} height={24} />
           </Styled.ControlButton>
@@ -59,12 +61,13 @@ const LocationView: FC<LocationViewProps> = ({ className }) => {
         {!fields.poolsField.isEmpty && <Styled.Field>{fields.poolsField.Component}</Styled.Field>}
         {!fields.tagsField.isEmpty && <Styled.Field>{fields.tagsField.Component}</Styled.Field>}
 
-        <CompilationCell
-          title={category?.name || ''}
-          description={category?.description}
-          image={iconToImage(category?.icon)}
-          onClick={noop}
-        />
+        <Link type='cityMap' mapAuthor={author?.username} mapCategory={category?.slug}>
+          <CompilationCell
+            title={category?.name || ''}
+            description={category?.description}
+            image={iconToImage(category?.icon)}
+          />
+        </Link>
 
         <Styled.Separator />
         {author && (

@@ -14,7 +14,7 @@ export const buildLinkConfig = (type: LinkType, props: LinkProps) => {
 
   if (type && link) {
     linkConfig[type].params.optional.forEach(key => {
-      routeParams[key] = safeOptionalParams ? props?.[key] || router.getParam(key) : props?.[key]
+      routeParams[key] = safeOptionalParams ? props?.[key] || ((router as any)[key] || router.getParam(key)) : props?.[key]
     })
     linkConfig[type].params.required.forEach(key => {
       routeParams[key] = props?.[key]

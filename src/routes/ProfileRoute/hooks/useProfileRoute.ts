@@ -39,12 +39,20 @@ const FAVORITE_CATEGORY: Category = {
 export const useProfileRoute = () => {
   const { open } = useModal(MODAL_NAMES.createCategory)
   const [selectedCategory, setSelectedCategory] = useState(DEFAULT_ALL_CATEGORY.slug)
-
   const { user, fullName } = useCurrentUser()
-  const { data: locations, fetching: locationsFetching } = useUserLocations({
-    author: user?._id,
-    category: user?.categories?.find(category => category.slug === selectedCategory)?._id
-  })
+
+  const locationsFilter = useMemo(
+    () =>
+      selectedCategory === FAVORITE_CATEGORY.slug
+        ? { onlyLikes: true }
+        : {
+            author: user?._id,
+            category: user?.categories?.find(category => category.slug === selectedCategory)?._id
+          },
+    [selectedCategory, user]
+  )
+
+  const { data: locations, fetching: locationsFetching } = useUserLocations(locationsFilter)
 
   const categories = useMemo(
     () =>

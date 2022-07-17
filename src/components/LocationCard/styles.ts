@@ -36,7 +36,7 @@ export const Footer = styled.div`
   margin-top: 10px;
 `
 
-export const Like = styled(Touchable)`
+export const Like = styled.div`
   display: flex;
   align-items: center;
   color: ${({ theme }) => theme.colors.secondary};

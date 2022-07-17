@@ -90,6 +90,8 @@ const ProfileRoute: FC<ProfileRouteProps> = ({ className }) => {
       <Styled.LocationsWrapper>
         {locations?.map(location => (
           <Styled.LocationCell
+            _id={location._id}
+            likes={location.likes}
             key={location._id}
             name={location.fields.title}
             slug={location.slug}

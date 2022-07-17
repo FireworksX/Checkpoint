@@ -14,7 +14,7 @@ const LikesControlButton: FC<LikesControlButtonProps> = ({ className, hasLike, c
 
   return (
     <Styled.Root className={className} onClick={onClick} {...buttonProps}>
-      <Icon name={iconName} width={24} height={24} /> {count}
+      <Styled.Icon name={iconName} hasLike={hasLike} width={24} height={24} /> {count}
     </Styled.Root>
   )
 }

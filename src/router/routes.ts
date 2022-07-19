@@ -122,9 +122,10 @@ export const routes: Route[] = [
                   { name: ROUTE_NAMES.cityInfo, path: '/', component: routeComponents.CityInfoRoute },
                   {
                     name: ROUTE_NAMES.cityMap,
-                    path: `/map?${ROUTE_PARAMS.mapAuthor}&${ROUTE_PARAMS.mapCategory}`,
-                    component: routeComponents.CityMapRoute
-                  }
+                    path: `/map?${ROUTE_PARAMS.mapAuthor}&${ROUTE_PARAMS.mapCategory}&${ROUTE_PARAMS.mapLocation}`,
+                    component: routeComponents.CityMapRoute,
+                  },
+                  { name: ROUTE_NAMES.cityMapSearch, path: '/map/search', component: routeComponents.CityMapSearchRoute },
                 ]
               }
             ]

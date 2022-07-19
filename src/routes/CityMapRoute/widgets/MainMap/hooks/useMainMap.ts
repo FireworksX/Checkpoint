@@ -3,14 +3,17 @@ import { useGeoLocation } from 'src/hooks/useGeoLocation'
 import { mapCenterAtom, mapPlacemarksAtom, mapSaveCenterAtom, mapZoomAtom } from 'src/store/mapStore'
 import { useIsomorphicEffect } from 'src/hooks/useIsomorphicEffect'
 import { useCurrentUserPlaces } from 'src/hooks/data/useCurrentUserPlaces'
-import { useCallback } from 'react'
+import { useCallback, useEffect, useRef } from 'react'
 import { useCityInfo } from 'src/routes/CityInfoRoute/hooks/useCityInfo'
 import { useUserLocation } from 'src/hooks/data/useUserLocation'
-import { useCurrentUser } from '../../../../../hooks/data/useCurrentUser'
 import { useMapPlacemarks } from './useMapPlacemarks'
-import {LocationPlacemark} from "../../../../../interfaces/Placemark";
+import { LocationPlacemark } from 'src/interfaces/Placemark'
+import { useRouter } from 'src/hooks/useRouter'
+import { ROUTE_PARAMS } from 'src/router/constants'
 
 export const useMainMap = () => {
+  const alreadyDisplayLocation = useRef(false)
+
   const { data: userPlaces } = useCurrentUserPlaces()
   const { city } = useCityInfo()
   const [saveCenter, setSaveCenter] = useRecoilState(mapSaveCenterAtom)
@@ -18,6 +21,8 @@ export const useMainMap = () => {
   const [zoom, setZoom] = useRecoilState(mapZoomAtom)
   const { zoom: geoZoom, center: geoCenter } = useGeoLocation()
   const { userLocation } = useUserLocation()
+  const { route } = useRouter()
+  const mapLocation = route.params[ROUTE_PARAMS.mapLocation]
 
   const { placemarks, onClickPlacemark } = useMapPlacemarks()
 
@@ -47,21 +52,44 @@ export const useMainMap = () => {
     // setPlacemarks(userPlaces?.data || [])
   }, [userPlaces])
 
-  const onDragend = useCallback((map: any) => {
-    setSaveCenter({
-      lat: map?.center?.lat(),
-      lng: map?.center?.lng()
-    })
-  }, [])
+  const onDragend = useCallback(
+    (map: any) => {
+      setSaveCenter({
+        lat: map?.center?.lat(),
+        lng: map?.center?.lng()
+      })
+    },
+    [setSaveCenter]
+  )
 
-  const onZoomChange = useCallback((map: any) => {
-    setZoom(map?.getZoom())
-  }, [])
+  const onZoomChange = useCallback(
+    (map: any) => {
+      setZoom(map?.getZoom())
+    },
+    [setZoom]
+  )
 
-  const onClickPlacemarkProxy = useCallback((placemark: LocationPlacemark) => {
-    setCenter(placemark.coords)
-    onClickPlacemark(placemark)
-  }, [onClickPlacemark])
+  const onClickPlacemarkProxy = useCallback(
+    (placemark: LocationPlacemark) => {
+      setCenter(placemark.coords)
+      onClickPlacemark(placemark)
+    },
+    [onClickPlacemark, setCenter]
+  )
+
+  useEffect(() => {
+    if (!alreadyDisplayLocation.current) {
+      const findPlacemark = placemarks.find(({ slug }) => slug === mapLocation)
+
+      if (findPlacemark) {
+        requestAnimationFrame(() => {
+          console.log(findPlacemark, 'second open');
+          onClickPlacemarkProxy(findPlacemark)
+          alreadyDisplayLocation.current = true
+        })
+      }
+    }
+  }, [mapLocation, placemarks, onClickPlacemarkProxy, alreadyDisplayLocation])
 
   return {
     placemarks,

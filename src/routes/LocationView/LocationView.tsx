@@ -42,7 +42,9 @@ const LocationView: FC<LocationViewProps> = ({ className }) => {
         {!fields.titleField.isEmpty && <Styled.Field>{fields.titleField.Component}</Styled.Field>}
 
         <Styled.ControlButtons>
-          <Styled.ControlButton size='l'>Показать на карте</Styled.ControlButton>
+          <Link type='cityMap' mapAuthor={author?.username} mapCategory={category?.slug} mapLocation={location?.slug}>
+            <Styled.ControlButton size='l'>Показать на карте</Styled.ControlButton>
+          </Link>
           <LikesContainer type='location' target={location?._id || ''} initialLike={location?.likes.isLiked}>
             {({ ...args }) => <Styled.LikeButton mode='secondary' count={location?.likes.count} {...args} />}
           </LikesContainer>

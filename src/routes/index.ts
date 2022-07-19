@@ -16,10 +16,12 @@ import UserFollowersRoute from './UserFollowersRoute/UserFollowersRoute'
 import UserSubscribersRoute from './UserSubscribersRoute/UserSubscribersRoute'
 import LocationView from './LocationView/LocationView'
 import LocationCreate from './LocationCreate/LocationCreate'
+import CityMapSearchRoute from "./CityMapSearchRoute/CityMapSearchRoute";
 
 export default {
   RootRoute,
   CityMapRoute,
+  CityMapSearchRoute,
   ProfileRoute,
   ProfileEditRoute,
   ProfileCategoriesRoute,

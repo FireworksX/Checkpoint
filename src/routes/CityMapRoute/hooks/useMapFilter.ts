@@ -14,7 +14,10 @@ export const useMapFilter = () => {
   const { route, navigate, citySlug } = router
   const mapAuthor = route.params[ROUTE_PARAMS.mapAuthor]
   const mapCategory = route.params[ROUTE_PARAMS.mapCategory]
+
   const mainMapLink = useLinkConfig('cityMap', { safeOptionalParams: false, citySlug })
+  const mapSearchLink = useLinkConfig('cityMapSearch')
+
   const { open: openChooseCategory, close: closeChooseCategory } = useModal<ChooseCategoryModalContext>(
     MODAL_NAMES.chooseCategory
   )
@@ -25,6 +28,8 @@ export const useMapFilter = () => {
 
   const user = userResponse?.data
   const category = user?.categories?.find(({ slug }) => slug === mapCategory)
+
+  const isEmpty = !user && !category
 
   const onChooseCategory = useCallback(
     async (category: CategoryInner) => {
@@ -58,11 +63,19 @@ export const useMapFilter = () => {
 
   const chooseCategory = () => openChooseCategory({ list: user?.categories || [], onSelect: onChooseCategory })
 
+  const onClickSearch = useCallback(() => {
+    if (isEmpty) {
+      navigate(mapSearchLink.link.name, mainMapLink.routeParams)
+    }
+  }, [isEmpty, navigate, mapSearchLink.routeParams])
+
   return {
+    isEmpty,
     user,
     category,
     clearFilter,
     chooseCategory,
-    clearCategory
+    clearCategory,
+    onClickSearch
   }
 }

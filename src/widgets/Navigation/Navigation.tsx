@@ -1,11 +1,6 @@
 import React from 'react'
 import * as Styled from './styles'
 import { useRouter } from 'src/hooks/useRouter'
-import { useRecoilValue } from 'recoil'
-import { hasNavigationMapHelpersAtom } from 'src/store/uiStore'
-import {SearchChip, SearchChipPlaceholder, SearchContainer, SearchScroll, SearchSeparator} from './styles'
-import Chip from '../ChipsInput/components/Chip/Chip'
-import Icon from '../../components/Icon/Icon'
 
 interface NavigationProps {
   className?: string

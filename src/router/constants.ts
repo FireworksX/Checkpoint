@@ -23,6 +23,7 @@ const ROUTE_NAMES = createConstants(
   'cityDetail',
   'cityInfo',
   'cityMap',
+  'cityMapSearch',
   'user',
   'userReview',
   'userFollowers',
@@ -35,20 +36,19 @@ const ROUTE_NAMES = createConstants(
 )
 type RouteNamesType = keyof typeof ROUTE_NAMES
 
-const ROUTE_PARAMS = createConstants('citySlug', 'userSlug', 'locationSlug', 'mapAuthor', 'mapCategory')
+const ROUTE_PARAMS = createConstants('citySlug', 'userSlug', 'locationSlug', 'mapAuthor', 'mapCategory', 'mapLocation')
 
 const STORE_NAMES = createConstants(
   'mapCenterAtom',
   'mapZoomAtom',
   'mapPlacemarksAtom',
   'mapSaveCenterAtom',
-  'hasNavigationAtom',
   'geoLocationAtom',
   'userAgentAtom',
-  'hasNavigationMapHelpersAtom',
   'modalAtom',
   'modalContextAtom',
-  'userLocationAtom'
+  'userLocationAtom',
+  'hasNavigationAtom'
 )
 
 const zIndex = {

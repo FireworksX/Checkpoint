@@ -1,7 +1,5 @@
 import { FC } from 'react'
-import { hasNavigationAtom } from 'src/store/uiStore'
 import * as Styled from './styles'
-import { useRecoilValue } from 'recoil'
 import Spinner from 'src/components/Spinner/Spinner'
 
 interface PageProps {
@@ -11,10 +9,9 @@ interface PageProps {
 }
 
 const Page: FC<PageProps> = ({ className, children, fetching, safeAreaBottom = true }) => {
-  const hasNavigation = useRecoilValue(hasNavigationAtom)
 
   return (
-    <Styled.Root className={className} safeAreaBottom={safeAreaBottom && hasNavigation}>
+    <Styled.Root className={className} safeAreaBottom={safeAreaBottom}>
       {fetching && (
         <Styled.ScreenSpinner>
           <Styled.SpinnerWrapper>

@@ -1,28 +1,31 @@
 import { FC } from 'react'
 import * as Styled from './styles'
-import UserRowCard from '../../../../components/UserRowCard/UserRowCard'
-import { useCurrentUser } from '../../../../hooks/data/useCurrentUser'
+import UserRowCard from 'src/components/UserRowCard/UserRowCard'
+import { useMapSearchUsers } from './hooks/useMapSearchUsers'
 
 interface MapSearchUsersProps {
   className?: string
 }
 
 const MapSearchUsers: FC<MapSearchUsersProps> = ({ className }) => {
-  const { user: author } = useCurrentUser()
+  const { list } = useMapSearchUsers()
 
   return (
     <Styled.Root className={className}>
-      <UserRowCard
-        username={author?.username}
-        firstName={author?.firstName}
-        lastName={author?.lastName}
-        verify={author?.verify}
-        phone={author?.phone}
-        appLinkProps={{
-          type: 'user',
-          userSlug: author?.username || ''
-        }}
-      />
+      {list.map(user => (
+        <UserRowCard
+          key={user._id}
+          username={user?.username}
+          firstName={user?.firstName}
+          lastName={user?.lastName}
+          verify={user?.verify}
+          phone={user?.phone}
+          appLinkProps={{
+            type: 'user',
+            userSlug: user?.username || ''
+          }}
+        />
+      ))}
     </Styled.Root>
   )
 }

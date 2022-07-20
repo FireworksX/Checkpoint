@@ -10,7 +10,6 @@ interface Props {
 export const Root = styled(Page)``
 
 export const Header = styled(PageHeader)`
-  margin-bottom: 20px;
   ${({ theme }) => theme.typography.text_20_24};
   font-weight: bold;
 `
@@ -26,13 +25,19 @@ export const CloseIcon = styled.div`
   color: ${({ theme }) => theme.colors.secondary};
 `
 
+export const ToggleFixed = styled.div`
+  padding: 10px 0;
+  position: sticky;
+  top: 0;
+  background: ${({ theme }) => theme.colors.background};
+`
+
 export const ToggleWrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   border-radius: ${({ theme }) => theme.baseStyles.radius.radiusMain};
   background: ${({ theme }) => theme.colors.secondaryLightBg};
   padding: 3px;
-  margin-bottom: 10px;
 `
 
 export const ToggleInner = styled(Touchable)<Props>`

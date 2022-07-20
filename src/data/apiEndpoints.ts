@@ -33,5 +33,8 @@ export const apiEndpoints = {
   LIKES_ADD: '/likes/add',
   LIKES_REMOVE: '/likes/remove',
 
-  MEDIA_UPLOAD: '/media/upload'
+  MEDIA_UPLOAD: '/media/upload',
+
+  FEED_USERS: '/feed/users',
+  FEED_LOCATIONS: '/feed/locations',
 }

@@ -8,6 +8,7 @@ import MapSearchUsers from './widgets/MapSearchUsers/MapSearchUsers'
 import MapSearchLocations from './widgets/MapSearchLocations/MapSearchLocations'
 import Link from '../../widgets/Link/Link'
 import { useHideNavigation } from '../../hooks/useHideNavigation'
+import { ToggleFixed } from './styles'
 
 interface CityMapSearchRouteProps {
   className?: string
@@ -34,14 +35,16 @@ const CityMapSearchRoute: FC<CityMapSearchRouteProps> = ({ className }) => {
       </Styled.Header>
 
       <Container>
-        <Styled.ToggleWrapper>
-          <Styled.ToggleInner isActive={view === 'users'} onClick={() => setView('users')}>
-            Люди
-          </Styled.ToggleInner>
-          <Styled.ToggleInner isActive={view === 'locations'} onClick={() => setView('locations')}>
-            Места
-          </Styled.ToggleInner>
-        </Styled.ToggleWrapper>
+        <Styled.ToggleFixed>
+          <Styled.ToggleWrapper>
+            <Styled.ToggleInner isActive={view === 'users'} onClick={() => setView('users')}>
+              Люди
+            </Styled.ToggleInner>
+            <Styled.ToggleInner isActive={view === 'locations'} onClick={() => setView('locations')}>
+              Места
+            </Styled.ToggleInner>
+          </Styled.ToggleWrapper>
+        </Styled.ToggleFixed>
 
         {view === 'users' && <MapSearchUsers />}
         {view === 'locations' && <MapSearchLocations />}

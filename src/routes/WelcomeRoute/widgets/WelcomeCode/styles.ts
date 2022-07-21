@@ -34,3 +34,17 @@ export const CodeInput = styled(Input).attrs({
     letter-spacing: 15px;
   }
 `
+
+export const CodePlaceholder = styled.div`
+  margin-top: 15px;
+  padding: 15px;
+  background: ${({ theme }) => theme.colors.accentAmberBg};
+  text-align: center;
+  border-radius: ${({ theme }) => theme.baseStyles.radius.radiusMain};
+`
+
+export const CodeValue = styled.div`
+  ${({ theme }) => theme.typography.text_20_24};
+  font-weight: bold;
+  margin-top: 10px;
+`

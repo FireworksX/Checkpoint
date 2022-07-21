@@ -5,14 +5,16 @@ import { MODAL_NAMES } from 'src/router/constants'
 import { LocationPreloadModalContext } from 'src/modals/LocationPreloadModal/LocationPreloadModal'
 import { useUserLocations } from 'src/hooks/data/useUserLocations'
 import { useMapFilter } from 'src/routes/CityMapRoute/hooks/useMapFilter'
+import { useCityInfo } from '../../../../CityInfoRoute/hooks/useCityInfo'
 
 export const useMapPlacemarks = () => {
-  const { user, category } = useMapFilter()
+  const { user, category, isEmpty } = useMapFilter()
+  const { city } = useCityInfo()
 
-  const { data: locationsList } = useUserLocations({
-    author: user?._id,
-    category: category?._id
-  })
+  const locationsFilter =
+    isEmpty && city?.owner?._id ? { owner: city?.owner?._id } : { author: user?._id, category: category?._id }
+
+  const { data: locationsList } = useUserLocations(locationsFilter)
   const { open, close } = useModal<LocationPreloadModalContext>(MODAL_NAMES.locationPreloadModal)
 
   const placemarks = useMemo<LocationPlacemark[]>(
@@ -25,7 +27,8 @@ export const useMapPlacemarks = () => {
         title: location.fields?.title || '',
         description: location.fields?.description,
         coords: location.coords,
-        likes: location.likes
+        likes: location.likes,
+        bookmarks: location.bookmarks
       })),
     [locationsList]
   )

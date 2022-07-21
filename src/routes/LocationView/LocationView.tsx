@@ -13,6 +13,7 @@ import CompilationCell from 'src/components/CompilationCell/CompilationCell'
 import Link from 'src/widgets/Link/Link'
 import LikesContainer from '../../widgets/LikesContainer/LikesContainer'
 import { LikeButton } from './styles'
+import BookmarksContainer from '../../widgets/BookmarksContainer/BookmarksContainer'
 
 interface LocationViewProps {
   className?: string
@@ -48,9 +49,17 @@ const LocationView: FC<LocationViewProps> = ({ className }) => {
           <LikesContainer type='location' target={location?._id || ''} initialLike={location?.likes.isLiked}>
             {({ ...args }) => <Styled.LikeButton mode='secondary' count={location?.likes.count} {...args} />}
           </LikesContainer>
-          <Styled.ControlButton size='l' mode='secondary'>
-            <Icon name='bookmark' width={24} height={24} />
-          </Styled.ControlButton>
+          <BookmarksContainer
+            type='location'
+            target={location?._id || ''}
+            initialBookmark={location?.bookmarks.hasBookmark}
+          >
+            {({ hasBookmark, onClick }) => (
+              <Styled.ControlButton size='l' mode='secondary' onClick={onClick}>
+                <Icon name={hasBookmark ? 'bookmark-fill' : 'bookmark'} width={24} height={24} />
+              </Styled.ControlButton>
+            )}
+          </BookmarksContainer>
         </Styled.ControlButtons>
 
         {!fields.descriptionField.isEmpty && <Styled.Field>{fields.descriptionField.Component}</Styled.Field>}

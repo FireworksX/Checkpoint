@@ -8,10 +8,11 @@ import { useMutation } from '../../../hooks/useMutation'
 import { apiEndpoints } from '../../../data/apiEndpoints'
 import { useCurrentUser } from '../../../hooks/data/useCurrentUser'
 import { ChooseCategoryModalContext } from '../../../modals/ChooseCategoryModal/ChooseCategoryModal'
-import { CreateLocation } from '../../../interfaces/Location'
+import { CreateLocation, Location } from '../../../interfaces/Location'
 import { useCityInfo } from '../../CityInfoRoute/hooks/useCityInfo'
-import { useRecoilState, useRecoilValue } from 'recoil'
+import { useRecoilValue } from 'recoil'
 import { mapSaveCenterAtom } from '../../../store/mapStore'
+import { SuccessCreateModalContext } from '../../../modals/SuccessCreateLocationModal/SuccessCreateLocationModal'
 
 export const useLocationCreate = () => {
   const {
@@ -24,7 +25,7 @@ export const useLocationCreate = () => {
     MODAL_NAMES.chooseCategory
   )
 
-  const { open: openSuccess } = useModal(MODAL_NAMES.successCreateLocation)
+  const { open: openSuccess } = useModal<SuccessCreateModalContext>(MODAL_NAMES.successCreateLocation)
 
   const { execute } = useMutation<Location, CreateLocation>(apiEndpoints.LOCATIONS_CREATE)
 
@@ -99,7 +100,9 @@ export const useLocationCreate = () => {
     })
 
     if (response.success) {
-      openSuccess()
+      openSuccess({
+        locationSlug: response.data?.slug || ''
+      })
     }
   }, [openChooseCategory, categorySlug, values, saveCenter, city, category, execute, openSuccess])
 

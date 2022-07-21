@@ -7,7 +7,8 @@ import Icon from 'src/components/Icon/Icon'
 import UserRowCard from '../../components/UserRowCard/UserRowCard'
 import { LocationPlacemark } from '../../interfaces/Placemark'
 import Link, { LinkPropsInternal } from '../../widgets/Link/Link'
-import LikesContainer from "../../widgets/LikesContainer/LikesContainer";
+import LikesContainer from '../../widgets/LikesContainer/LikesContainer'
+import BookmarksContainer from '../../widgets/BookmarksContainer/BookmarksContainer'
 
 interface LocationPreloadModalProps {
   className?: string
@@ -44,9 +45,13 @@ const LocationPreloadModal: FC<LocationPreloadModalProps> = ({ className }) => {
           <LikesContainer type='location' target={data?._id || ''} initialLike={data?.likes.isLiked}>
             {({ ...args }) => <Styled.LikeButton mode='secondary' count={data?.likes.count} {...args} />}
           </LikesContainer>
-          <Styled.ControlButton size='l' mode='secondary'>
-            <Icon name='bookmark' width={24} height={24} />
-          </Styled.ControlButton>
+          <BookmarksContainer type='location' target={data?._id || ''} initialBookmark={data?.bookmarks?.hasBookmark}>
+            {({ hasBookmark, onClick }) => (
+              <Styled.ControlButton size='l' mode='secondary' onClick={onClick}>
+                <Icon name={hasBookmark ? 'bookmark-fill' : 'bookmark'} width={24} height={24} />
+              </Styled.ControlButton>
+            )}
+          </BookmarksContainer>
         </Styled.ControlButtons>
 
         {data?.description && (

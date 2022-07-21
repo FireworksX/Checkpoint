@@ -4,6 +4,7 @@ import { usePhoneValidationCodeCheck } from 'src/hooks/data/usePhoneValidationCo
 import { useUserIsRegister } from 'src/hooks/data/useUserIsRegister'
 import { useLoginUser } from 'src/hooks/data/useLoginUser'
 import { useCurrentUser } from 'src/hooks/data/useCurrentUser'
+import { generatePhoneCode } from '../../../../../utils/generatePhoneCode'
 
 interface Props {
   onBack(): void
@@ -15,9 +16,10 @@ export const useWelcomeCode = ({ onRegister, onLogin, onBack }: Props) => {
   const tryLogin = useRef(false)
   const { user } = useCurrentUser()
   const { formatValue, setValue } = useNumberFormatter()
+  const userPhone = user?.phone || ''
 
   const { data: validationData } = usePhoneValidationCodeCheck({
-    phone: user?.phone || '',
+    phone: userPhone,
     code: formatValue
   })
   const { data: isRegisterData, fetching } = useUserIsRegister(
@@ -33,7 +35,7 @@ export const useWelcomeCode = ({ onRegister, onLogin, onBack }: Props) => {
     tryLogin.current = true
 
     const { success } = await execute({
-      phone: user?.phone || '',
+      phone: userPhone || '',
       code: formatValue
     })
 
@@ -54,7 +56,10 @@ export const useWelcomeCode = ({ onRegister, onLogin, onBack }: Props) => {
     }
   }, [validationData, fetching, isRegisterData, onLoginUser])
 
+  const generatedCode = generatePhoneCode(userPhone)
+
   return {
+    generatedCode,
     phone: user?.phone,
     codeValue: formatValue,
     onSetCodeValue: setValue

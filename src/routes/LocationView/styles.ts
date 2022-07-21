@@ -26,10 +26,6 @@ export const ControlButtons = styled.div`
 
 export const ControlButton = styled(Button)`
   margin-right: 15px;
-
-  &:last-child {
-    margin-right: 0;
-  }
 `
 
 export const LikeButton = styled(LikesControlButton)`

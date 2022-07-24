@@ -3,7 +3,7 @@
   "short_name": "Checkpoint",
   "version": "0.0.0",
   "engines": {
-    "node": "14.18.3"
+    "node": "^14.18.3"
   },
   "scripts": {
     "dev": "nodemon --ignore src --ignore server/data -O '{\"module\": \"commonjs\"}' server/index.ts",

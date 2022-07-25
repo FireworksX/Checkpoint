@@ -21,9 +21,11 @@ export interface ApiClient {
 
 const DEFAULT_OPTIONS: ApiClientOptions = {}
 
+const BASE_URL = `${import.meta.env.VITE_API_HOST}/api`
+
 const createApiClient = ({ cookieManager } = DEFAULT_OPTIONS): ApiClient => {
   const apiClient = axios.create({
-    baseURL: 'http://localhost:3000/api'
+    baseURL: BASE_URL
   })
 
   let tryRefresh = false

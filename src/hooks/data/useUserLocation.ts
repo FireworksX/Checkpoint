@@ -28,30 +28,30 @@ export const useUserLocation = () => {
     [onSubmitLocation]
   )
 
-  useEffect(() => {
-    if (!hasPermissions) {
-      onGetPermissions()
-    }
-  }, [hasPermissions, onGetPermissions])
+  // useEffect(() => {
+  //   if (!hasPermissions) {
+  //     onGetPermissions()
+  //   }
+  // }, [hasPermissions, onGetPermissions])
 
-  useEffect(() => {
-    if (userAgent?.isSafari) {
-      navigator.geolocation.getCurrentPosition(
-        ({ coords }) => {
-          onValidatePermissions('granted')
-          onSubmitLocation(coords)
-        },
-        () => {
-          onValidatePermissions('denied')
-        }
-      )
-    } else {
-      navigator.permissions.query({ name: 'geolocation' }).then(result => {
-        onValidatePermissions(result.state)
-        result.addEventListener('change', () => onValidatePermissions(result.state))
-      })
-    }
-  }, [onSubmitLocation, userAgent])
+  // useEffect(() => {
+  //   if (userAgent?.isSafari) {
+  //     navigator.geolocation.getCurrentPosition(
+  //       ({ coords }) => {
+  //         onValidatePermissions('granted')
+  //         onSubmitLocation(coords)
+  //       },
+  //       () => {
+  //         onValidatePermissions('denied')
+  //       }
+  //     )
+  //   } else {
+  //     navigator.permissions.query({ name: 'geolocation' }).then(result => {
+  //       onValidatePermissions(result.state)
+  //       result.addEventListener('change', () => onValidatePermissions(result.state))
+  //     })
+  //   }
+  // }, [onSubmitLocation, userAgent])
 
   useIsomorphicEffect(() => {
     if (cookieSelfLocation?.lat && cookieSelfLocation.lng) {

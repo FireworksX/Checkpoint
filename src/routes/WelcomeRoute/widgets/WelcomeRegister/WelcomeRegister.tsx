@@ -22,10 +22,10 @@ const WelcomeRegister: FC<WelcomeRegisterProps> = ({ className, onRegister, onBa
       <form onSubmit={onSubmitForm}>
         <Container>
           <Styled.Header
-            left={<PageHeaderButton onClick={onBack}>Back</PageHeaderButton>}
+            left={<PageHeaderButton onClick={onBack}>Назад</PageHeaderButton>}
             right={
               <PageHeaderButton tagName='button' type='submit'>
-                Finish
+                Готово
               </PageHeaderButton>
             }
           />

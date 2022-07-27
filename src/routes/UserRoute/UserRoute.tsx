@@ -32,11 +32,6 @@ const UserRoute: FC<UserRouteProps> = ({ className }) => {
     <Styled.Root className={className}>
       <Styled.Header
         left={<PageHeaderButtonBack />}
-        right={
-          <Styled.HeaderButton>
-            <Icon name='ellipsis' />
-          </Styled.HeaderButton>
-        }
       >
         <Styled.HeaderTitle>
           <Username>{user?.username}</Username>

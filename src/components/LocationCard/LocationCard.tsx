@@ -12,8 +12,10 @@ interface LocationCardProps extends Pick<Location, '_id' | 'likes'> {
   className?: string
 }
 
+const LIMIT = 70
+
 const LocationCard: FC<LocationCardProps> = ({ className, _id, cover, likes, slug, name, description }) => {
-  const limitedDescription = (description || '').slice(0, 70) + '...'
+  const limitedDescription = (description?.length || '') > LIMIT ? (description || '').slice(0, LIMIT) + '...' : description
 
   return (
     <Styled.Root className={className} type='locationView' locationSlug={slug}>
@@ -31,10 +33,10 @@ const LocationCard: FC<LocationCardProps> = ({ className, _id, cover, likes, slu
             )}
           </LikesContainer>
 
-          <Styled.Views>
-            <Icon name='eye' />
-            <Styled.ViewsCount>87.4к</Styled.ViewsCount>
-          </Styled.Views>
+          {/*<Styled.Views>*/}
+          {/*  <Icon name='eye' />*/}
+          {/*  <Styled.ViewsCount>87.4к</Styled.ViewsCount>*/}
+          {/*</Styled.Views>*/}
         </Styled.Footer>
       </div>
     </Styled.Root>

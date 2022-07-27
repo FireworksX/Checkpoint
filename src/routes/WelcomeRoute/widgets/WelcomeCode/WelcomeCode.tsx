@@ -21,7 +21,7 @@ const WelcomeCode: FC<WelcomeRegisterProps> = ({ className, onLogin, onRegister,
   return (
     <Styled.Root className={className}>
       <Container>
-        <Styled.Header left={<PageHeaderButton onClick={onBack}>Back</PageHeaderButton>} />
+        <Styled.Header left={<PageHeaderButton onClick={onBack}>Назад</PageHeaderButton>} />
         <Styled.Title>{phone}</Styled.Title>
         <Styled.Description>Мы отправили вам СМС с кодом подтверждения</Styled.Description>
         <Styled.CodeInput value={codeValue} onChange={e => onSetCodeValue(e.target.value)} />

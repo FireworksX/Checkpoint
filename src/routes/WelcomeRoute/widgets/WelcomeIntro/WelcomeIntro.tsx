@@ -3,6 +3,7 @@ import * as Styled from './styles'
 import Container from 'src/components/Container/Container'
 import { useWelcomeIntro } from './hooks/useWelcomeIntro'
 import PageHeaderButton from 'src/widgets/PageHeader/components/PageHeaderButton/PageHeaderButton'
+import Button from '../../../../components/Button/Button'
 
 interface WelcomeRegisterProps {
   className?: string
@@ -19,15 +20,14 @@ const WelcomeIntro: FC<WelcomeRegisterProps> = ({ className, onNext }) => {
   return (
     <Styled.Root className={className}>
       <Container>
-        <Styled.Header right={<PageHeaderButton onClick={onSubmit}>Next</PageHeaderButton>} />
-        <Styled.Title>Your phone</Styled.Title>
-        <Styled.Description>Please confirm your country code and your phone number.</Styled.Description>
+        <Styled.Title>Ваш телефон</Styled.Title>
+        <Styled.Description>Пожалуйста подтвердить вашу старну и телефонный номер</Styled.Description>
       </Container>
 
       <Styled.CountrySection>
         <Styled.CountrySector>
           <Styled.CountryFlag size={30} iso='ru' />
-          Russia
+          Россия
         </Styled.CountrySector>
       </Styled.CountrySection>
       <Styled.PhoneSection>
@@ -38,6 +38,12 @@ const WelcomeIntro: FC<WelcomeRegisterProps> = ({ className, onNext }) => {
           onChange={e => onSetPhoneValue(e.target.value)}
         />
       </Styled.PhoneSection>
+
+      <Styled.ButtonWrapper>
+        <Button size='l' stretched onClick={onSubmit}>
+          Далее
+        </Button>
+      </Styled.ButtonWrapper>
     </Styled.Root>
   )
 }

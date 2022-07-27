@@ -6,15 +6,12 @@ import Container from 'src/components/Container/Container'
 
 export const Root = styled.div``
 
-export const Header = styled(PageHeader)`
-  margin-bottom: 100px;
-`
-
 export const Title = styled.div`
   ${({ theme }) => theme.typography.text_32_38}
   color: ${({ theme }) => theme.colors.textColor};
   text-align: center;
   font-weight: 500;
+  margin-top: 100px;
   margin-bottom: 15px;
 `
 
@@ -70,4 +67,8 @@ export const PhoneNumber = styled(Input).attrs({ inputClassName: 'input' })`
     border: none;
     ${({ theme }) => theme.typography.text_16_20};
   }
+`
+
+export const ButtonWrapper = styled(Container)`
+  margin-top: 20px;
 `

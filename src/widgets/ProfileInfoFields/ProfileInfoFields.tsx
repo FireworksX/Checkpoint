@@ -24,9 +24,9 @@ const ProfileInfoFields: FC<ProfileInfoFieldsProps> = ({ className, fields, avat
       </Styled.AvatarWrapper>
 
       <Styled.Field placeholder='Username' {...fields.username} />
-      <Styled.Field placeholder='First name' {...fields.firstName} />
-      <Styled.Field placeholder='Last name' {...fields.lastName} />
-      <Styled.Field placeholder='Bio' textarea {...fields.bio} />
+      <Styled.Field placeholder='Имя' {...fields.firstName} />
+      <Styled.Field placeholder='Фамилия' {...fields.lastName} />
+      <Styled.Field placeholder='О себе' textarea {...fields.bio} />
     </Styled.Root>
   )
 }

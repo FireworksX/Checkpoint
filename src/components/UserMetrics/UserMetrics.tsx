@@ -17,7 +17,7 @@ interface UserMetricsProps {
 const UserMetrics: FC<UserMetricsProps> = ({ className, locations, followers, subscribers }) => {
   return (
     <Styled.Root className={className}>
-      <Styled.MetricCell>
+      <Styled.MetricCell as='div'>
         <Styled.MetricValue>{locations.count}</Styled.MetricValue>
         <Styled.MetricLabel>публикаций</Styled.MetricLabel>
       </Styled.MetricCell>

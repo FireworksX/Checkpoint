@@ -30,7 +30,7 @@ const WelcomeIntro: FC<WelcomeRegisterProps> = ({ className, onNext }) => {
           Россия
         </Styled.CountrySector>
       </Styled.CountrySection>
-      <Styled.PhoneSection>
+      <Styled.PhoneSection onSubmit={onSubmit}>
         <Styled.PhoneCode defaultValue='+7' />
         <Styled.PhoneNumber
           placeholder='--- --- ----'

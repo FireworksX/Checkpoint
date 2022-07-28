@@ -38,7 +38,7 @@ export const CountryFlag = styled(CommonLogo)`
   margin-right: 15px;
 `
 
-export const PhoneSection = styled.div`
+export const PhoneSection = styled.form`
   display: flex;
   align-items: center;
   border-top: 1px solid ${({ theme }) => theme.colors.border};

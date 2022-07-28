@@ -13,6 +13,7 @@
     "build:server": "vite build --ssr src/entryServer.tsx --outDir dist/server",
     "serve": "cross-env NODE_ENV=production nodemon --ignore server/data -O '{\"module\": \"commonjs\"}' server/index.ts",
     "deploy": "yarn build && yarn serve",
+    "restart": "yarn build && pm2 restart checkpoint-client",
     "preview": "vite preview",
     "cts": "tsc --project . --noEmit",
     "cc": "create-component",

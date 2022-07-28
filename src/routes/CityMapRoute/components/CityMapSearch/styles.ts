@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import Chip from 'src/widgets/ChipsInput/components/Chip/Chip'
 import Touchable from '../../../../components/Touchable/Touchable'
+import {rgbToRgba} from "../../../../styles/theme/baseStyleds";
 
 export const Root = styled.div`
   padding: 25px 15px 15px;
@@ -60,6 +61,10 @@ export const Reset = styled(Touchable)`
     right: 40px;
     bottom: 0;
     width: 20px;
-    background: linear-gradient(to right, transparent, ${({ theme }) => theme.colors.secondaryLightBg} 100%);
+    background: linear-gradient(
+      to right,
+      ${({ theme }) => rgbToRgba(theme.colors.secondaryLightBg, 0)},
+      ${({ theme }) => theme.colors.secondaryLightBg} 100%
+    );
   }
 `

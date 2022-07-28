@@ -15,6 +15,7 @@ export const Root = styled.nav`
   box-shadow: 0 8px 24px rgb(0 0 0 / 12%), 0 1px 2px rgb(0 0 0 / 12%);
   border-radius: 20px 20px 0 0;
   width: 100%;
+  padding-bottom: 10px;
 
   .navigationActive {
     ${() => css`

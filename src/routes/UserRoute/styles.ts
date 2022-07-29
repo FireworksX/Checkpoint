@@ -8,8 +8,9 @@ import LocationCard from 'src/components/LocationCard/LocationCard'
 import LocationCardSkeleton from 'src/components/LocationCardSkeleton/LocationCardSkeleton'
 import BaseImage from 'src/components/BaseImage/BaseImage'
 import Button from '../../components/Button/Button'
+import Page from "../../widgets/Page/Page";
 
-export const Root = styled.div``
+export const Root = styled(Page)``
 
 export const Header = styled(PageHeader)`
   border-bottom: 2px solid ${({ theme }) => theme.colors.border};
@@ -60,4 +61,10 @@ export const PlaceholderImage = styled(BaseImage)`
 export const SubscribeContainer = styled(Container)`
   text-align: center;
   margin-bottom: 15px;
+`
+
+export const LoaderWrapper = styled.div`
+  padding: 50px 20px;
+  display: flex;
+  justify-content: center;
 `

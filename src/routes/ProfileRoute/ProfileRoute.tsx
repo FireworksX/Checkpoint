@@ -15,6 +15,7 @@ import UserMetrics from 'src/components/UserMetrics/UserMetrics'
 import { useModal } from 'src/hooks/useModal'
 import Link from '../../widgets/Link/Link'
 import { useRouter } from '../../hooks/useRouter'
+import Spinner from '../../components/Spinner/Spinner'
 
 interface ProfileRouteProps {
   className?: string
@@ -80,6 +81,12 @@ const ProfileRoute: FC<ProfileRouteProps> = ({ className }) => {
             </Button>
           </Link>
         </Container>
+      )}
+
+      {locationsFetching && (
+        <Styled.LoaderWrapper>
+          <Spinner />
+        </Styled.LoaderWrapper>
       )}
 
       {(locations?.length || 0) === 0 && !locationsFetching && (

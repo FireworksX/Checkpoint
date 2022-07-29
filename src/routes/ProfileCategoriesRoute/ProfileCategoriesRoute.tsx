@@ -20,7 +20,8 @@ const ProfileCategoriesRoute: FC<ProfileCategoriesRouteProps> = ({ className }) 
   const { back } = useRouter()
   const { list, editCategory, createCategory, removeCategory } = useProfileCategoriesRoute()
 
-  return (
+
+    return (
     <Styled.Root className={className}>
       <Styled.Header
         left={

@@ -25,7 +25,7 @@ export const useUserRoute = () => {
   const userSlug = getParam(ROUTE_PARAMS.userSlug)
   const [selectedCategory, setSelectedCategory] = useState(DEFAULT_ALL_CATEGORY.slug)
 
-  const { data: userResponse } = useRequest<AuthUserResponse>(`${apiEndpoints.USERS_DETAIL}/${userSlug}`)
+  const { data: userResponse, fetching: userFetching } = useRequest<AuthUserResponse>(`${apiEndpoints.USERS_DETAIL}/${userSlug}`)
   const user = userResponse?.data
 
   const { data: locations, fetching: locationsFetching } = useUserLocations({
@@ -46,6 +46,7 @@ export const useUserRoute = () => {
   return {
     userSlug,
     locations,
+    userFetching,
     locationsFetching,
     user,
     categories,

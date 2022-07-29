@@ -6,8 +6,9 @@ import CityInfoStories from "./widgets/CityInfoStories/CityInfoStories";
 import CityInfoFacts from "./widgets/CityInfoFacts/CityInfoFacts";
 import CityInfoRates from "./widgets/CityInfoRates/CityInfoRates";
 import CityInfoAmbassadors from "./widgets/CityInfoAmbassadors/CityInfoAmbassadors";
+import Page from "../../widgets/Page/Page";
 
-export const Root = styled.div``
+export const Root = styled(Page)``
 
 export const Header = styled(PageHeader)`
   ${({ theme }) => theme.typography.text_20_24};

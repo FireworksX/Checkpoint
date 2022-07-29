@@ -22,7 +22,7 @@ export const useLocationCreate = () => {
   } = useModal<LocationFieldsModalContext>(MODAL_NAMES.locationFields)
 
   const { open: openChooseCategoryInner, close: closeChooseCategory } = useModal<ChooseCategoryModalContext>(
-    MODAL_NAMES.chooseCategory
+    MODAL_NAMES.chooseProfileCategory
   )
 
   const { open: openSuccess } = useModal<SuccessCreateModalContext>(MODAL_NAMES.successCreateLocation)

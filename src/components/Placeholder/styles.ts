@@ -19,3 +19,7 @@ export const Description = styled.h3`
   color: ${({ theme }) => theme.colors.secondary};
   margin-top: 8px;
 `
+
+export const Actions = styled.h3`
+  margin-top: 10px;
+`

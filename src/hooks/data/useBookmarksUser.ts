@@ -1,24 +1,23 @@
 import { useCallback, useEffect, useState } from 'react'
 import { useMutation } from '../useMutation'
 import { apiEndpoints } from '../../data/apiEndpoints'
-import {AddBookmark, Bookmark, RemoveBookmark} from '../../interfaces/Bookmark'
+import { AddBookmark, Bookmark, RemoveBookmark } from '../../interfaces/Bookmark'
 import { useModal } from '../useModal'
 import { MODAL_NAMES } from '../../router/constants'
 import { ChooseCategoryModalContext } from '../../modals/ChooseCategoryModal/ChooseCategoryModal'
 import { useCurrentUser } from './useCurrentUser'
+import {ChooseProfileCategoryModalContext} from "../../modals/ChooseProfileCategoryModal/ChooseProfileCategoryModal";
 
 export const useBookmarksUser = (initialValue = false, targetOptions: Omit<AddBookmark, 'category'>) => {
   const [hasBookmark, setHasBookmark] = useState(initialValue)
-  const { open, close } = useModal<ChooseCategoryModalContext>(MODAL_NAMES.chooseCategory)
-  const { user } = useCurrentUser()
+  const { open, close, updateContext } = useModal<ChooseProfileCategoryModalContext>(MODAL_NAMES.chooseProfileCategory)
+  const { user, mutate, revalidate, categories } = useCurrentUser()
 
   useEffect(() => {
     setHasBookmark(initialValue)
   }, [initialValue])
 
-  const { execute: addBookmark, fetching: addFetching } = useMutation<Bookmark, AddBookmark>(
-    apiEndpoints.BOOKMARKS_ADD
-  )
+  const { execute: addBookmark, fetching: addFetching } = useMutation<Bookmark, AddBookmark>(apiEndpoints.BOOKMARKS_ADD)
 
   const { execute: removeBookmark, fetching: removeFetching } = useMutation<Bookmark, RemoveBookmark>(
     apiEndpoints.BOOKMARKS_REMOVE
@@ -44,10 +43,13 @@ export const useBookmarksUser = (initialValue = false, targetOptions: Omit<AddBo
     [addBookmark, removeBookmark, hasBookmark, targetOptions, setHasBookmark]
   )
 
+  useEffect(() => {
+    return () => console.log('use bookmarks unmount')
+  }, [user?.categories, updateContext])
+
   const proxyToggleBookmark = useCallback(() => {
     if (!hasBookmark) {
       open({
-        list: user?.categories || [],
         async onSelect({ _id }) {
           await close()
           toggleBookmark(_id)
@@ -56,7 +58,7 @@ export const useBookmarksUser = (initialValue = false, targetOptions: Omit<AddBo
     } else {
       toggleBookmark()
     }
-  }, [open, toggleBookmark, user, hasBookmark])
+  }, [open, toggleBookmark, categories, hasBookmark, mutate, close, updateContext])
 
   return {
     fetching: addFetching || removeFetching,

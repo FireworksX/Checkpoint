@@ -8,7 +8,7 @@ type Props = Record<string, any> & {
 }
 
 export const getFinalLinkType = (type: LinkType, props: Props) => {
-  if (USER_TYPES.includes(type) && props?.user?.username === props?.userSlug) {
+  if (USER_TYPES.includes(type) && props?.currentUser?.username === props?.userSlug) {
     if (type === 'userFollowers') {
       type = 'profileFollowers'
     }

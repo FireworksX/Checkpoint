@@ -1,6 +1,7 @@
 import useSWR from 'swr'
 import { Key } from 'swr/dist/types'
 import { ApiResponseBody } from 'src/interfaces/Request'
+import { useCallback } from 'react'
 
 interface RequestOptions {
   revalidate?: boolean
@@ -18,7 +19,7 @@ export const useRequest = <Data = any, Error = any, SWRKey extends Key = Key>(
     const value = params[key]
 
     if (value) {
-      acc[key] =  value
+      acc[key] = value
     }
     return acc
   }, {})
@@ -34,6 +35,6 @@ export const useRequest = <Data = any, Error = any, SWRKey extends Key = Key>(
 
   return {
     ...swrResponse,
-    fetching: (!swrResponse?.data && !swrResponse.error) || swrResponse.isValidating
+    fetching: !swrResponse?.data && !swrResponse.error
   }
 }

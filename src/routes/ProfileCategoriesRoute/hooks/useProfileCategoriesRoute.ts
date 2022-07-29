@@ -10,13 +10,13 @@ import { apiEndpoints } from 'src/data/apiEndpoints'
 export const useProfileCategoriesRoute = () => {
   const { open: openEditCategory } = useModal<Category>(MODAL_NAMES.editCategory)
   const { open: openCreateCategory } = useModal(MODAL_NAMES.createCategory)
-  const { user, revalidate } = useCurrentUser()
+  const { user, categories, removeCategory: userRemoveCategory } = useCurrentUser()
   const { execute: executeRemoveCategory } = useMutation<boolean, { findSlug: string }>(apiEndpoints.CATEGORIES_REMOVE)
 
-  const categories = useMemo(
-    () => (user?.categories || []).map(category => ({ ...category, icon: staticImagesMapKebab[category?.icon || ''] })),
-    [user]
-  )
+  const parsedCategories = categories.map(category => ({
+    ...category,
+    icon: staticImagesMapKebab[category?.icon || '']
+  }))
 
   const editCategory = useCallback(
     (category: Category) => {
@@ -27,17 +27,17 @@ export const useProfileCategoriesRoute = () => {
 
   const removeCategory = useCallback(
     async (category: Category) => {
-      const result = await executeRemoveCategory({
+      userRemoveCategory(category._id)
+
+      await executeRemoveCategory({
         findSlug: category.slug
       })
-
-      await revalidate()
     },
-    [executeRemoveCategory, revalidate]
+    [executeRemoveCategory, userRemoveCategory]
   )
 
   return {
-    list: categories,
+    list: parsedCategories,
     editCategory,
     removeCategory,
     createCategory: openCreateCategory

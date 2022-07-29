@@ -10,10 +10,10 @@ interface CityListRouteProps {
 }
 
 const CityInfoRoute: FC<CityListRouteProps> = ({ className }) => {
-  const { city } = useCityInfo()
+  const { city, fetching } = useCityInfo()
 
   return (
-    <Styled.Root className={className}>
+    <Styled.Root className={className} fetching={fetching}>
       <Styled.Header>{city?.name}</Styled.Header>
       <Styled.Gallery />
       <Styled.Compilations />

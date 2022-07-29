@@ -15,6 +15,7 @@ const Spinner: FC<SpinnerProps> = ({ className, size, pathColor }) => {
   return (
     <Styled.Root className={className} size={size}>
       <CircularProgressbar
+        strokeWidth={12}
         value={70}
         styles={buildStyles({
           pathColor: pathColor || theme.colors.secondary,

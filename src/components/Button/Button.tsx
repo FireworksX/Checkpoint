@@ -1,6 +1,7 @@
 import { FC } from 'react'
 import * as Styled from './styles'
 import { TouchableProps } from 'src/components/Touchable/Touchable'
+import Spinner from '../Spinner/Spinner'
 
 export interface ButtonProps extends TouchableProps {
   color?: 'accent' | 'positive' | 'negative' | 'neutral'
@@ -8,14 +9,15 @@ export interface ButtonProps extends TouchableProps {
   mode?: 'primary' | 'secondary' | 'tertiary' | 'outline'
   stretched?: boolean
   disabled?: boolean
+  loading?: boolean
   className?: string
 }
 
-const Button: FC<ButtonProps> = ({ className, disabled, size, color, mode, stretched, children, ...rest }) => {
+const Button: FC<ButtonProps> = ({ className, disabled, loading, size, color, mode, stretched, children, ...rest }) => {
   return (
     <Styled.Root
       className={className}
-      disabled={disabled}
+      disabled={disabled || loading}
       color={color}
       mode={mode}
       stretched={stretched}

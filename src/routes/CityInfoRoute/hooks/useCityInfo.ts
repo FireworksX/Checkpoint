@@ -7,7 +7,7 @@ import { staticImagesMapKebab } from 'src/data/staticImagesMap'
 
 export const useCityInfo = () => {
   const { citySlug } = useRouter()
-  const { data } = useRequest<City>(`${apiEndpoints.CITY_DETAIL}/${citySlug}`, {
+  const { data, fetching } = useRequest<City>(`${apiEndpoints.CITY_DETAIL}/${citySlug}`, {
     pause: !citySlug
   })
 
@@ -25,6 +25,7 @@ export const useCityInfo = () => {
     facts: data?.data?.facts || [],
     rates: data?.data?.rates || [],
     categories,
-    ambassadors: data?.data?.owner?.subscribers || []
+    ambassadors: data?.data?.owner?.subscribers || [],
+    fetching
   }
 }

@@ -16,5 +16,5 @@ export const Navigation = styled(NavigationComp)<Props>`
   left: 0;
   z-index: ${zIndex.navigation};
   transition: ${({ theme }) => theme.animation.transitionDuration};
-  ${({ hasNavigation }) => !hasNavigation && `transform: translateY(70px);`}
+  ${({ hasNavigation }) => !hasNavigation && `transform: translateY(80px);`}
 `

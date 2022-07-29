@@ -63,6 +63,7 @@ export const MODAL_NAMES = createConstants(
   'locationFields',
   'locationKitchenTypes',
   'chooseCategory',
+  'chooseProfileCategory',
   'successCreateLocation',
   'locationViewOptions',
   'preRemoveLocation',

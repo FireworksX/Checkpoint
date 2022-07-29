@@ -10,22 +10,24 @@ export const useModal = <CTX extends object = any>(modalName: ModalName) => {
   const [modalContext, setModalContext] = useRecoilState<CTX | undefined>(modalContextAtom)
   const isOpen = currentModal === modalName
 
-  const open = useCallback(
-    async (context?: CTX) => {
-      if (!isOpen) {
-        setCurrentModal(modalName)
-        setModalContext(context)
-        await modalPromiseWaiter()
-      }
-    },
-    [setCurrentModal, isOpen, modalName, setModalContext]
-  )
-
   const close = useCallback(async () => {
     setCurrentModal(undefined)
     await modalPromiseWaiter()
     setModalContext(undefined)
   }, [setCurrentModal, setModalContext])
+
+  const open = useCallback(
+    async (context?: CTX) => {
+      if (currentModal) {
+        await close()
+      }
+
+      setCurrentModal(modalName)
+      setModalContext(context)
+      await modalPromiseWaiter()
+    },
+    [setCurrentModal, modalName, setModalContext, close, currentModal]
+  )
 
   const updateContext = useCallback(
     (fields: Partial<CTX>) => {

@@ -18,6 +18,7 @@ import SubscribeButton from 'src/widgets/SubscribeContainer/components/Subscribe
 import { DEFAULT_ALL_CATEGORY } from '../ProfileRoute/hooks/useProfileRoute'
 import Link from '../../widgets/Link/Link'
 import { useRouter } from '../../hooks/useRouter'
+import Spinner from '../../components/Spinner/Spinner'
 
 interface UserRouteProps {
   className?: string
@@ -25,14 +26,21 @@ interface UserRouteProps {
 
 const UserRoute: FC<UserRouteProps> = ({ className }) => {
   const { citySlug } = useRouter()
-  const { user, categories, locations, locationsFetching, counters, userSlug, selectedCategory, setSelectedCategory } =
-    useUserRoute()
+  const {
+    user,
+    categories,
+    locations,
+    locationsFetching,
+    userFetching,
+    counters,
+    userSlug,
+    selectedCategory,
+    setSelectedCategory
+  } = useUserRoute()
 
   return (
-    <Styled.Root className={className}>
-      <Styled.Header
-        left={<PageHeaderButtonBack />}
-      >
+    <Styled.Root className={className} fetching={userFetching}>
+      <Styled.Header left={<PageHeaderButtonBack />}>
         <Styled.HeaderTitle>
           <Username>{user?.username}</Username>
         </Styled.HeaderTitle>
@@ -85,6 +93,12 @@ const UserRoute: FC<UserRouteProps> = ({ className }) => {
             </Button>
           </Link>
         </Container>
+      )}
+
+      {locationsFetching && (
+        <Styled.LoaderWrapper>
+          <Spinner />
+        </Styled.LoaderWrapper>
       )}
 
       {(locations?.length || 0) === 0 && !locationsFetching && (

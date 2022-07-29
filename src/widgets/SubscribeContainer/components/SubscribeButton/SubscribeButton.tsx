@@ -15,7 +15,16 @@ const SubscribeButton: FC<SubscribeButtonProps> = ({ className, children, isSame
 
   return (
     <Styled.Root mode={isFollowing ? 'secondary' : 'primary'} className={className} onClick={onClick}>
-      {children ? children : isFollowing ? 'Отписаться' : 'Подписаться'}
+      {children ? (
+        children
+      ) : isFollowing ? (
+        <Styled.ButtonWrapper>
+          <Styled.ButtonIcon name='check' />
+          Отписаться
+        </Styled.ButtonWrapper>
+      ) : (
+        'Подписаться'
+      )}
     </Styled.Root>
   )
 }

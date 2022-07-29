@@ -2,11 +2,10 @@ import { FC } from 'react'
 import * as Styled from './styles'
 import Button from 'src/components/Button/Button'
 import { MODAL_NAMES } from 'src/router/constants'
-import { staticImagesMap } from '../../data/staticImagesMap'
-import ModalCard from '../../widgets/ModalCard/ModalCard'
-import { useModal } from '../../hooks/useModal'
+import ModalCard from 'src/widgets/ModalCard/ModalCard'
+import { useModal } from 'src/hooks/useModal'
 
-interface CreateCategoryModalProps {
+interface PreRemoveLocationProps {
   className?: string
 }
 
@@ -14,7 +13,7 @@ export interface PreRemoveLocationModalContext {
   onRemove(): void
 }
 
-const PreRemoveLocationModal: FC<CreateCategoryModalProps> = ({ className }) => {
+const PreRemoveLocationModal: FC<PreRemoveLocationProps> = ({ className }) => {
   const { context } = useModal<PreRemoveLocationModalContext>(MODAL_NAMES.preRemoveLocation)
 
   return (

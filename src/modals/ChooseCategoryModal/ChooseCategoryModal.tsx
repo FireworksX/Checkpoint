@@ -1,17 +1,14 @@
 import { FC } from 'react'
 import * as Styled from './styles'
 import BottomSheet from 'src/widgets/BottomSheet/BottomSheet'
-import Button from 'src/components/Button/Button'
 import BottomSheetHeader from 'src/widgets/BottomSheet/components/BottomSheetHeader/BottomSheetHeader'
 import { MODAL_NAMES } from 'src/router/constants'
-import CompilationCell, { CompilationCellProps } from '../../components/CompilationCell/CompilationCell'
 import { useModal } from '../../hooks/useModal'
 import Container from '../../components/Container/Container'
 import { Category } from '../../interfaces/Category'
-import {staticImagesMapKebab} from "../../data/staticImagesMap";
-import {iconToImage} from "../../utils/iconToImage";
+import { iconToImage } from '../../utils/iconToImage'
 
-interface CreateCategoryModalProps {
+interface ChooseCategoryModalProps {
   className?: string
 }
 
@@ -22,10 +19,11 @@ export interface ChooseCategoryModalContext {
   onSelect: (category: CategoryInner) => void
 }
 
-const ChooseCategoryModal: FC<CreateCategoryModalProps> = ({ className }) => {
+const ChooseCategoryModal: FC<ChooseCategoryModalProps> = ({ className }) => {
   const { context } = useModal<ChooseCategoryModalContext>(MODAL_NAMES.chooseCategory)
 
   const list = context?.list || []
+
 
   return (
     <BottomSheet name={MODAL_NAMES.chooseCategory} withHeader autoClose>

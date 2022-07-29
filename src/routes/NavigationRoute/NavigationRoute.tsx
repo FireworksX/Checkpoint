@@ -19,6 +19,7 @@ import LocationViewOptionsModal from 'src/modals/LocationViewOptionsModal/Locati
 import PreRemoveLocationModal from 'src/modals/PreRemoveLocationModal/PreRemoveLocationModal'
 import LocationPreloadModal from 'src/modals/LocationPreloadModal/LocationPreloadModal'
 import { hasNavigationAtom } from '../../store/uiStore'
+import ChooseProfileCategoryModal from '../../modals/ChooseProfileCategoryModal/ChooseProfileCategoryModal'
 
 interface NavigationRouteProps {
   className?: string
@@ -56,6 +57,7 @@ const NavigationRoute: FC<NavigationRouteProps> = ({ className, children }) => {
       <LocationViewOptionsModal />
       <PreRemoveLocationModal />
       <LocationPreloadModal />
+      <ChooseProfileCategoryModal />
     </Styled.Root>
   )
 }

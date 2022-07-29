@@ -10,6 +10,7 @@ import LocationCardSkeleton from 'src/components/LocationCardSkeleton/LocationCa
 import Icon from 'src/components/Icon/Icon'
 import BaseImage from 'src/components/BaseImage/BaseImage'
 import Link from '../../widgets/Link/Link'
+import Spinner from '../../components/Spinner/Spinner'
 
 export const Root = styled.div``
 
@@ -59,4 +60,10 @@ export const LocationCellSkeleton = styled(LocationCardSkeleton)`
 
 export const PlaceholderImage = styled(BaseImage)`
   width: 60px;
+`
+
+export const LoaderWrapper = styled.div`
+  padding: 50px 20px;
+  display: flex;
+  justify-content: center;
 `

@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import Chip from 'src/widgets/ChipsInput/components/Chip/Chip'
-import Touchable from '../../../../components/Touchable/Touchable'
-import {rgbToRgba} from "../../../../styles/theme/baseStyleds";
+import Touchable from 'src/components/Touchable/Touchable'
+import {rgbToRgba} from "src/styles/theme/baseStyleds";
 
 export const Root = styled.div`
   padding: 25px 15px 15px;

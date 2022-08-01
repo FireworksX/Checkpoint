@@ -1,10 +1,9 @@
 import { FC } from 'react'
+import { useTimeout } from 'react-use'
 import * as Styled from './styles'
 import Container from 'src/components/Container/Container'
 import { useWelcomeCode } from './hooks/useWelcomeCode'
 import PageHeaderButton from 'src/widgets/PageHeader/components/PageHeaderButton/PageHeaderButton'
-import { CodeValue } from './styles'
-import { useTimeout } from 'react-use'
 
 interface WelcomeRegisterProps {
   className?: string
@@ -22,7 +21,7 @@ const WelcomeCode: FC<WelcomeRegisterProps> = ({ className, onLogin, onRegister,
     <Styled.Root className={className}>
       <Container>
         <Styled.Header left={<PageHeaderButton onClick={onBack}>Назад</PageHeaderButton>} />
-        <Styled.Title>{phone}</Styled.Title>
+        <Styled.Title>+{phone}</Styled.Title>
         <Styled.Description>Мы отправили вам СМС с кодом подтверждения</Styled.Description>
         <Styled.CodeInput value={codeValue} onChange={e => onSetCodeValue(e.target.value)} />
 

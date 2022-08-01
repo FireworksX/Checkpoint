@@ -3,7 +3,7 @@ import * as Styled from './styles'
 import SelfPlacemark from './components/SelfPlacemark/SelfPlacemark'
 import MapWrapper from 'src/widgets/MapWrapper/MapWrapper'
 import { useMainMap } from './hooks/useMainMap'
-import Placemark from '../../../../widgets/Placemark/Placemark'
+import Placemark from 'src/widgets/Placemark/Placemark'
 
 interface MainMapProps {
   className?: string

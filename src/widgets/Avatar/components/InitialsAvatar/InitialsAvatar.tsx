@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import * as Styled from './styles'
 import { AvatarProps } from '../../Avatar'
-import { DEFAULT_LOGO_SIZE } from '../../../../components/CommonLogo/CommonLogo'
+import { DEFAULT_LOGO_SIZE } from 'src/components/CommonLogo/CommonLogo'
 
 /**
  * Градиенты, которые можно использовать в алгоритме поиска градиентов по числовому идентификатору пользователя.

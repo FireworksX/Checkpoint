@@ -7,7 +7,7 @@ interface Props {
   code: string
 }
 
-type Fields = Partial<Pick<AuthUser, 'username' | 'id' | 'phone'>>
+type Fields = Partial<Pick<AuthUser, 'username' | '_id' | 'phone' | 'country'>>
 
 export const useUserIsRegister = (queryFields: Fields, pause = false) => {
   const { data, error } = useRequest<boolean>(apiEndpoints.USER_IS_REGISTER, {

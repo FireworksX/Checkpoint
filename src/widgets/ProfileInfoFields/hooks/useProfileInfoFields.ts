@@ -15,8 +15,7 @@ export interface UserFields {
 type OnSubmit = (fields: UserFields) => any
 
 export const useProfileInfoFields = (onSubmit: OnSubmit) => {
-  const { register, handleSubmit, getValues, setValue } = useForm<UserFields>()
-  const forceUpdate = useForceUpdate()
+  const { register, handleSubmit, getValues, setValue, errors, isSubmitted } = useForm<UserFields>()
 
   const { user } = useCurrentUser()
   const [proxyUsername, setProxyUsername] = useState('')
@@ -25,19 +24,27 @@ export const useProfileInfoFields = (onSubmit: OnSubmit) => {
   })
 
   const usernameFieldOptions = useMemo(() => {
-    if (proxyUsername.length > 3) {
-      if (isRegisterUser?.data) {
-        return {
-          status: 'error' as const,
-          statusText: 'This username already exists.'
+    if (isSubmitted) {
+      if (proxyUsername.length > 3) {
+        if ('username' in errors) {
+          return {
+            status: 'error' as const,
+            statusText: errors.username?.message
+          }
         }
-      } else {
-        return {
-          status: 'success' as const
+        if (isRegisterUser?.data) {
+          return {
+            status: 'error' as const,
+            statusText: 'This username already exists.'
+          }
+        } else {
+          return {
+            status: 'success' as const
+          }
         }
       }
     }
-  }, [isRegisterUser, proxyUsername.length])
+  }, [isRegisterUser, proxyUsername.length, errors, isSubmitted])
 
   const onSubmitForm = handleSubmit(async data => {
     if (usernameFieldOptions?.status === 'error') {
@@ -58,12 +65,14 @@ export const useProfileInfoFields = (onSubmit: OnSubmit) => {
       username: {
         ...register('username', {
           maxLength: 30,
+          minLength: 3,
+          required: true,
           onChange: ({ target: { value } }) => setProxyUsername(value)
         }),
         ...usernameFieldOptions
       },
-      firstName: register('firstName', { maxLength: 30, onChange: forceUpdate }),
-      lastName: register('lastName', { maxLength: 30, onChange: forceUpdate }),
+      firstName: register('firstName', { maxLength: 30 }),
+      lastName: register('lastName', { maxLength: 30 }),
       bio: register('bio', { maxLength: 200 }),
       phone: user?.phone || ''
     },

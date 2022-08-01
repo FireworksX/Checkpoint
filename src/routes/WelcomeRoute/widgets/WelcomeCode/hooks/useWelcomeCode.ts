@@ -4,7 +4,9 @@ import { usePhoneValidationCodeCheck } from 'src/hooks/data/usePhoneValidationCo
 import { useUserIsRegister } from 'src/hooks/data/useUserIsRegister'
 import { useLoginUser } from 'src/hooks/data/useLoginUser'
 import { useCurrentUser } from 'src/hooks/data/useCurrentUser'
-import { generatePhoneCode } from '../../../../../utils/generatePhoneCode'
+import { generatePhoneCode } from 'src/utils/generatePhoneCode'
+import { usePhoneFormatter } from 'src/components/Input/hooks/usePhoneFormatter'
+import { buildPhone } from 'src/utils/buildPhone'
 
 interface Props {
   onBack(): void
@@ -17,14 +19,19 @@ export const useWelcomeCode = ({ onRegister, onLogin, onBack }: Props) => {
   const { user } = useCurrentUser()
   const { formatValue, setValue } = useNumberFormatter()
   const userPhone = user?.phone || ''
+  const userCountry = user?.country || 'ru'
+  const fullNumber = buildPhone(userPhone, userCountry)
+  const formattedPhone = usePhoneFormatter(userPhone, userCountry)
 
   const { data: validationData } = usePhoneValidationCodeCheck({
     phone: userPhone,
-    code: formatValue
+    code: formatValue,
+    country: userCountry
   })
   const { data: isRegisterData, fetching } = useUserIsRegister(
     {
-      phone: user?.phone
+      phone: userPhone,
+      country: userCountry
     },
     !validationData?.data
   )
@@ -35,8 +42,9 @@ export const useWelcomeCode = ({ onRegister, onLogin, onBack }: Props) => {
     tryLogin.current = true
 
     const { success } = await execute({
-      phone: userPhone || '',
-      code: formatValue
+      phone: userPhone,
+      code: formatValue,
+      country: userCountry
     })
 
     if (success) {
@@ -44,7 +52,7 @@ export const useWelcomeCode = ({ onRegister, onLogin, onBack }: Props) => {
     } else {
       alert('Error')
     }
-  }, [formatValue])
+  }, [formatValue, userCountry, execute, onLogin, userPhone])
 
   useEffect(() => {
     if (validationData?.success && validationData?.data && !fetching) {
@@ -54,13 +62,13 @@ export const useWelcomeCode = ({ onRegister, onLogin, onBack }: Props) => {
         onRegister()
       }
     }
-  }, [validationData, fetching, isRegisterData, onLoginUser])
+  }, [validationData, fetching, isRegisterData, onLoginUser, onRegister])
 
-  const generatedCode = generatePhoneCode(userPhone)
+  const generatedCode = generatePhoneCode(fullNumber)
 
   return {
     generatedCode,
-    phone: user?.phone,
+    phone: formattedPhone.formatValue,
     codeValue: formatValue,
     onSetCodeValue: setValue
   }

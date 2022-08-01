@@ -6,10 +6,12 @@ import useCookies from '../useCookies'
 import { useCallback } from 'react'
 import { useCurrentUser } from './useCurrentUser'
 import { userTokens } from '../../utils/userTokens'
+import { CountryCode } from 'src/data/countryPhoneCodes'
 
 type InputProps = {
   phone: string
   code: string
+  country: CountryCode
 }
 type OutputProps = {
   user: AuthUserResponse

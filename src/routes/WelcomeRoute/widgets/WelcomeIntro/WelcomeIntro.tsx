@@ -2,8 +2,7 @@ import { FC } from 'react'
 import * as Styled from './styles'
 import Container from 'src/components/Container/Container'
 import { useWelcomeIntro } from './hooks/useWelcomeIntro'
-import PageHeaderButton from 'src/widgets/PageHeader/components/PageHeaderButton/PageHeaderButton'
-import Button from '../../../../components/Button/Button'
+import Button from 'src/components/Button/Button'
 
 interface WelcomeRegisterProps {
   className?: string
@@ -21,7 +20,7 @@ const WelcomeIntro: FC<WelcomeRegisterProps> = ({ className, onNext }) => {
     <Styled.Root className={className}>
       <Container>
         <Styled.Title>Ваш телефон</Styled.Title>
-        <Styled.Description>Пожалуйста подтвердить вашу старну и телефонный номер</Styled.Description>
+        <Styled.Description>Пожалуйста подтвердите вашу страну и номер телефона</Styled.Description>
       </Container>
 
       <Styled.CountrySection>
@@ -31,7 +30,7 @@ const WelcomeIntro: FC<WelcomeRegisterProps> = ({ className, onNext }) => {
         </Styled.CountrySector>
       </Styled.CountrySection>
       <Styled.PhoneSection onSubmit={onSubmit}>
-        <Styled.PhoneCode defaultValue='+7' />
+        <Styled.PhoneCode defaultValue='+7' readOnly />
         <Styled.PhoneNumber
           placeholder='--- --- ----'
           value={phoneValue}

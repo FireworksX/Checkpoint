@@ -1,7 +1,7 @@
 import { FC, ReactNode } from 'react'
 import * as Styled from './styles'
-import Icon from '../../../../components/Icon/Icon'
-import { TouchableProps } from '../../../../components/Touchable/Touchable'
+import Icon from 'src/components/Icon/Icon'
+import { TouchableProps } from 'src/components/Touchable/Touchable'
 
 interface ChipProps extends TouchableProps {
   className?: string

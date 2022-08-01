@@ -2,7 +2,7 @@ import { FC } from 'react'
 import * as Styled from './styles'
 import CompilationCell from 'src/components/CompilationCell/CompilationCell'
 import { useCityInfo } from 'src/routes/CityInfoRoute/hooks/useCityInfo'
-import Link from '../../../../widgets/Link/Link'
+import Link from 'src/widgets/Link/Link'
 
 interface CityInfoCompilationsProps {
   className?: string

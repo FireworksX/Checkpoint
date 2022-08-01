@@ -22,7 +22,7 @@ export const useRegisterUser = () => {
 
       if (response.success && response.data) {
         const { user, token } = response.data
-        mutate(currentData => ({
+        await mutate(currentData => ({
           ...currentData,
           ...user,
           id: user._id

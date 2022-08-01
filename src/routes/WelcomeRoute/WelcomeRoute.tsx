@@ -19,7 +19,7 @@ const WelcomeRoute: FC<WelcomeRouteProps> = ({ className }) => {
 
   const onFinish = useCallback(() => {
     routerInstance.navigate(cityInfoLink.link.name)
-  }, [routerInstance])
+  }, [routerInstance, cityInfoLink])
 
   const viewsMap = [
     <WelcomeIntro key='welcomeIntroView' onNext={() => setStep(1)} />,

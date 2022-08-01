@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useLocationField } from '../useLocationField'
-import { MediaFile } from '../../../../interfaces/MediaFile'
+import { MediaFile } from 'src/interfaces/MediaFile'
 import { useFileSelector } from '../../../useFileSelector'
 import { useUploadFile } from '../../useUploadFile'
 

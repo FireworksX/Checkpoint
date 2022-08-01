@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import Button from 'src/components/Button/Button'
-import Icon from '../../../../components/Icon/Icon'
+import Icon from 'src/components/Icon/Icon'
 
 export const Root = styled(Button)`
   font-weight: bold;

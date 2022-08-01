@@ -31,4 +31,4 @@ const CityListRoute: FC<CityListRouteProps> = ({ className }) => {
   )
 }
 
-export default route(withValidateUser(CityListRoute), ROUTE_NAMES.cityList)
+export default route(CityListRoute, ROUTE_NAMES.cityList)

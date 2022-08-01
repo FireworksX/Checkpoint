@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import HorizontalScroll from 'src/components/HorizontalScroll/HorizontalScroll'
 import Touchable from 'src/components/Touchable/Touchable'
 import BaseImage from 'src/components/BaseImage/BaseImage'
-import Icon from '../../../../components/Icon/Icon'
+import Icon from 'src/components/Icon/Icon'
 
 export const Root = styled.div``
 

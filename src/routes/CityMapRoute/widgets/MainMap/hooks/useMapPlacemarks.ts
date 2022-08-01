@@ -5,7 +5,7 @@ import { MODAL_NAMES } from 'src/router/constants'
 import { LocationPreloadModalContext } from 'src/modals/LocationPreloadModal/LocationPreloadModal'
 import { useUserLocations } from 'src/hooks/data/useUserLocations'
 import { useMapFilter } from 'src/routes/CityMapRoute/hooks/useMapFilter'
-import { useCityInfo } from '../../../../CityInfoRoute/hooks/useCityInfo'
+import { useCityInfo } from 'src/routes/CityInfoRoute/hooks/useCityInfo'
 
 export const useMapPlacemarks = () => {
   const { user, category, isEmpty } = useMapFilter()

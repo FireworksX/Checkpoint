@@ -1,4 +1,5 @@
 import { Category } from './Category'
+import { CountryCode } from '../data/countryPhoneCodes'
 
 export interface BaseUser {
   _id: string
@@ -8,6 +9,7 @@ export interface BaseUser {
   username?: string
   bio?: string
   phone?: string
+  country?: CountryCode
   categories?: Category[]
   followers?: BaseUser[]
   subscribers?: BaseUser[]

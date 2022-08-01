@@ -3,8 +3,7 @@ import * as Styled from './styles'
 import Container from 'src/components/Container/Container'
 import { useWelcomeRegister } from './hooks/useWelcomeRegister'
 import PageHeaderButton from 'src/widgets/PageHeader/components/PageHeaderButton/PageHeaderButton'
-import { useInitialAvatarPlaceholder } from 'src/widgets/Avatar/hooks/useInitialAvatarPlaceholder'
-import ProfileInfoFields from '../../../../widgets/ProfileInfoFields/ProfileInfoFields'
+import ProfileInfoFields from 'src/widgets/ProfileInfoFields/ProfileInfoFields'
 
 interface WelcomeRegisterProps {
   className?: string

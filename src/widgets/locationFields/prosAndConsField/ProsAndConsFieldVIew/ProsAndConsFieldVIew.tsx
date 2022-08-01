@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import * as Styled from './styles'
-import { staticImagesMap } from '../../../../data/staticImagesMap'
+import { staticImagesMap } from 'src/data/staticImagesMap'
 
 interface ProsAndConsFieldVIewProps {
   cons: string[]

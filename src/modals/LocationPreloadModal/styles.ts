@@ -24,6 +24,7 @@ export const Close = styled(Touchable).attrs({ tagName: 'button' })`
   background: ${({ theme }) => theme.colors.secondaryLightBg};
   color: ${({ theme }) => theme.colors.secondary};
   border: none;
+  padding: 0;
 `
 
 export const Title = styled(TitleFieldView)`

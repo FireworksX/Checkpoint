@@ -14,7 +14,7 @@ const CityInfoCompilations: FC<CityInfoCompilationsProps> = ({ className }) => {
   return (
     <Styled.Root className={className}>
       {categories.map((category, index) => (
-        <Link type='cityMap' mapAuthor={city?.owner?.username} mapCategory={category.slug}>
+        <Link type='cityMap' key={category._id} mapAuthor={city?.owner?.username} mapCategory={category.slug}>
           <CompilationCell
             key={`${category.slug}_${index}`}
             title={category.name}

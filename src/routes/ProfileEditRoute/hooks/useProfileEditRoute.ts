@@ -14,7 +14,6 @@ export const useProfileEditRoute = () => {
         (key, value) => isValue(value) && typeof value === 'string' && value.length > 0
       )
       const response = await update(filterData)
-      console.log(response)
     },
     [update]
   )

@@ -5,6 +5,7 @@ export const reboot = css`
   *::before,
   *::after {
     box-sizing: border-box; // 1
+    -webkit-appearance: none;
   }
 
   html {

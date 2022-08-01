@@ -1,7 +1,7 @@
 import { FC, ReactNode } from 'react'
 import * as Styled from './styles'
 import { TouchableProps } from 'src/components/Touchable/Touchable'
-import { After } from './styles'
+import {After, TextWrapper} from './styles'
 
 export interface CompilationCellProps extends TouchableProps {
   title: string
@@ -26,10 +26,11 @@ const CompilationCell: FC<CompilationCellProps> = ({
   return (
     <Styled.Root className={className} isActive={isActive} {...rest}>
       {image && <Styled.Image src={image} />}
-      <div>
+      <Styled.TextWrapper hasImage={!!image}>
         <Styled.Title>{title}</Styled.Title>
         <Styled.Description>{description}</Styled.Description>
-      </div>
+      </Styled.TextWrapper>
+
       {after && <Styled.After className={afterClassName}>{after}</Styled.After>}
     </Styled.Root>
   )

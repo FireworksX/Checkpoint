@@ -1,3 +1,5 @@
+import { css } from 'styled-components'
+
 const typography = {
   fontFamily: `-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
     sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'`,
@@ -48,7 +50,12 @@ const typography = {
   text_9_9: {
     fontSize: '9px',
     lineHeight: '9px'
-  }
+  },
+  textEllipsis: css`
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  `
 }
 
 export default typography

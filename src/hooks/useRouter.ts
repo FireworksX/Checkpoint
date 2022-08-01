@@ -9,6 +9,7 @@ export type Router = ReturnType<typeof useRouter>
 export const useRouter = () => {
   const { route, router } = useRoute()
   const [cookieCitySlug, setCookieCitySlug] = useCookies('citySlug')
+  const citySlug = route.params[ROUTE_PARAMS.citySlug]
 
   const getLastSegment = useCallback((name: string | null | undefined) => {
     return name?.match(/\w+$/)?.[0] || null
@@ -47,10 +48,10 @@ export const useRouter = () => {
   )
 
   useEffect(() => {
-    if (route.params[ROUTE_PARAMS.citySlug]) {
-      setCookieCitySlug(route.params[ROUTE_PARAMS.citySlug])
+    if (citySlug) {
+      setCookieCitySlug(citySlug)
     }
-  }, [route.params[ROUTE_PARAMS.citySlug]])
+  }, [citySlug, setCookieCitySlug])
 
   return {
     routerInstance: router,

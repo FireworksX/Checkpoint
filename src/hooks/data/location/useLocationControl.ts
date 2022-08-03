@@ -47,9 +47,9 @@ export const useLocationControl = (initialIsEdit = false, initialData: InitialDa
     isEdit,
     ...initialData?.tags
   })
-  const poolsField = useLocationPollsField({
-    isEdit
-  })
+  // const poolsField = useLocationPollsField({
+  //   isEdit
+  // })
   const galleryField = useLocationGalleryField({
     isEdit,
     ...initialData?.gallery
@@ -63,7 +63,7 @@ export const useLocationControl = (initialIsEdit = false, initialData: InitialDa
     wifispeedField,
     averageBillField,
     tagsField,
-    poolsField
+    // poolsField
   }
 
   const values: { [P in keyof typeof fields]: Omit<typeof fields[P], 'Component' | 'fieldName'> } = Object.entries(

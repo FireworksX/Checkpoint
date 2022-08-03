@@ -69,7 +69,7 @@ const LocationView: FC<LocationViewProps> = ({ className }) => {
 
         {!fields.wifispeedField.isEmpty && <Styled.Field>{fields.wifispeedField.Component}</Styled.Field>}
 
-        {!fields.poolsField.isEmpty && <Styled.Field>{fields.poolsField.Component}</Styled.Field>}
+        {/*{!fields.poolsField.isEmpty && <Styled.Field>{fields.poolsField.Component}</Styled.Field>}*/}
         {!fields.tagsField.isEmpty && <Styled.Field>{fields.tagsField.Component}</Styled.Field>}
 
         <Link type='cityMap' mapAuthor={author?.username} mapCategory={category?.slug}>

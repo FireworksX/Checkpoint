@@ -84,24 +84,24 @@ export const fieldsScheme = {
     view: TagsFieldView,
     edit: TagsFieldEdit
   },
-  polls: {
-    type: 'polls' as const,
-    label: 'Голосовалка',
-    view: RatingFieldView,
-    edit: RatingFieldView
-  },
+  // polls: {
+  //   type: 'polls' as const,
+  //   label: 'Голосовалка',
+  //   view: RatingFieldView,
+  //   edit: RatingFieldView
+  // },
   gallery: {
     type: 'gallery' as const,
     label: 'Галерея',
     view: GalleryFieldView,
     edit: GalleryFieldEdit
   },
-  address: {
-    type: 'address' as const,
-    label: 'Адрес',
-    view: GalleryFieldView,
-    edit: GalleryFieldEdit
-  }
+  // address: {
+  //   type: 'address' as const,
+  //   label: 'Адрес',
+  //   view: GalleryFieldView,
+  //   edit: GalleryFieldEdit
+  // }
 }
 
 export const useLocationField = <NAME extends FieldsSchemeName>({

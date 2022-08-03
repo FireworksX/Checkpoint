@@ -50,7 +50,7 @@ const LocationCreate: FC<LocationCreateProps> = ({ className }) => {
 
         {isExists('wifi') && <Styled.Field>{fields.wifispeedField.Component}</Styled.Field>}
 
-        {isExists('polls') && <Styled.Field>{fields.poolsField.Component}</Styled.Field>}
+        {/*{isExists('polls') && <Styled.Field>{fields.poolsField.Component}</Styled.Field>}*/}
         {isExists('tags') && <Styled.Field>{fields.tagsField.Component}</Styled.Field>}
 
         <Styled.Field>

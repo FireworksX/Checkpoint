@@ -13,7 +13,6 @@ export const Root = styled(Touchable)<Props>`
   background: ${({ theme, isActive }) => (isActive ? theme.colors.border : theme.colors.backgroundWhite)};
   border-radius: ${({ theme }) => theme.baseStyles.radius.radiusMain};
   padding: 7px 15px;
-  overflow: hidden;
 `
 
 export const Image = styled(BaseImage)`

@@ -5,7 +5,6 @@ import { withValidateUser } from 'src/hoc/withValidateUser'
 import { ROUTE_NAMES } from 'src/router/constants'
 import PageHeaderButton from 'src/widgets/PageHeader/components/PageHeaderButton/PageHeaderButton'
 import PageHeaderButtonBack from 'src/widgets/PageHeader/components/PageHeaderButtonBack/PageHeaderButtonBack'
-import { useRouter } from 'src/hooks/useRouter'
 import { useProfileCategoriesRoute } from './hooks/useProfileCategoriesRoute'
 import Icon from 'src/components/Icon/Icon'
 import Button from 'src/components/Button/Button'
@@ -17,7 +16,6 @@ interface ProfileCategoriesRouteProps {
 }
 
 const ProfileCategoriesRoute: FC<ProfileCategoriesRouteProps> = ({ className }) => {
-  const { back } = useRouter()
   const { list, editCategory, createCategory, removeCategory } = useProfileCategoriesRoute()
 
 
@@ -25,7 +23,7 @@ const ProfileCategoriesRoute: FC<ProfileCategoriesRouteProps> = ({ className }) 
     <Styled.Root className={className}>
       <Styled.Header
         left={
-          <PageHeaderButton onClick={back}>
+          <PageHeaderButton>
             <PageHeaderButtonBack />
           </PageHeaderButton>
         }

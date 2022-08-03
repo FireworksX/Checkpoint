@@ -6,7 +6,6 @@ import { ROUTE_NAMES } from 'src/router/constants'
 import PageHeaderButton from 'src/widgets/PageHeader/components/PageHeaderButton/PageHeaderButton'
 import ProfileInfoFields from 'src/widgets/ProfileInfoFields/ProfileInfoFields'
 import Container from 'src/components/Container/Container'
-import { useRouter } from 'src/hooks/useRouter'
 import PageHeaderButtonBack from 'src/widgets/PageHeader/components/PageHeaderButtonBack/PageHeaderButtonBack'
 import { useProfileEditRoute } from './hooks/useProfileEditRoute'
 
@@ -16,14 +15,13 @@ interface ProfileEditRouteProps {
 
 const ProfileEditRoute: FC<ProfileEditRouteProps> = ({ className }) => {
   const { fields, avatarText, onSubmitForm } = useProfileEditRoute()
-  const { back } = useRouter()
 
   return (
     <Styled.Root className={className}>
       <form onSubmit={onSubmitForm}>
         <Styled.Header
           left={
-            <PageHeaderButton onClick={back}>
+            <PageHeaderButton>
               <PageHeaderButtonBack />
             </PageHeaderButton>
           }

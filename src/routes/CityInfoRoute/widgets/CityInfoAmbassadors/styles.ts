@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import AmbassadorCard from 'src/components/AmbassadorCard/AmbassadorCard'
+import HorizontalScroll from "src/components/HorizontalScroll/HorizontalScroll";
 
 export const Root = styled.div``
 
@@ -20,4 +21,8 @@ export const Card = styled(AmbassadorCard)`
   &:first-child {
     margin-left: ${({ theme }) => theme.baseStyles.paddings.gutterMobile};
   }
+`
+
+export const List = styled(HorizontalScroll)`
+  padding: 15px 0;
 `

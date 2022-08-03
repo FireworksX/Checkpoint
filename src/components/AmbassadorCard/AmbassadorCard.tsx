@@ -1,6 +1,5 @@
 import { FC } from 'react'
 import * as Styled from './styles'
-import CommonLogo from 'src/components/CommonLogo/CommonLogo'
 import Container from 'src/components/Container/Container'
 import SubscribeContainer from 'src/widgets/SubscribeContainer/SubscribeContainer'
 import SubscribeButton from 'src/widgets/SubscribeContainer/components/SubscribeButton/SubscribeButton'

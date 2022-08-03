@@ -34,7 +34,7 @@ const ChooseProfileCategoryModal: FC<ChooseProfileCategoryModalProps> = ({ class
         <Container>
           {categories.length === 0 && (
             <Placeholder actions={<Button onClick={createCategory}>Создать категорию</Button>}>
-              У вас пока нет ниодной категории, вы можете добавить парочку прямо сейчас.
+              У вас пока нет ни одной категории, вы можете добавить парочку прямо сейчас.
             </Placeholder>
           )}
           {categories.map(category => (

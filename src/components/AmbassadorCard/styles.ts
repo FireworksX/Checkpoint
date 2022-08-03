@@ -3,11 +3,13 @@ import Button from '../Button/Button'
 import Link from 'src/widgets/Link/Link'
 
 export const Root = styled(Link)`
-  background: ${({ theme }) => theme.colors.backgroundWhite};
+  background: ${({ theme }) => theme.colors.background};
   border-radius: ${({ theme }) => theme.baseStyles.radius.radiusMain};
   min-width: 256px;
   padding-bottom: 35px;
   text-align: center;
+  box-shadow: ${({ theme }) => theme.baseStyles.shadows.shadowSecondary};
+  border: 1px solid ${({ theme }) => theme.colors.border};
 `
 
 export const AvatarWrapper = styled.div`

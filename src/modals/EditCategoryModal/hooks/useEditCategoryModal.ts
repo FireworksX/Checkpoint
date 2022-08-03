@@ -5,6 +5,7 @@ import { Category } from 'src/interfaces/Category'
 import { useModal } from 'src/hooks/useModal'
 import { MODAL_NAMES } from 'src/router/constants'
 import { useEffect } from 'react'
+import { validationRules } from '../../../data/validationRules'
 
 type InputCategory = Pick<Category, 'name' | 'description'> & { findSlug: string }
 
@@ -35,8 +36,12 @@ export const useEditCategoryModal = () => {
   })
 
   return {
-    name: register('name', { maxLength: 30, minLength: 3, required: true }),
-    description: register('description', { maxLength: 30 }),
+    name: register('name', {
+      maxLength: validationRules.maxLength(30),
+      minLength: validationRules.minLength(3),
+      required: validationRules.required()
+    }),
+    description: register('description', { maxLength: validationRules.maxLength(30) }),
     onSubmit
   }
 }

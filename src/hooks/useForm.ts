@@ -11,10 +11,10 @@ export const useForm = <T extends FieldValues = FieldValues>() => {
 
   const register = useCallback(
     (fieldName: FieldPath<T>, options?: RegisterOptions) => {
-
       return {
         ...parentRegister(fieldName, options),
-        status: (isSubmitted ? (errors[fieldName] === undefined ? 'success' : 'error') : undefined) as 'success'
+        status: (isSubmitted ? (errors[fieldName] === undefined ? 'success' : 'error') : undefined) as 'success',
+        statusText: errors[fieldName]?.message
       }
     },
     [parentRegister, errors, isSubmitted]

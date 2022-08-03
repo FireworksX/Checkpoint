@@ -6,7 +6,8 @@ import {
   ReactNode,
   RefObject,
   TextareaHTMLAttributes,
-  useMemo
+  useMemo,
+  useState
 } from 'react'
 import * as Styled from './styles'
 
@@ -26,6 +27,7 @@ export type InputProps = {
 
 const Input: FC<InputProps> = forwardRef<HTMLInputElement | HTMLTextAreaElement, PropsWithChildren<InputProps>>(
   ({ isSlimArea, label, status, statusText, className, inputClassName, postfix, icon, ...inputProps }, ref) => {
+    const [hasFocus, setHasFocus] = useState(false)
 
     const StatusCheck = useMemo(() => {
       if (status) {
@@ -46,6 +48,8 @@ const Input: FC<InputProps> = forwardRef<HTMLInputElement | HTMLTextAreaElement,
               ref={ref as RefObject<HTMLTextAreaElement>}
               isSlimArea={isSlimArea}
               status={status}
+              onFocus={() => setHasFocus(true)}
+              onBlur={() => setHasFocus(false)}
             />
           ) : (
             <Styled.Input
@@ -55,11 +59,13 @@ const Input: FC<InputProps> = forwardRef<HTMLInputElement | HTMLTextAreaElement,
               status={status}
               {...inputProps}
               ref={ref as RefObject<HTMLInputElement>}
+              onFocus={() => setHasFocus(true)}
+              onBlur={() => setHasFocus(false)}
             />
           )}
           {postfix && <Styled.Postfix>{postfix}</Styled.Postfix>}
           <div>{StatusCheck}</div>
-          <div>{statusText && <Styled.Message status={status}>{statusText}</Styled.Message>}</div>
+          <div>{statusText && hasFocus && <Styled.Message status={status}>{statusText}</Styled.Message>}</div>
         </Styled.Wrapper>
       </Styled.Root>
     )

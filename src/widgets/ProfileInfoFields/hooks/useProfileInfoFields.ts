@@ -4,6 +4,7 @@ import { useForceUpdate } from 'src/hooks/useForceUpdate'
 import { useCurrentUser } from 'src/hooks/data/useCurrentUser'
 import { useUserIsRegister } from 'src/hooks/data/useUserIsRegister'
 import { useInitialAvatarPlaceholder } from 'src/widgets/Avatar/hooks/useInitialAvatarPlaceholder'
+import {validationRules} from "../../../data/validationRules";
 
 export interface UserFields {
   username: string
@@ -64,16 +65,16 @@ export const useProfileInfoFields = (onSubmit: OnSubmit) => {
     fields: {
       username: {
         ...register('username', {
-          maxLength: 30,
-          minLength: 3,
-          required: true,
+          maxLength: validationRules.maxLength(30),
+          minLength: validationRules.minLength(3),
+          required: validationRules.required(),
           onChange: ({ target: { value } }) => setProxyUsername(value)
         }),
         ...usernameFieldOptions
       },
-      firstName: register('firstName', { maxLength: 30 }),
-      lastName: register('lastName', { maxLength: 30 }),
-      bio: register('bio', { maxLength: 200 }),
+      firstName: register('firstName', { maxLength: validationRules.maxLength(30) }),
+      lastName: register('lastName', { maxLength: validationRules.maxLength(30) }),
+      bio: register('bio', { maxLength: validationRules.maxLength(200) }),
       phone: user?.phone || ''
     },
     setValue,

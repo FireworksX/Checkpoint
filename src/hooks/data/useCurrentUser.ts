@@ -15,7 +15,12 @@ export const useCurrentUser = () => {
 
   const logout = useCallback(async () => {
     userTokensManager.resetTokens()
-    await mutate()
+    await mutate(data => data, {
+      optimisticData: {
+        success: true,
+        data: undefined
+      }
+    })
   }, [mutate, userTokensManager])
 
   const categories = response?.data?.categories || []

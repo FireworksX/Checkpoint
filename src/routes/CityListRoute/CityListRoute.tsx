@@ -21,7 +21,7 @@ const CityListRoute: FC<CityListRouteProps> = ({ className }) => {
         <Styled.Image src={staticImagesMap.sunset} />
       </Styled.ImageWrapper>
       <Styled.Title>Выберите город</Styled.Title>
-      <Styled.Description>Выберите город который вы хотите иследовать</Styled.Description>
+      <Styled.Description>Выберите город который вы хотите исследовать</Styled.Description>
       {list.map(city => (
         <Link key={city.slug} type='cityInfo' citySlug={city.slug}>
           <SimpleCell expandable>{city.name}</SimpleCell>

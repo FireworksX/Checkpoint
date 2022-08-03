@@ -5,6 +5,7 @@ import { Category } from 'src/interfaces/Category'
 import { useModal } from 'src/hooks/useModal'
 import { MODAL_NAMES } from 'src/router/constants'
 import { CreateCategoryModalContext } from '../CreateCategoryModal'
+import { validationRules } from 'src/data/validationRules'
 
 type InputCategory = Pick<Category, 'name' | 'description'>
 
@@ -27,8 +28,14 @@ export const useCreateCategory = () => {
   })
 
   return {
-    name: register('name', { maxLength: 30, minLength: 3, required: true }),
-    description: register('description', { maxLength: 30 }),
+    name: register('name', {
+      maxLength: validationRules.maxLength(30),
+      minLength: validationRules.minLength(3),
+      required: validationRules.required()
+    }),
+    description: register('description', {
+      maxLength: validationRules.maxLength(30)
+    }),
     fetching,
     onSubmit,
     onClose: context?.onClose

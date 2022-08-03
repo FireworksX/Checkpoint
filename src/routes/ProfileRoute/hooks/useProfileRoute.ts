@@ -83,7 +83,7 @@ export const useProfileRoute = () => {
     selectedCategory,
     categories,
     fullName,
-    followers: user?.followers || [],
+    followers: (user?.followers || []).filter(Boolean),
     subscribers: user?.subscribers || [],
     counters: {
       locations: user?.counters?.locations || 0,

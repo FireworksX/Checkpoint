@@ -52,7 +52,7 @@ export const useUserRoute = () => {
     categories,
     selectedCategory,
     fullName: buildFullName(user?.firstName, user?.lastName),
-    followers: user?.followers || [],
+    followers: (user?.followers || []).filter(Boolean),
     subscribers: user?.subscribers || [],
     counters: {
       locations: user?.counters?.locations || 0,

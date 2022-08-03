@@ -6,6 +6,6 @@ export const useProfileFollowersRoute = () => {
 
   return {
     user,
-    followers: user?.followers || []
+    followers: (user?.followers || []).filter(Boolean)
   }
 }

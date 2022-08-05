@@ -1,4 +1,4 @@
-import { FC, ReactNode } from 'react'
+import { FC } from 'react'
 import * as Styled from './styles'
 import { LinkProps } from 'src/widgets/Link/Link'
 import { BaseUser } from 'src/interfaces/User'

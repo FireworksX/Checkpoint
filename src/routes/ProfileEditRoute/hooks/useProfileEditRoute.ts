@@ -13,7 +13,7 @@ export const useProfileEditRoute = () => {
         data,
         (key, value) => isValue(value) && typeof value === 'string' && value.length > 0
       )
-      const response = await update(filterData)
+      await update(filterData)
     },
     [update]
   )

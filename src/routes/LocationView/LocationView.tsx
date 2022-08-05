@@ -11,9 +11,8 @@ import { useLocationView } from './hooks/useLocationView'
 import { iconToImage } from 'src/utils/iconToImage'
 import CompilationCell from 'src/components/CompilationCell/CompilationCell'
 import Link from 'src/widgets/Link/Link'
-import LikesContainer from '../../widgets/LikesContainer/LikesContainer'
-import { LikeButton } from './styles'
-import BookmarksContainer from '../../widgets/BookmarksContainer/BookmarksContainer'
+import LikesContainer from 'src/widgets/LikesContainer/LikesContainer'
+import BookmarksContainer from 'src/widgets/BookmarksContainer/BookmarksContainer'
 
 interface LocationViewProps {
   className?: string

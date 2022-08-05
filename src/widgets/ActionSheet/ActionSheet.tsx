@@ -1,7 +1,6 @@
 import { FC } from 'react'
 import * as Styled from './styles'
 import { ModalName } from 'src/router/constants'
-import { BottomSheetProps } from 'src/widgets/BottomSheet/BottomSheet'
 import { useModal } from 'src/hooks/useModal'
 
 interface ActionSheetProps {

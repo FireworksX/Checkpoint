@@ -1,16 +1,12 @@
 import styled from 'styled-components'
 import PageHeader from 'src/widgets/PageHeader/PageHeader'
-import CommonLogo from 'src/components/CommonLogo/CommonLogo'
 import Touchable from 'src/components/Touchable/Touchable'
 import Container from 'src/components/Container/Container'
 import CompilationCell from 'src/components/CompilationCell/CompilationCell'
 import HorizontalScroll from 'src/components/HorizontalScroll/HorizontalScroll'
 import LocationCard from 'src/components/LocationCard/LocationCard'
 import LocationCardSkeleton from 'src/components/LocationCardSkeleton/LocationCardSkeleton'
-import Icon from 'src/components/Icon/Icon'
 import BaseImage from 'src/components/BaseImage/BaseImage'
-import Link from '../../widgets/Link/Link'
-import Spinner from '../../components/Spinner/Spinner'
 
 export const Root = styled.div``
 

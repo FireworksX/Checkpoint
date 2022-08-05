@@ -5,10 +5,8 @@ import {LocationKitchenTypeFieldProps, useLocationKitchenTypeField} from './fiel
 import {LocationWifispeedFieldProps, useLocationWifispeedField} from './fields/useLocationWifispeedField'
 import {LocationAverageBillFieldProps, useLocationAverageBillField} from './fields/useLocationAverageBillField'
 import {LocationTagsFieldProps, useLocationTagsField} from './fields/useLocationTagsField'
-import { useLocationPollsField } from './fields/useLocationPollsField'
 import {LocationGalleryFieldProps, useLocationGalleryField} from './fields/useLocationGalleryField'
 import { omit } from 'src/utils/omit'
-import {useEffect} from "react";
 
 type WrapField<T> = Omit<T, 'isEdit'>
 

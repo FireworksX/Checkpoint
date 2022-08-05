@@ -14,7 +14,7 @@ interface Props {
   onLogin(): void
 }
 
-export const useWelcomeCode = ({ onRegister, onLogin, onBack }: Props) => {
+export const useWelcomeCode = ({ onRegister, onLogin }: Props) => {
   const tryLogin = useRef(false)
   const { user } = useCurrentUser()
   const { formatValue, setValue } = useNumberFormatter()

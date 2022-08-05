@@ -2,10 +2,8 @@ import { apiEndpoints } from 'src/data/apiEndpoints'
 import { useMutation } from 'src/hooks/useMutation'
 import { AuthUserResponse } from 'src/interfaces/User'
 import { GeneratedTokenResponse } from 'src/interfaces/Request'
-import useCookies from '../useCookies'
-import { useCallback } from 'react'
 import { useCurrentUser } from './useCurrentUser'
-import { userTokens } from '../../utils/userTokens'
+import { userTokens } from 'src/utils/userTokens'
 import { CountryCode } from 'src/data/countryPhoneCodes'
 
 type InputProps = {

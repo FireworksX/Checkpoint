@@ -1,17 +1,16 @@
 import { useCallback, useEffect, useState } from 'react'
 import { useMutation } from '../useMutation'
-import { apiEndpoints } from '../../data/apiEndpoints'
-import { AddBookmark, Bookmark, RemoveBookmark } from '../../interfaces/Bookmark'
-import { useModal } from '../useModal'
-import { MODAL_NAMES } from '../../router/constants'
-import { ChooseCategoryModalContext } from '../../modals/ChooseCategoryModal/ChooseCategoryModal'
+import { apiEndpoints } from 'src/data/apiEndpoints'
+import { AddBookmark, Bookmark, RemoveBookmark } from 'src/interfaces/Bookmark'
+import { useModal } from 'src/hooks/useModal'
+import { MODAL_NAMES } from 'src/router/constants'
 import { useCurrentUser } from './useCurrentUser'
-import {ChooseProfileCategoryModalContext} from "../../modals/ChooseProfileCategoryModal/ChooseProfileCategoryModal";
+import {ChooseProfileCategoryModalContext} from "src/modals/ChooseProfileCategoryModal/ChooseProfileCategoryModal";
 
 export const useBookmarksUser = (initialValue = false, targetOptions: Omit<AddBookmark, 'category'>) => {
   const [hasBookmark, setHasBookmark] = useState(initialValue)
   const { open, close, updateContext } = useModal<ChooseProfileCategoryModalContext>(MODAL_NAMES.chooseProfileCategory)
-  const { user, mutate, revalidate, categories } = useCurrentUser()
+  const { mutate, categories } = useCurrentUser()
 
   useEffect(() => {
     setHasBookmark(initialValue)
@@ -43,10 +42,6 @@ export const useBookmarksUser = (initialValue = false, targetOptions: Omit<AddBo
     [addBookmark, removeBookmark, hasBookmark, targetOptions, setHasBookmark]
   )
 
-  useEffect(() => {
-    return () => console.log('use bookmarks unmount')
-  }, [user?.categories, updateContext])
-
   const proxyToggleBookmark = useCallback(() => {
     if (!hasBookmark) {
       open({
@@ -58,7 +53,7 @@ export const useBookmarksUser = (initialValue = false, targetOptions: Omit<AddBo
     } else {
       toggleBookmark()
     }
-  }, [open, toggleBookmark, categories, hasBookmark, mutate, close, updateContext])
+  }, [open, toggleBookmark, hasBookmark, close])
 
   return {
     fetching: addFetching || removeFetching,

@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 import { useLocationField } from '../useLocationField'
 import { MediaFile } from 'src/interfaces/MediaFile'
-import { useFileSelector } from '../../../useFileSelector'
-import { useUploadFile } from '../../useUploadFile'
+import { useFileSelector } from 'src/hooks/useFileSelector'
+import { useUploadFile } from 'src/hooks/data/useUploadFile'
 
 export interface LocationGalleryFieldProps {
   isEdit: boolean
@@ -34,7 +34,7 @@ export const useLocationGalleryField = ({ isEdit, initialMediaFiles }: LocationG
 
   useEffect(() => {
     runHandler()
-  }, [innerFiles])
+  }, [innerFiles, runHandler])
 
   const Component = useLocationField({
     fieldName: 'gallery',

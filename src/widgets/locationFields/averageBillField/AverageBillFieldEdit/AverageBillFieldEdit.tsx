@@ -1,4 +1,4 @@
-import { FC, useMemo } from 'react'
+import { FC } from 'react'
 import * as Styled from './styles'
 import Slider from 'src/components/Slider/Slider'
 

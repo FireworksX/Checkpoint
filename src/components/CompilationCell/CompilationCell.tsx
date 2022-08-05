@@ -1,7 +1,6 @@
 import { FC, ReactNode } from 'react'
 import * as Styled from './styles'
 import { TouchableProps } from 'src/components/Touchable/Touchable'
-import {After, TextWrapper} from './styles'
 
 export interface CompilationCellProps extends TouchableProps {
   title: string

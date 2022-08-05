@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import PageHeader from 'src/widgets/PageHeader/PageHeader'
 import Input from 'src/components/Input/Input'
 import CommonLogo from 'src/components/CommonLogo/CommonLogo'
 import Container from 'src/components/Container/Container'

@@ -1,10 +1,9 @@
 import { FC, ReactNode } from 'react'
 import * as Styled from './styles'
 import { BottomSheetProps } from '../BottomSheet/BottomSheet'
-import { CloseIcon } from './styles'
-import Icon from '../../components/Icon/Icon'
-import { useModal } from '../../hooks/useModal'
-import { MODAL_NAMES } from '../../router/constants'
+import Icon from 'src/components/Icon/Icon'
+import { useModal } from 'src/hooks/useModal'
+import { MODAL_NAMES } from 'src/router/constants'
 
 interface ModalCardProps extends Pick<BottomSheetProps, 'name' | 'autoClose' | 'onClose'> {
   className?: string

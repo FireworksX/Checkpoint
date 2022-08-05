@@ -1,5 +1,4 @@
 import { FC, useEffect, useState } from 'react'
-import mapStyles from './mapStyles.json'
 import GoogleMapReact, { Coords } from 'google-map-react'
 
 interface MapWrapperProps {
@@ -20,10 +19,10 @@ const defaultProps = {
 
 const MAP_KEY = 'AIzaSyDmf_DUzM3a8aq_xGPTnPKJB2IHU0izWBQ'
 
-const MapWrapper: FC<MapWrapperProps> = ({ className, children, zoom, center, onDragend, onZoomChange }) => {
+const MapWrapper: FC<MapWrapperProps> = ({ children, zoom, center, onDragend, onZoomChange }) => {
   const [map, setMap] = useState<any>()
 
-  const apiHasLoaded = ({ map, maps }: any) => {
+  const apiHasLoaded = ({ map }: any) => {
     setMap(map)
   }
 
@@ -36,7 +35,7 @@ const MapWrapper: FC<MapWrapperProps> = ({ className, children, zoom, center, on
         map.addListener('zoom_changed', () => onZoomChange(map))
       }
     }
-  }, [map])
+  }, [map, onDragend, onZoomChange])
 
   return (
     <GoogleMapReact

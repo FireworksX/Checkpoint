@@ -1,6 +1,5 @@
-import { FC, useCallback, useRef } from 'react'
-import { useRecoilState } from 'recoil'
-import { BottomSheet as BottomSheetComp, BottomSheetRef } from 'react-spring-bottom-sheet'
+import { FC, useCallback } from 'react'
+import { BottomSheet as BottomSheetComp } from 'react-spring-bottom-sheet'
 import * as Styled from './styles'
 import 'react-spring-bottom-sheet/dist/style.css'
 import { useModal } from 'src/hooks/useModal'

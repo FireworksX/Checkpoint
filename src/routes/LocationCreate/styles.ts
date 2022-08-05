@@ -1,16 +1,10 @@
 import styled from 'styled-components'
-import PageHeader from '../../widgets/PageHeader/PageHeader'
-import GalleryFieldView from '../../widgets/locationFields/galleryField/GalleryFieldView/GalleryFieldView'
-import TitleFieldView from '../../widgets/locationFields/titleField/TitleFieldView/TitleFieldView'
-import DescriptionFieldView from '../../widgets/locationFields/descriptionField/DescriptionFieldView/DescriptionFieldView'
-import Container from '../../components/Container/Container'
-import KitchenTypeFieldView from '../../widgets/locationFields/kitchenTypeField/KitchenTypeFieldView/KitchenTypeFieldView'
-import CompilationCell from '../../components/CompilationCell/CompilationCell'
-import WifispeedFieldView from '../../widgets/locationFields/wifispeedField/WifispeedFieldView/WifispeedFieldView'
-import AverageBillFieldView from '../../widgets/locationFields/averageBillField/AverageBillFieldView/AverageBillFieldView'
-import SeparatorComp from '../../components/Separator/Separator'
-import Button from '../../components/Button/Button'
-import GalleryFieldEdit from '../../widgets/locationFields/galleryField/GalleryFieldEdit/GalleryFieldEdit'
+import PageHeader from 'src/widgets/PageHeader/PageHeader'
+import Container from 'src/components/Container/Container'
+import CompilationCell from 'src/components/CompilationCell/CompilationCell'
+import SeparatorComp from 'src/components/Separator/Separator'
+import Button from 'src/components/Button/Button'
+import GalleryFieldEdit from 'src/widgets/locationFields/galleryField/GalleryFieldEdit/GalleryFieldEdit'
 
 export const Root = styled.div``
 

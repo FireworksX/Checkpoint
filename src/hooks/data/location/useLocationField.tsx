@@ -11,9 +11,8 @@ import AverageBillFieldView from 'src/widgets/locationFields/averageBillField/Av
 import AverageBillFieldEdit from 'src/widgets/locationFields/averageBillField/AverageBillFieldEdit/AverageBillFieldEdit'
 import TagsFieldView from 'src/widgets/locationFields/tagsField/TagsFieldView/TagsFieldView'
 import TagsFieldEdit from 'src/widgets/locationFields/tagsField/TagsFieldEdit/TagsFieldEdit'
-import RatingFieldView from 'src/widgets/locationFields/ratingField/RatingFieldView/RatingFieldView'
-import GalleryFieldView from "../../../widgets/locationFields/galleryField/GalleryFieldView/GalleryFieldView";
-import GalleryFieldEdit from "../../../widgets/locationFields/galleryField/GalleryFieldEdit/GalleryFieldEdit";
+import GalleryFieldView from 'src/widgets/locationFields/galleryField/GalleryFieldView/GalleryFieldView'
+import GalleryFieldEdit from 'src/widgets/locationFields/galleryField/GalleryFieldEdit/GalleryFieldEdit'
 
 export type FieldsScheme = typeof fieldsScheme
 export type FieldsSchemeName = keyof typeof fieldsScheme
@@ -95,7 +94,7 @@ export const fieldsScheme = {
     label: 'Галерея',
     view: GalleryFieldView,
     edit: GalleryFieldEdit
-  },
+  }
   // address: {
   //   type: 'address' as const,
   //   label: 'Адрес',

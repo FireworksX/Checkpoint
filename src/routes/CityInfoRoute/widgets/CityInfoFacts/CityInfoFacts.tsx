@@ -1,6 +1,5 @@
 import { FC } from 'react'
 import * as Styled from './styles'
-import { staticImagesMap } from 'src/data/staticImagesMap'
 import { useCityInfoFacts } from './hooks/useCityInfoFacts'
 
 interface CityInfoFactsProps {

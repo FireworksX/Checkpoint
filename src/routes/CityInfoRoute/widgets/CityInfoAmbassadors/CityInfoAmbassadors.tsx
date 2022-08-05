@@ -1,7 +1,6 @@
 import { FC } from 'react'
 import * as Styled from './styles'
 import Container from 'src/components/Container/Container'
-import HorizontalScroll from 'src/components/HorizontalScroll/HorizontalScroll'
 import { useCityInfo } from 'src/routes/CityInfoRoute/hooks/useCityInfo'
 
 interface CityInfoAmbassadorsProps {

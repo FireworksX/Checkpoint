@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 import Container from 'src/components/Container/Container'
-import Input from 'src/components/Input/Input'
-import CompilationCell from "../../components/CompilationCell/CompilationCell";
+import CompilationCell from 'src/components/CompilationCell/CompilationCell'
 
 export const Root = styled(Container)`
   padding-bottom: 20px;

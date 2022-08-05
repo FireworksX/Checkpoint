@@ -1,7 +1,6 @@
 import useSWR from 'swr'
 import { Key } from 'swr/dist/types'
 import { ApiResponseBody } from 'src/interfaces/Request'
-import { useCallback } from 'react'
 
 interface RequestOptions {
   revalidate?: boolean
@@ -13,7 +12,7 @@ export const useRequest = <Data = any, Error = any, SWRKey extends Key = Key>(
   url: SWRKey,
   options?: RequestOptions
 ) => {
-  const { params = {}, revalidate = false, pause = false } = options || {}
+  const { params = {}, pause = false } = options || {}
 
   const validParams = Object.keys(params).reduce<Record<string, string>>((acc, key) => {
     const value = params[key]

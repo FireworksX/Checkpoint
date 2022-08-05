@@ -8,7 +8,6 @@ import { useRouter } from 'src/hooks/useRouter'
 import { ROUTE_PARAMS } from 'src/router/constants'
 import { AuthUserResponse } from 'src/interfaces/User'
 import { buildFullName } from 'src/utils/buildFullName'
-import { useFollowingUser } from '../../../hooks/data/useFollowingUser'
 
 const DEFAULT_ALL_CATEGORY: Category = {
   _id: '',

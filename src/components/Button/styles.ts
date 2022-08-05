@@ -1,4 +1,4 @@
-import styled, { css, DefaultTheme, FlattenInterpolation, ThemedCssFunction } from 'styled-components'
+import styled, { css, DefaultTheme } from 'styled-components'
 import Touchable from 'src/components/Touchable/Touchable'
 import { ButtonProps } from './Button'
 import { rgbToRgba } from 'src/styles/theme/baseStyleds'

@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
-import { useMutation } from '../useMutation'
-import { apiEndpoints } from '../../data/apiEndpoints'
+import { useMutation } from 'src/hooks/useMutation'
+import { apiEndpoints } from 'src/data/apiEndpoints'
 import { MediaFile } from 'src/interfaces/MediaFile'
-import isBrowser from '../../utils/isBrowser'
-import { useQueue } from '../useQueue'
+import isBrowser from 'src/utils/isBrowser'
+import { useQueue } from 'src/hooks/useQueue'
 
 export const useUploadFile = (files?: File[] | null) => {
   const [progress, setProgress] = useState(0)
@@ -42,7 +42,7 @@ export const useUploadFile = (files?: File[] | null) => {
 
   useEffect(() => {
     runHandler()
-  }, [currentIndex])
+  }, [currentIndex, runHandler])
 
   return {
     runHandler,

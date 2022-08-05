@@ -1,7 +1,6 @@
 import { apiEndpoints } from 'src/data/apiEndpoints'
-import { useMutation } from '../useMutation'
-import { useRequest } from '../useRequest'
-import {CountryCode} from "../../data/countryPhoneCodes";
+import { useRequest } from 'src/hooks/useRequest'
+import { CountryCode } from 'src/data/countryPhoneCodes'
 
 interface Props {
   phone: string

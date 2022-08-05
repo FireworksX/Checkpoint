@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
 import { cacheService } from 'src/utils/cacheService'
-import isBrowser from '../utils/isBrowser'
+import isBrowser from 'src/utils/isBrowser'
 
 const CACHE_KEY = 'permissions:notifications'
 const cache = cacheService()

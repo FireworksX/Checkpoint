@@ -4,9 +4,9 @@ import { AuthUserResponse } from 'src/interfaces/User'
 import { apiEndpoints } from 'src/data/apiEndpoints'
 import { MODAL_NAMES, ROUTE_PARAMS } from 'src/router/constants'
 import { useLinkConfig } from 'src/widgets/Link/hooks/useLinkConfig'
-import { useModal } from '../../../hooks/useModal'
-import { CategoryInner, ChooseCategoryModalContext } from '../../../modals/ChooseCategoryModal/ChooseCategoryModal'
-import { buildLinkConfig } from '../../../widgets/Link/buildLinkConfig'
+import { useModal } from 'src/hooks/useModal'
+import { CategoryInner, ChooseCategoryModalContext } from 'src/modals/ChooseCategoryModal/ChooseCategoryModal'
+import { buildLinkConfig } from 'src/widgets/Link/buildLinkConfig'
 import { useCallback } from 'react'
 
 export const useMapFilter = () => {
@@ -59,7 +59,7 @@ export const useMapFilter = () => {
     })
 
     navigate(buildNewLink.link.name, buildNewLink.routeParams)
-  }, [closeChooseCategory, citySlug, mapAuthor, router, navigate])
+  }, [closeChooseCategory, citySlug, mapAuthor, router, navigate, closeChooseCategory])
 
   const chooseCategory = () => openChooseCategory({ list: user?.categories || [], onSelect: onChooseCategory })
 
@@ -67,7 +67,7 @@ export const useMapFilter = () => {
     if (isEmpty) {
       navigate(mapSearchLink.link.name, mainMapLink.routeParams)
     }
-  }, [isEmpty, navigate, mapSearchLink.routeParams])
+  }, [isEmpty, navigate, mapSearchLink, mainMapLink.routeParams])
 
   return {
     isEmpty,

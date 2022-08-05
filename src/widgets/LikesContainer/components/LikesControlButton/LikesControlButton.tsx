@@ -2,7 +2,6 @@ import { FC } from 'react'
 import * as Styled from './styles'
 import { LikesContainerRenderProps } from 'src/widgets/LikesContainer/LikesContainer'
 import { ButtonProps } from 'src/components/Button/Button'
-import Icon from 'src/components/Icon/Icon'
 
 interface LikesControlButtonProps extends LikesContainerRenderProps, Omit<ButtonProps, 'onClick'> {
   count?: number

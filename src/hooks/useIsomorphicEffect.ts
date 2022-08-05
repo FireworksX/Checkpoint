@@ -12,5 +12,5 @@ export const useIsomorphicEffect = (callback: EffectCallback, deps: DependencyLi
     callback()
   }
 
-  useEffect(callback, deps)
+  useEffect(callback, [callback, ...deps])
 }

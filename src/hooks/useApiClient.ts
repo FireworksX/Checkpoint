@@ -1,4 +1,3 @@
-import { useRef } from 'react'
 import { serviceContainer } from '../services/ioc/serviceContainer'
 
 export const useApiClient = () => {

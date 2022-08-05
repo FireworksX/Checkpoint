@@ -1,4 +1,4 @@
-import { useCallback, useMemo } from 'react'
+import { useCallback } from 'react'
 import { useCurrentUser } from 'src/hooks/data/useCurrentUser'
 import { staticImagesMapKebab } from 'src/data/staticImagesMap'
 import { Category } from 'src/interfaces/Category'
@@ -10,7 +10,7 @@ import { apiEndpoints } from 'src/data/apiEndpoints'
 export const useProfileCategoriesRoute = () => {
   const { open: openEditCategory } = useModal<Category>(MODAL_NAMES.editCategory)
   const { open: openCreateCategory } = useModal(MODAL_NAMES.createCategory)
-  const { user, categories, removeCategory: userRemoveCategory } = useCurrentUser()
+  const { categories, removeCategory: userRemoveCategory } = useCurrentUser()
   const { execute: executeRemoveCategory } = useMutation<boolean, { findSlug: string }>(apiEndpoints.CATEGORIES_REMOVE)
 
   const parsedCategories = categories.map(category => ({

@@ -8,7 +8,7 @@ interface ProsAndConsFieldVIewProps {
   className?: string
 }
 
-const ProsAndConsFieldVIew: FC<ProsAndConsFieldVIewProps> = ({ className, pros, cons }) => {
+const ProsAndConsFieldVIew: FC<ProsAndConsFieldVIewProps> = ({ className }) => {
   return (
     <Styled.Root className={className}>
       <Styled.Title>

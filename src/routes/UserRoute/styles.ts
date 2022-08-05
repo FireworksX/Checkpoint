@@ -7,8 +7,7 @@ import HorizontalScroll from 'src/components/HorizontalScroll/HorizontalScroll'
 import LocationCard from 'src/components/LocationCard/LocationCard'
 import LocationCardSkeleton from 'src/components/LocationCardSkeleton/LocationCardSkeleton'
 import BaseImage from 'src/components/BaseImage/BaseImage'
-import Button from '../../components/Button/Button'
-import Page from "../../widgets/Page/Page";
+import Page from 'src/widgets/Page/Page'
 
 export const Root = styled(Page)``
 

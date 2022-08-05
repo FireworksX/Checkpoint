@@ -13,9 +13,9 @@ import { staticImagesMap } from 'src/data/staticImagesMap'
 import UserHeader from 'src/components/UserHeader/UserHeader'
 import UserMetrics from 'src/components/UserMetrics/UserMetrics'
 import { useModal } from 'src/hooks/useModal'
-import Link from '../../widgets/Link/Link'
-import { useRouter } from '../../hooks/useRouter'
-import Spinner from '../../components/Spinner/Spinner'
+import Link from 'src/widgets/Link/Link'
+import { useRouter } from 'src/hooks/useRouter'
+import Spinner from 'src/components/Spinner/Spinner'
 
 interface ProfileRouteProps {
   className?: string

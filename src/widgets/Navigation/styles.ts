@@ -1,14 +1,6 @@
 import styled, { css } from 'styled-components'
 import IconComp from 'src/components/Icon/Icon'
-import Touchable from 'src/components/Touchable/Touchable'
 import Link from 'src/widgets/Link/Link'
-import Input from '../../components/Input/Input'
-import HorizontalScroll from '../../components/HorizontalScroll/HorizontalScroll'
-import Chip from '../ChipsInput/components/Chip/Chip'
-
-interface Props {
-  offset?: number
-}
 
 export const Root = styled.nav`
   background: ${({ theme }) => theme.colors.basicBlack};

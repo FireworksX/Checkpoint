@@ -1,8 +1,7 @@
 import React, { PropsWithChildren, useCallback } from 'react'
 import cn from 'classnames'
 import * as Styled from './styles'
-import { useRoute } from 'react-router5'
-import linkConfig, { LinkNavigationProps } from './linkConfig'
+import { LinkNavigationProps } from './linkConfig'
 import { useRouter } from 'src/hooks/useRouter'
 import { useLinkConfig } from './hooks/useLinkConfig'
 

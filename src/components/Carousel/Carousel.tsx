@@ -19,13 +19,13 @@ const Carousel: FC<CarouselProps> = ({ className, allowTouchMove = true, activeS
     if (onChangeSlide) {
       onChangeSlide(swiper.activeIndex)
     }
-  }, [])
+  }, [onChangeSlide])
 
   useEffect(() => {
     if (typeof activeSlide === 'number') {
       slideTo(activeSlide)
     }
-  }, [activeSlide])
+  }, [activeSlide, slideTo])
 
   return (
     <Swiper className={className} allowTouchMove={allowTouchMove} onSwiper={setSwiper} onSlideChange={onChange}>

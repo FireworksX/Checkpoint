@@ -1,10 +1,9 @@
 import { useMemo, useState } from 'react'
 import { useForm } from 'src/hooks/useForm'
-import { useForceUpdate } from 'src/hooks/useForceUpdate'
 import { useCurrentUser } from 'src/hooks/data/useCurrentUser'
 import { useUserIsRegister } from 'src/hooks/data/useUserIsRegister'
 import { useInitialAvatarPlaceholder } from 'src/widgets/Avatar/hooks/useInitialAvatarPlaceholder'
-import {validationRules} from "../../../data/validationRules";
+import { validationRules } from 'src/data/validationRules'
 
 export interface UserFields {
   username: string

@@ -1,4 +1,4 @@
-import { AuthUser, BaseUser } from './User'
+import { BaseUser } from './User'
 
 export interface Category {
   _id: string

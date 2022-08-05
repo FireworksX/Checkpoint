@@ -39,7 +39,7 @@ export const useMutation = <OUTPUT = any, INPUT = undefined>(path: string, optio
 
       return response
     },
-    [path, apiClient, cache, useCache]
+    [path, apiClient, cache, useCache, config]
   )
 
   return {

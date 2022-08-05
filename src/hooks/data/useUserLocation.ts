@@ -1,7 +1,6 @@
-import { useCallback, useEffect, useState } from 'react'
-import { useRecoilState, useRecoilValue } from 'recoil'
+import { useCallback, useState } from 'react'
+import { useRecoilState } from 'recoil'
 import { userLocationAtom } from 'src/store/userStore'
-import { userAgentAtom } from 'src/store/configStore'
 import useCookies from '../useCookies'
 import { useIsomorphicEffect } from '../useIsomorphicEffect'
 
@@ -9,24 +8,21 @@ export const useUserLocation = () => {
   const [cookieSelfLocation] = useCookies('selfLocation')
   const [hasPermissions, setHasPermissions] = useState(false)
   const [userLocation, setUserLocation] = useRecoilState(userLocationAtom)
-  const userAgent = useRecoilValue(userAgentAtom)
 
-  const onValidatePermissions = (state: PermissionStatus['state']) => setHasPermissions(state === 'granted')
+  // const onSubmitLocation = useCallback(
+  //   (coords: GeolocationPosition['coords']) => {
+  //     setUserLocation({
+  //       lat: coords?.latitude,
+  //       lng: coords?.longitude
+  //     })
+  //   },
+  //   [setUserLocation]
+  // )
 
-  const onSubmitLocation = useCallback(
-    (coords: GeolocationPosition['coords']) => {
-      setUserLocation({
-        lat: coords?.latitude,
-        lng: coords?.longitude
-      })
-    },
-    [setUserLocation]
-  )
-
-  const onGetPermissions = useCallback(
-    () => navigator.geolocation.getCurrentPosition(({ coords }) => onSubmitLocation(coords)),
-    [onSubmitLocation]
-  )
+  // const onGetPermissions = useCallback(
+  //   () => navigator.geolocation.getCurrentPosition(({ coords }) => onSubmitLocation(coords)),
+  //   [onSubmitLocation]
+  // )
 
   // useEffect(() => {
   //   if (!hasPermissions) {

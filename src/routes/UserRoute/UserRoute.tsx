@@ -51,7 +51,7 @@ const UserRoute: FC<UserRouteProps> = ({ className }) => {
         lastName={user?.lastName}
         verify={user?.verify}
         bio={user?.bio}
-        phone={user?.phone}
+        mail={user?.mail}
       />
 
       <Styled.SubscribeContainer>

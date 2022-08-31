@@ -4,16 +4,16 @@ import { BaseUser } from 'src/interfaces/User'
 import { useInitialAvatarPlaceholder } from 'src/widgets/Avatar/hooks/useInitialAvatarPlaceholder'
 import { buildFullName } from 'src/utils/buildFullName'
 
-interface UserHeaderProps extends Pick<BaseUser, 'firstName' | 'lastName' | 'phone' | 'bio' | 'username' | 'verify'> {
+interface UserHeaderProps extends Pick<BaseUser, 'firstName' | 'lastName' | 'mail' | 'bio' | 'username' | 'verify'> {
   className?: string
 }
 
-const UserHeader: FC<UserHeaderProps> = ({ className, bio, firstName, lastName, verify, username, phone }) => {
+const UserHeader: FC<UserHeaderProps> = ({ className, bio, firstName, lastName, verify, username, mail }) => {
   const avatarText = useInitialAvatarPlaceholder({ username, firstName, lastName })
 
   return (
     <Styled.Root className={className}>
-      <Styled.AvatarComponent uniqueId={phone}>{avatarText}</Styled.AvatarComponent>
+      <Styled.AvatarComponent uniqueId={mail}>{avatarText}</Styled.AvatarComponent>
       <Styled.NameWrapper>
         <Styled.Name>
           {buildFullName(firstName, lastName)}

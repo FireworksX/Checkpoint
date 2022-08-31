@@ -7,7 +7,7 @@ export type CookiesType = DeepPartial<{
     lng: number
     zoom: number
   }
-  userPhone: string
+  userMail: string
   accessToken: string
   refreshToken: string
   citySlug: string

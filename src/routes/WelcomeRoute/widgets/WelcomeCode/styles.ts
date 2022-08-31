@@ -1,24 +1,32 @@
 import styled from 'styled-components'
 import PageHeader from 'src/widgets/PageHeader/PageHeader'
 import Input from 'src/components/Input/Input'
+import BaseImage from '../../../../components/BaseImage/BaseImage'
 
 export const Root = styled.div``
 
-export const Header = styled(PageHeader)`
-  margin-bottom: 100px;
+export const Header = styled(PageHeader)``
+
+export const CoverWrapper = styled.div`
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 40px;
 `
 
-export const Title = styled.div`
-  ${({ theme }) => theme.typography.text_32_38}
-  color: ${({ theme }) => theme.colors.textColor};
+export const Cover = styled(BaseImage)`
+  width: 180px;
+`
+
+export const Value = styled.div`
+  ${({ theme }) => theme.typography.text_14_24}
+  color: ${({ theme }) => theme.colors.secondary};
   text-align: center;
-  font-weight: 500;
-  margin-bottom: 15px;
+  margin-top: 10px;
 `
 
 export const Description = styled.p`
-  ${({ theme }) => theme.typography.text_14_24}
-  color: ${({ theme }) => theme.colors.secondary};
+  ${({ theme }) => theme.typography.text_16_20}
+  color: ${({ theme }) => theme.colors.textColor};
   margin-bottom: 40px;
   text-align: center;
   padding: 0 15%;

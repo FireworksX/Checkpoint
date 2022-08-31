@@ -3,7 +3,7 @@ import * as Styled from './styles'
 import { InputProps } from 'src/components/Input/Input'
 
 interface ProfileFields {
-  phone: string
+  mail: string
   username: InputProps
   firstName: InputProps
   lastName: InputProps
@@ -20,7 +20,7 @@ const ProfileInfoFields: FC<ProfileInfoFieldsProps> = ({ className, fields, avat
   return (
     <Styled.Root className={className}>
       <Styled.AvatarWrapper>
-        <Styled.AvatarComponent uniqueId={fields.phone}>{avatarText}</Styled.AvatarComponent>
+        <Styled.AvatarComponent uniqueId={fields.mail}>{avatarText}</Styled.AvatarComponent>
       </Styled.AvatarWrapper>
 
       <Styled.Field placeholder='Username' {...fields.username} />

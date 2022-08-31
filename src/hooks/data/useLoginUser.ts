@@ -4,12 +4,10 @@ import { AuthUserResponse } from 'src/interfaces/User'
 import { GeneratedTokenResponse } from 'src/interfaces/Request'
 import { useCurrentUser } from './useCurrentUser'
 import { userTokens } from 'src/utils/userTokens'
-import { CountryCode } from 'src/data/countryPhoneCodes'
 
 type InputProps = {
-  phone: string
+  mail: string
   code: string
-  country: CountryCode
 }
 type OutputProps = {
   user: AuthUserResponse
@@ -36,7 +34,7 @@ export const useLoginUser = () => {
         userTokensManager.setTokens({
           accessToken: token.accessToken,
           refreshToken: token.refreshToken,
-          userPhone: user.phone
+          userMail: user.mail
         })
       }
 

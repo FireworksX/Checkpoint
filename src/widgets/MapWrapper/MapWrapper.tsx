@@ -40,6 +40,7 @@ const MapWrapper: FC<MapWrapperProps> = ({ children, zoom, center, onDragend, on
   return (
     <GoogleMapReact
       options={{
+        clickableIcons: false,
         zoomControl: false,
         fullscreenControl: false,
         mapId: 'e7e50c35fc383495',

@@ -3,6 +3,8 @@ export const apiEndpoints = {
   PLACES_USER: '/places/userPlaces',
   AUTH_PHONE_CODE_CREATE: '/auth/phoneValidation/create',
   AUTH_PHONE_CODE_CHECK: '/auth/phoneValidation/check',
+  AUTH_MAIL_CODE_CREATE: '/auth/mailValidation/create',
+  AUTH_MAIL_CODE_CHECK: '/auth/mailValidation/check',
   AUTH_REFRESH_TOKEN: '/auth/refresh-token',
   AUTH_LOGIN: '/auth/login',
   AUTH_REGISTER: '/auth/register',

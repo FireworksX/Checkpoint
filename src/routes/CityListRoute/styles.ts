@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import BaseImage from 'src/components/BaseImage/BaseImage'
+import Container from '../../components/Container/Container'
 
 export const Root = styled.div``
 
@@ -29,4 +30,8 @@ export const Description = styled.p`
   margin-bottom: 40px;
   text-align: center;
   padding: 0 15%;
+`
+
+export const SurpriseWrapper = styled(Container)`
+  margin-bottom: 15px;
 `

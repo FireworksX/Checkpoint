@@ -12,5 +12,9 @@ export const validationRules = {
   required: () => ({
     value: true,
     message: labels.validationRequired
+  }),
+  emailPattern: () => ({
+    value: /\S+@\S+\.\S+/,
+    message: labels.validationEmail
   })
 }

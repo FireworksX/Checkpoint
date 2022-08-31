@@ -12,8 +12,7 @@ export const useWelcomeRegister = ({ onRegister }: Props) => {
 
   const onSubmit = async (data: UserFields) => {
     const response = await execute({
-      phone: user?.phone,
-      country: user?.country || 'ru',
+      mail: user?.mail,
       ...data
     })
 
@@ -27,7 +26,7 @@ export const useWelcomeRegister = ({ onRegister }: Props) => {
   return {
     fields: {
       ...fields,
-      phone: user?.phone || ''
+      mail: user?.mail || ''
     },
     avatarText,
     getValues,

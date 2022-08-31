@@ -8,8 +8,7 @@ export interface BaseUser {
   verify?: boolean
   username?: string
   bio?: string
-  phone?: string
-  country?: CountryCode
+  mail?: string
   categories?: Category[]
   followers?: BaseUser[]
   subscribers?: BaseUser[]

@@ -2,68 +2,46 @@ import styled from 'styled-components'
 import Input from 'src/components/Input/Input'
 import CommonLogo from 'src/components/CommonLogo/CommonLogo'
 import Container from 'src/components/Container/Container'
+import BaseImage from 'src/components/BaseImage/BaseImage'
 
 export const Root = styled.div``
+
+export const CoverWrapper = styled.div`
+  text-align: center;
+  margin-top: 100px;
+  margin-bottom: 40px;
+`
+
+export const Cover = styled(BaseImage)`
+  width: 180px;
+`
 
 export const Title = styled.div`
   ${({ theme }) => theme.typography.text_32_38}
   color: ${({ theme }) => theme.colors.textColor};
   text-align: center;
   font-weight: 500;
-  margin-top: 100px;
+  margin-top: 40px;
   margin-bottom: 15px;
 `
 
 export const Description = styled.p`
-  ${({ theme }) => theme.typography.text_14_24}
-  color: ${({ theme }) => theme.colors.secondary};
+  ${({ theme }) => theme.typography.text_16_20}
+  color: ${({ theme }) => theme.colors.textColor};
   margin-bottom: 40px;
   text-align: center;
   padding: 0 15%;
 `
 
-export const CountrySection = styled.div`
-  border-top: 1px solid ${({ theme }) => theme.colors.border};
-`
-
-export const CountrySector = styled(Container)`
-  height: 50px;
+export const MailSection = styled.form`
   display: flex;
   align-items: center;
-  ${({ theme }) => theme.typography.text_16_20};
 `
 
-export const CountryFlag = styled(CommonLogo)`
-  margin-right: 15px;
-`
-
-export const PhoneSection = styled.form`
-  display: flex;
-  align-items: center;
-  border-top: 1px solid ${({ theme }) => theme.colors.border};
-  border-bottom: 1px solid ${({ theme }) => theme.colors.border};
-`
-
-export const PhoneCode = styled(Input).attrs({ inputClassName: 'input' })`
-  border-right: 1px solid ${({ theme }) => theme.colors.border};
-  width: 20%;
-
+export const MailNumber = styled(Input).attrs({ inputClassName: 'input' })`
   .input {
-    border-radius: 0;
-    height: 50px;
-    padding: 10px;
-    text-align: center;
-    border: none;
-    ${({ theme }) => theme.typography.text_16_20};
-  }
-`
-
-export const PhoneNumber = styled(Input).attrs({ inputClassName: 'input' })`
-  .input {
-    border-radius: 0;
     height: 50px;
     padding: 10px 15px;
-    border: none;
     ${({ theme }) => theme.typography.text_16_20};
   }
 `

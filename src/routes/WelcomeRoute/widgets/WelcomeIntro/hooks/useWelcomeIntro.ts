@@ -1,7 +1,7 @@
-import { useCallback } from 'react'
-import { usePhoneValidationCodeCreate } from 'src/hooks/data/usePhoneValidationCodeCreate'
-import { usePhoneFormatter } from 'src/components/Input/hooks/usePhoneFormatter'
 import { useCurrentUser } from 'src/hooks/data/useCurrentUser'
+import { useForm } from 'src/hooks/useForm'
+import { validationRules } from 'src/data/validationRules'
+import {useMailValidationCodeCreate} from "src/hooks/data/useMailValidationCodeCreate";
 
 interface Props {
   onBack(): void
@@ -9,24 +9,22 @@ interface Props {
 }
 
 export const useWelcomeIntro = ({ onNext }: Props) => {
-  const { user, mutate } = useCurrentUser()
-  const { formatValue, value, setValue } = usePhoneFormatter(user?.phone)
-  const { execute } = usePhoneValidationCodeCreate()
+  const { mutate } = useCurrentUser()
+  const { execute } = useMailValidationCodeCreate()
+  const { register, handleSubmit } = useForm<{ mail: string }>()
 
-
-  const onSubmit = useCallback(async () => {
-
-    const { success } = await execute({ phone: value, country: 'ru' })
+  const onSubmit = handleSubmit(async data => {
+    onNext()
+    const { success } = await execute({ mail: data.mail })
 
     if (success) {
-      mutate(user => ({ ...user, _id: user?._id || '', phone: value, country: 'ru' }))
+      mutate(user => ({ ...user, _id: user?._id || '', mail: data.mail }))
       onNext()
     }
-  }, [execute, mutate, onNext, value])
+  })
 
   return {
-    phoneValue: formatValue,
-    onSetPhoneValue: setValue,
+    emailInput: register('mail', { required: validationRules.required(), pattern: validationRules.emailPattern() }),
     onSubmit
   }
 }

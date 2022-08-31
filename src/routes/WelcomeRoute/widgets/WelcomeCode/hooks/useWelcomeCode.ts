@@ -1,12 +1,9 @@
 import { useCallback, useEffect, useRef } from 'react'
 import { useNumberFormatter } from 'src/components/Input/hooks/useNumberFormatter'
-import { usePhoneValidationCodeCheck } from 'src/hooks/data/usePhoneValidationCodeCheck'
 import { useUserIsRegister } from 'src/hooks/data/useUserIsRegister'
 import { useLoginUser } from 'src/hooks/data/useLoginUser'
 import { useCurrentUser } from 'src/hooks/data/useCurrentUser'
-import { generatePhoneCode } from 'src/utils/generatePhoneCode'
-import { usePhoneFormatter } from 'src/components/Input/hooks/usePhoneFormatter'
-import { buildPhone } from 'src/utils/buildPhone'
+import { useMailValidationCodeCheck } from 'src/hooks/data/useMailValidationCodeCheck'
 
 interface Props {
   onBack(): void
@@ -18,20 +15,15 @@ export const useWelcomeCode = ({ onRegister, onLogin }: Props) => {
   const tryLogin = useRef(false)
   const { user } = useCurrentUser()
   const { formatValue, setValue } = useNumberFormatter()
-  const userPhone = user?.phone || ''
-  const userCountry = user?.country || 'ru'
-  const fullNumber = buildPhone(userPhone, userCountry)
-  const formattedPhone = usePhoneFormatter(userPhone, userCountry)
+  const userMail = user?.mail || ''
 
-  const { data: validationData } = usePhoneValidationCodeCheck({
-    phone: userPhone,
-    code: formatValue,
-    country: userCountry
+  const { data: validationData } = useMailValidationCodeCheck({
+    mail: userMail,
+    code: formatValue
   })
   const { data: isRegisterData, fetching } = useUserIsRegister(
     {
-      phone: userPhone,
-      country: userCountry
+      mail: userMail
     },
     !validationData?.data
   )
@@ -42,9 +34,8 @@ export const useWelcomeCode = ({ onRegister, onLogin }: Props) => {
     tryLogin.current = true
 
     const { success } = await execute({
-      phone: userPhone,
-      code: formatValue,
-      country: userCountry
+      mail: userMail,
+      code: formatValue
     })
 
     if (success) {
@@ -52,7 +43,7 @@ export const useWelcomeCode = ({ onRegister, onLogin }: Props) => {
     } else {
       alert('Error')
     }
-  }, [formatValue, userCountry, execute, onLogin, userPhone])
+  }, [formatValue, userMail, execute, onLogin])
 
   useEffect(() => {
     if (validationData?.success && validationData?.data && !fetching) {
@@ -64,11 +55,8 @@ export const useWelcomeCode = ({ onRegister, onLogin }: Props) => {
     }
   }, [validationData, fetching, isRegisterData, onLoginUser, onRegister])
 
-  const generatedCode = generatePhoneCode(fullNumber)
-
   return {
-    generatedCode,
-    phone: formattedPhone.formatValue,
+    mail: userMail,
     codeValue: formatValue,
     onSetCodeValue: setValue
   }

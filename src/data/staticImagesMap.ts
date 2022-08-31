@@ -21,6 +21,7 @@ import grinningFaceWithSmilingEyes from '../../public/assets/images/emoji/grinni
 import thumbsUp from '../../public/assets/images/emoji/thumbs-up.png'
 import thumbsDown from '../../public/assets/images/emoji/thumbs-down.png'
 import star from '../../public/assets/images/emoji/star.png'
+import signUpLogin from '../../public/assets/images/signup-login.png'
 
 export const staticImagesMap = {
   perseveringFace,
@@ -45,7 +46,8 @@ export const staticImagesMap = {
   dottedLineFace,
   thumbsUp,
   thumbsDown,
-  star
+  star,
+  signUpLogin
 } as const
 
 type Key = keyof typeof staticImagesMap

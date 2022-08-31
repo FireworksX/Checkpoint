@@ -46,7 +46,7 @@ const ProfileRoute: FC<ProfileRouteProps> = ({ className }) => {
         lastName={user?.lastName}
         verify={user?.verify}
         bio={user?.bio}
-        phone={user?.phone}
+        mail={'test@gfd.hfgj'}
       />
 
       <UserMetrics

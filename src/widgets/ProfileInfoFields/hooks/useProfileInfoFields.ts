@@ -74,7 +74,7 @@ export const useProfileInfoFields = (onSubmit: OnSubmit) => {
       firstName: register('firstName', { maxLength: validationRules.maxLength(30) }),
       lastName: register('lastName', { maxLength: validationRules.maxLength(30) }),
       bio: register('bio', { maxLength: validationRules.maxLength(200) }),
-      phone: user?.phone || ''
+      mail: user?.mail || ''
     },
     setValue,
     getValues,

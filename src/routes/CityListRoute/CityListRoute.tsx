@@ -6,6 +6,7 @@ import { useCityList } from './hooks/useCityList'
 import SimpleCell from 'src/components/SimpleCell/SimpleCell'
 import Link from 'src/widgets/Link/Link'
 import { staticImagesMap } from 'src/data/staticImagesMap'
+import Button from 'src/components/Button/Button'
 
 interface CityListRouteProps {
   className?: string
@@ -13,6 +14,7 @@ interface CityListRouteProps {
 
 const CityListRoute: FC<CityListRouteProps> = ({ className }) => {
   const { list } = useCityList()
+  const randomCity = list[1]
 
   return (
     <Styled.Root className={className}>
@@ -21,6 +23,15 @@ const CityListRoute: FC<CityListRouteProps> = ({ className }) => {
       </Styled.ImageWrapper>
       <Styled.Title>Выберите город</Styled.Title>
       <Styled.Description>Выберите город который вы хотите исследовать</Styled.Description>
+
+      <Styled.SurpriseWrapper>
+        <Link type='cityInfo' citySlug={randomCity?.slug}>
+          <Button mode='secondary' size='l' stretched>
+            Удивите меня
+          </Button>
+        </Link>
+      </Styled.SurpriseWrapper>
+
       {list.map(city => (
         <Link key={city.slug} type='cityInfo' citySlug={city.slug}>
           <SimpleCell expandable>{city.name}</SimpleCell>

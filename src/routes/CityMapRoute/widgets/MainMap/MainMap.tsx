@@ -11,6 +11,7 @@ interface MainMapProps {
 
 const MainMap: FC<MainMapProps> = ({ className }) => {
   const { center, zoom, userLocation, placemarks, onClickPlacemark, onDragend, onZoomChange } = useMainMap()
+  console.log(zoom)
 
   return (
     <Styled.Root className={className}>

@@ -29,7 +29,7 @@ export const useMainMap = () => {
   // const initialZoom = profileZoom || city?.geo?.zoom
 
   useIsomorphicEffect(() => {
-    setZoom(geoZoom)
+    // setZoom(geoZoom)
 
     if (saveCenter.lat > 0 && saveCenter.lng > 0) {
       setCenter(saveCenter)
@@ -82,7 +82,6 @@ export const useMainMap = () => {
 
       if (findPlacemark) {
         requestAnimationFrame(() => {
-          console.log(findPlacemark, 'second open');
           onClickPlacemarkProxy(findPlacemark)
           alreadyDisplayLocation.current = true
         })

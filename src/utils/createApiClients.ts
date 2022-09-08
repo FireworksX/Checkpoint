@@ -46,16 +46,16 @@ const createApiClient = ({ cookieManager } = DEFAULT_OPTIONS): ApiClient => {
     },
     async error => {
       const refreshToken = cookieManager?.get('refreshToken')
-      const userPhone = cookieManager?.get('userPhone')
+      const userMail = cookieManager?.get('userMail')
       const originalConfig = error.config
 
-      if (error?.response?.status === 401 && userPhone && refreshToken && !tryRefresh) {
+      if (error?.response?.status === 401 && userMail && refreshToken && !tryRefresh) {
         tryRefresh = true
         try {
           const { data } = await apiClient.post<ApiResponseBody<RefreshTokenResponse>>(
             apiEndpoints.AUTH_REFRESH_TOKEN,
             {
-              phone: userPhone,
+              mail: userMail,
               refreshToken
             }
           )

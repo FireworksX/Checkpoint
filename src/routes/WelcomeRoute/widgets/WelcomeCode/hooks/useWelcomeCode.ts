@@ -31,6 +31,10 @@ export const useWelcomeCode = ({ onRegister, onLogin }: Props) => {
   const { execute } = useLoginUser()
 
   const onLoginUser = useCallback(async () => {
+    if (tryLogin.current) {
+      return
+    }
+
     tryLogin.current = true
 
     const { success } = await execute({

@@ -30,7 +30,10 @@ export const useRequest = <Data = any, Error = any, SWRKey extends Key = Key>(
   const qs = usp.toString()
   const resultUrl = qs ? `${url}?${qs}` : url
 
-  const swrResponse = useSWR<ApiResponseBody<Data>>(!pause && resultUrl)
+  const swrResponse = useSWR<ApiResponseBody<Data>>(!pause && resultUrl, {
+    revalidateIfStale: false,
+    revalidateOnFocus: false
+  })
 
   return {
     ...swrResponse,

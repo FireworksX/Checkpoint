@@ -53,6 +53,10 @@ export interface Location {
   }
 }
 
-export type CreateLocation = Omit<Location, '_id' | 'author' | 'slug' | 'likes' | 'bookmarks' | 'createdAt'>
+type SystemLocationField = '_id' | 'author' | 'slug' | 'likes' | 'bookmarks' | 'createdAt'
+
+export type CreateLocation = Omit<Location, SystemLocationField>
+
+export type UpdateLocation = Partial<Omit<Location, SystemLocationField>> & { findSlug: string }
 
 export type RemoveLocation = { slug: string }

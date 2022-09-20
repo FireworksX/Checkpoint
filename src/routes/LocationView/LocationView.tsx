@@ -13,26 +13,46 @@ import CompilationCell from 'src/components/CompilationCell/CompilationCell'
 import Link from 'src/widgets/Link/Link'
 import LikesContainer from 'src/widgets/LikesContainer/LikesContainer'
 import BookmarksContainer from 'src/widgets/BookmarksContainer/BookmarksContainer'
+import Button from '../../components/Button/Button'
+import { noop } from '../../utils/helpers'
 
 interface LocationViewProps {
   className?: string
 }
 
 const LocationView: FC<LocationViewProps> = ({ className }) => {
-  const { author, category, fields, openOptions, fetching, location } = useLocationView()
+  const {
+    author,
+    category,
+    fields,
+    openOptions,
+    fetching,
+    isSelfLocation,
+    location,
+    toggleIsEdit,
+    isEdit,
+    openLocationFieldsModal,
+    openChooseCategory,
+    handleSubmit,
+    isExists
+  } = useLocationView()
 
   return (
     <Styled.Root className={className} fetching={fetching}>
       <Styled.Header
         left={
-          <PageHeaderButton>
-            <PageHeaderButtonBack />
-          </PageHeaderButton>
+          !isEdit && (
+            <PageHeaderButton>
+              <PageHeaderButtonBack />
+            </PageHeaderButton>
+          )
         }
         right={
-          <PageHeaderButton onClick={openOptions}>
-            <Icon name='ellipsis' />
-          </PageHeaderButton>
+          !isEdit && (
+            <PageHeaderButton onClick={openOptions}>
+              <Icon name='ellipsis' />
+            </PageHeaderButton>
+          )
         }
       />
 
@@ -41,43 +61,69 @@ const LocationView: FC<LocationViewProps> = ({ className }) => {
       <Container>
         {!fields.titleField.isEmpty && <Styled.Field>{fields.titleField.Component}</Styled.Field>}
 
-        <Styled.ControlButtons>
-          <Link type='cityMap' mapAuthor={author?.username} mapCategory={category?.slug} mapLocation={location?.slug}>
-            <Styled.ControlButton size='l'>Показать на карте</Styled.ControlButton>
-          </Link>
-          <LikesContainer type='location' target={location?._id || ''} initialLike={location?.likes.isLiked}>
-            {({ ...args }) => <Styled.LikeButton mode='secondary' count={location?.likes.count} {...args} />}
-          </LikesContainer>
-          <BookmarksContainer
-            type='location'
-            target={location?._id || ''}
-            initialBookmark={location?.bookmarks.hasBookmark}
-          >
-            {({ hasBookmark, onClick }) => (
-              <Styled.ControlButton size='l' mode='secondary' onClick={onClick}>
-                <Icon name={hasBookmark ? 'bookmark-fill' : 'bookmark'} width={24} height={24} />
-              </Styled.ControlButton>
+        {!isEdit && (
+          <Styled.ControlButtons>
+            <Link type='cityMap' mapAuthor={author?.username} mapCategory={category?.slug} mapLocation={location?.slug}>
+              <Styled.ControlButton size='l'>Показать на карте</Styled.ControlButton>
+            </Link>
+            {!isSelfLocation && (
+              <>
+                <LikesContainer type='location' target={location?._id || ''} initialLike={location?.likes.isLiked}>
+                  {({ ...args }) => <Styled.LikeButton mode='secondary' count={location?.likes.count} {...args} />}
+                </LikesContainer>
+                <BookmarksContainer
+                  type='location'
+                  target={location?._id || ''}
+                  initialBookmark={location?.bookmarks.hasBookmark}
+                >
+                  {({ hasBookmark, onClick }) => (
+                    <Styled.ControlButton size='l' mode='secondary' onClick={onClick}>
+                      <Icon name={hasBookmark ? 'bookmark-fill' : 'bookmark'} width={24} height={24} />
+                    </Styled.ControlButton>
+                  )}
+                </BookmarksContainer>
+              </>
             )}
-          </BookmarksContainer>
-        </Styled.ControlButtons>
+          </Styled.ControlButtons>
+        )}
 
-        {!fields.descriptionField.isEmpty && <Styled.Field>{fields.descriptionField.Component}</Styled.Field>}
+        {isExists('description') && <Styled.Field>{fields.descriptionField.Component}</Styled.Field>}
 
-        {!fields.kitchenField.isEmpty && <Styled.Field>{fields.kitchenField.Component}</Styled.Field>}
-        {!fields.averageBillField.isEmpty && <Styled.Field>{fields.averageBillField.Component}</Styled.Field>}
+        {isExists('kitchen') && <Styled.Field>{fields.kitchenField.Component}</Styled.Field>}
+        {isExists('averageBill') && <Styled.Field>{fields.averageBillField.Component}</Styled.Field>}
 
-        {!fields.wifispeedField.isEmpty && <Styled.Field>{fields.wifispeedField.Component}</Styled.Field>}
+        {isExists('wifi') && <Styled.Field>{fields.wifispeedField.Component}</Styled.Field>}
 
         {/*{!fields.poolsField.isEmpty && <Styled.Field>{fields.poolsField.Component}</Styled.Field>}*/}
-        {!fields.tagsField.isEmpty && <Styled.Field>{fields.tagsField.Component}</Styled.Field>}
+        {isExists('tags') && <Styled.Field>{fields.tagsField.Component}</Styled.Field>}
 
-        <Link type='cityMap' mapAuthor={author?.username} mapCategory={category?.slug}>
+        {isEdit && category ? (
           <CompilationCell
-            title={category?.name || ''}
-            description={category?.description}
-            image={iconToImage(category?.icon)}
+            title={category.name}
+            description={category.description}
+            image={iconToImage(category.icon)}
+            onClick={isEdit ? openChooseCategory : noop}
           />
-        </Link>
+        ) : (
+          <Link type='cityMap' mapAuthor={author?.username} mapCategory={category?.slug}>
+            <CompilationCell
+              title={category?.name || ''}
+              description={category?.description}
+              image={iconToImage(category?.icon)}
+            />
+          </Link>
+        )}
+
+        <Styled.AddFieldWrapper>
+          {isEdit && (
+            <Button mode='secondary' disabled={!isEdit} onClick={openLocationFieldsModal}>
+              Добавить поле
+            </Button>
+          )}
+          <Button mode='secondary' onClick={isEdit ? handleSubmit : toggleIsEdit}>
+            {isEdit ? 'Сохранить' : 'Редактировать'}
+          </Button>
+        </Styled.AddFieldWrapper>
 
         <Styled.Separator />
         {author && (
@@ -86,7 +132,7 @@ const LocationView: FC<LocationViewProps> = ({ className }) => {
             firstName={author?.firstName}
             lastName={author?.lastName}
             verify={author?.verify}
-            phone={author?.phone}
+            mail={author?.mail}
             appLinkProps={{
               type: 'user',
               userSlug: author?.username || ''

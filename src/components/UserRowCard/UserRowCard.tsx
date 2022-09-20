@@ -6,7 +6,7 @@ import Username from 'src/components/Username/Username'
 import { buildFullName } from 'src/utils/buildFullName'
 import { useInitialAvatarPlaceholder } from 'src/widgets/Avatar/hooks/useInitialAvatarPlaceholder'
 
-interface UserRowCardProps extends Pick<BaseUser, 'username' | 'firstName' | 'lastName' | 'phone' | 'verify'> {
+interface UserRowCardProps extends Pick<BaseUser, 'username' | 'firstName' | 'lastName' | 'mail' | 'verify'> {
   appLinkProps?: LinkProps
   className?: string
 }
@@ -17,14 +17,14 @@ const UserRowCard: FC<UserRowCardProps> = ({
   firstName,
   verify,
   lastName,
-  phone,
+  mail,
   appLinkProps
 }) => {
   const avatarText = useInitialAvatarPlaceholder({ username, firstName, lastName })
 
   return (
     <Styled.Root className={className} {...appLinkProps}>
-      <Styled.AvatarComponent uniqueId={phone}>{avatarText}</Styled.AvatarComponent>
+      <Styled.AvatarComponent uniqueId={mail}>{avatarText}</Styled.AvatarComponent>
       <div>
         <Styled.Title>
           <Username>{username}</Username>

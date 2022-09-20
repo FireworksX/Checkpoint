@@ -4,7 +4,7 @@ import { configureRouter } from './router/configureRouter'
 import { clientCookieManager } from './services/cookie/clientCookieManager'
 import { appConfig } from './data/appConfig'
 import 'src/pwa'
-import { createApiClients } from './utils/createApiClients'
+import { createApiClients } from './utils/apiClient/createApiClients'
 import { serviceContainer } from './services/ioc/serviceContainer'
 import { cacheManager } from './services/cacheManager'
 

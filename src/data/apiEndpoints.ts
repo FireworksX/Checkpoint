@@ -20,6 +20,7 @@ export const apiEndpoints = {
   LOCATIONS_LIST: '/locations/list',
   LOCATIONS_CREATE: '/locations/create',
   LOCATIONS_DETAIL: '/locations/detail',
+  LOCATIONS_UPDATE: '/locations/update',
   LOCATIONS_REMOVE: '/locations/delete',
 
   CITY_LIST: '/cities/list',

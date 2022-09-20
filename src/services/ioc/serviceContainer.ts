@@ -1,5 +1,5 @@
 import { CookieManager } from 'src/interfaces/CookieManager'
-import { ApiClient } from 'src/utils/createApiClients'
+import { ApiClient } from 'src/utils/apiClient/createApiClients'
 import { CacheManager } from 'src/services/cacheManager'
 import { AppFetcherType } from 'src/App'
 

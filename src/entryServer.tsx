@@ -7,7 +7,7 @@ import { AppContext } from 'server'
 import ssrPrepass from 'react-ssr-prepass'
 import { appConfig } from './data/appConfig'
 import { FilledContext } from 'react-helmet-async'
-import { createApiClients } from './utils/createApiClients'
+import { createApiClients } from './utils/apiClient/createApiClients'
 import { serviceContainer } from './services/ioc/serviceContainer'
 import { cacheManager } from './services/cacheManager'
 

@@ -1,5 +1,6 @@
 import styled from 'styled-components'
-import {rgbToRgba} from "../../styles/theme/baseStyleds";
+import { rgbToRgba } from 'src/styles/theme/baseStyleds'
+import { zIndex } from 'src/router/constants'
 
 interface Props {
   safeAreaBottom?: boolean
@@ -18,7 +19,8 @@ export const ScreenSpinner = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: ${({ theme }) => rgbToRgba(theme.colors.basicBlack, .2)};
+  background: ${({ theme }) => rgbToRgba(theme.colors.basicBlack, 0.2)};
+  z-index: ${zIndex.pageSpinner};
 `
 
 export const SpinnerWrapper = styled.div`

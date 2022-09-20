@@ -29,40 +29,36 @@ export const useLocationCreate = () => {
 
   const { execute } = useMutation<Location, CreateLocation>(apiEndpoints.LOCATIONS_CREATE)
 
-  const [availableFields, setAvailableFields] = useState<FieldsSchemeName[]>(['gallery', 'title'])
   const [categorySlug, setCategorySlug] = useState<string | undefined>()
-  const { toggleIsEdit, isEdit, fields, values } = useLocationControl(true)
+  const { toggleIsEdit, isEdit, fields, values, selectedFields, availableFields, setSelectedFields } =
+    useLocationControl({ initialIsEdit: true })
   const { user } = useCurrentUser()
   const { city } = useCityInfo()
   const saveCenter = useRecoilValue(mapSaveCenterAtom)
 
   const userCategories = useMemo(() => user?.categories || [], [user])
 
-  const resultFields = Object.values(fields).filter(({ fieldName }) =>
-    availableFields.includes(fieldName as FieldsSchemeName)
-  )
-
   const category = userCategories.find(({ slug }) => slug === categorySlug)
 
-  const isExists = useCallback((fieldName: FieldsSchemeName) => availableFields.includes(fieldName), [availableFields])
+  const isExists = useCallback((fieldName: FieldsSchemeName) => selectedFields.includes(fieldName), [selectedFields])
 
   const openModal = useCallback(
     () =>
       openFieldModal({
-        selected: availableFields,
+        selected: selectedFields,
         onSelect(fieldName: FieldsSchemeName) {
-          setAvailableFields(val => [...val, fieldName])
+          setSelectedFields(val => [...val, fieldName])
           close()
         }
       }),
-    [availableFields, setAvailableFields, openFieldModal, close]
+    [selectedFields, setSelectedFields, openFieldModal, close]
   )
 
   useEffect(() => {
     updateContext({
-      selected: availableFields
+      selected: selectedFields
     })
-  }, [availableFields, updateContext])
+  }, [selectedFields, updateContext])
 
   const canCreate = isExists('title') && fields.titleField.value.length > 0
 
@@ -110,7 +106,7 @@ export const useLocationCreate = () => {
     fields,
     isEdit,
     isExists,
-    resultFields,
+    availableFields,
     toggleIsEdit,
     openModal,
     canCreate,

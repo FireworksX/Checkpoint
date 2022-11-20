@@ -2,7 +2,6 @@ import styled from 'styled-components'
 import PageHeader from 'src/widgets/PageHeader/PageHeader'
 import Touchable from 'src/components/Touchable/Touchable'
 import Container from 'src/components/Container/Container'
-import CompilationCell from 'src/components/CompilationCell/CompilationCell'
 import HorizontalScroll from 'src/components/HorizontalScroll/HorizontalScroll'
 import LocationCard from 'src/components/LocationCard/LocationCard'
 import LocationCardSkeleton from 'src/components/LocationCardSkeleton/LocationCardSkeleton'
@@ -26,19 +25,6 @@ export const HeaderTitle = styled.div`
 
 export const CompilationWrapper = styled(HorizontalScroll)`
   margin: 15px 0;
-`
-
-export const Compilation = styled(CompilationCell)`
-  white-space: nowrap;
-  margin: 0 7px;
-
-  &:first-child {
-    margin-left: ${({ theme }) => theme.baseStyles.paddings.gutterMobile};
-  }
-
-  &:last-child {
-    margin-right: ${({ theme }) => theme.baseStyles.paddings.gutterMobile};
-  }
 `
 
 export const LocationsWrapper = styled(Container)`

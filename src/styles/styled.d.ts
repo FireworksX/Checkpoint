@@ -8,106 +8,37 @@ type TypographySizeType = {
 declare module 'styled-components' {
   export interface DefaultTheme {
     colors: {
-      gradient: string
-      gradientScroll: string
-      gradientScrollWhite: string
-      gradientScrollWhiteRight: string
-      gradientRight: string
-
-      backdrop: string
-      colorPage: string
-      background: string
-      backgroundAmber: string
-      backgroundWhite: string
-      backgroundSecondary: string
-
-      border: string
-      borderHover: string
-
-      skeletonDark: string
-      skeleton: string
-      skeletonLight: string
-
-      ratingFive: string
-      ratingFour: string
-      ratingThree: string
-      ratingTwo: string
-      ratingOne: string
-
-      sidebarBlock: string
-      sidebarHover: string
-
-      statusSuccessBg: string
-      statusSuccessBgDark: string
-      statusSuccessText: string
-      statusDangerBg: string
-      statusDangerText: string
-      statusDefaultBg: string
-      statusDefaultBgDark: string
-      statusDefaultText: string
-      statusPrimaryBg: string
-      statusPrimaryBgDark: string
-      statusPrimaryText: string
-
-      radialChartSuccess: string
-      radialChartDanger: string
-      radialChartDefault: string
-
-      basicWhite: string
-      basicBlack: string
-
       primary: string
-      primaryHover: string
-      primaryPress: string
-      primaryDisable: string
+      primaryActive: string
       primaryBg: string
+      primaryDisabled: string
 
       secondary: string
-      secondaryHover: string
-      secondaryPress: string
-      secondaryDisable: string
+      secondaryActive: string
       secondaryBg: string
+      secondaryDisabled: string
 
       secondaryLight: string
-      secondaryLightPress: string
-      secondaryLightDisable: string
+      secondaryLightActive: string
       secondaryLightBg: string
+      secondaryLightDisabled: string
 
-      accentBlue: string
-      accentBlueBg: string
+      textColorLight: string
+      textColorDark: string
+
+      background: string
+      backgroundLight: string
+      backgroundCard: string
+      backgroundDark: string
+
+      border: string
+      borderLight: string
+      borderCard: string
 
       accentRed: string
       accentRedBg: string
-      accentRedHover: string
-      accentRedPress: string
-      accentRedDisable: string
-
-      accentOrange: string
-      accentOrangeBg: string
-      orange: string
-      orangeLight: string
-      orangeDark: string
-
-      accentAmber: string
-      accentAmberBg: string
-
-      accentGray: string
-      accentGrayLight: string
-
-      iconBasic: string
-      iconSecondary: string
-      iconWhite: string
-      iconHover: string
-
-      textColor: string
-      textPrimary: string
-      textWhite: string
-
-      linkColor: string
-      linkHover: string
-
-      badgeRatingAtp: string
-      badgeRatingWta: string
+      accentGreen: string
+      accentGreenBg: string
     }
     typography: {
       fontFamily: string

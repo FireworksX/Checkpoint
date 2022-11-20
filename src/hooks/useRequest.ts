@@ -8,7 +8,7 @@ interface RequestOptions {
   pause?: boolean
 }
 
-export const useRequest = <Data = any, Error = any, SWRKey extends Key = Key>(
+export const useRequest = <Data = any, _Error = any, SWRKey extends Key = Key>(
   url: SWRKey,
   options?: RequestOptions
 ) => {

@@ -6,12 +6,14 @@ import { route } from 'src/hoc/route'
 import { ROUTE_NAMES } from 'src/router/constants'
 import 'src/utils/dayjs-timezone'
 import { RootRouteHead } from './RootRouteHead'
+import { FontStyles } from 'src/styles/FontStyles'
 
 const RootRoute: FC = ({ children }) => {
   return (
     <AppHelpers>
       <RootRouteHead />
       <GlobalStyle />
+      <FontStyles />
       <Styled.Root>{children}</Styled.Root>
     </AppHelpers>
   )

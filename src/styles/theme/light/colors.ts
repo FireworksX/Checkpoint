@@ -1,74 +1,39 @@
 // light theme colors
 
-const baseColors = {
-  basicWhite: 'rgb(255, 255, 255)',
-  basicBlack: 'rgb(41, 41, 41)',
+import { DefaultTheme } from 'styled-components'
 
-  primary: 'rgb(0, 51, 255)',
-  primaryHover: 'rgb(0,41,226)',
-  primaryPress: 'rgb(0,37,177)',
-  primaryDisable: 'rgb(152,164,213)',
-  primaryBg: 'rgb(227, 234, 255)',
+const colors: DefaultTheme['colors'] = {
+  primary: '#619AEF',
+  primaryActive: '#4E7BC0',
+  primaryBg: '#F0F5FF',
+  primaryDisabled: '#CDE0F9',
 
-  secondary: 'rgb(126, 131, 146)',
-  secondaryHover: 'rgb(84, 88, 99)',
-  secondaryPress: 'rgb(67, 69, 77)',
-  secondaryDisable: 'rgb(229, 230, 233)',
-  secondaryBg: 'rgb(242, 243, 244)',
+  secondary: '#8798A9',
+  secondaryActive: '#657280',
+  secondaryBg: '#F3F5F7',
+  secondaryDisabled: '#DAE0E4',
 
-  secondaryLight: 'rgb(242, 243, 244)',
-  secondaryLightPress: 'rgb(232,232,232)',
-  secondaryLightDisable: 'rgb(210,210,210)',
-  secondaryLightBg: 'rgb(242, 243, 244)',
+  secondaryLight: '#F6F6F6',
+  secondaryLightActive: '#DDDDDD',
+  secondaryLightBg: '#FEFEFE',
+  secondaryLightDisabled: '#FDFDFD',
 
-  accentBlue: 'rgb(38, 136, 235)',
-  accentBlueBg: 'rgb(237, 244, 252)',
+  textColorLight: '#F6F6F6',
+  textColorDark: '#223654',
 
-  accentRed: 'rgb(241, 76, 69)',
-  accentRedBg: 'rgb(254, 237, 236)',
-  accentRedHover: 'rgb(214, 72, 66)',
-  accentRedPress: 'rgb(167, 57, 51)',
-  accentRedDisable: 'rgb(226, 202, 202)',
+  background: '#fafafa',
+  backgroundLight: '#FEFEFE',
+  backgroundCard: '#F3F5F7',
+  backgroundDark: '#3C444C',
 
-  accentOrange: 'rgb(255, 152, 0)',
-  accentOrangeBg: 'rgb(255, 247, 235)',
-  orange: 'rgb(243, 112, 33)',
-  orangeLight: 'rgb(255, 139, 35)',
-  orangeDark: 'rgb(207, 094, 26)',
+  border: '#DAE0E4',
+  borderLight: '#FEFEFE',
+  borderCard: '#DAE0E4',
 
-  accentAmber: 'rgb(247, 181, 0)',
-  accentAmberBg: 'rgb(255, 243, 201)',
-
-  accentGray: 'rgb(126, 131, 146)',
-  accentGrayLight: 'rgb(203, 205, 211)',
-
-  badgeRatingAtp: 'rgb(1,40,102)',
-  badgeRatingWta: 'linear-gradient(269deg, rgb(73,49,135) 0%, rgb(203,22,91) 100%)'
-}
-
-const icons = {
-  iconBasic: 'rgb(203, 205, 211)',
-  iconSecondary: `${baseColors.secondary}`,
-  iconWhite: `${baseColors.basicWhite}`,
-  iconHover: `${baseColors.primary}`
-}
-
-const text = {
-  textColor: `${baseColors.basicBlack}`,
-  textPrimary: 'rgb(126, 131, 146)',
-  textWhite: `${baseColors.basicWhite}`
-}
-
-const links = {
-  linkColor: `${text.textColor}`,
-  linkHover: `${baseColors.primaryHover}`
-}
-
-const colors = {
-  ...baseColors,
-  ...icons,
-  ...text,
-  ...links
+  accentRed: '#F14C45',
+  accentRedBg: '#FDEDEC',
+  accentGreen: '#76A963',
+  accentGreenBg: '#E4EFE2'
 }
 
 export default colors

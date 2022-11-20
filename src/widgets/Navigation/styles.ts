@@ -3,29 +3,15 @@ import IconComp from 'src/components/Icon/Icon'
 import Link from 'src/widgets/Link/Link'
 
 export const Root = styled.nav`
-  background: ${({ theme }) => theme.colors.basicBlack};
-  box-shadow: 0 8px 24px rgb(0 0 0 / 12%), 0 1px 2px rgb(0 0 0 / 12%);
-  border-radius: 20px 20px 0 0;
+  background: ${({ theme }) => theme.colors.backgroundLight};
   width: 100%;
   padding-bottom: 10px;
+  border-top: 1px solid ${({ theme }) => theme.colors.border};
 
   .navigationActive {
     ${() => css`
-      ${Icon}, ${Name} {
-        color: ${({ theme }) => theme.colors.basicWhite};
-      }
-
-      &:before {
-        content: '';
-        width: 50px;
-        height: 37px;
-        position: absolute;
-        top: 8px;
-        left: 50%;
-        margin-left: -25px;
-        background: ${({ theme }) => theme.colors.secondaryHover};
-        border-radius: 10px;
-        z-index: -1;
+      ${Icon} {
+        color: ${({ theme }) => theme.colors.primary};
       }
     `}
   }
@@ -42,22 +28,16 @@ export const Item = styled(Link).attrs({ activeClassName: 'navigationActive' })`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  flex-basis: 33%;
+  flex-basis: 25%;
   flex-grow: 1;
   flex-shrink: 0;
-  padding: 20px 0;
+  padding: 15px 0;
   position: relative;
 `
 
 export const Icon = styled(IconComp).attrs({
-  width: 24,
-  height: 24
+  width: 28,
+  height: 28
 })`
-  color: ${({ theme }) => theme.colors.iconBasic};
-`
-
-export const Name = styled.span`
-  ${({ theme }) => theme.typography.text_11_12};
-  color: ${({ theme }) => theme.colors.secondary};
-  margin-top: 4px;
+  color: ${({ theme }) => theme.colors.textColorDark};
 `

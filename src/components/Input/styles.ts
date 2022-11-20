@@ -14,8 +14,10 @@ export const Root = styled.div`
 
 export const Label = styled.div`
   ${({ theme }) => theme.typography.text_12_16};
-  color: ${({ theme }) => theme.colors.secondary};
-  margin-bottom: 3px;
+  color: ${({ theme }) => theme.colors.textColorDark};
+  margin-bottom: 5px;
+  padding-left: ${({ theme }) => theme.baseStyles.paddings.gutterMobile};
+  font-weight: bold;
 `
 
 export const Wrapper = styled.div`
@@ -38,8 +40,8 @@ export const Postfix = styled.div`
 
 const fieldColors = {
   success: css`
-    ${({ theme }) => `border-color: ${theme.colors.primary};
-    background-color: ${theme.colors.primaryBg};`}
+    ${({ theme }) => `border-color: ${theme.colors.accentGreen};
+    background-color: ${theme.colors.accentGreenBg};`}
   `,
   error: css`
     ${({ theme }) => `border-color: ${theme.colors.accentRed};
@@ -55,13 +57,15 @@ const fieldBase = css<Props>`
   padding: 10px 50px 10px 15px;
   appearance: none;
   outline: none;
+  border-radius: ${({ theme }) => theme.baseStyles.radius.radiusSecond};
+  border: none;
+  resize: none;
+  background: ${({ theme }) => theme.colors.primaryBg};
+  border: 1px solid ${({ theme }) => theme.colors.primaryDisabled};
+  color: ${({ theme }) => theme.colors.textColorDark};
+
   ${({ theme, hasIcon }) => css`
     padding-left: ${hasIcon && '30px'};
-    border-radius: ${theme.baseStyles.radius.radiusMain};
-    border: none;
-    resize: none;
-    // background: ${({ theme }) => theme.colors.border};
-    border: 1px solid ${({ theme }) => theme.colors.border};
     transition: background-color ${theme.animation.transitionDuration},
       border-color ${theme.animation.transitionDuration};
   `}
@@ -85,7 +89,7 @@ const fieldBase = css<Props>`
   &:disabled {
     opacity: 0.7;
     border-color: ${({ theme }) => theme.colors.border};
-    background: ${({ theme }) => theme.colors.backgroundWhite};
+    background: ${({ theme }) => theme.colors.backgroundLight};
   }
 
   &:focus,
@@ -112,15 +116,15 @@ export const IconLeft = styled(Icon)`
   height: 14px;
   width: 14px;
   top: 50%;
-  color: ${({ theme }) => theme.colors.iconBasic};
+  color: ${({ theme }) => theme.colors.textColorLight};
 `
 
 export const IconCheck = styled(Icon).attrs({ name: 'check-circle' })`
   ${iconBase}
-  color: ${({ theme }) => theme.colors.primary};
+  color: ${({ theme }) => theme.colors.accentGreen};
 `
 
-export const IconExclamation = styled(Icon).attrs({ name: 'exclamation-circle' })`
+export const IconExclamation = styled(Icon).attrs({ name: 'error-octagon' })`
   ${iconBase}
   color: ${({ theme }) => theme.colors.accentRed};
 `
@@ -149,7 +153,7 @@ export const Message = styled.div<Props>`
   max-width: 100%;
   z-index: 4;
   ${({ theme }) => theme.typography.text_12_16}
-  color: ${({ theme }) => theme.colors.textWhite};
+  color: ${({ theme }) => theme.colors.textColorLight};
   border-radius: 2px;
   pointer-events: none;
   padding: 4px 6px;

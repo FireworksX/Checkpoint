@@ -9,6 +9,7 @@ import { LocationGalleryFieldProps, useLocationGalleryField } from './fields/use
 import { omit } from 'src/utils/omit'
 import { useEffect, useMemo, useState } from 'react'
 import { FieldsSchemeName } from './useLocationField'
+import { useIsomorphicEffect } from '../../useIsomorphicEffect'
 
 type WrapField<T> = Omit<T, 'isEdit'>
 
@@ -29,7 +30,6 @@ interface Options {
 
 export const useLocationControl = ({ initialIsEdit = false, initialData = {} }: Options) => {
   const [isEdit, toggleIsEdit] = useToggle(initialIsEdit)
-  const [selectedFields, setSelectedFields] = useState<FieldsSchemeName[]>(['gallery', 'title'])
 
   const titleField = useLocationTitleField({ isEdit, ...initialData?.title })
 
@@ -74,6 +74,16 @@ export const useLocationControl = ({ initialIsEdit = false, initialData = {} }: 
     }),
     [galleryField, titleField, descriptionField, kitchenField, wifispeedField, averageBillField, tagsField]
   )
+
+  const [selectedFields, setSelectedFields] = useState<FieldsSchemeName[]>(['gallery', 'title'])
+
+  useIsomorphicEffect(() => {
+    const keys = Object.values(fields)
+      .map(field => (!field.isEmpty ? field.fieldName : null))
+      .filter(Boolean) as FieldsSchemeName[]
+
+    // setSelectedFields(keys)
+  }, [])
 
   const availableFields = useMemo(
     () => Object.values(fields).filter(({ fieldName }) => selectedFields.includes(fieldName as FieldsSchemeName)),

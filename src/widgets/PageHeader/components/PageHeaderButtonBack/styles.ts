@@ -5,9 +5,9 @@ import PageHeaderButton from 'src/widgets/PageHeader/components/PageHeaderButton
 export const Root = styled(PageHeaderButton)``
 
 export const BackIcon = styled(Icon).attrs({
-  name: 'arrow-chevron',
+  name: 'caret-left',
   width: 20,
   height: 20
 })`
-  transform: rotate(180deg);
+  color: ${({ theme }) => theme.colors.textColorDark};
 `

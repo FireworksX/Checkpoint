@@ -24,12 +24,31 @@ export const Value = styled.div`
   margin-top: 10px;
 `
 
-export const Description = styled.p`
+export const Description = styled.div`
   ${({ theme }) => theme.typography.text_16_20}
-  color: ${({ theme }) => theme.colors.textColor};
-  margin-bottom: 40px;
+  color: ${({ theme }) => theme.colors.textColorDark};
+  margin-bottom: 30px;
   text-align: center;
   padding: 0 15%;
+`
+
+export const DescriptionMail = styled.div`
+  ${({ theme }) => theme.typography.text_16_20}
+  color: ${({ theme }) => theme.colors.primary};
+  font-weight: bold;
+`
+
+export const Resend = styled.div`
+  ${({ theme }) => theme.typography.text_16_20}
+  color: ${({ theme }) => theme.colors.textColorDark};
+  margin-top: 20px;
+  text-align: center;
+
+  span {
+    color: ${({ theme }) => theme.colors.primary};
+    font-weight: bold;
+    margin: 0 3px;
+  }
 `
 
 export const CodeInput = styled(Input).attrs({

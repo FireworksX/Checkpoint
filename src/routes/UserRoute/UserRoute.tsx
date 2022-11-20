@@ -9,8 +9,6 @@ import Container from 'src/components/Container/Container'
 import Button from 'src/components/Button/Button'
 import Placeholder from 'src/components/Placeholder/Placeholder'
 import { staticImagesMap } from 'src/data/staticImagesMap'
-import UserHeader from 'src/components/UserHeader/UserHeader'
-import UserMetrics from 'src/components/UserMetrics/UserMetrics'
 import Username from 'src/components/Username/Username'
 import SubscribeContainer from 'src/widgets/SubscribeContainer/SubscribeContainer'
 import SubscribeButton from 'src/widgets/SubscribeContainer/components/SubscribeButton/SubscribeButton'
@@ -18,6 +16,7 @@ import { DEFAULT_ALL_CATEGORY } from '../ProfileRoute/hooks/useProfileRoute'
 import Link from 'src/widgets/Link/Link'
 import { useRouter } from 'src/hooks/useRouter'
 import Spinner from 'src/components/Spinner/Spinner'
+import UserHeader from "../../widgets/UserHeader/UserHeader";
 
 interface UserRouteProps {
   className?: string
@@ -66,18 +65,6 @@ const UserRoute: FC<UserRouteProps> = ({ className }) => {
         subscribers={{ count: counters?.subscribers, appLinkProps: { type: 'userSubscribers', userSlug } }}
       />
 
-      <Styled.CompilationWrapper>
-        {categories.map((el, index) => (
-          <Styled.Compilation
-            key={`${el.slug}_${index}`}
-            title={el.name}
-            image={el.icon}
-            description={el.description}
-            isActive={el.isActive}
-            onClick={() => setSelectedCategory(el.slug)}
-          />
-        ))}
-      </Styled.CompilationWrapper>
 
       {(locations?.length || 0) > 0 && (
         <Container>

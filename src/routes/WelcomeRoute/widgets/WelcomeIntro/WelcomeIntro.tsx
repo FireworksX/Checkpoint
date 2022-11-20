@@ -20,15 +20,14 @@ const WelcomeIntro: FC<WelcomeRegisterProps> = ({ className, onNext }) => {
         <Styled.CoverWrapper>
           <Styled.Cover src={staticImagesMap.signUpLogin} />
         </Styled.CoverWrapper>
-        <Styled.Description>Пожалуйста укажите ваш почтовый адрес</Styled.Description>
         <Styled.MailSection onSubmit={onSubmit}>
-          <Styled.MailNumber placeholder='brainchelsey@gmail.com' {...emailInput} type='email' />
+          <Styled.MailNumber label='Email' placeholder='brainchelsey@gmail.com' {...emailInput} type='email' />
         </Styled.MailSection>
       </Container>
 
       <Styled.ButtonWrapper>
-        <Button size='l' stretched onClick={onSubmit}>
-          Далее
+        <Button size='xl' stretched onClick={onSubmit}>
+          Continue
         </Button>
       </Styled.ButtonWrapper>
     </Styled.Root>

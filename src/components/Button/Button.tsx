@@ -3,8 +3,7 @@ import * as Styled from './styles'
 import { TouchableProps } from 'src/components/Touchable/Touchable'
 
 export interface ButtonProps extends TouchableProps {
-  color?: 'accent' | 'positive' | 'negative' | 'neutral'
-  size?: 's' | 'm' | 'l'
+  size?: 's' | 'm' | 'l' | 'xl'
   mode?: 'primary' | 'secondary' | 'tertiary' | 'outline'
   stretched?: boolean
   disabled?: boolean

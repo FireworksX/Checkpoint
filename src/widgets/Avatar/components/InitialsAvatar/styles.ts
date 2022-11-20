@@ -61,5 +61,5 @@ export const Root = styled.div<Props>`
 export const Body = styled.span`
   text-transform: uppercase;
   font-weight: bold;
-  color: ${({ theme }) => theme.colors.textWhite};
+  color: ${({ theme }) => theme.colors.textColorLight};
 `

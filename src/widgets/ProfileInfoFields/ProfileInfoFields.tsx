@@ -1,6 +1,7 @@
 import { FC } from 'react'
 import * as Styled from './styles'
 import { InputProps } from 'src/components/Input/Input'
+import Button from '../../components/Button/Button'
 
 interface ProfileFields {
   mail: string
@@ -21,12 +22,15 @@ const ProfileInfoFields: FC<ProfileInfoFieldsProps> = ({ className, fields, avat
     <Styled.Root className={className}>
       <Styled.AvatarWrapper>
         <Styled.AvatarComponent uniqueId={fields.mail}>{avatarText}</Styled.AvatarComponent>
+        <Button mode='tertiary' stretched size='l'>
+          Set new avatar
+        </Button>
       </Styled.AvatarWrapper>
 
-      <Styled.Field placeholder='Username' {...fields.username} />
-      <Styled.Field placeholder='Имя' {...fields.firstName} />
-      <Styled.Field placeholder='Фамилия' {...fields.lastName} />
-      <Styled.Field placeholder='О себе' textarea {...fields.bio} />
+      <Styled.Field label='Username' placeholder='@mikedeal' {...fields.username} />
+      <Styled.Field label='First name' placeholder='Mike' {...fields.firstName} />
+      <Styled.Field label='Last name' placeholder='Deal' {...fields.lastName} />
+      <Styled.Field label='Bio' textarea {...fields.bio} />
     </Styled.Root>
   )
 }

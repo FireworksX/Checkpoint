@@ -24,8 +24,9 @@ const GlobalStyle = createGlobalStyle`
   
   body {
     padding-right: 0 !important;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+    font-family: 'Instagram Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
     sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    color: ${({ theme }) => theme.colors.textColorDark};
   }
 
   * {

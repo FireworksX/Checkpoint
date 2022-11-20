@@ -8,12 +8,12 @@ export const Root = styled.div``
 
 export const CoverWrapper = styled.div`
   text-align: center;
-  margin-top: 100px;
+  padding-top: 100px;
   margin-bottom: 40px;
 `
 
 export const Cover = styled(BaseImage)`
-  width: 180px;
+  width: 150px;
 `
 
 export const Title = styled.div`

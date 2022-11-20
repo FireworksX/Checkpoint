@@ -13,13 +13,16 @@ const Navigation: React.FC<NavigationProps> = ({ className }) => {
     <Styled.Root className={className}>
       <Styled.NavigationWrapper>
         <Styled.Item type='cityInfo' citySlug={citySlug}>
-          <Styled.Icon name='home' />
+          <Styled.Icon name='compass' />
         </Styled.Item>
         <Styled.Item type='cityMap' citySlug={citySlug}>
-          <Styled.Icon name='location' />
+          <Styled.Icon name='search' />
         </Styled.Item>
         <Styled.Item type='profile'>
-          <Styled.Icon name='user-area' />
+          <Styled.Icon name='bell' />
+        </Styled.Item>
+        <Styled.Item type='profile'>
+          <Styled.Icon name='user-circle' />
         </Styled.Item>
       </Styled.NavigationWrapper>
     </Styled.Root>

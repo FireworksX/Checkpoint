@@ -10,12 +10,14 @@ import Container from 'src/components/Container/Container'
 import Button from 'src/components/Button/Button'
 import Placeholder from 'src/components/Placeholder/Placeholder'
 import { staticImagesMap } from 'src/data/staticImagesMap'
-import UserHeader from 'src/components/UserHeader/UserHeader'
+import UserHeader from 'src/widgets/UserHeader/UserHeader'
 import UserMetrics from 'src/components/UserMetrics/UserMetrics'
 import { useModal } from 'src/hooks/useModal'
 import Link from 'src/widgets/Link/Link'
 import { useRouter } from 'src/hooks/useRouter'
 import Spinner from 'src/components/Spinner/Spinner'
+import HashtagCell from "../../components/HashtagCell/HashtagCell";
+import HorizontalScroll from "../../components/HorizontalScroll/HorizontalScroll";
 
 interface ProfileRouteProps {
   className?: string
@@ -29,44 +31,19 @@ const ProfileRoute: FC<ProfileRouteProps> = ({ className }) => {
 
   return (
     <Styled.Root className={className}>
-      <Styled.Header
-        left={<PageHeaderButtonBack />}
-        right={
-          <Styled.HeaderButton onClick={open}>
-            <Icon name='ellipsis' />
-          </Styled.HeaderButton>
-        }
-      >
-        <Styled.HeaderTitle>@{user?.username}</Styled.HeaderTitle>
+      <Styled.Header description='Profile' left={<PageHeaderButtonBack />} right={<Icon name='settings' />}>
+        @fireworks
       </Styled.Header>
 
       <UserHeader
         username={user?.username}
         firstName={user?.firstName}
         lastName={user?.lastName}
-        verify={user?.verify}
+        verify
         bio={user?.bio}
         mail={'test@gfd.hfgj'}
       />
 
-      <UserMetrics
-        locations={{ count: counters?.locations }}
-        followers={{ count: counters?.followers, appLinkProps: { type: 'profileFollowers' } }}
-        subscribers={{ count: counters?.subscribers, appLinkProps: { type: 'profileSubscribers' } }}
-      />
-
-      <Styled.CompilationWrapper>
-        {categories.map((el, index) => (
-          <Styled.Compilation
-            key={`${el.slug}_${index}`}
-            title={el.name}
-            image={el.icon}
-            description={el.description}
-            isActive={el.isActive}
-            onClick={() => onSelectCategory(el.slug)}
-          />
-        ))}
-      </Styled.CompilationWrapper>
 
       {(locations?.length || 0) > 0 && (
         <Container>
@@ -111,4 +88,4 @@ const ProfileRoute: FC<ProfileRouteProps> = ({ className }) => {
   )
 }
 
-export default route(withValidateUser(ProfileRoute), ROUTE_NAMES.profileReview)
+export default route(ProfileRoute, ROUTE_NAMES.profileReview)

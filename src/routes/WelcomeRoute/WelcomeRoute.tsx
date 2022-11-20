@@ -14,7 +14,7 @@ interface WelcomeRouteProps {
 
 const WelcomeRoute: FC<WelcomeRouteProps> = ({ className }) => {
   const { routerInstance } = useRouter()
-  const [step, setStep] = useState(0)
+  const [step, setStep] = useState(2)
   const cityInfoLink = useLinkConfig('cityList')
 
   const onFinish = useCallback(() => {

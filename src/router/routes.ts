@@ -21,11 +21,6 @@ export const routes: Route[] = [
         component: routeComponents.WelcomeRoute
       },
       {
-        name: ROUTE_NAMES.cityList,
-        path: 'city/list',
-        component: routeComponents.CityListRoute
-      },
-      {
         name: ROUTE_NAMES.navigation,
         path: `/`,
         component: routeComponents.NavigationRoute,
@@ -72,12 +67,9 @@ export const routes: Route[] = [
                   {
                     name: ROUTE_NAMES.locationView,
                     path: '/',
-                    component: routeComponents.LocationView,
-                    children: [{ name: ROUTE_NAMES.locationEdit, path: '/edit' }]
                   }
                 ]
               },
-              { name: ROUTE_NAMES.locationCreate, path: '/create', component: routeComponents.LocationCreate }
             ]
           },
           {
@@ -105,30 +97,6 @@ export const routes: Route[] = [
             name: ROUTE_NAMES.notifications,
             path: `notifications`,
             component: routeComponents.NotificationsRoute
-          },
-          {
-            name: ROUTE_NAMES.trends,
-            path: `trends`,
-            component: routeComponents.TrendsRoute
-          },
-          {
-            name: ROUTE_NAMES.city,
-            path: `city`,
-            children: [
-              {
-                name: ROUTE_NAMES.cityDetail,
-                path: `/:${ROUTE_PARAMS.citySlug}`,
-                children: [
-                  { name: ROUTE_NAMES.cityInfo, path: '/', component: routeComponents.CityInfoRoute },
-                  {
-                    name: ROUTE_NAMES.cityMap,
-                    path: `/map?${ROUTE_PARAMS.mapAuthor}&${ROUTE_PARAMS.mapCategory}&${ROUTE_PARAMS.mapLocation}`,
-                    component: routeComponents.CityMapRoute,
-                  },
-                  { name: ROUTE_NAMES.cityMapSearch, path: '/map/search', component: routeComponents.CityMapSearchRoute },
-                ]
-              }
-            ]
           }
         ]
       }

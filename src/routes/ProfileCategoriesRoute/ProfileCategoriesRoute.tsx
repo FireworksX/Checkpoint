@@ -28,26 +28,6 @@ const ProfileCategoriesRoute: FC<ProfileCategoriesRouteProps> = ({ className }) 
           </PageHeaderButton>
         }
       />
-      <Styled.Wrapper>
-        {list.map(category => (
-          <Styled.CategoryCard
-            key={category._id}
-            title={category.name}
-            image={category.icon}
-            description={category.description}
-            after={
-              <Styled.CategoryControls>
-                <Styled.ControlButton color='neutral' onClick={() => editCategory(category)}>
-                  <Icon name='pencil' width={16} height={16} />
-                </Styled.ControlButton>
-                <Styled.ControlButton color='negative' onClick={() => removeCategory(category)}>
-                  <Icon name='close' width={16} height={16} />
-                </Styled.ControlButton>
-              </Styled.CategoryControls>
-            }
-          />
-        ))}
-      </Styled.Wrapper>
 
       {list.length === 0 && <Placeholder header='Пока ничего'>Ещё нет ни одной категории</Placeholder>}
 

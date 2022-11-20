@@ -1,13 +1,9 @@
-import { baseVariables } from 'src/styles/theme/baseVariables'
 import colors from './colors'
-import { DefaultTheme } from 'styled-components'
+import { getBaseVariables } from '../baseVariables'
 
-const variables: DefaultTheme = {
-  ...baseVariables,
-  colors: {
-    ...baseVariables.colors,
-    ...colors
-  }
+const baseVariables = getBaseVariables(colors)
+
+export default {
+  colors,
+  ...baseVariables
 }
-
-export default variables

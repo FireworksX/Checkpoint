@@ -16,8 +16,11 @@ import { useModal } from 'src/hooks/useModal'
 import Link from 'src/widgets/Link/Link'
 import { useRouter } from 'src/hooks/useRouter'
 import Spinner from 'src/components/Spinner/Spinner'
-import HashtagCell from "../../components/HashtagCell/HashtagCell";
-import HorizontalScroll from "../../components/HorizontalScroll/HorizontalScroll";
+import HashtagCell from '../../components/HashtagCell/HashtagCell'
+import HorizontalScroll from '../../components/HorizontalScroll/HorizontalScroll'
+import Post from '../../widgets/Post/Post'
+import LocationCard from '../../widgets/LocationCard/LocationCard'
+import PageHeaderButton from '../../widgets/PageHeader/components/PageHeaderButton/PageHeaderButton'
 
 interface ProfileRouteProps {
   className?: string
@@ -31,7 +34,16 @@ const ProfileRoute: FC<ProfileRouteProps> = ({ className }) => {
 
   return (
     <Styled.Root className={className}>
-      <Styled.Header description='Profile' left={<PageHeaderButtonBack />} right={<Icon name='settings' />}>
+      <Styled.Header
+        description='Profile'
+        right={
+          <Link type='profileSettings'>
+            <PageHeaderButton>
+              <Icon name='settings' />
+            </PageHeaderButton>
+          </Link>
+        }
+      >
         @fireworks
       </Styled.Header>
 
@@ -44,46 +56,9 @@ const ProfileRoute: FC<ProfileRouteProps> = ({ className }) => {
         mail={'test@gfd.hfgj'}
       />
 
-
-      {(locations?.length || 0) > 0 && (
-        <Container>
-          <Link
-            type='cityMap'
-            citySlug={citySlug}
-            mapAuthor={user?.username}
-            mapCategory={selectedCategory === DEFAULT_ALL_CATEGORY.slug ? undefined : selectedCategory}
-          >
-            <Button stretched size='l'>
-              Показать на карте
-            </Button>
-          </Link>
-        </Container>
-      )}
-
-      {locationsFetching && (
-        <Styled.LoaderWrapper>
-          <Spinner />
-        </Styled.LoaderWrapper>
-      )}
-
-      {(locations?.length || 0) === 0 && !locationsFetching && (
-        <Placeholder header='Пока ничего нет' icon={<Styled.PlaceholderImage src={staticImagesMap.dottedLineFace} />}>
-          В этой категории пока ничего нет, пустота...
-        </Placeholder>
-      )}
-      <Styled.LocationsWrapper>
-        {locations?.map(location => (
-          <Styled.LocationCell
-            _id={location._id}
-            likes={location.likes}
-            key={location._id}
-            name={location.fields.title}
-            slug={location.slug}
-            cover={'https://image.bugsm.co.kr/album/images/500/204702/20470222.jpg'}
-            description={location.fields.description}
-          />
-        ))}
-      </Styled.LocationsWrapper>
+      <Container>
+        <Post target={<LocationCard />} />
+      </Container>
     </Styled.Root>
   )
 }

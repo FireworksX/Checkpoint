@@ -5,6 +5,9 @@ import { BaseUser } from 'src/interfaces/User'
 import Username from 'src/components/Username/Username'
 import { buildFullName } from 'src/utils/buildFullName'
 import { useInitialAvatarPlaceholder } from 'src/widgets/Avatar/hooks/useInitialAvatarPlaceholder'
+import Button from "../Button/Button";
+import SubscribeButton from "../../widgets/SubscribeContainer/components/SubscribeButton/SubscribeButton";
+import {FollowButton} from "./styles";
 
 interface UserRowCardProps extends Pick<BaseUser, 'username' | 'firstName' | 'lastName' | 'mail' | 'verify'> {
   appLinkProps?: LinkProps
@@ -27,11 +30,15 @@ const UserRowCard: FC<UserRowCardProps> = ({
       <Styled.AvatarComponent uniqueId={mail}>{avatarText}</Styled.AvatarComponent>
       <div>
         <Styled.Title>
-          <Username>{username}</Username>
+          {buildFullName(firstName, lastName)}
           {verify && <Styled.VerifyIcon />}
         </Styled.Title>
-        <Styled.Description>{buildFullName(firstName, lastName)}</Styled.Description>
+        <Styled.Description>{username}</Styled.Description>
       </div>
+
+      <Styled.FollowButton>
+        <SubscribeButton isFollowing/>
+      </Styled.FollowButton>
     </Styled.Root>
   )
 }

@@ -18,7 +18,7 @@ const Navigation: React.FC<NavigationProps> = ({ className }) => {
         <Styled.Item type='cityMap' citySlug={citySlug}>
           <Styled.Icon name='search' />
         </Styled.Item>
-        <Styled.Item type='profile'>
+        <Styled.Item type='notifications'>
           <Styled.Icon name='bell' />
         </Styled.Item>
         <Styled.Item type='profile'>

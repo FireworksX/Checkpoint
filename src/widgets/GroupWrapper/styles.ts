@@ -1,51 +1,22 @@
 import styled from 'styled-components'
-import Touchable from 'src/components/Touchable/Touchable'
-import Icon from 'src/components/Icon/Icon'
-import CommonLogo from 'src/components/CommonLogo/CommonLogo'
+import Container from 'src/components/Container/Container'
 
-export const Root = styled.div`
-  padding: 10px;
-`
+export const Root = styled(Container)`
+  padding-bottom: 20px;
 
-export const Wrapper = styled.div`
-  padding: 7px 10px;
-  border-radius: 10px;
-  margin-bottom: 10px;
-`
-
-export const Touch = styled(Touchable)`
-  display: flex;
-  align-items: center;
-`
-
-export const Body = styled.div``
-
-export const Delimiter = styled.div`
-  height: 1px;
-  background: ${({ theme }) => theme.colors.border};
-`
-
-export const Logo = styled(CommonLogo)`
-  width: 60px;
-  margin-right: 10px;
+  &:last-child {
+    border-bottom: none;
+  }
 `
 
 export const Title = styled.div`
-  ${({ theme }) => theme.typography.text_14_24}
-  color: ${({ theme }) => theme.colors.textColor};
-  margin-bottom: 3px;
+  ${({ theme }) => theme.typography.text_16_20}
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  margin-bottom: 15px;
 `
 
-export const Description = styled.div`
-  ${({ theme }) => theme.typography.text_12_16}
-  color: ${({ theme }) => theme.colors.secondary};
-`
-
-export const Arrow = styled(Icon).attrs({
-  name: 'arrow-chevron',
-  width: 16,
-  height: 16
-})`
-  color: ${({ theme }) => theme.colors.secondary};
-  margin-left: auto;
+export const Counter = styled.div`
+  margin-left: 10px;
 `

@@ -1,7 +1,8 @@
 import styled, { css } from 'styled-components'
 
 export const Root = styled.header`
-  position: relative;
+  position: sticky;
+  top: 0;
   background: ${({ theme }) => theme.colors.backgroundLight};
   color: ${({ theme }) => theme.colors.textColorDark};
   transition: ${({ theme }) => theme.animation.transitionDuration};
@@ -16,7 +17,6 @@ export const Root = styled.header`
 export const Center = styled.div`
   flex-grow: 1;
   text-align: center;
-  width: 100%;
   ${({ theme }) => theme.typography.text_18_22};
   font-weight: bold;
 `

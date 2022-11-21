@@ -1,6 +1,7 @@
 import styled from 'styled-components'
+import Link from "src/widgets/Link/Link";
 
-export const Root = styled.div`
+export const Root = styled(Link)`
   text-align: center;
 `
 

@@ -6,14 +6,13 @@ interface NotificationsCellProps {
   name: string
   description: string
   time?: string
-  asideCover?: string
   className?: string
 }
 
-const NotificationsCell: FC<NotificationsCellProps> = ({ className, avatar, name, description, time, asideCover }) => {
+const NotificationsCell: FC<NotificationsCellProps> = ({ className, avatar, name, description, time }) => {
   return (
     <Styled.Root className={className}>
-      <Styled.Avatar src={avatar} alt={name} size={44} />
+      <Styled.UserAvatar src={avatar} size={44} />
       <div>
         <Styled.Name>{name}</Styled.Name>
         <Styled.Description>
@@ -21,7 +20,6 @@ const NotificationsCell: FC<NotificationsCellProps> = ({ className, avatar, name
           {time && <Styled.Time>{time}</Styled.Time>}
         </Styled.Description>
       </div>
-      {asideCover && <Styled.Aside src={asideCover} />}
     </Styled.Root>
   )
 }

@@ -119,8 +119,7 @@ const NotificationsRoute: FC<NotificationsRouteProps> = ({ className }) => {
   return (
     <Styled.Root className={className}>
       <Styled.Header>
-        <PageHeaderButtonBack />
-        <Styled.HeaderTitle>Notifications</Styled.HeaderTitle>
+        Notifications
       </Styled.Header>
       {data.map(el => (
         <Styled.Group key={el.title} title={el.title} counter={<Styled.AccentCounter>{el.count}</Styled.AccentCounter>}>
@@ -131,7 +130,6 @@ const NotificationsRoute: FC<NotificationsRouteProps> = ({ className }) => {
               name={cell.name}
               description={cell.mode === 'shared' ? 'shared your folder' : 'like your pin'}
               time={cell.time}
-              asideCover={cell.cover}
             />
           ))}
         </Styled.Group>
@@ -140,4 +138,4 @@ const NotificationsRoute: FC<NotificationsRouteProps> = ({ className }) => {
   )
 }
 
-export default route(withValidateUser(NotificationsRoute), ROUTE_NAMES.notifications)
+export default route(NotificationsRoute, ROUTE_NAMES.notifications)

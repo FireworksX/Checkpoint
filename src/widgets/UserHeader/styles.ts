@@ -23,22 +23,11 @@ export const Counters = styled.div`
   grid-template-columns: repeat(3, 1fr);
 `
 
-export const Counter = styled.div`
-  text-align: center;
+export const Actions = styled.div`
+  grid-column: 1 / 4;
 `
 
-export const CounterValue = styled.div`
-  ${({ theme }) => theme.typography.text_18_22};
-  font-weight: bold;
-`
-
-export const CounterDescription = styled.div`
-  ${({ theme }) => theme.typography.text_14_20};
-  color: ${({ theme }) => theme.colors.secondary};
-`
-
-export const AvatarComponent = styled(Avatar).attrs({ size: 90 })`
-`
+export const AvatarComponent = styled(Avatar).attrs({ size: 90 })``
 
 export const Name = styled.h2`
   ${({ theme }) => theme.typography.text_20_24}

@@ -3,7 +3,6 @@ import * as Styled from './styles'
 import { route } from 'src/hoc/route'
 import { ROUTE_NAMES } from 'src/router/constants'
 import PageHeaderButtonBack from 'src/widgets/PageHeader/components/PageHeaderButtonBack/PageHeaderButtonBack'
-import { withValidateUser } from 'src/hoc/withValidateUser'
 import { useProfileSubscribersRoute } from './hooks/useProfileSubscribersRoute'
 
 interface ProfileRouteProps {
@@ -15,8 +14,8 @@ const ProfileSubscribersRoute: FC<ProfileRouteProps> = ({ className }) => {
 
   return (
     <Styled.Root className={className}>
-      <Styled.Header left={<PageHeaderButtonBack />}>
-        <Styled.HeaderTitle>@{user?.username}</Styled.HeaderTitle>
+      <Styled.Header left={<PageHeaderButtonBack />} description='Following'>
+          @fireworks
       </Styled.Header>
 
       <Styled.Wrapper>
@@ -39,4 +38,4 @@ const ProfileSubscribersRoute: FC<ProfileRouteProps> = ({ className }) => {
   )
 }
 
-export default route(withValidateUser(ProfileSubscribersRoute), ROUTE_NAMES.profileSubscribers)
+export default route(ProfileSubscribersRoute, ROUTE_NAMES.profileSubscribers)

@@ -9,9 +9,21 @@ export interface ButtonProps extends TouchableProps {
   disabled?: boolean
   loading?: boolean
   className?: string
+  icon?: SvgNames
 }
 
-const Button: FC<ButtonProps> = ({ className, disabled, loading, size, color, mode, stretched, children, ...rest }) => {
+const Button: FC<ButtonProps> = ({
+  className,
+  disabled,
+  icon,
+  loading,
+  size,
+  color,
+  mode,
+  stretched,
+  children,
+  ...rest
+}) => {
   return (
     <Styled.Root
       className={className}
@@ -22,6 +34,7 @@ const Button: FC<ButtonProps> = ({ className, disabled, loading, size, color, mo
       size={size}
       {...rest}
     >
+      {icon && <Styled.Icon name={icon} />}
       {children}
     </Styled.Root>
   )

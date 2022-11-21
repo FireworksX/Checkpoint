@@ -1,7 +1,6 @@
 import RootRoute from './RootRoute/RootRoute'
 import ProfileRoute from './ProfileRoute/ProfileRoute'
-import ProfileEditRoute from './ProfileEditRoute/ProfileEditRoute'
-import ProfileCategoriesRoute from './ProfileCategoriesRoute/ProfileCategoriesRoute'
+import ProfileSettingsRoute from './ProfileSettingsRoute/ProfileSettingsRoute'
 import ProfileFollowersRoute from './ProfileFollowersRoute/ProfileFollowersRoute'
 import ProfileSubscribersRoute from './ProfileSubscribersRoute/ProfileSubscribersRoute'
 import NotificationsRoute from './NotificationsRoute/NotificationsRoute'
@@ -14,8 +13,7 @@ import UserSubscribersRoute from './UserSubscribersRoute/UserSubscribersRoute'
 export default {
   RootRoute,
   ProfileRoute,
-  ProfileEditRoute,
-  ProfileCategoriesRoute,
+  ProfileSettingsRoute,
   ProfileFollowersRoute,
   ProfileSubscribersRoute,
   NotificationsRoute,

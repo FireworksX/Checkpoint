@@ -2,27 +2,16 @@ import styled from 'styled-components'
 import PageHeader from 'src/widgets/PageHeader/PageHeader'
 import Counter from './components/Counter/Counter'
 import NotificationsCell from './components/NotificationsCell/NotificationsCell'
-import NotificationsGroup from './components/NotificationsGroup/NotificationsGroup'
 import Page from 'src/widgets/Page/Page'
+import GroupWrapper from '../../widgets/GroupWrapper/GroupWrapper'
 
 export const Root = styled(Page)``
 
 export const Header = styled(PageHeader)`
-  display: grid;
-  align-items: center;
-  text-align: center;
-  grid-template-columns: 50px 1fr 50px;
   margin-bottom: 20px;
 `
 
-export const HeaderTitle = styled.div`
-  ${({ theme }) => theme.typography.text_16_20}
-  color: ${({ theme }) => theme.colors.secondary};
-`
-
-export const Group = styled(NotificationsGroup)`
-  margin-bottom: 20px;
-`
+export const Group = styled(GroupWrapper)``
 
 export const AccentCounter = styled(Counter)`
   background: ${({ theme }) => theme.colors.primaryBg};
@@ -30,5 +19,9 @@ export const AccentCounter = styled(Counter)`
 `
 
 export const Cell = styled(NotificationsCell)`
-  padding: 10px 0;
+  margin-bottom: 10px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 `

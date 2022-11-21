@@ -8,35 +8,28 @@ import ProfileInfoFields from 'src/widgets/ProfileInfoFields/ProfileInfoFields'
 import Container from 'src/components/Container/Container'
 import PageHeaderButtonBack from 'src/widgets/PageHeader/components/PageHeaderButtonBack/PageHeaderButtonBack'
 import { useProfileEditRoute } from './hooks/useProfileEditRoute'
+import Button from '../../components/Button/Button'
 
-interface ProfileEditRouteProps {
+interface ProfileSettingsRouteProps {
   className?: string
 }
 
-const ProfileEditRoute: FC<ProfileEditRouteProps> = ({ className }) => {
+const ProfileSettingsRoute: FC<ProfileSettingsRouteProps> = ({ className }) => {
   const { fields, avatarText, onSubmitForm } = useProfileEditRoute()
 
   return (
     <Styled.Root className={className}>
       <form onSubmit={onSubmitForm}>
-        <Styled.Header
-          left={
-            <PageHeaderButton>
-              <PageHeaderButtonBack />
-            </PageHeaderButton>
-          }
-          right={
-            <PageHeaderButton tagName='button' type='submit'>
-              Сохранить
-            </PageHeaderButton>
-          }
-        />
+        <Styled.Header left={<PageHeaderButtonBack />}>Settings</Styled.Header>
         <Container>
           <ProfileInfoFields fields={fields} avatarText={avatarText} />
+          <Button stretched size='xl'>
+            Save
+          </Button>
         </Container>
       </form>
     </Styled.Root>
   )
 }
 
-export default route(withValidateUser(ProfileEditRoute), ROUTE_NAMES.profileEdit)
+export default route(ProfileSettingsRoute, ROUTE_NAMES.profileSettings)

@@ -10,12 +10,8 @@ const linkConfig = {
     name: buildName(ROUTE_NAMES.navigation, ROUTE_NAMES.profile, ROUTE_NAMES.profileReview),
     params: { required: [], optional: [] }
   },
-  profileEdit: {
-    name: buildName(ROUTE_NAMES.navigation, ROUTE_NAMES.profile, ROUTE_NAMES.profileEdit),
-    params: { required: [], optional: [] }
-  },
-  profileCategories: {
-    name: buildName(ROUTE_NAMES.navigation, ROUTE_NAMES.profile, ROUTE_NAMES.profileCategories),
+  profileSettings: {
+    name: buildName(ROUTE_NAMES.navigation, ROUTE_NAMES.profile, ROUTE_NAMES.profileSettings),
     params: { required: [], optional: [] }
   },
   profileFollowers: {
@@ -46,40 +42,6 @@ const linkConfig = {
     name: buildName(ROUTE_NAMES.navigation, ROUTE_NAMES.notifications),
     params: { required: [], optional: [] }
   },
-  cityList: {
-    name: buildName(ROUTE_NAMES.cityList),
-    params: { required: [], optional: [] }
-  },
-  cityInfo: {
-    name: buildName(ROUTE_NAMES.navigation, ROUTE_NAMES.city, ROUTE_NAMES.cityDetail, ROUTE_NAMES.cityInfo),
-    params: { required: [], optional: [ROUTE_PARAMS.citySlug] }
-  },
-  cityMap: {
-    name: buildName(ROUTE_NAMES.navigation, ROUTE_NAMES.city, ROUTE_NAMES.cityDetail, ROUTE_NAMES.cityMap),
-    params: {
-      required: [],
-      optional: [ROUTE_PARAMS.citySlug, ROUTE_PARAMS.mapAuthor, ROUTE_PARAMS.mapCategory, ROUTE_PARAMS.mapLocation]
-    }
-  },
-  cityMapSearch: {
-    name: buildName(ROUTE_NAMES.navigation, ROUTE_NAMES.city, ROUTE_NAMES.cityDetail, ROUTE_NAMES.cityMapSearch),
-    params: {
-      required: [],
-      optional: [ROUTE_PARAMS.citySlug]
-    }
-  },
-  locationView: {
-    name: buildName(ROUTE_NAMES.navigation, ROUTE_NAMES.location, ROUTE_NAMES.locationDetail, ROUTE_NAMES.locationView),
-    params: { required: [], optional: [ROUTE_PARAMS.locationSlug] }
-  },
-  locationEdit: {
-    name: buildName(ROUTE_NAMES.navigation, ROUTE_NAMES.location, ROUTE_NAMES.locationEdit),
-    params: { required: [], optional: [ROUTE_PARAMS.locationSlug] }
-  },
-  locationCreate: {
-    name: buildName(ROUTE_NAMES.navigation, ROUTE_NAMES.location, ROUTE_NAMES.locationCreate),
-    params: { required: [], optional: [] }
-  }
 } as const
 
 export type LinkConfig = typeof linkConfig

@@ -10,46 +10,16 @@ import Page from 'src/widgets/Page/Page'
 
 export const Root = styled(Page)``
 
-export const Header = styled(PageHeader)`
-  border-bottom: 2px solid ${({ theme }) => theme.colors.border};
-`
+export const Header = styled(PageHeader)``
 
-export const HeaderButton = styled(Touchable)`
-  color: ${({ theme }) => theme.colors.primary};
-`
-
-export const HeaderTitle = styled.div`
-  ${({ theme }) => theme.typography.text_16_20}
-  color: ${({ theme }) => theme.colors.secondary};
-`
-
-export const CompilationWrapper = styled(HorizontalScroll)`
-  margin: 15px 0;
-`
-
-export const LocationsWrapper = styled(Container)`
+export const HeaderActions = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 15px;
   margin-top: 15px;
-`
-
-export const LocationCell = styled(LocationCard)`
-  margin-bottom: 15px;
-`
-
-export const LocationCellSkeleton = styled(LocationCardSkeleton)`
-  margin-bottom: 15px;
-`
-
-export const PlaceholderImage = styled(BaseImage)`
-  width: 60px;
 `
 
 export const SubscribeContainer = styled(Container)`
   text-align: center;
   margin-bottom: 15px;
-`
-
-export const LoaderWrapper = styled.div`
-  padding: 50px 20px;
-  display: flex;
-  justify-content: center;
 `

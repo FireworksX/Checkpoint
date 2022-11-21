@@ -5,14 +5,7 @@ import UserRowCard from 'src/components/UserRowCard/UserRowCard'
 
 export const Root = styled.div``
 
-export const Header = styled(PageHeader)`
-  border-bottom: 2px solid ${({ theme }) => theme.colors.border};
-`
-
-export const HeaderTitle = styled.div`
-  ${({ theme }) => theme.typography.text_16_20}
-  color: ${({ theme }) => theme.colors.secondary};
-`
+export const Header = styled(PageHeader)``
 
 export const Wrapper = styled(Container)`
   padding-top: 15px;

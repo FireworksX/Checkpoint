@@ -13,7 +13,7 @@ export const Root = styled.div<Props>`
     effect !== 'none' &&
     css`
       &:active {
-        transform: scale(0.9);
+        transform: scale(0.93);
       }
     `};
 `

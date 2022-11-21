@@ -45,31 +45,10 @@ export const routes: Route[] = [
                 component: routeComponents.ProfileSubscribersRoute
               },
               {
-                name: ROUTE_NAMES.profileEdit,
-                path: `/edit`,
-                component: routeComponents.ProfileEditRoute
-              },
-              {
-                name: ROUTE_NAMES.profileCategories,
-                path: `/categories`,
-                component: routeComponents.ProfileCategoriesRoute
+                name: ROUTE_NAMES.profileSettings,
+                path: `/settings`,
+                component: routeComponents.ProfileSettingsRoute
               }
-            ]
-          },
-          {
-            name: ROUTE_NAMES.location,
-            path: `location`,
-            children: [
-              {
-                name: ROUTE_NAMES.locationDetail,
-                path: `/:${ROUTE_PARAMS.locationSlug}`,
-                children: [
-                  {
-                    name: ROUTE_NAMES.locationView,
-                    path: '/',
-                  }
-                ]
-              },
             ]
           },
           {

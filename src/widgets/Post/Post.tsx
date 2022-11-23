@@ -15,13 +15,7 @@ const Post: FC<PostProps> = ({ className, target }) => {
         Connected from <span>@dodi</span>
       </Styled.Connected>
       <Styled.Body>
-        <Styled.Header>
-          <Styled.UserAvatar />
-          <div>
-            <Styled.UserName>Arthur Abeltinsh</Styled.UserName>
-            <Styled.Date>2h ago</Styled.Date>
-          </div>
-        </Styled.Header>
+        <Styled.Header verify firstName='Arthur' lastName='Abeltinsh' description='2h ago' />
 
         <Styled.Text>
           Was great meeting up with @annaferguson and Dave Bishop at the breakfast talk! 🍕#breakfast

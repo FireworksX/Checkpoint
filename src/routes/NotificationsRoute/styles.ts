@@ -13,10 +13,7 @@ export const Header = styled(PageHeader)`
 
 export const Group = styled(GroupWrapper)``
 
-export const AccentCounter = styled(Counter)`
-  background: ${({ theme }) => theme.colors.primaryBg};
-  color: ${({ theme }) => theme.colors.primary};
-`
+export const AccentCounter = styled(Counter)``
 
 export const Cell = styled(NotificationsCell)`
   margin-bottom: 10px;

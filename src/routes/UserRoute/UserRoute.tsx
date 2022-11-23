@@ -16,7 +16,7 @@ import Link from 'src/widgets/Link/Link'
 import { useRouter } from 'src/hooks/useRouter'
 import Spinner from 'src/components/Spinner/Spinner'
 import UserHeader from '../../widgets/UserHeader/UserHeader'
-import {HeaderActions} from "./styles";
+import { HeaderActions } from './styles'
 
 interface UserRouteProps {
   className?: string
@@ -37,11 +37,13 @@ const UserRoute: FC<UserRouteProps> = ({ className }) => {
   } = useUserRoute()
 
   return (
-    <Styled.Root className={className} fetching={userFetching}>
-      <Styled.Header left={<PageHeaderButtonBack />} description='Profile'>
-        <Username>nwyoy</Username>
-      </Styled.Header>
-
+    <Styled.Root
+      className={className}
+      title={<Username>nwyoy</Username>}
+      description='Profile'
+      headerLeft={<PageHeaderButtonBack />}
+      fetching={userFetching}
+    >
       <UserHeader
         username={user?.username}
         firstName={user?.firstName}
@@ -51,8 +53,12 @@ const UserRoute: FC<UserRouteProps> = ({ className }) => {
         mail={user?.mail}
         actions={
           <Styled.HeaderActions>
-            <Button size='l' mode='secondary' stretched>Follow</Button>
-            <Button size='l' mode='secondary' stretched>Message</Button>
+            <Button size='l' mode='secondary' stretched>
+              Follow
+            </Button>
+            <Button size='l' mode='secondary' stretched>
+              Message
+            </Button>
           </Styled.HeaderActions>
         }
       />
@@ -60,7 +66,14 @@ const UserRoute: FC<UserRouteProps> = ({ className }) => {
       <Styled.SubscribeContainer>
         <SubscribeContainer targetId={user?._id}>
           {({ isFollowing, onClick }) => (
-            <SubscribeButton size='xl' icon='lightning' stretched labels={['Connecting', 'Connect']} isFollowing={isFollowing} onClick={onClick} />
+            <SubscribeButton
+              size='xl'
+              icon='lightning'
+              stretched
+              labels={['Connecting', 'Connect']}
+              isFollowing={isFollowing}
+              onClick={onClick}
+            />
           )}
         </SubscribeContainer>
       </Styled.SubscribeContainer>

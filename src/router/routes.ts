@@ -76,6 +76,11 @@ export const routes: Route[] = [
             name: ROUTE_NAMES.notifications,
             path: `notifications`,
             component: routeComponents.NotificationsRoute
+          },
+          {
+            name: ROUTE_NAMES.postDetail,
+            path: `post/:${ROUTE_PARAMS.postSlug}`,
+            component: routeComponents.PostDetailRoute
           }
         ]
       }

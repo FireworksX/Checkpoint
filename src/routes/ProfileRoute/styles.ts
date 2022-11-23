@@ -1,16 +1,13 @@
 import styled from 'styled-components'
-import PageHeader from 'src/widgets/PageHeader/PageHeader'
 import Touchable from 'src/components/Touchable/Touchable'
 import Container from 'src/components/Container/Container'
 import HorizontalScroll from 'src/components/HorizontalScroll/HorizontalScroll'
 import LocationCard from 'src/components/LocationCard/LocationCard'
 import LocationCardSkeleton from 'src/components/LocationCardSkeleton/LocationCardSkeleton'
 import BaseImage from 'src/components/BaseImage/BaseImage'
+import Page from "src/widgets/Page/Page";
 
-export const Root = styled.div``
-
-export const Header = styled(PageHeader)`
-`
+export const Root = styled(Page)``
 
 export const CompilationWrapper = styled(HorizontalScroll)`
   margin: 15px 0;

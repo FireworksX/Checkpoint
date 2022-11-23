@@ -4,6 +4,7 @@ import { ROUTE_NAMES } from 'src/router/constants'
 import { route } from 'src/hoc/route'
 import PageHeaderButtonBack from 'src/widgets/PageHeader/components/PageHeaderButtonBack/PageHeaderButtonBack'
 import { withValidateUser } from 'src/hoc/withValidateUser'
+import Container from '../../components/Container/Container'
 
 interface NotificationsRouteProps {
   className?: string
@@ -117,23 +118,26 @@ const data = [
 
 const NotificationsRoute: FC<NotificationsRouteProps> = ({ className }) => {
   return (
-    <Styled.Root className={className}>
-      <Styled.Header>
-        Notifications
-      </Styled.Header>
-      {data.map(el => (
-        <Styled.Group key={el.title} title={el.title} counter={<Styled.AccentCounter>{el.count}</Styled.AccentCounter>}>
-          {el.list.map((cell, index) => (
-            <Styled.Cell
-              key={`${cell.name}_${index}`}
-              avatar={cell.avatar}
-              name={cell.name}
-              description={cell.mode === 'shared' ? 'shared your folder' : 'like your pin'}
-              time={cell.time}
-            />
-          ))}
-        </Styled.Group>
-      ))}
+    <Styled.Root className={className} title='Notifications'>
+      <Container>
+        {data.map(el => (
+          <Styled.Group
+            key={el.title}
+            title={el.title}
+            counter={<Styled.AccentCounter mode='accent'>{el.count}</Styled.AccentCounter>}
+          >
+            {el.list.map((cell, index) => (
+              <Styled.Cell
+                key={`${cell.name}_${index}`}
+                avatar={cell.avatar}
+                name={cell.name}
+                description={cell.mode === 'shared' ? 'shared your folder' : 'like your pin'}
+                time={cell.time}
+              />
+            ))}
+          </Styled.Group>
+        ))}
+      </Container>
     </Styled.Root>
   )
 }

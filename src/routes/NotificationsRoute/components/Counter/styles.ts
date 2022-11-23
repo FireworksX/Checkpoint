@@ -1,11 +1,23 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
+import { CounterProps } from './Counter'
 
-export const Root = styled.div`
+interface Props {
+  mode?: CounterProps['mode']
+}
+
+export const Root = styled.div<Props>`
   ${({ theme }) => theme.typography.text_14_24}
-  padding: 7px 3px;
+  padding: 4px 3px;
   border-radius: ${({ theme }) => theme.baseStyles.radius.radiusSecond};
   display: flex;
   align-items: center;
   justify-content: center;
-  min-width: 38px;
+  min-width: 30px;
+
+  ${({ mode }) =>
+    mode === 'accent' &&
+    css`
+      background: ${({ theme }) => theme.colors.primaryBg};
+      color: ${({ theme }) => theme.colors.primary};
+    `}
 `

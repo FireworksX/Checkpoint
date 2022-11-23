@@ -33,20 +33,18 @@ const ProfileRoute: FC<ProfileRouteProps> = ({ className }) => {
   const { citySlug } = useRouter()
 
   return (
-    <Styled.Root className={className}>
-      <Styled.Header
-        description='Profile'
-        right={
-          <Link type='profileSettings'>
-            <PageHeaderButton>
-              <Icon name='settings' />
-            </PageHeaderButton>
-          </Link>
-        }
-      >
-        @fireworks
-      </Styled.Header>
-
+    <Styled.Root
+      className={className}
+      title='@fireworks'
+      description='Profile'
+      headerRight={
+        <Link type='profileSettings'>
+          <PageHeaderButton>
+            <Icon name='settings' />
+          </PageHeaderButton>
+        </Link>
+      }
+    >
       <UserHeader
         username={user?.username}
         firstName={user?.firstName}

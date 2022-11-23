@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import Container from 'src/components/Container/Container'
 
-export const Root = styled(Container)`
+export const Root = styled.div`
   padding-bottom: 20px;
 
   &:last-child {

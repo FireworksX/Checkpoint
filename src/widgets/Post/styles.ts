@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import Avatar from '../Avatar/Avatar'
 import PostAction from './components/PostAction/PostAction'
+import UserHeader from "../../components/UserHeader/UserHeader";
 
 export const Root = styled.div`
   position: relative;
@@ -38,9 +39,7 @@ export const ConnectedAvatar = styled(Avatar)`
   margin-right: 10px;
 `
 
-export const Header = styled.div`
-  display: flex;
-  align-items: center;
+export const Header = styled(UserHeader)`
   margin-bottom: 15px;
 `
 
@@ -59,7 +58,7 @@ export const Date = styled.div`
 `
 
 export const Text = styled.div`
-  ${({ theme }) => theme.typography.text_14_20};
+  ${({ theme }) => theme.typography.text_16_20};
   margin-bottom: 15px;
 `
 

@@ -9,6 +9,7 @@ import NavigationRoute from './NavigationRoute/NavigationRoute'
 import UserRoute from './UserRoute/UserRoute'
 import UserFollowersRoute from './UserFollowersRoute/UserFollowersRoute'
 import UserSubscribersRoute from './UserSubscribersRoute/UserSubscribersRoute'
+import PostDetailRoute from './PostDetailRoute/PostDetailRoute'
 
 export default {
   RootRoute,
@@ -21,5 +22,6 @@ export default {
   NavigationRoute,
   UserRoute,
   UserFollowersRoute,
-  UserSubscribersRoute
+  UserSubscribersRoute,
+  PostDetailRoute
 }

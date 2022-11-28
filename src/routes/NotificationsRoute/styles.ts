@@ -1,14 +1,14 @@
 import styled from 'styled-components'
-import PageHeader from 'src/widgets/PageHeader/PageHeader'
 import Counter from './components/Counter/Counter'
 import NotificationsCell from './components/NotificationsCell/NotificationsCell'
 import Page from 'src/widgets/Page/Page'
 import GroupWrapper from '../../widgets/GroupWrapper/GroupWrapper'
+import Container from '../../components/Container/Container'
 
 export const Root = styled(Page)``
 
-export const Header = styled(PageHeader)`
-  margin-bottom: 20px;
+export const Body = styled(Container)`
+  padding-top: 20px;
 `
 
 export const Group = styled(GroupWrapper)``

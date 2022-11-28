@@ -10,6 +10,7 @@ import UserRoute from './UserRoute/UserRoute'
 import UserFollowersRoute from './UserFollowersRoute/UserFollowersRoute'
 import UserSubscribersRoute from './UserSubscribersRoute/UserSubscribersRoute'
 import PostDetailRoute from './PostDetailRoute/PostDetailRoute'
+import MapRoute from './MapRoute/MapRoute'
 
 export default {
   RootRoute,
@@ -23,5 +24,6 @@ export default {
   UserRoute,
   UserFollowersRoute,
   UserSubscribersRoute,
-  PostDetailRoute
+  PostDetailRoute,
+  MapRoute
 }

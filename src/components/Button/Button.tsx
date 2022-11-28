@@ -34,7 +34,7 @@ const Button: FC<ButtonProps> = ({
       size={size}
       {...rest}
     >
-      {icon && <Styled.Icon name={icon} />}
+      {icon && <Styled.Icon hasContent={!!children} name={icon} />}
       {children}
     </Styled.Root>
   )

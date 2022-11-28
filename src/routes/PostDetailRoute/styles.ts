@@ -4,6 +4,7 @@ import UserHeader from '../../components/UserHeader/UserHeader'
 import Touchable from '../../components/Touchable/Touchable'
 import Button from '../../components/Button/Button'
 import CommentCard from '../../components/CommentCard/CommentCard'
+import DisplayText from "../../widgets/DisplayText/DisplayText";
 
 export const Root = styled(Page)``
 
@@ -19,7 +20,7 @@ export const Header = styled(UserHeader)`
   margin-bottom: 15px;
 `
 
-export const Text = styled.div`
+export const Text = styled(DisplayText)`
   ${({ theme }) => theme.typography.text_20_24}
   margin-bottom: 5px;
 `

@@ -12,7 +12,7 @@ const Navigation: React.FC<NavigationProps> = ({ className }) => {
   return (
     <Styled.Root className={className}>
       <Styled.NavigationWrapper>
-        <Styled.Item type='cityInfo' citySlug={citySlug}>
+        <Styled.Item type='map'>
           <Styled.Icon name='compass' />
         </Styled.Item>
         <Styled.Item type='cityMap' citySlug={citySlug}>

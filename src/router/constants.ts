@@ -6,13 +6,12 @@ const ROUTE_NAMES = createConstants(
   '__splat_route',
   'root',
   'navigation',
-  'home',
+  'map',
   'profile',
   'profileReview',
   'profileSettings',
   'profileFollowers',
   'profileSubscribers',
-  'trends',
   'notifications',
   'welcome',
   'register',
@@ -64,7 +63,9 @@ export const MODAL_NAMES = createConstants(
   'successCreateLocation',
   'locationViewOptions',
   'preRemoveLocation',
-  'locationPreloadModal'
+  'locationPreloadModal',
+  'postPreview',
+    'postCreate'
 )
 
 export type ModalName = keyof typeof MODAL_NAMES

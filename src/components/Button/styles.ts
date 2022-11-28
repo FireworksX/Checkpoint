@@ -8,6 +8,7 @@ interface Props {
   stretched?: ButtonProps['stretched']
   mode?: ButtonProps['mode']
   disabled?: ButtonProps['disabled']
+  hasContent?: boolean
 }
 
 const sizesMap: (theme: DefaultTheme) => Record<NonNullable<Props['size']>, CSSProp> = (theme: DefaultTheme) => ({
@@ -16,6 +17,8 @@ const sizesMap: (theme: DefaultTheme) => Record<NonNullable<Props['size']>, CSSP
     padding: 4px 5px;
 
     ${Icon} {
+      width: 16px;
+      height: 16px;
       margin-right: 5px;
     }
   `,
@@ -24,6 +27,8 @@ const sizesMap: (theme: DefaultTheme) => Record<NonNullable<Props['size']>, CSSP
     padding: 5px 10px;
 
     ${Icon} {
+      width: 20px;
+      height: 20px;
       margin-right: 7px;
     }
   `,
@@ -32,6 +37,8 @@ const sizesMap: (theme: DefaultTheme) => Record<NonNullable<Props['size']>, CSSP
     padding: 10px 10px;
 
     ${Icon} {
+      width: 24px;
+      height: 24px;
       margin-right: 10px;
     }
   `,
@@ -40,6 +47,8 @@ const sizesMap: (theme: DefaultTheme) => Record<NonNullable<Props['size']>, CSSP
     padding: 15px 25px;
 
     ${Icon} {
+      width: 28px;
+      height: 28px;
       margin-right: 12px;
     }
   `
@@ -101,4 +110,6 @@ export const Root = styled(Touchable).attrs({ tagName: 'button' })<Props>`
   ${({ theme, mode }) => modesMap(theme)[mode || 'primary']}
 `
 
-export const Icon = styled(IconComp)``
+export const Icon = styled(IconComp)<Props>`
+  margin-right: ${({ hasContent }) => !hasContent && '0 !important'};
+`

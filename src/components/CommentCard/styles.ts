@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import DisplayText from "../../widgets/DisplayText/DisplayText";
 
 export const Root = styled.div`
   background: ${({ theme }) => theme.colors.backgroundCard};
@@ -18,6 +19,6 @@ export const Date = styled.div`
   color: ${({ theme }) => theme.colors.secondary};
 `
 
-export const Body = styled.div`
+export const Body = styled(DisplayText)`
   ${({ theme }) => theme.typography.text_14_20}
 `

@@ -34,13 +34,17 @@ const linkConfig = {
     name: buildName(ROUTE_NAMES.navigation, ROUTE_NAMES.user, ROUTE_NAMES.userSubscribers),
     params: { required: [ROUTE_PARAMS.userSlug], optional: [] }
   },
-  trends: {
-    name: buildName(ROUTE_NAMES.navigation, ROUTE_NAMES.trends),
+  map: {
+    name: buildName(ROUTE_NAMES.navigation, ROUTE_NAMES.map),
     params: { required: [], optional: [] }
   },
   notifications: {
     name: buildName(ROUTE_NAMES.navigation, ROUTE_NAMES.notifications),
     params: { required: [], optional: [] }
+  },
+  post: {
+    name: buildName(ROUTE_NAMES.navigation, ROUTE_NAMES.postDetail),
+    params: { required: [ROUTE_PARAMS.postSlug], optional: [] }
   },
 } as const
 

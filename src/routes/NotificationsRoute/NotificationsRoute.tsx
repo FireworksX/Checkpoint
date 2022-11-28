@@ -5,6 +5,7 @@ import { route } from 'src/hoc/route'
 import PageHeaderButtonBack from 'src/widgets/PageHeader/components/PageHeaderButtonBack/PageHeaderButtonBack'
 import { withValidateUser } from 'src/hoc/withValidateUser'
 import Container from '../../components/Container/Container'
+import {Body} from "./styles";
 
 interface NotificationsRouteProps {
   className?: string
@@ -119,7 +120,7 @@ const data = [
 const NotificationsRoute: FC<NotificationsRouteProps> = ({ className }) => {
   return (
     <Styled.Root className={className} title='Notifications'>
-      <Container>
+      <Styled.Body>
         {data.map(el => (
           <Styled.Group
             key={el.title}
@@ -137,7 +138,7 @@ const NotificationsRoute: FC<NotificationsRouteProps> = ({ className }) => {
             ))}
           </Styled.Group>
         ))}
-      </Container>
+      </Styled.Body>
     </Styled.Root>
   )
 }

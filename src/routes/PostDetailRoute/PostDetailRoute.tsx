@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import * as Styled from './styles'
 import { route } from '../../hoc/route'
-import { ROUTE_NAMES } from '../../router/constants'
+import {MODAL_NAMES, ROUTE_NAMES} from '../../router/constants'
 import Container from '../../components/Container/Container'
 import LocationCard from '../../widgets/LocationCard/LocationCard'
 import Button from '../../components/Button/Button'
@@ -10,12 +10,17 @@ import Separator from '../../components/Separator/Separator'
 import GroupWrapper from '../../widgets/GroupWrapper/GroupWrapper'
 import CommentCard from '../../components/CommentCard/CommentCard'
 import Counter from '../NotificationsRoute/components/Counter/Counter'
+import {useModal} from "../../hooks/useModal";
+import {LocationFieldsModalContext} from "../../modals/LocationFieldsModal/LocationFieldsModal";
 
 interface PostDetailRouteProps {
   className?: string
 }
 
 const PostDetailRoute: FC<PostDetailRouteProps> = ({ className }) => {
+  const { open } = useModal<LocationFieldsModalContext>(MODAL_NAMES.postCreate)
+
+
   return (
     <Styled.Root className={className} title='Post'>
       <Container>
@@ -40,7 +45,7 @@ const PostDetailRoute: FC<PostDetailRouteProps> = ({ className }) => {
           </Styled.Metric>
         </Styled.Metrics>
 
-        <Button size='l' icon='lightning' stretched>
+        <Button size='l' icon='lightning' stretched onClick={open}>
           Connect
         </Button>
 

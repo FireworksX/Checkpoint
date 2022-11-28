@@ -81,6 +81,11 @@ export const routes: Route[] = [
             name: ROUTE_NAMES.postDetail,
             path: `post/:${ROUTE_PARAMS.postSlug}`,
             component: routeComponents.PostDetailRoute
+          },
+          {
+            name: ROUTE_NAMES.map,
+            path: 'map',
+            component: routeComponents.MapRoute
           }
         ]
       }

@@ -1,6 +1,5 @@
 import { createGlobalStyle } from 'styled-components'
 
-
 export const FontStyles = createGlobalStyle`
 @font-face {
     font-family: 'Instagram Sans';

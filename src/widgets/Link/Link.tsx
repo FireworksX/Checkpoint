@@ -8,7 +8,10 @@ import { useLinkConfig } from './hooks/useLinkConfig'
 export interface LinkPropsInternal {
   className?: string
   activeClassName?: string
-  waitNavigate?: (navigate: () => void) => void | Promise<void>
+    /**
+     * Ждёт резолва промиса, после чего выполняет навигацию
+     */
+  waitNavigate?: () => Promise<unknown>
   onClick?: (e: React.MouseEvent<any>) => any
 }
 
@@ -26,7 +29,7 @@ const Link: React.FC<LinkProps> = props => {
   }, [link, router, routeParams])
 
   const onClickHandler = useCallback(
-    (e: React.MouseEvent<any>) => {
+    async (e: React.MouseEvent<any>) => {
       e.preventDefault()
       e.stopPropagation()
 
@@ -35,7 +38,8 @@ const Link: React.FC<LinkProps> = props => {
       }
 
       if (waitNavigate) {
-        waitNavigate(navigateHandler)
+        await waitNavigate()
+        navigateHandler()
       } else {
         navigateHandler()
       }

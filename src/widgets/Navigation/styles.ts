@@ -5,7 +5,7 @@ import Link from 'src/widgets/Link/Link'
 export const Root = styled.nav`
   background: ${({ theme }) => theme.colors.backgroundLight};
   width: 100%;
-  padding-bottom: 10px;
+  padding-bottom: 11px;
   border-top: 1px solid ${({ theme }) => theme.colors.border};
 
   .navigationActive {

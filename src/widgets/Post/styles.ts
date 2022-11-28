@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import Avatar from '../Avatar/Avatar'
 import PostAction from './components/PostAction/PostAction'
 import UserHeader from "../../components/UserHeader/UserHeader";
+import DisplayText from "../DisplayText/DisplayText";
 
 export const Root = styled.div`
   position: relative;
@@ -57,7 +58,7 @@ export const Date = styled.div`
   color: ${({ theme }) => theme.colors.secondary};
 `
 
-export const Text = styled.div`
+export const Text = styled(DisplayText)`
   ${({ theme }) => theme.typography.text_16_20};
   margin-bottom: 15px;
 `

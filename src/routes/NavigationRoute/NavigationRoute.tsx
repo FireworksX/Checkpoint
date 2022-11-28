@@ -15,6 +15,8 @@ import LocationViewOptionsModal from 'src/modals/LocationViewOptionsModal/Locati
 import PreRemoveLocationModal from 'src/modals/PreRemoveLocationModal/PreRemoveLocationModal'
 import LocationPreloadModal from 'src/modals/LocationPreloadModal/LocationPreloadModal'
 import { hasNavigationAtom } from '../../store/uiStore'
+import PostPreviewModal from '../../modals/PostPreviewModal/PostPreviewModal'
+import CreatePostModal from '../../modals/CreatePostModal/CreatePostModal'
 
 interface NavigationRouteProps {
   className?: string
@@ -49,6 +51,8 @@ const NavigationRoute: FC<NavigationRouteProps> = ({ className, children }) => {
       <LocationViewOptionsModal />
       <PreRemoveLocationModal />
       <LocationPreloadModal />
+      <PostPreviewModal />
+      <CreatePostModal />
     </Styled.Root>
   )
 }

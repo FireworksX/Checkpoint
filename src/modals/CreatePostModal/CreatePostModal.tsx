@@ -1,18 +1,20 @@
 import { FC } from 'react'
 import * as Styled from './styles'
 import { useModal } from '../../hooks/useModal'
-import { LocationFieldsModalContext } from '../LocationFieldsModal/LocationFieldsModal'
 import { MODAL_NAMES } from '../../router/constants'
 import BottomSheet from '../../widgets/BottomSheet/BottomSheet'
 import Button from '../../components/Button/Button'
-import {CancelButton} from "./styles";
 
 interface CreatePostModalProps {
   className?: string
 }
 
+export interface CreatePostsModalContext {
+  onCancel(): void
+}
+
 const CreatePostModal: FC<CreatePostModalProps> = ({ className }) => {
-  const { context } = useModal<LocationFieldsModalContext>(MODAL_NAMES.postCreate)
+  const { context } = useModal<CreatePostsModalContext>(MODAL_NAMES.postCreate)
 
   return (
     <BottomSheet name={MODAL_NAMES.postCreate} withHeader autoClose>
@@ -27,7 +29,7 @@ const CreatePostModal: FC<CreatePostModalProps> = ({ className }) => {
 
         <Styled.Area placeholder='Your reply' />
         <Styled.Actions>
-          <Styled.CancelButton size='xl' mode='secondary' icon='close-circle'/>
+          <Styled.CancelButton size='xl' mode='secondary' icon='close-circle' onClick={context?.onCancel}/>
           <Button size='xl' mode='primary' stretched icon='edit'>
             Publish
           </Button>

@@ -5,7 +5,7 @@ import { ModalName } from 'src/router/constants'
 
 const modalPromiseWaiter = () => new Promise(resolve => setTimeout(resolve, 300))
 
-export const useModal = <CTX extends object = any>(modalName: ModalName) => {
+export const useModal = <CTX = any>(modalName: ModalName) => {
   const [currentModal, setCurrentModal] = useRecoilState(modalAtom)
   const [modalContext, setModalContext] = useRecoilState<CTX | undefined>(modalContextAtom)
   const isOpen = currentModal === modalName

@@ -16,13 +16,14 @@ import { getRandomPost } from '../../data/mocks'
 import isBrowser from '../../utils/isBrowser'
 import Link from '../../widgets/Link/Link'
 import PageHeaderButtonBack from '../../widgets/PageHeader/components/PageHeaderButtonBack/PageHeaderButtonBack'
+import {CreatePostsModalContext} from "../../modals/CreatePostModal/CreatePostModal";
 
 interface PostDetailRouteProps {
   className?: string
 }
 
 const PostDetailRoute: FC<PostDetailRouteProps> = ({ className }) => {
-  const { open } = useModal<LocationFieldsModalContext>(MODAL_NAMES.postCreate)
+  const { open, close } = useModal<CreatePostsModalContext>(MODAL_NAMES.postCreate)
 
   const post = getRandomPost()
   const refer = post.refer
@@ -70,7 +71,9 @@ const PostDetailRoute: FC<PostDetailRouteProps> = ({ className }) => {
           </Styled.Metric>
         </Styled.Metrics>
 
-        <Button size='l' icon='lightning' stretched onClick={open}>
+        <Button size='l' icon='lightning' stretched onClick={() => open({
+          onCancel: close
+        })}>
           Connect
         </Button>
 

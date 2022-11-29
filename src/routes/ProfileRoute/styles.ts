@@ -6,33 +6,10 @@ import LocationCard from 'src/components/LocationCard/LocationCard'
 import LocationCardSkeleton from 'src/components/LocationCardSkeleton/LocationCardSkeleton'
 import BaseImage from 'src/components/BaseImage/BaseImage'
 import Page from "src/widgets/Page/Page";
+import Post from "../../widgets/Post/Post";
 
 export const Root = styled(Page)``
 
-export const CompilationWrapper = styled(HorizontalScroll)`
-  margin: 15px 0;
-`
-
-export const CompilationInfo = styled(Touchable)``
-
-export const LocationsWrapper = styled(Container)`
-  margin-top: 15px;
-`
-
-export const LocationCell = styled(LocationCard)`
+export const PostWrapper = styled(Post)`
   margin-bottom: 15px;
-`
-
-export const LocationCellSkeleton = styled(LocationCardSkeleton)`
-  margin-bottom: 15px;
-`
-
-export const PlaceholderImage = styled(BaseImage)`
-  width: 60px;
-`
-
-export const LoaderWrapper = styled.div`
-  padding: 50px 20px;
-  display: flex;
-  justify-content: center;
 `

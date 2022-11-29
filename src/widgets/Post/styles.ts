@@ -1,12 +1,16 @@
 import styled from 'styled-components'
 import Avatar from '../Avatar/Avatar'
 import PostAction from './components/PostAction/PostAction'
-import UserHeader from "../../components/UserHeader/UserHeader";
-import DisplayText from "../DisplayText/DisplayText";
+import UserHeader from '../../components/UserHeader/UserHeader'
+import DisplayText from '../DisplayText/DisplayText'
 
-export const Root = styled.div`
+interface Props {
+  hasRefer?: boolean
+}
+
+export const Root = styled.div<Props>`
   position: relative;
-  padding-top: 44px;
+  ${({ hasRefer }) => hasRefer && 'padding-top: 44px;'}
 `
 
 export const Body = styled.div`

@@ -21,6 +21,9 @@ import HorizontalScroll from '../../components/HorizontalScroll/HorizontalScroll
 import Post from '../../widgets/Post/Post'
 import LocationCard from '../../widgets/LocationCard/LocationCard'
 import PageHeaderButton from '../../widgets/PageHeader/components/PageHeaderButton/PageHeaderButton'
+import { currentUser, getRandomList, getRandomPost } from '../../data/mocks'
+import { random } from '../../utils/random'
+import isBrowser from '../../utils/isBrowser'
 
 interface ProfileRouteProps {
   className?: string
@@ -28,9 +31,15 @@ interface ProfileRouteProps {
 
 const ProfileRoute: FC<ProfileRouteProps> = ({ className }) => {
   const { open } = useModal(MODAL_NAMES.profileSettings)
-  const { user, categories, locations, onSelectCategory, locationsFetching, counters, selectedCategory } =
-    useProfileRoute()
+  const { categories, locations, onSelectCategory, locationsFetching, counters, selectedCategory } = useProfileRoute()
   const { citySlug } = useRouter()
+
+  const user = currentUser
+  const posts = getRandomList(random(3, 35), getRandomPost)
+
+  if (!isBrowser) {
+    return null
+  }
 
   return (
     <Styled.Root
@@ -46,16 +55,27 @@ const ProfileRoute: FC<ProfileRouteProps> = ({ className }) => {
       }
     >
       <UserHeader
+        avatar={user.avatar}
         username={user?.username}
         firstName={user?.firstName}
         lastName={user?.lastName}
-        verify
+        verify={user.verify}
         bio={user?.bio}
-        mail={'test@gfd.hfgj'}
       />
 
       <Container>
-        <Post target={<LocationCard />} />
+        {posts.map((post, index) => (
+          <Styled.PostWrapper
+            key={index}
+            slug={post.slug}
+            author={user}
+            refer={post.refer}
+            content={post.content}
+            metrics={post.metrics}
+            target={<LocationCard name={post.target?.name} location={post.target?.location} />}
+            selfActions={post.selfActions}
+          />
+        ))}
       </Container>
     </Styled.Root>
   )

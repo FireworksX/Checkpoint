@@ -19,7 +19,7 @@ export const ScreenSpinner = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: ${({ theme }) => rgbToRgba(theme.colors.basicBlack, 0.2)};
+  background: ${({ theme }) => theme.colors.secondaryBg};
   z-index: ${zIndex.pageSpinner};
 `
 

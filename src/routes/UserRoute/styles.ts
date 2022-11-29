@@ -7,6 +7,7 @@ import LocationCard from 'src/components/LocationCard/LocationCard'
 import LocationCardSkeleton from 'src/components/LocationCardSkeleton/LocationCardSkeleton'
 import BaseImage from 'src/components/BaseImage/BaseImage'
 import Page from 'src/widgets/Page/Page'
+import Post from '../../widgets/Post/Post'
 
 export const Root = styled(Page)``
 
@@ -21,5 +22,9 @@ export const HeaderActions = styled.div`
 
 export const SubscribeContainer = styled(Container)`
   text-align: center;
+  margin-bottom: 15px;
+`
+
+export const PostWrapper = styled(Post)`
   margin-bottom: 15px;
 `

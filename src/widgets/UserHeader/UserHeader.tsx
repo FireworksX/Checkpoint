@@ -11,16 +11,17 @@ import HorizontalScroll from '../../components/HorizontalScroll/HorizontalScroll
 interface UserHeaderProps extends Pick<BaseUser, 'firstName' | 'lastName' | 'mail' | 'bio' | 'username' | 'verify'> {
   className?: string
   actions?: ReactNode
+  avatar?: string
 }
 
-const UserHeader: FC<UserHeaderProps> = ({ className, bio, actions, firstName, lastName, verify, username, mail }) => {
+const UserHeader: FC<UserHeaderProps> = ({ className, bio, avatar, actions, firstName, lastName, verify, username, mail }) => {
   const avatarText = useInitialAvatarPlaceholder({ username, firstName, lastName })
 
   return (
     <Styled.Root className={className}>
       <Styled.Wrapper>
         <Styled.Head>
-          <Styled.AvatarComponent uniqueId={mail}>{avatarText}</Styled.AvatarComponent>
+          <Styled.AvatarComponent src={avatar} uniqueId={username}>{avatarText}</Styled.AvatarComponent>
           <Styled.Counters>
             <CounterCell value='1.214' description='Connections' />
             <CounterCell
@@ -41,13 +42,10 @@ const UserHeader: FC<UserHeaderProps> = ({ className, bio, actions, firstName, l
           </Styled.Counters>
         </Styled.Head>
         <Styled.Name>
-          {/*{buildFullName(firstName, lastName)}*/}
-          Arthur Abeltinsh
+          {buildFullName(firstName, lastName)}
           {verify && <Styled.VerifyIcon />}
         </Styled.Name>
-        <Styled.Description>
-          Saint-Peterburg, Russia | Founder of Checkpoint | Traveler | Front-end developer
-        </Styled.Description>
+        <Styled.Description>{bio}</Styled.Description>
       </Styled.Wrapper>
 
       <HorizontalScroll>

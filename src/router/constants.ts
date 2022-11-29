@@ -48,6 +48,7 @@ const STORE_NAMES = createConstants(
 
 const zIndex = {
   navigation: 10,
+  header: 10,
   modal: 20,
   pageSpinner: 30
 }

@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components'
+import { zIndex } from '../../router/constants'
 
 export const Root = styled.header`
   position: sticky;
@@ -12,6 +13,7 @@ export const Root = styled.header`
   align-items: center;
   height: ${({ theme }) => theme.baseStyles.sizes.headerHeight}px;
   border-bottom: 1px solid ${({ theme }) => theme.colors.border};
+  z-index: ${zIndex.header};
 `
 
 export const Center = styled.div`

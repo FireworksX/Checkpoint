@@ -1,33 +1,73 @@
 import { FC, ReactNode } from 'react'
 import * as Styled from './styles'
 import DisplayText from '../DisplayText/DisplayText'
+import { MockUser } from '../../data/mocks'
+import { random } from '../../utils/random'
+import { useInitialAvatarPlaceholder } from '../Avatar/hooks/useInitialAvatarPlaceholder'
+import Link from '../Link/Link'
 
 interface PostProps {
   className?: string
-  isConnected?: boolean
+  slug: string
   target: ReactNode
+  content?: string
+  author: MockUser
+  refer?: {
+    user: MockUser
+  }
+  metrics: {
+    connections: number
+    likes: number
+    comments: number
+  }
+  selfActions: {
+    hasConnect: boolean
+    hasLike: boolean
+  }
 }
 
-const Post: FC<PostProps> = ({ className, target }) => {
-  return (
-    <Styled.Root className={className}>
-      <Styled.Connected>
-        <Styled.ConnectedAvatar size={20} />
-        <DisplayText>
-          Connected from @dodi
-        </DisplayText>
-      </Styled.Connected>
-      <Styled.Body>
-        <Styled.Header verify firstName='Arthur' lastName='Abeltinsh' description='2h ago' />
+const Post: FC<PostProps> = ({ className, target, slug, selfActions, author, content, refer, metrics }) => {
+  const authorPlaceholder = useInitialAvatarPlaceholder(author)
+  const authorRefer = useInitialAvatarPlaceholder(refer?.user)
 
-        <Styled.Text>
-          Was great meeting up with @annaferguson and Dave Bishop at the breakfast talk! 🍕#breakfast
-        </Styled.Text>
+  return (
+    <Styled.Root className={className} hasRefer={!!refer}>
+      {!!refer && (
+        <Link type='user' userSlug={refer.user.username}>
+          <Styled.Connected>
+            <Styled.ConnectedAvatar size={20} uniqueId={refer.user.username}>
+              {authorRefer}
+            </Styled.ConnectedAvatar>
+            <DisplayText>Connected from @{refer.user.username}</DisplayText>
+          </Styled.Connected>
+        </Link>
+      )}
+      <Styled.Body>
+        <Link type='user' userSlug={author.username}>
+          <Styled.Header
+            verify={author.verify}
+            avatar={author.avatar}
+            username={author.username}
+            firstName={author.firstName}
+            lastName={author.lastName}
+            description='2h ago'
+          >
+            {authorPlaceholder}
+          </Styled.Header>
+        </Link>
+
+        <Link type='post' postSlug={slug}>
+          <Styled.Text>{content}</Styled.Text>
+        </Link>
         <Styled.Target>{target}</Styled.Target>
         <Styled.Actions>
-          <Styled.Action icon='lightning'>15</Styled.Action>
-          <Styled.Action icon='message-circle'>35</Styled.Action>
-          <Styled.Action icon='heart'>61</Styled.Action>
+          <Styled.Action icon='lightning' isActive={selfActions?.hasConnect}>
+            {metrics.connections}
+          </Styled.Action>
+          <Styled.Action icon='message-circle'>{metrics.comments}</Styled.Action>
+          <Styled.Action icon='heart' isActive={selfActions?.hasLike}>
+            {metrics.likes}
+          </Styled.Action>
         </Styled.Actions>
       </Styled.Body>
     </Styled.Root>

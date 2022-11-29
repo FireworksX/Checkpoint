@@ -20,7 +20,11 @@ const PostPreviewModal: FC<PostPreviewModalProps> = ({ className }) => {
   return (
     <BottomSheet name={MODAL_NAMES.postPreview} withHeader autoClose>
       <Styled.Root className={className}>
+        <Link>
+
         <Styled.Header firstName='Arthur' lastName='Abeltinsh' username='fireworks' />
+        </Link>
+
         <Link type='post' postSlug='test' waitNavigate={close}>
           <Styled.Text>
             Was great meeting up with @annaferguson and Dave Bishop at the breakfast talk! 🍕#breakfast

@@ -4,11 +4,15 @@ import UserHeader from '../../components/UserHeader/UserHeader'
 import Touchable from '../../components/Touchable/Touchable'
 import Button from '../../components/Button/Button'
 import CommentCard from '../../components/CommentCard/CommentCard'
-import DisplayText from "../../widgets/DisplayText/DisplayText";
+import DisplayText from '../../widgets/DisplayText/DisplayText'
+
+interface Props {
+  hasRefer?: boolean
+}
 
 export const Root = styled(Page)``
 
-export const ConnectedSection = styled.div`
+export const ConnectedSection = styled(DisplayText)`
   border-left: 1px solid ${({ theme }) => theme.colors.border};
   padding: 15px 10px;
   margin-left: 22px;
@@ -16,8 +20,9 @@ export const ConnectedSection = styled.div`
   ${({ theme }) => theme.typography.text_14_20}
 `
 
-export const Header = styled(UserHeader)`
+export const Header = styled(UserHeader)<Props>`
   margin-bottom: 15px;
+  ${({ hasRefer }) => !hasRefer && 'padding-top: 15px'};
 `
 
 export const Text = styled(DisplayText)`

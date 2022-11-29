@@ -1,14 +1,17 @@
 import styled from 'styled-components'
+import Avatar from "../Avatar/Avatar";
 
 export const Root = styled.div`
-  display: grid;
-  grid-template-columns: 44px auto;
-  grid-gap: 10px;
+  display: flex;
   background: ${({ theme }) => theme.colors.backgroundCard};
   border: 2px solid ${({ theme }) => theme.colors.borderCard};
   border-radius: ${({ theme }) => theme.baseStyles.radius.radiusMain};
   padding: 10px ${({ theme }) => theme.baseStyles.paddings.gutterMobile};
   align-items: center;
+`
+
+export const Logo = styled(Avatar)`
+  margin-right: 10px;
 `
 
 export const Name = styled.div`

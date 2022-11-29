@@ -1,18 +1,20 @@
 import { FC } from 'react'
 import * as Styled from './styles'
-import Avatar from '../Avatar/Avatar'
 
 interface LocationCardProps {
+  name: string
+  location: string
+  avatar?: string
   className?: string
 }
 
-const LocationCard: FC<LocationCardProps> = ({ className }) => {
+const LocationCard: FC<LocationCardProps> = ({ className, location, name, avatar }) => {
   return (
     <Styled.Root className={className}>
-      <Avatar size={44} />
+      {avatar && <Styled.Logo size={44} src={avatar} />}
       <div>
-        <Styled.Name>miel.bali</Styled.Name>
-        <Styled.Destination>Indonesia, Bali</Styled.Destination>
+        <Styled.Name>{name}</Styled.Name>
+        <Styled.Destination>{location}</Styled.Destination>
       </div>
     </Styled.Root>
   )

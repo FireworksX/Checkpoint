@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import * as Styled from './styles'
 import { route } from '../../hoc/route'
-import {MODAL_NAMES, ROUTE_NAMES} from '../../router/constants'
+import { MODAL_NAMES, ROUTE_NAMES } from '../../router/constants'
 import Container from '../../components/Container/Container'
 import LocationCard from '../../widgets/LocationCard/LocationCard'
 import Button from '../../components/Button/Button'
@@ -10,8 +10,12 @@ import Separator from '../../components/Separator/Separator'
 import GroupWrapper from '../../widgets/GroupWrapper/GroupWrapper'
 import CommentCard from '../../components/CommentCard/CommentCard'
 import Counter from '../NotificationsRoute/components/Counter/Counter'
-import {useModal} from "../../hooks/useModal";
-import {LocationFieldsModalContext} from "../../modals/LocationFieldsModal/LocationFieldsModal";
+import { useModal } from '../../hooks/useModal'
+import { LocationFieldsModalContext } from '../../modals/LocationFieldsModal/LocationFieldsModal'
+import { getRandomPost } from '../../data/mocks'
+import isBrowser from '../../utils/isBrowser'
+import Link from '../../widgets/Link/Link'
+import PageHeaderButtonBack from '../../widgets/PageHeader/components/PageHeaderButtonBack/PageHeaderButtonBack'
 
 interface PostDetailRouteProps {
   className?: string
@@ -20,28 +24,49 @@ interface PostDetailRouteProps {
 const PostDetailRoute: FC<PostDetailRouteProps> = ({ className }) => {
   const { open } = useModal<LocationFieldsModalContext>(MODAL_NAMES.postCreate)
 
+  const post = getRandomPost()
+  const refer = post.refer
+
+  if (!isBrowser) {
+    return null
+  }
 
   return (
-    <Styled.Root className={className} title='Post'>
+    <Styled.Root className={className} headerLeft={<PageHeaderButtonBack />} title='Post'>
       <Container>
-        <Styled.ConnectedSection>Connected from @dodi</Styled.ConnectedSection>
-        <Styled.Header firstName='Arthur' lastName='Abeltinsh' username='fireworks' />
+        {refer && isBrowser && (
+          <Styled.ConnectedSection>Connected from @{refer.user?.username}</Styled.ConnectedSection>
+        )}
+        <div />
 
-        <Styled.Text>
-          Was great meeting up with @annaferguson and Dave Bishop at the breakfast talk! 🍕#breakfast
-        </Styled.Text>
+        <Link type='user' userSlug={post.user?.username || ''}>
+          <Styled.Header
+            hasRefer={!!refer}
+            verify={post.user?.verify}
+            avatar={post.user?.avatar}
+            firstName={post.user?.firstName}
+            lastName={post.user?.lastName}
+            username={post.user?.username}
+          />
+        </Link>
+
+        <Styled.Text>{post.content}</Styled.Text>
         <Styled.Date>10:06 - Nov 23, 2022</Styled.Date>
 
         <Styled.Target>
-          <LocationCard />
+          <LocationCard
+            name={post.target?.name || ''}
+            location={post.target?.location || ''}
+            avatar={post.target?.avatar}
+          />
         </Styled.Target>
 
         <Styled.Metrics>
           <Styled.Metric>
-            <span>38</span> Connections
+            <span>{post.metrics.connections}</span> Connections
           </Styled.Metric>
           <Styled.Metric>
-            <span>82</span> Likes
+            <span>{post.metrics.likes}</span> Likes
           </Styled.Metric>
         </Styled.Metrics>
 
@@ -63,22 +88,12 @@ const PostDetailRoute: FC<PostDetailRouteProps> = ({ className }) => {
 
         <Separator icon='message-circle' />
 
-        <GroupWrapper title='Comments' counter={<Counter mode='accent'>4</Counter>}>
-          <Styled.Comment>
-            DUA x @puma styled soooo nice by @gabriellak_j for @britishvogue ~ proud moment for us @billywalsh 🫀🤞🏼
-          </Styled.Comment>
-          <Styled.Comment>
-            DUA x @puma styled soooo nice by @gabriellak_j for @britishvogue ~ proud moment for us @billywalsh 🫀🤞🏼
-          </Styled.Comment>
-          <Styled.Comment>
-            DUA x @puma styled soooo nice by @gabriellak_j for @britishvogue ~ proud moment for us @billywalsh 🫀🤞🏼
-          </Styled.Comment>
-          <Styled.Comment>
-            DUA x @puma styled soooo nice by @gabriellak_j for @britishvogue ~ proud moment for us @billywalsh 🫀🤞🏼
-          </Styled.Comment>
-          <Styled.Comment>
-            DUA x @puma styled soooo nice by @gabriellak_j for @britishvogue ~ proud moment for us @billywalsh 🫀🤞🏼
-          </Styled.Comment>
+        <GroupWrapper title='Comments' counter={<Counter mode='accent'>{post.metrics.comments}</Counter>}>
+          {post.comments.map((comment, index) => (
+            <Styled.Comment key={index} user={comment.user}>
+              {comment.content}
+            </Styled.Comment>
+          ))}
         </GroupWrapper>
       </Container>
     </Styled.Root>

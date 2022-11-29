@@ -16,7 +16,12 @@ import Link from 'src/widgets/Link/Link'
 import { useRouter } from 'src/hooks/useRouter'
 import Spinner from 'src/components/Spinner/Spinner'
 import UserHeader from '../../widgets/UserHeader/UserHeader'
-import { HeaderActions } from './styles'
+import { HeaderActions, PostWrapper } from './styles'
+import { getRandomList, getRandomPost, getRandomUser } from '../../data/mocks'
+import { random } from '../../utils/random'
+import Post from '../../widgets/Post/Post'
+import LocationCard from '../../widgets/LocationCard/LocationCard'
+import isBrowser from '../../utils/isBrowser'
 
 interface UserRouteProps {
   className?: string
@@ -25,7 +30,6 @@ interface UserRouteProps {
 const UserRoute: FC<UserRouteProps> = ({ className }) => {
   const { citySlug } = useRouter()
   const {
-    user,
     categories,
     locations,
     locationsFetching,
@@ -36,21 +40,28 @@ const UserRoute: FC<UserRouteProps> = ({ className }) => {
     setSelectedCategory
   } = useUserRoute()
 
+  const user = getRandomUser()
+  const posts = getRandomList(random(3, 35), getRandomPost)
+
+  if (!isBrowser) {
+    return null
+  }
+
   return (
     <Styled.Root
       className={className}
-      title={<Username>nwyoy</Username>}
+      title={<Username>{user?.username}</Username>}
       description='Profile'
       headerLeft={<PageHeaderButtonBack />}
       fetching={userFetching}
     >
       <UserHeader
+        avatar={user?.avatar}
         username={user?.username}
         firstName={user?.firstName}
         lastName={user?.lastName}
         verify={user?.verify}
         bio={user?.bio}
-        mail={user?.mail}
         actions={
           <Styled.HeaderActions>
             <Button size='l' mode='secondary' stretched>
@@ -77,6 +88,21 @@ const UserRoute: FC<UserRouteProps> = ({ className }) => {
           )}
         </SubscribeContainer>
       </Styled.SubscribeContainer>
+
+      <Container>
+        {posts.map((post, index) => (
+          <Styled.PostWrapper
+            key={index}
+            slug={post.slug}
+            author={user}
+            refer={post.refer}
+            content={post.content}
+            metrics={post.metrics}
+            target={<LocationCard name={post.target?.name} location={post.target?.location} />}
+            selfActions={post.selfActions}
+          />
+        ))}
+      </Container>
     </Styled.Root>
   )
 }

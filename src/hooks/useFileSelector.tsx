@@ -28,6 +28,7 @@ export const useFileSelector = (options?: Props) => {
 
   useEffect(() => {
     if (files) {
+      setReadFiles([])
       for (const file of files) {
         const reader = new FileReader()
 

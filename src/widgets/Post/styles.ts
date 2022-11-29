@@ -29,11 +29,6 @@ export const Connected = styled.div`
   display: flex;
   padding: 12px ${({ theme }) => theme.baseStyles.paddings.gutterMobile};
   ${({ theme }) => theme.typography.text_14_20};
-  
-  span {
-    color: ${({ theme }) => theme.colors.primary};
-    margin-left: 5px;
-  }
 `
 
 export const ConnectedAvatar = styled(Avatar)`

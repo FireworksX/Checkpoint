@@ -19,12 +19,12 @@ const DEFAULT_OPTIONS: ApiClientOptions = {}
 
 const BASE_URL = `${import.meta.env.VITE_CURRENT_DOMAIN}/api/v1`
 
-const apiClient = axios.create({
+const restClient = axios.create({
   baseURL: BASE_URL
 })
 
-const createApiClient = ({ cookieManager } = DEFAULT_OPTIONS): ApiClient => {
-  apiClient.interceptors.request.use(req => {
+const createRestClient = ({ cookieManager } = DEFAULT_OPTIONS): ApiClient => {
+  restClient.interceptors.request.use(req => {
     const accessToken = cookieManager?.get('accessToken')
 
     if (req.headers && accessToken) {
@@ -34,7 +34,7 @@ const createApiClient = ({ cookieManager } = DEFAULT_OPTIONS): ApiClient => {
     return req
   })
 
-  apiClient.interceptors.response.use(
+  restClient.interceptors.response.use(
     config => {
       return config
     },
@@ -61,11 +61,11 @@ const createApiClient = ({ cookieManager } = DEFAULT_OPTIONS): ApiClient => {
     }
   )
 
-  return apiClient
+  return restClient
 }
 
 export const createApiClients = ({ cookieManager } = DEFAULT_OPTIONS) => {
-  const apiClient = createApiClient({ cookieManager })
+  const apiClient = createRestClient({ cookieManager })
 
   return { apiClient }
 }

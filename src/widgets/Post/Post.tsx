@@ -1,5 +1,6 @@
 import { FC, ReactNode } from 'react'
 import * as Styled from './styles'
+import DisplayText from '../DisplayText/DisplayText'
 
 interface PostProps {
   className?: string
@@ -12,7 +13,9 @@ const Post: FC<PostProps> = ({ className, target }) => {
     <Styled.Root className={className}>
       <Styled.Connected>
         <Styled.ConnectedAvatar size={20} />
-        Connected from <span>@dodi</span>
+        <DisplayText>
+          Connected from @dodi
+        </DisplayText>
       </Styled.Connected>
       <Styled.Body>
         <Styled.Header verify firstName='Arthur' lastName='Abeltinsh' description='2h ago' />

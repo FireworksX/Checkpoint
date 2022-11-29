@@ -2,19 +2,18 @@ import styled from 'styled-components'
 import PageHeader from 'src/widgets/PageHeader/PageHeader'
 import Input from 'src/components/Input/Input'
 import BaseImage from '../../../../components/BaseImage/BaseImage'
+import Page from "../../../../widgets/Page/Page";
 
-export const Root = styled.div``
-
-export const Header = styled(PageHeader)``
+export const Root = styled(Page)``
 
 export const CoverWrapper = styled.div`
   text-align: center;
-  margin-top: 50px;
+  padding-top: 100px;
   margin-bottom: 40px;
 `
 
 export const Cover = styled(BaseImage)`
-  width: 180px;
+  width: 150px;
 `
 
 export const Value = styled.div`

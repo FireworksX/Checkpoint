@@ -20,14 +20,13 @@ const WelcomeCode: FC<WelcomeRegisterProps> = ({ className, onLogin, onRegister,
   return (
     <Styled.Root className={className}>
       <Container>
-        <Styled.Header left={<PageHeaderButton onClick={onBack}>Back</PageHeaderButton>} />
         <Styled.CoverWrapper>
           <Styled.Cover src={staticImagesMap.signUpLogin} />
         </Styled.CoverWrapper>
 
         <Styled.Description>
           A verification code sent to your email
-          <Styled.DescriptionMail>{'fireworks@gmail.com'}</Styled.DescriptionMail>
+          <Styled.DescriptionMail onClick={onBack}>{'fireworks@gmail.com'}</Styled.DescriptionMail>
         </Styled.Description>
         <Styled.CodeInput placeholder='0000' value={codeValue} onChange={e => onSetCodeValue(e.target.value)} />
 

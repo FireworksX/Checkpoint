@@ -9,7 +9,7 @@ export const useUploadFile = (files?: File[] | null) => {
   const [progress, setProgress] = useState(0)
   const [resultFiles, setResultFiles] = useState<MediaFile[]>([])
 
-  const { currentValue, currentIndex, goNext, hasNext } = useQueue<File>(files || [])
+  const { currentValue, currentIndex, goNext, hasNext } = useQueue(files || [])
 
   const formData = useMemo(() => (isBrowser ? new FormData() : undefined), [])
 

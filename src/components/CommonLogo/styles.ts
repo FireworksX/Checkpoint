@@ -29,11 +29,11 @@ export const Root = styled.span<Props>`
   flex-shrink: 0;
   ${({ size }) => sizesMap(size || 20)}
   overflow: hidden;
-  color: ${({ theme }) => theme.colors.iconBasic};
+  color: ${({ theme }) => theme.colors.backgroundCard};
 
   ${({ withRadius }) => withRadius && `border-radius: 50%;`}
   ${({ withBackground, theme }) => withBackground && `background-color: ${theme.colors.border};`}
-  ${({ withBorder }) => withBorder && `border: 1px solid var(--rgb-color-border);`}
+  ${({ withBorder, theme }) => withBorder && `border: 1px solid ${theme.colors.border};`}
 `
 
 export const Image = styled(BaseImage)`

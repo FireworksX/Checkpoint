@@ -4,6 +4,7 @@ import CommonLogo, { CommonLogoProps, DEFAULT_LOGO_SIZE } from 'src/components/C
 import InitialsAvatar, { InitialsAvatarNumberGradients } from './components/InitialsAvatar/InitialsAvatar'
 
 export interface AvatarProps {
+  mode?: 'circle' | 'square'
   src?: string
   uniqueId?: string // По этому коду будет вычисляться цвет для заливки
   children?: string
@@ -11,7 +12,7 @@ export interface AvatarProps {
   className?: string
 }
 
-const Avatar: FC<AvatarProps> = ({ className, src, uniqueId, children, size }) => {
+const Avatar: FC<AvatarProps> = ({ className, src, mode = 'circle', uniqueId, children, size }) => {
   const numbers = useMemo(
     () =>
       (uniqueId || '')
@@ -26,7 +27,7 @@ const Avatar: FC<AvatarProps> = ({ className, src, uniqueId, children, size }) =
   return (
     <Styled.Root className={className}>
       {src ? (
-        <CommonLogo src={src} size={size || DEFAULT_LOGO_SIZE} withRadius withBackground alt={children} />
+        <CommonLogo src={src} size={size || DEFAULT_LOGO_SIZE} withRadius withBackground withBorder alt={children} />
       ) : (
         <InitialsAvatar gradientColor={gradientCode} size={size}>
           {children}

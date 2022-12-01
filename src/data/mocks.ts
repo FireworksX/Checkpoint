@@ -2,11 +2,11 @@ import { random, randomArray } from '../utils/random'
 
 export interface MockUser {
   verify: boolean
-  username: string,
-  firstName?: string,
-  lastName?: string,
-  bio?: string,
-  avatar?: string,
+  username: string
+  firstName?: string
+  lastName?: string
+  bio?: string
+  avatar?: string
 }
 export const currentUser = {
   firstName: 'Arthur',
@@ -47,28 +47,30 @@ const locations = [
     type: 'place',
     name: 'meil.bali',
     location: 'Bali, Indonesia',
+    logo: 'https://sun9-84.userapi.com/impg/5fEM96FZsza6mVzbBaxwwWNvUaTVol6RzsoyDQ/zJnJ0aBc3WU.jpg?size=100x100&quality=95&sign=7372f3f7b0748b9de6466e83e0b07477&type=album'
   },
   {
     type: 'place',
     name: 'The Coffee Club',
     location: 'Phuket, Thailand',
+    logo: 'https://sun9-38.userapi.com/impg/jPsYTlllNXXSDN-CjXnNZ9PvvLadng9lbXHbhQ/RGx6_wIirAE.jpg?size=100x100&quality=95&sign=a45f001cdfc68dd2801fbd06d11fca8c&type=album'
+  },
+  {
+    type: 'place',
+    name: 'Rebeir Cafe',
+    location: 'Bangkok, Thailand',
+    logo: 'https://sun9-49.userapi.com/impg/SoGUD6W2Bn3Ix6iz8wBB-klidlxdaxOHhcmssQ/f-xE6ob2FRk.jpg?size=100x100&quality=95&sign=7780d71569d9529c90a6d3f544e74a8a&type=album'
   }
 ]
 
-const postSlugs = [
-    'place',
-    'hub',
-    'coffeeclub',
-    'meil',
-    'io',
-    'leningrad'
-]
+const postSlugs = ['place', 'hub', 'coffeeclub', 'meil', 'io', 'leningrad']
 
 const postText = [
   'Was great meeting up with @annaferguson and Dave Bishop at the breakfast talk! 🍕#breakfast',
   "Told you the group chat was fun. Make fellow travel creator friends over in our @geneva home. Maybe it's where you'll meet your next travel squad? 🌎️",
   "Bonjour, une baguette s'il vous plait. 🥖😍\n" + 'Link in bio to find your Parisian pastry needs.',
-  'Decisions, decisions, decisions... sorry to the die hard window seat lovers. ✈️'
+  'Decisions, decisions, decisions... sorry to the die hard window seat lovers. ✈️',
+  'Trip to Tulum sounds great - count us in. 🙋🙋‍♀️ Be like @missnay_xo and use Travis to find dreamy things to do on your next destination.'
 ]
 
 const commentText = [
@@ -99,10 +101,10 @@ export const getRandomPost = () => {
     date: getRandomDate(),
     target: getRandomLocation(),
     refer: getRandomBool()
-        ? {
+      ? {
           user: getRandomUser()
         }
-        : undefined,
+      : undefined,
     metrics: {
       connections: random(11, 120),
       likes: random(20, 120),
@@ -115,4 +117,3 @@ export const getRandomPost = () => {
     }
   }
 }
-

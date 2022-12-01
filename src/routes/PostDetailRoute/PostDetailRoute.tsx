@@ -58,7 +58,7 @@ const PostDetailRoute: FC<PostDetailRouteProps> = ({ className }) => {
           <LocationCard
             name={post.target?.name || ''}
             location={post.target?.location || ''}
-            avatar={post.target?.avatar}
+            avatar={post.target?.logo}
           />
         </Styled.Target>
 

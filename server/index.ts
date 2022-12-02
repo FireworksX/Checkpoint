@@ -7,6 +7,7 @@ require('dotenv').config({
 import { FilledContext } from 'react-helmet-async'
 import { Request, Response } from 'express'
 import { apiProxy } from './proxy/apiProxy'
+import {gqlProxy} from "./proxy/gqlProxy";
 const fs = require('fs')
 const path = require('path')
 const express = require('express')
@@ -20,6 +21,7 @@ const port = process.env.VITE_PORT || 3000
 declare global {
   interface Window {
     __APP__CACHE__: Record<string, any>
+    __SSR__CACHE__: Record<string, any>
     __STORE__CACHE__: StoreType
   }
 }
@@ -41,6 +43,7 @@ async function createServer(root = process.cwd(), isProd = process.env.NODE_ENV 
   const app = express()
 
   app.use('/api', apiProxy)
+  app.use('/graphql', gqlProxy)
 
   app.use(bodyParser.urlencoded({ extended: false }))
   app.use(bodyParser.json())

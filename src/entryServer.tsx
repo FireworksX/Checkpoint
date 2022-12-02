@@ -1,6 +1,7 @@
 import ReactDOMServer from 'react-dom/server'
 import { ServerStyleSheet } from 'styled-components'
-import { App, AppFetcherType } from './App'
+import { getClientIp } from 'request-ip'
+import { App } from './App'
 import { configureRouter } from './router/configureRouter'
 import { serverCookieManager } from './services/cookie/serverCookieManager'
 import { AppContext } from 'server'
@@ -10,8 +11,11 @@ import { FilledContext } from 'react-helmet-async'
 import { createApiClients } from './utils/apiClient/createApiClients'
 import { serviceContainer } from './services/ioc/serviceContainer'
 import { cacheManager } from './services/cacheManager'
+import fetch from 'node-fetch'
 
 export async function render(url: string, ctx: AppContext) {
+  const ip = getClientIp(ctx.req)
+
   const { addService } = serviceContainer()
   const cacheManagerInstance = cacheManager()
 
@@ -20,23 +24,11 @@ export async function render(url: string, ctx: AppContext) {
   const router = configureRouter(ctx)
   router.start(url)
 
-  const { apiClient } = createApiClients({ cookieManager })
-
-  const fetcher: AppFetcherType = resource =>
-    apiClient
-      .get<any>(resource)
-      .then(({ data }) => data)
-      .catch(e => {
-        return Promise.resolve({
-          success: false,
-          error: e
-        })
-      })
+  const { apiClient, gqlClient, ssrCacheStore } = createApiClients({ cookieManager, ip, fetcher: fetch })
 
   addService('cacheManager', cacheManagerInstance)
   addService('cookieManager', cookieManager)
   addService('apiClient', apiClient)
-  addService('fetcher', fetcher)
 
   const helmetContext = {} as FilledContext
 
@@ -45,8 +37,7 @@ export async function render(url: string, ctx: AppContext) {
       router={router}
       helmetContext={helmetContext}
       cookieManager={cookieManager}
-      fetcher={fetcher}
-      cacheManager={cacheManagerInstance}
+      urqlClient={gqlClient}
     />
   )
 
@@ -56,6 +47,8 @@ export async function render(url: string, ctx: AppContext) {
   await ssrPrepass(styledChunks)
   const appHtml = ReactDOMServer.renderToString(styledChunks)
 
+  const ssrCache = ssrCacheStore.extractData()
+
   const appCache: any = {}
   cacheManagerInstance.forEach((value, key) => (appCache[key] = value))
 
@@ -63,12 +56,16 @@ export async function render(url: string, ctx: AppContext) {
     <script>
       window.__APP__CACHE__ = ${JSON.stringify(appCache)}
     </script>
+    <script>
+      window.__SSR__CACHE__ = ${JSON.stringify(ssrCache)}
+    </script>
   `
 
   return {
     helmetContext: helmetContext.helmet,
     appHtml,
     appCache,
+    ssrCache,
     appCacheTags,
     stylesTags: sheet.getStyleTags()
   }

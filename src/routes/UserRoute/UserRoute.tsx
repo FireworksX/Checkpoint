@@ -30,14 +30,6 @@ interface UserRouteProps {
 const UserRoute: FC<UserRouteProps> = ({ className }) => {
   const { citySlug } = useRouter()
   const {
-    categories,
-    locations,
-    locationsFetching,
-    userFetching,
-    counters,
-    userSlug,
-    selectedCategory,
-    setSelectedCategory
   } = useUserRoute()
 
   const user = getRandomUser()

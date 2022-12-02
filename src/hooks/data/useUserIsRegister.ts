@@ -5,10 +5,7 @@ import { AuthUser } from 'src/interfaces/User'
 type Fields = Partial<Pick<AuthUser, 'username' | '_id' | 'mail'>>
 
 export const useUserIsRegister = (queryFields: Fields, pause = false) => {
-  const { data, error } = useRequest<boolean>(apiEndpoints.USER_IS_REGISTER, {
-    params: queryFields,
-    pause
-  })
+  const { data, error } = {}
 
   return {
     data,

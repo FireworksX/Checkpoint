@@ -1,11 +1,10 @@
-import { useMutation } from '../useMutation'
 import { apiEndpoints } from 'src/data/apiEndpoints'
 // import { useCurrentUser } from 'src/hooks/data/useCurrentUser'
 import { PlaceInterface, PlaceInterfaceCreate } from 'src/interfaces/PlaceInterface'
 
 export const useCreatePlace = () => {
   const { data: userData } = { data: {} } //useCurrentUser()
-  const { mutate, fetching, execute } = useMutation<PlaceInterface, PlaceInterfaceCreate>(apiEndpoints.PLACES_CREATE)
+  const { mutate, fetching, execute } = {}
 
   return {
     fetching,

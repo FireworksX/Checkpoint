@@ -1,4 +1,3 @@
-import { useRequest } from 'src/hooks/useRequest'
 import { apiEndpoints } from 'src/data/apiEndpoints'
 import { Location, LocationDetail } from 'src/interfaces/Location'
 
@@ -7,9 +6,7 @@ type FilterOptions = {
 } & { skip?: number; limit?: number } & { onlyLikes?: boolean; owner?: string }
 
 export const useUserLocations = (filter?: FilterOptions) => {
-  const { data, fetching } = useRequest<LocationDetail[]>(apiEndpoints.LOCATIONS_LIST, {
-    params: filter || {}
-  })
+  const { data, fetching } = {}
 
   return {
     data: data?.data,

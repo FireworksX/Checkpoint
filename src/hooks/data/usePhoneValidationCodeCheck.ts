@@ -1,5 +1,4 @@
 import { apiEndpoints } from 'src/data/apiEndpoints'
-import { useRequest } from 'src/hooks/useRequest'
 import { CountryCode } from 'src/data/countryPhoneCodes'
 
 interface Props {
@@ -9,14 +8,7 @@ interface Props {
 }
 
 export const usePhoneValidationCodeCheck = ({ phone, code, country }: Props) => {
-  const { data, error } = useRequest<boolean>(apiEndpoints.AUTH_PHONE_CODE_CHECK, {
-    params: {
-      phone,
-      code,
-      country
-    },
-    pause: code.length !== 4
-  })
+  const { data, error } = {}
 
   return {
     data,

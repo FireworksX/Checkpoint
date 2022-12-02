@@ -9,30 +9,28 @@ import { serviceContainer } from './services/ioc/serviceContainer'
 import { cacheManager } from './services/cacheManager'
 
 const { addService } = serviceContainer()
-
-const cookieManager = clientCookieManager(appConfig.COOKIE_PREFIX)
-const router = configureRouter()
-router.start()
-
-const { apiClient } = createApiClients({ cookieManager })
-
-const fetcher: AppFetcherType = (resource) => apiClient.get<any>(resource).then(({ data }) => data)
-
 const cacheManagerInstance = cacheManager()
+const cookieManager = clientCookieManager(appConfig.COOKIE_PREFIX)
 
 addService('cacheManager', cacheManagerInstance)
 addService('cookieManager', cookieManager)
-addService('apiClient', apiClient)
-addService('fetcher', fetcher)
 
 const appCache = window.__APP__CACHE__
+const ssrCache = window.__SSR__CACHE__
 
 if (appCache) {
   Object.keys(appCache).forEach(key => cacheManagerInstance.set(key, appCache[key]))
 }
 
+const router = configureRouter()
+router.start()
+
+const { apiClient, gqlClient } = createApiClients({ cookieManager, ssrCache })
+
+addService('apiClient', apiClient)
+
 const Application = (
-  <App router={router} cookieManager={cookieManager} fetcher={fetcher} cacheManager={cacheManagerInstance} />
+  <App router={router} cookieManager={cookieManager} urqlClient={gqlClient} />
 )
 
 ReactDOM.hydrate(Application, document.getElementById('app'))

@@ -1,5 +1,4 @@
 import {useCallback, useEffect, useState} from 'react'
-import { useMutation } from '../useMutation'
 import { apiEndpoints } from '../../data/apiEndpoints'
 import { Like, MutateLike } from '../../interfaces/Likes'
 
@@ -10,9 +9,9 @@ export const useLikesUser = (initialValue = false, targetOptions: MutateLike) =>
     setHasLike(initialValue)
   }, [initialValue])
 
-  const { execute: addLike, fetching: addFetching } = useMutation<Like, MutateLike>(apiEndpoints.LIKES_ADD)
+  const { execute: addLike, fetching: addFetching } = {}
 
-  const { execute: removeLike, fetching: removeFetching } = useMutation<Like, MutateLike>(apiEndpoints.LIKES_REMOVE)
+  const { execute: removeLike, fetching: removeFetching } = {}
 
   const toggleLike = useCallback(async () => {
     let result

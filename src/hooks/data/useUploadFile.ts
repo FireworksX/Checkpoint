@@ -1,5 +1,4 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
-import { useMutation } from 'src/hooks/useMutation'
 import { apiEndpoints } from 'src/data/apiEndpoints'
 import { MediaFile } from 'src/interfaces/MediaFile'
 import isBrowser from 'src/utils/isBrowser'
@@ -18,12 +17,7 @@ export const useUploadFile = (files?: File[] | null) => {
     formData?.append('file', currentValue)
   }
 
-  const { fetching, execute } = useMutation<MediaFile, FormData>(apiEndpoints.MEDIA_UPLOAD, {
-    onUploadProgress(progressEvent) {
-      const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total)
-      setProgress(percentCompleted)
-    }
-  })
+  const { fetching, execute } = {}
 
   const runHandler = useCallback(async () => {
     if (formData && currentValue) {

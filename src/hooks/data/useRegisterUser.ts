@@ -1,5 +1,4 @@
 import { apiEndpoints } from 'src/data/apiEndpoints'
-import { useMutation } from 'src/hooks/useMutation'
 import { AuthUser, AuthUserResponse } from 'src/interfaces/User'
 import { GeneratedTokenResponse } from 'src/interfaces/Request'
 import { useLoginUser } from './useLoginUser'
@@ -14,7 +13,7 @@ type OutputProps = {
 export const useRegisterUser = () => {
   const { mutate } = useCurrentUser()
   const { onSetTokens } = useLoginUser()
-  const { fetching, execute } = useMutation<OutputProps, InputProps>(apiEndpoints.AUTH_REGISTER)
+  const { fetching, execute } = {}
 
   return {
     execute: async (data: InputProps) => {

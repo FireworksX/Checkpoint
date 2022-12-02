@@ -1,6 +1,4 @@
-import { useRequest } from 'src/hooks/useRequest'
 import { apiEndpoints } from 'src/data/apiEndpoints'
-import { useMutation } from 'src/hooks/useMutation'
 import { useCallback } from 'react'
 import { useCurrentUser } from './useCurrentUser'
 
@@ -13,28 +11,13 @@ export const useFollowingUser = (targetId?: string) => {
     data,
     mutate,
     fetching: checkFetching
-  } = useRequest<boolean>(apiEndpoints.CURRENT_USER_CHECK_SUBSCRIBE, {
-    params: {
-      target: targetId
-    },
-    pause: !targetId
-  })
+  } = {}
 
   const { user } = useCurrentUser()
 
-  const { execute: executeSubscribe, fetching: subscribeFetching } = useMutation<unknown, SubscribeInput>(
-    apiEndpoints.CURRENT_USER_SUBSCRIBE,
-    {
-      useCache: false
-    }
-  )
+  const { execute: executeSubscribe, fetching: subscribeFetching } = {}
 
-  const { execute: executeUnsubscribe, fetching: unsubscribeFetching } = useMutation<unknown, SubscribeInput>(
-    apiEndpoints.CURRENT_USER_UNSUBSCRIBE,
-    {
-      useCache: false
-    }
-  )
+  const { execute: executeUnsubscribe, fetching: unsubscribeFetching } = {}
 
   const onSubscribe = useCallback(async () => {
     if (!targetId) return

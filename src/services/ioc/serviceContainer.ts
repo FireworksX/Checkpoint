@@ -1,13 +1,11 @@
 import { CookieManager } from 'src/interfaces/CookieManager'
 import { ApiClient } from 'src/utils/apiClient/createApiClients'
 import { CacheManager } from 'src/services/cacheManager'
-import { AppFetcherType } from 'src/App'
 
 interface Services {
   cookieManager?: CookieManager
   cacheManager?: CacheManager
   apiClient?: ApiClient
-  fetcher?: AppFetcherType
 }
 
 const serviceMap = new Map<keyof Services, any>()

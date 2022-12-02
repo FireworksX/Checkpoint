@@ -3,9 +3,7 @@ import { useMutation } from '../useMutation'
 import { CountryCode } from '../../data/countryPhoneCodes'
 
 export const usePhoneValidationCodeCreate = () => {
-  const { fetching, execute } = useMutation<{ code: string }, { phone: string; country: CountryCode }>(
-    apiEndpoints.AUTH_PHONE_CODE_CREATE
-  )
+  const { fetching, execute } = {}
 
   return {
     execute,

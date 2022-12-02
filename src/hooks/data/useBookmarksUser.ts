@@ -1,5 +1,4 @@
 import { useCallback, useEffect, useState } from 'react'
-import { useMutation } from '../useMutation'
 import { apiEndpoints } from 'src/data/apiEndpoints'
 import { AddBookmark, Bookmark, RemoveBookmark } from 'src/interfaces/Bookmark'
 import { useModal } from 'src/hooks/useModal'
@@ -16,11 +15,9 @@ export const useBookmarksUser = (initialValue = false, targetOptions: Omit<AddBo
     setHasBookmark(initialValue)
   }, [initialValue])
 
-  const { execute: addBookmark, fetching: addFetching } = useMutation<Bookmark, AddBookmark>(apiEndpoints.BOOKMARKS_ADD)
+  const { execute: addBookmark, fetching: addFetching } = {}
 
-  const { execute: removeBookmark, fetching: removeFetching } = useMutation<Bookmark, RemoveBookmark>(
-    apiEndpoints.BOOKMARKS_REMOVE
-  )
+  const { execute: removeBookmark, fetching: removeFetching } = {}
 
   const toggleBookmark = useCallback(
     async (category?: AddBookmark['category']) => {

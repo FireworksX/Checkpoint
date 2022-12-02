@@ -1,42 +1,34 @@
+import React, { FC } from 'react'
 import { RouterProvider } from 'react-router5'
 import { MutableSnapshot, RecoilRoot } from 'recoil'
-import { SWRConfig, Cache } from 'swr'
+import { Client, Provider as UrqlProvider } from 'urql'
 import { FilledContext, HelmetProvider } from 'react-helmet-async'
 import RootRoute from './routes/RootRoute/RootRoute'
-import React, { FC } from 'react'
+
 import { DefaultDependencies, Router } from 'router5/dist/types/router'
 import { CookieProvider } from './services/cookie/CookieProvider'
 import { CookieManager } from './interfaces/CookieManager'
 import 'virtual:svg-icons-register'
-import isBrowser from 'src/utils/isBrowser'
 
-export type AppFetcherType = (resource: string, init: any) => Promise<unknown>
 
 interface Props {
   router: Router<DefaultDependencies>
   cookieManager: CookieManager
-  fetcher: AppFetcherType
-  cacheManager: Cache
+  urqlClient: Client
   helmetContext?: FilledContext
   initializeState?: (snapshot: MutableSnapshot) => void
 }
 
-export const App: FC<Props> = ({ router, helmetContext, cookieManager, fetcher, cacheManager, initializeState }) => {
+export const App: FC<Props> = ({ router, helmetContext, cookieManager, fetcher, urqlClient, initializeState }) => {
   return (
     <React.StrictMode>
       <HelmetProvider context={helmetContext || {}}>
         <CookieProvider cookieManager={cookieManager}>
           <RouterProvider router={router}>
             <RecoilRoot initializeState={initializeState}>
-              <SWRConfig
-                value={{
-                  provider: () => cacheManager,
-                  fetcher,
-                  suspense: !isBrowser
-                }}
-              >
+              <UrqlProvider value={urqlClient}>
                 <RootRoute />
-              </SWRConfig>
+              </UrqlProvider>
             </RecoilRoot>
           </RouterProvider>
         </CookieProvider>

@@ -25,7 +25,7 @@ if (appCache) {
 const router = configureRouter()
 router.start()
 
-const { apiClient, gqlClient } = createApiClients({ cookieManager, ssrCache })
+const { apiClient, gqlClient } = createApiClients({ cookieManager, ssrCache, fetcher: fetch })
 
 addService('apiClient', apiClient)
 

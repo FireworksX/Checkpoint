@@ -9,6 +9,7 @@ interface Props {
   mode?: ButtonProps['mode']
   disabled?: ButtonProps['disabled']
   hasContent?: boolean
+  loading?: boolean
 }
 
 const sizesMap: (theme: DefaultTheme) => Record<NonNullable<Props['size']>, CSSProp> = (theme: DefaultTheme) => ({
@@ -102,9 +103,7 @@ export const Root = styled(Touchable).attrs({ tagName: 'button' })<Props>`
   border-radius: 50px;
   outline: none !important;
   border: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  position: relative;
   ${({ size, theme }) => sizesMap(theme)[size || 'm']}
   width: ${({ stretched }) => stretched && '100%'};
   ${({ theme, mode }) => modesMap(theme)[mode || 'primary']}
@@ -112,4 +111,21 @@ export const Root = styled(Touchable).attrs({ tagName: 'button' })<Props>`
 
 export const Icon = styled(IconComp)<Props>`
   margin-right: ${({ hasContent }) => !hasContent && '0 !important'};
+`
+
+export const Body = styled.div<Props>`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: ${({ loading }) => (loading ? 0 : 1)};
+  transition: opacity ${150}ms;
+`
+
+export const LoadingState = styled.div<Props>`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: opacity ${150}ms;
+  opacity: ${({ loading }) => (loading ? 1 : 0)};
 `

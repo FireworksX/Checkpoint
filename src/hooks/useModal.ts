@@ -2,8 +2,7 @@ import { useCallback } from 'react'
 import { useRecoilState } from 'recoil'
 import { modalAtom, modalContextAtom } from 'src/store/uiStore'
 import { ModalName } from 'src/router/constants'
-
-const modalPromiseWaiter = () => new Promise(resolve => setTimeout(resolve, 300))
+import { promiseWaiter } from 'src/utils/promiseWaiter'
 
 export const useModal = <CTX = any>(modalName: ModalName) => {
   const [currentModal, setCurrentModal] = useRecoilState(modalAtom)
@@ -12,7 +11,7 @@ export const useModal = <CTX = any>(modalName: ModalName) => {
 
   const close = useCallback(async () => {
     setCurrentModal(undefined)
-    await modalPromiseWaiter()
+    await promiseWaiter()
     setModalContext(undefined)
   }, [setCurrentModal, setModalContext])
 
@@ -24,7 +23,7 @@ export const useModal = <CTX = any>(modalName: ModalName) => {
 
       setCurrentModal(modalName)
       setModalContext(context)
-      await modalPromiseWaiter()
+      await promiseWaiter()
     },
     [setCurrentModal, modalName, setModalContext, close, currentModal]
   )

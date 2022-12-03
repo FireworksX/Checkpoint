@@ -7,17 +7,16 @@ import Button from "../../../../components/Button/Button";
 
 interface WelcomeRegisterProps {
   className?: string
-  phone?: string
-  phoneCode?: string
+  email: string
   onBack(): void
   onRegister(): void
 }
 
-const WelcomeRegister: FC<WelcomeRegisterProps> = ({ className, onRegister, onBack }) => {
-  const { fields, avatarText, onSubmitForm } = useWelcomeRegister({ onRegister })
+const WelcomeRegister: FC<WelcomeRegisterProps> = ({ className, email, onRegister }) => {
+  const { fields, avatarText, pageRef, fetching, onSubmitForm } = useWelcomeRegister({ email, onRegister })
 
   return (
-    <Styled.Root className={className}>
+    <Styled.Root className={className} ref={pageRef} fetching={fetching}>
       <form onSubmit={onSubmitForm}>
         <Container>
           <ProfileInfoFields fields={fields} avatarText={avatarText} />

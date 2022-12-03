@@ -1,30 +1,34 @@
-import { useCurrentUser } from 'src/hooks/data/useCurrentUser'
 import { useForm } from 'src/hooks/useForm'
 import { validationRules } from 'src/data/validationRules'
-import {useMailValidationCodeCreate} from "src/hooks/data/useMailValidationCodeCreate";
+import { useSendAuthCodeMutation } from '../queries/SendAuthCodeMutation'
+import { useIsomorphicEffect } from 'src/hooks/useIsomorphicEffect'
 
 interface Props {
-  onBack(): void
-  onNext(): void
+  email?: string
+  onNext(email: string): void
 }
 
-export const useWelcomeIntro = ({ onNext }: Props) => {
-  const { mutate } = useCurrentUser()
-  const { execute } = useMailValidationCodeCreate()
-  const { register, handleSubmit } = useForm<{ mail: string }>()
+export const useWelcomeIntro = ({ email, onNext }: Props) => {
+  const [{ fetching }, sendAuthCode] = useSendAuthCodeMutation()
+  const { register, setValue, handleSubmit } = useForm<{ email: string }>()
+
+  useIsomorphicEffect(() => {
+    if (email) {
+      setValue('email', email)
+    }
+  })
 
   const onSubmit = handleSubmit(async data => {
-    onNext()
-    const { success } = await execute({ mail: data.mail })
+    const { data: response } = await sendAuthCode({ email: data.email })
 
-    if (success) {
-      mutate(user => ({ ...user, _id: user?._id || '', mail: data.mail }))
-      onNext()
+    if (response?.sendAuthCode?.email) {
+      onNext(response?.sendAuthCode?.email)
     }
   })
 
   return {
-    emailInput: register('mail', { required: validationRules.required(), pattern: validationRules.emailPattern() }),
-    onSubmit
+    emailInput: register('email', { required: validationRules.required(), pattern: validationRules.emailPattern() }),
+    onSubmit,
+    fetching
   }
 }

@@ -30,7 +30,7 @@ const ProfileInfoFields: FC<ProfileInfoFieldsProps> = ({ className, fields, avat
       <Styled.Field label='Username' placeholder='@mikedeal' {...fields.username} />
       <Styled.Field label='First name' placeholder='Mike' {...fields.firstName} />
       <Styled.Field label='Last name' placeholder='Deal' {...fields.lastName} />
-      <Styled.Field label='Bio' textarea {...fields.bio} />
+      {/*<Styled.Field label='Bio' textarea {...fields.bio} />*/}
     </Styled.Root>
   )
 }

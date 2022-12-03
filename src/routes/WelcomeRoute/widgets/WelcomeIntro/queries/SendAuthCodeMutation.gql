@@ -1,0 +1,6 @@
+mutation SendAuthCode($email: String!) {
+  sendAuthCode(input: { email: $email }) {
+    email
+    status
+  }
+}

@@ -1,0 +1,7 @@
+mutation CheckAuthCode($email: String!, $code: String!) {
+  checkCode(input: { email: $email, confirmCode: $code }) {
+    email
+    status
+    token
+  }
+}

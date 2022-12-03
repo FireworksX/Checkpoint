@@ -103,7 +103,12 @@ export const createApiClients = ({ cookieManager, ssrCache, fetcher, ip } = DEFA
   }
 
   const wrappedFetch: typeof fetch = (input, init) => {
-    if (typeof input !== 'string' || !fetcher) throw new Error('fetch wrapper requires input to be string')
+    if (!fetcher) throw new Error('fetch wrapper required')
+
+    const accessToken = cookieManager?.get('accessToken')
+    if (accessToken) {
+      defaults.headers.Authorization = `Bearer ${accessToken}`
+    }
 
     return fetcher(input, {
       ...defaults,

@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import { rgbToRgba } from 'src/styles/theme/baseStyleds'
 import { zIndex } from 'src/router/constants'
+import {PageFetchingState} from "./Page";
 
 interface Props {
   safeAreaBottom?: boolean
@@ -19,11 +20,10 @@ export const ScreenSpinner = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: ${({ theme }) => theme.colors.secondaryBg};
   z-index: ${zIndex.pageSpinner};
 `
 
-export const SpinnerWrapper = styled.div`
+export const SpinnerWrapper = styled.div<Props>`
   padding: 20px;
   background: ${({ theme }) => theme.colors.background};
   border-radius: ${({ theme }) => theme.baseStyles.radius.radiusMain};

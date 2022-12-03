@@ -4,64 +4,95 @@ import { useUserIsRegister } from 'src/hooks/data/useUserIsRegister'
 import { useLoginUser } from 'src/hooks/data/useLoginUser'
 import { useCurrentUser } from 'src/hooks/data/useCurrentUser'
 import { useMailValidationCodeCheck } from 'src/hooks/data/useMailValidationCodeCheck'
+import { useCheckAuthCodeMutation } from '../queries/CheckAuthCodeMutation'
+import { userTokens } from '../../../../../utils/userTokens'
+import { PageRef } from '../../../../../widgets/Page/Page'
 
 interface Props {
-  onBack(): void
+  email?: string
   onRegister(): void
   onLogin(): void
 }
 
-export const useWelcomeCode = ({ onRegister, onLogin }: Props) => {
-  const tryLogin = useRef(false)
-  const { user } = useCurrentUser()
-  const { formatValue, setValue } = useNumberFormatter()
-  const userMail = user?.mail || ''
+export const useWelcomeCode = ({ email, onRegister, onLogin }: Props) => {
+  const userTokensManager = userTokens()
+  const pageRef = useRef<PageRef>()
 
-  const { data: validationData } = useMailValidationCodeCheck({
-    mail: userMail,
-    code: formatValue
-  })
-  const { data: isRegisterData, fetching } = useUserIsRegister(
-    {
-      mail: userMail
-    },
-    !validationData?.data
-  )
+  const { formatValue, setValue } = useNumberFormatter()
+
+  const [{ fetching }, checkCode] = useCheckAuthCodeMutation()
+  // const { data: isRegisterData, fetching } = useUserIsRegister(
+  //   {
+  //     mail: userMail
+  //   },
+  //   !validationData?.data
+  // )
 
   const { execute } = useLoginUser()
 
-  const onLoginUser = useCallback(async () => {
-    if (tryLogin.current) {
-      return
-    }
+  const handleCheckCode = useCallback(async () => {
+    if (email) {
+      const { data: response, error } = await checkCode({
+        email,
+        code: formatValue
+      })
 
-    tryLogin.current = true
+      if (response?.checkCode?.token) {
+        userTokensManager.setTokens({ accessToken: response?.checkCode?.token })
+        await pageRef.current?.fetchingSuccess()
+      }
 
-    const { success } = await execute({
-      mail: userMail,
-      code: formatValue
-    })
-
-    if (success) {
-      onLogin()
-    } else {
-      alert('Error')
-    }
-  }, [formatValue, userMail, execute, onLogin])
-
-  useEffect(() => {
-    if (validationData?.success && validationData?.data && !fetching) {
-      if (isRegisterData?.success && isRegisterData?.data) {
-        onLoginUser()
-      } else {
+      if (response?.checkCode?.status === 1) {
         onRegister()
+      } else if (response?.checkCode?.status === 2) {
+        onLogin()
+      }
+
+      if (error && pageRef.current) {
+        pageRef.current?.fetchingError()
       }
     }
-  }, [validationData, fetching, isRegisterData, onLoginUser, onRegister])
+  }, [checkCode, formatValue, email, onLogin, onRegister, userTokensManager])
+
+  useEffect(() => {
+    if (formatValue.length === 4) {
+      handleCheckCode()
+    }
+  }, [formatValue])
+
+  // const onLoginUser = useCallback(async () => {
+  //   if (tryLogin.current) {
+  //     return
+  //   }
+  //
+  //   tryLogin.current = true
+  //
+  //   const { success } = await execute({
+  //     mail: userMail,
+  //     code: formatValue
+  //   })
+  //
+  //   if (success) {
+  //     onLogin()
+  //   } else {
+  //     alert('Error')
+  //   }
+  // }, [formatValue, userMail, execute, onLogin])
+  //
+  // useEffect(() => {
+  //   if (validationData?.success && validationData?.data && !fetching) {
+  //     if (isRegisterData?.success && isRegisterData?.data) {
+  //       onLoginUser()
+  //     } else {
+  //       onRegister()
+  //     }
+  //   }
+  // }, [validationData, fetching, isRegisterData, onLoginUser, onRegister])
 
   return {
-    mail: userMail,
     codeValue: formatValue,
-    onSetCodeValue: setValue
+    onSetCodeValue: setValue,
+    fetching,
+    pageRef
   }
 }

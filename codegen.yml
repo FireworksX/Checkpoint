@@ -1,8 +1,8 @@
 overwrite: true
 schema:
-  - https://scores24.live/graphql:
+  - http://localhost:3000/graphql:
       headers:
-        Origin: localhost:4000
+        Origin: localhost:3000
 documents: ${DOCUMENTS:src/**/*.gql}
 skipGraphQLImport: false
 hooks:

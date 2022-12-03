@@ -14,7 +14,7 @@ export interface UserFields {
 
 type OnSubmit = (fields: UserFields) => any
 
-export const useProfileInfoFields = (onSubmit: OnSubmit) => {
+export const useProfileInfoFields = (email: string, onSubmit: OnSubmit) => {
   const { register, handleSubmit, getValues, setValue, errors, isSubmitted } = useForm<UserFields>()
 
   const { user } = useCurrentUser()
@@ -73,8 +73,8 @@ export const useProfileInfoFields = (onSubmit: OnSubmit) => {
       },
       firstName: register('firstName', { maxLength: validationRules.maxLength(30) }),
       lastName: register('lastName', { maxLength: validationRules.maxLength(30) }),
-      bio: register('bio', { maxLength: validationRules.maxLength(200) }),
-      mail: user?.mail || ''
+      // bio: register('bio', { maxLength: validationRules.maxLength(200) }),
+      email
     },
     setValue,
     getValues,

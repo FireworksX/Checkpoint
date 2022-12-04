@@ -3,7 +3,7 @@ import * as Styled from './styles'
 import Container from 'src/components/Container/Container'
 import { useWelcomeRegister } from './hooks/useWelcomeRegister'
 import ProfileInfoFields from 'src/widgets/ProfileInfoFields/ProfileInfoFields'
-import Button from "../../../../components/Button/Button";
+import Button from '../../../../components/Button/Button'
 
 interface WelcomeRegisterProps {
   className?: string
@@ -13,16 +13,26 @@ interface WelcomeRegisterProps {
 }
 
 const WelcomeRegister: FC<WelcomeRegisterProps> = ({ className, email, onRegister }) => {
-  const { fields, avatarText, pageRef, fetching, onSubmitForm } = useWelcomeRegister({ email, onRegister })
+  const { fields, avatarText, pageRef, fetching, onSelectAvatar, onSubmitForm } = useWelcomeRegister({
+    email,
+    onRegister
+  })
 
   return (
     <Styled.Root className={className} ref={pageRef} fetching={fetching}>
-      <form onSubmit={onSubmitForm}>
-        <Container>
-          <ProfileInfoFields fields={fields} avatarText={avatarText} />
-          <Button stretched size='xl'>Register</Button>
-        </Container>
-      </form>
+      <Container>
+        <ProfileInfoFields
+          fields={fields}
+          avatarText={avatarText}
+          formChildren={
+            <Button stretched size='xl'>
+              Register
+            </Button>
+          }
+          onSelectAvatar={onSelectAvatar}
+          onSubmit={onSubmitForm}
+        />
+      </Container>
     </Styled.Root>
   )
 }

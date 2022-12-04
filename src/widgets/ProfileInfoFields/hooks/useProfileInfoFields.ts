@@ -1,9 +1,8 @@
 import { useMemo, useState } from 'react'
 import { useForm } from 'src/hooks/useForm'
-import { useCurrentUser } from 'src/hooks/data/useCurrentUser'
-import { useUserIsRegister } from 'src/hooks/data/useUserIsRegister'
 import { useInitialAvatarPlaceholder } from 'src/widgets/Avatar/hooks/useInitialAvatarPlaceholder'
 import { validationRules } from 'src/data/validationRules'
+import {useUsernameExistsQuery} from "../queries/UsernameExistsQuery";
 
 export interface UserFields {
   username: string
@@ -17,10 +16,11 @@ type OnSubmit = (fields: UserFields) => any
 export const useProfileInfoFields = (email: string, onSubmit: OnSubmit) => {
   const { register, handleSubmit, getValues, setValue, errors, isSubmitted } = useForm<UserFields>()
 
-  const { user } = useCurrentUser()
   const [proxyUsername, setProxyUsername] = useState('')
-  const { data: isRegisterUser } = useUserIsRegister({
-    username: proxyUsername
+  const [{data: userExist}] = useUsernameExistsQuery({
+    variables: {
+      username: proxyUsername
+    }
   })
 
   const usernameFieldOptions = useMemo(() => {
@@ -32,7 +32,7 @@ export const useProfileInfoFields = (email: string, onSubmit: OnSubmit) => {
             statusText: errors.username?.message
           }
         }
-        if (isRegisterUser?.data) {
+        if (userExist?.usernameExists) {
           return {
             status: 'error' as const,
             statusText: 'This username already exists.'
@@ -44,7 +44,7 @@ export const useProfileInfoFields = (email: string, onSubmit: OnSubmit) => {
         }
       }
     }
-  }, [isRegisterUser, proxyUsername.length, errors, isSubmitted])
+  }, [userExist, proxyUsername.length, errors, isSubmitted])
 
   const onSubmitForm = handleSubmit(async data => {
     if (usernameFieldOptions?.status === 'error') {

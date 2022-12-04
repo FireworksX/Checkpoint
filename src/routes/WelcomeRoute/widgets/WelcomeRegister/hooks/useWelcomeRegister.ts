@@ -1,10 +1,12 @@
 import { useRegisterUser } from 'src/hooks/data/useRegisterUser'
 import { useCurrentUser } from 'src/hooks/data/useCurrentUser'
 import { useProfileInfoFields, UserFields } from 'src/widgets/ProfileInfoFields/hooks/useProfileInfoFields'
-import {useRegisterUserMutation} from "../queries/RegisterUserMutation";
-import {userTokens} from "../../../../../utils/userTokens";
-import {useRef} from "react";
-import {PageRef} from "../../../../../widgets/Page/Page";
+import { useRegisterUserMutation } from '../queries/RegisterUserMutation'
+import { userTokens } from '../../../../../utils/userTokens'
+import { useCallback, useRef, useState } from 'react'
+import { PageRef } from '../../../../../widgets/Page/Page'
+import { useUploadFile } from '../../../../../hooks/data/useUploadFile'
+import { useToggle } from 'react-use'
 
 interface Props {
   email: string
@@ -13,17 +15,23 @@ interface Props {
 
 export const useWelcomeRegister = ({ email, onRegister }: Props) => {
   const pageRef = useRef<PageRef>()
-  const [{fetching}, registerUser] = useRegisterUserMutation()
+  const [{ fetching }, registerUser] = useRegisterUserMutation()
+  const [avatarFile, setAvatarFile] = useState<File | undefined>(undefined)
+  const { fetching: uploadingAvatar, runHandler } = useUploadFile(avatarFile ? [avatarFile] : undefined, {
+    pause: true
+  })
 
   const onSubmit = async (data: UserFields) => {
     const token = userTokens().getTokens().accessToken
 
     if (token) {
-      const {data: response} = await registerUser({
+      const { data: response } = await registerUser({
         email,
         token,
         ...data
       })
+
+      await runHandler()
 
       if (response) {
         await pageRef.current?.fetchingSuccess()
@@ -32,7 +40,6 @@ export const useWelcomeRegister = ({ email, onRegister }: Props) => {
         pageRef.current?.fetchingError()
       }
     }
-
   }
 
   const { fields, getValues, avatarText, onSubmitForm } = useProfileInfoFields(email, onSubmit)
@@ -46,6 +53,7 @@ export const useWelcomeRegister = ({ email, onRegister }: Props) => {
     avatarText,
     getValues,
     onSubmitForm,
-    fetching
+    onSelectAvatar: setAvatarFile,
+    fetching: fetching || uploadingAvatar
   }
 }

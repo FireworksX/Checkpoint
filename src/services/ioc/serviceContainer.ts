@@ -3,9 +3,9 @@ import { ApiClient } from 'src/utils/apiClient/createApiClients'
 import { CacheManager } from 'src/services/cacheManager'
 
 interface Services {
-  cookieManager?: CookieManager
-  cacheManager?: CacheManager
-  apiClient?: ApiClient
+  cookieManager: CookieManager
+  cacheManager: CacheManager
+  apiClient: ApiClient
 }
 
 const serviceMap = new Map<keyof Services, any>()

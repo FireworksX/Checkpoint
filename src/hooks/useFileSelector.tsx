@@ -56,6 +56,10 @@ export const useFileSelector = (options?: Props) => {
     ),
     select,
     files,
-    readFiles
+    readFiles,
+    reset: () => {
+      setFiles([])
+      setReadFiles([])
+    }
   }
 }

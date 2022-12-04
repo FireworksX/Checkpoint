@@ -7,7 +7,7 @@ require('dotenv').config({
 import { FilledContext } from 'react-helmet-async'
 import { Request, Response } from 'express'
 import { apiProxy } from './proxy/apiProxy'
-import {gqlProxy} from "./proxy/gqlProxy";
+import { gqlProxy } from './proxy/gqlProxy'
 const fs = require('fs')
 const path = require('path')
 const express = require('express')

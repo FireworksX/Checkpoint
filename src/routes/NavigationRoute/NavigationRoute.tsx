@@ -23,21 +23,7 @@ interface NavigationRouteProps {
 }
 
 const NavigationRoute: FC<NavigationRouteProps> = ({ className, children }) => {
-  const { citySlug, getParam, route } = useRouter()
   const hasNavigation = useRecoilValue(hasNavigationAtom)
-  const paramCitySlug = getParam(ROUTE_PARAMS.citySlug)
-  const isNavigationRoute = route.name === buildName(ROUTE_NAMES.navigation)
-
-  const { link: cityListLink } = useLinkConfig('cityList')
-  const { link: cityInfoLink, routeParams } = useLinkConfig('cityInfo', { citySlug: citySlug || 'empty' })
-
-  if (isNavigationRoute) {
-    if (!citySlug) {
-      return <Redirect routeName={cityListLink.name} />
-    } else if (citySlug && !paramCitySlug) {
-      return <Redirect routeName={cityInfoLink.name} params={routeParams} />
-    }
-  }
 
   return (
     <Styled.Root className={className}>

@@ -7,10 +7,8 @@ export type CookiesType = DeepPartial<{
     lng: number
     zoom: number
   }
-  userMail: string
   accessToken: string
   refreshToken: string
-  citySlug: string
 }>
 
 export interface CookieManager<T extends CookiesType = CookiesType> {

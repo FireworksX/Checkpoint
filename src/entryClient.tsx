@@ -29,8 +29,6 @@ const { apiClient, gqlClient } = createApiClients({ cookieManager, ssrCache, fet
 
 addService('apiClient', apiClient)
 
-const Application = (
-  <App router={router} cookieManager={cookieManager} urqlClient={gqlClient} />
-)
+const Application = <App router={router} cookieManager={cookieManager} urqlClient={gqlClient} />
 
 ReactDOM.hydrate(Application, document.getElementById('app'))

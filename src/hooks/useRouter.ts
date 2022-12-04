@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo } from 'react'
 import { useRoute } from 'react-router5'
-import { ROUTE_PARAMS } from 'src/router/constants'
+import {ROUTE_NAMES, ROUTE_PARAMS} from 'src/router/constants'
 import useCookies from './useCookies'
 import { Params } from 'router5/dist/types/base'
 
@@ -8,8 +8,6 @@ export type Router = ReturnType<typeof useRouter>
 
 export const useRouter = () => {
   const { route, router } = useRoute()
-  const [cookieCitySlug, setCookieCitySlug] = useCookies('citySlug')
-  const citySlug = route.params[ROUTE_PARAMS.citySlug]
 
   const getLastSegment = useCallback((name: string | null | undefined) => {
     return name?.match(/\w+$/)?.[0] || null
@@ -38,20 +36,8 @@ export const useRouter = () => {
     [router]
   )
 
-  const defaultParams = useMemo(
-    () => ({
-      [ROUTE_PARAMS.citySlug]:
-        route?.params?.[ROUTE_PARAMS.citySlug] ?? (cookieCitySlug === 'undefined' ? undefined : cookieCitySlug),
-      [ROUTE_PARAMS.locationSlug]: route?.params?.[ROUTE_PARAMS.locationSlug]
-    }),
-    [route, cookieCitySlug]
-  )
-
-  useEffect(() => {
-    if (citySlug) {
-      setCookieCitySlug(citySlug)
-    }
-  }, [citySlug, setCookieCitySlug])
+  const isActive = (segmentName: keyof typeof ROUTE_NAMES) =>
+      Boolean((route.name).match(new RegExp(`(\\.|^)${segmentName}(\\.|$)`)))
 
   return {
     routerInstance: router,
@@ -60,9 +46,9 @@ export const useRouter = () => {
     back: router.historyBack,
     forward: router.historyForward,
     backSafe,
+    isActive,
     route,
     history: [],
     navigate: router.navigate,
-    ...defaultParams
   }
 }

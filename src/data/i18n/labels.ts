@@ -1,6 +1,6 @@
 export const labels = {
-    validationMaxLength: (value: number) => `Макс. длина ${value}`,
-    validationMinLength: (value: number) => `Мин. длина ${value}`,
-    validationRequired: 'Обязательное поле',
-    validationEmail: 'Должна быть электронная почта',
+    validationMaxLength: (value: number) => `Max. length ${value}`,
+    validationMinLength: (value: number) => `Min. length ${value}`,
+    validationRequired: 'Required field',
+    validationEmail: 'Need e-mail address',
 }

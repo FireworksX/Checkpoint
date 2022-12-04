@@ -9,6 +9,7 @@ import isBrowser from '../isBrowser'
 import { SSRData } from '@urql/core/dist/types/exchanges/ssr'
 
 export interface ApiClientOptions {
+  baseURL?: string
   cookieManager?: CookieManager
   ssrCache?: AnyObject<SSRData>
   fetcher?: typeof fetch
@@ -20,13 +21,13 @@ export interface ApiClient {
   post<T, D = any>(path: string, data?: D, config?: AxiosRequestConfig): Promise<T>
 }
 
-const DEFAULT_OPTIONS: ApiClientOptions = {}
+const DEFAULT_OPTIONS: ApiClientOptions = {
+  baseURL: ''
+}
 
-const createRestClient = ({ cookieManager } = DEFAULT_OPTIONS): ApiClient => {
-  const BASE_URL = `${import.meta.env.VITE_CURRENT_DOMAIN}/api/v1`
-
+const createRestClient = ({ cookieManager, baseURL } = DEFAULT_OPTIONS): ApiClient => {
   const restClient = axios.create({
-    baseURL: BASE_URL
+    baseURL
   })
 
   restClient.interceptors.request.use(req => {
@@ -78,11 +79,7 @@ const createGqlClient = ({ ssrCache, fetcher = fetch }: ApiClientOptions) => {
     url: '/graphql',
     fetch: fetcher,
     suspense: !isBrowser,
-    exchanges: [
-      dedupExchange,
-      ssrCacheStore,
-      fetchExchange
-    ]
+    exchanges: [dedupExchange, ssrCacheStore, fetchExchange]
   })
 
   return {
@@ -94,8 +91,7 @@ const createGqlClient = ({ ssrCache, fetcher = fetch }: ApiClientOptions) => {
 export const createApiClients = ({ cookieManager, ssrCache, fetcher, ip } = DEFAULT_OPTIONS) => {
   const defaults: Omit<RequestInit, 'headers'> & { headers: Record<string, string> } = {
     credentials: 'include',
-    headers: {
-    }
+    headers: {}
   }
 
   if (ip) {
@@ -117,7 +113,7 @@ export const createApiClients = ({ cookieManager, ssrCache, fetcher, ip } = DEFA
     })
   }
 
-  const apiClient = createRestClient({ cookieManager })
+  const apiClient = createRestClient({ cookieManager, baseURL: `${import.meta.env.VITE_CURRENT_DOMAIN}/api` })
   const { client: gqlClient, ssrCacheStore } = createGqlClient({ ssrCache, fetcher: wrappedFetch })
 
   return { apiClient, gqlClient, ssrCacheStore }

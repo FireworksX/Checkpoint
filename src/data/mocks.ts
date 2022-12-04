@@ -46,18 +46,21 @@ const locations = [
   {
     type: 'place',
     name: 'meil.bali',
+    slug: 'meil.bali',
     location: 'Bali, Indonesia',
     logo: 'https://sun9-84.userapi.com/impg/5fEM96FZsza6mVzbBaxwwWNvUaTVol6RzsoyDQ/zJnJ0aBc3WU.jpg?size=100x100&quality=95&sign=7372f3f7b0748b9de6466e83e0b07477&type=album'
   },
   {
     type: 'place',
     name: 'The Coffee Club',
+    slug: 'the_coffee_club',
     location: 'Phuket, Thailand',
     logo: 'https://sun9-38.userapi.com/impg/jPsYTlllNXXSDN-CjXnNZ9PvvLadng9lbXHbhQ/RGx6_wIirAE.jpg?size=100x100&quality=95&sign=a45f001cdfc68dd2801fbd06d11fca8c&type=album'
   },
   {
     type: 'place',
     name: 'Rebeir Cafe',
+    slug: 'rebeir_cafe',
     location: 'Bangkok, Thailand',
     logo: 'https://sun9-49.userapi.com/impg/SoGUD6W2Bn3Ix6iz8wBB-klidlxdaxOHhcmssQ/f-xE6ob2FRk.jpg?size=100x100&quality=95&sign=7780d71569d9529c90a6d3f544e74a8a&type=album'
   }
@@ -82,7 +85,7 @@ const commentText = [
 const getRandomDate = () => `202${random(1, 2)}-${random(10, 12)}-01 ${random(1, 23)}:${random(10, 59)}`
 const getRandomBool = () => !!random(0, 1)
 export const getRandomUser = () => randomArray(users)
-const getRandomLocation = () => randomArray(locations)
+export const getRandomLocation = () => randomArray(locations)
 const getRandomPostSlug = () => randomArray(postSlugs)
 const getRandomComment = () => ({
   user: getRandomUser(),

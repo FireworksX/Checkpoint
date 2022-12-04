@@ -19,7 +19,8 @@ const ROUTE_NAMES = createConstants(
   'userReview',
   'userFollowers',
   'userSubscribers',
-  'postDetail'
+  'postDetail',
+    'locationDetail'
 )
 type RouteNamesType = keyof typeof ROUTE_NAMES
 

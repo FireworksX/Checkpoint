@@ -4,6 +4,10 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import { useScreenSize } from '../../../hooks/useScreenSize'
 import { useModal } from '../../../hooks/useModal'
 import { MODAL_NAMES } from 'src/router/constants'
+import { PostPreviewModalContext } from '../../../modals/PostPreviewModal/PostPreviewModal'
+import LocationCard from '../../../widgets/LocationCard/LocationCard'
+import { getRandomPost } from '../../../data/mocks'
+import Link from '../../../widgets/Link/Link'
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiZmlyZXdvcmtzeHMiLCJhIjoiY2xhd2QycWwwMGVnczN2cGdraXZwc2dpayJ9.pCxhrZN43fOdF_cLo6uTgA'
 
@@ -14,7 +18,9 @@ export const useMap = () => {
   const [lat, setLat] = useState(50.5)
   const [zoom, setZoom] = useState(9)
 
-  const { open } = useModal(MODAL_NAMES.postPreview)
+  const post = getRandomPost()
+
+  const { open, close } = useModal<PostPreviewModalContext>(MODAL_NAMES.postPreview)
 
   const onMove = useCallback(() => {
     if (map.current) {
@@ -40,8 +46,19 @@ export const useMap = () => {
 
       map.current.on('move', onMove)
       map.current.on('click', () => {
-        console.log('click')
-        open()
+        open({
+          content: post.content,
+          author: post.user,
+          target: (
+            <Link type='location' locationSlug={post.target?.slug || ''} waitNavigate={close}>
+              <LocationCard
+                name={post.target?.name || ''}
+                location={post.target?.location || ''}
+                avatar={post.target?.logo}
+              />
+            </Link>
+          )
+        })
       })
 
       if (map.current) {

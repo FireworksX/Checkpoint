@@ -29,8 +29,6 @@ interface UserRouteProps {
 
 const UserRoute: FC<UserRouteProps> = ({ className }) => {
   const { citySlug } = useRouter()
-  const {
-  } = useUserRoute()
 
   const user = getRandomUser()
   const posts = getRandomList(random(3, 35), getRandomPost)
@@ -45,7 +43,6 @@ const UserRoute: FC<UserRouteProps> = ({ className }) => {
       title={<Username>{user?.username}</Username>}
       description='Profile'
       headerLeft={<PageHeaderButtonBack />}
-      fetching={userFetching}
     >
       <UserHeader
         avatar={user?.avatar}

@@ -72,7 +72,11 @@ const ProfileRoute: FC<ProfileRouteProps> = ({ className }) => {
             refer={post.refer}
             content={post.content}
             metrics={post.metrics}
-            target={<LocationCard avatar={post.target.logo} name={post.target?.name} location={post.target?.location} />}
+            target={
+              <Link type='location' locationSlug={post.target.slug}>
+                <LocationCard avatar={post.target.logo} name={post.target?.name} location={post.target?.location} />
+              </Link>
+            }
             selfActions={post.selfActions}
           />
         ))}

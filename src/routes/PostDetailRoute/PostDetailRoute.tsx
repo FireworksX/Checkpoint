@@ -54,7 +54,7 @@ const PostDetailRoute: FC<PostDetailRouteProps> = ({ className }) => {
         <Styled.Text>{post.content}</Styled.Text>
         <Styled.Date>10:06 - Nov 23, 2022</Styled.Date>
 
-        <Styled.Target>
+        <Styled.Target type='location' locationSlug='testLocation'>
           <LocationCard
             name={post.target?.name || ''}
             location={post.target?.location || ''}

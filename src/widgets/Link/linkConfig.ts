@@ -46,6 +46,10 @@ const linkConfig = {
     name: buildName(ROUTE_NAMES.navigation, ROUTE_NAMES.postDetail),
     params: { required: [ROUTE_PARAMS.postSlug], optional: [] }
   },
+  location: {
+    name: buildName(ROUTE_NAMES.navigation, ROUTE_NAMES.locationDetail),
+    params: { required: [ROUTE_PARAMS.locationSlug], optional: [] }
+  },
 } as const
 
 export type LinkConfig = typeof linkConfig

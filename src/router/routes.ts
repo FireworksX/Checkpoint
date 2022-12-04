@@ -83,6 +83,11 @@ export const routes: Route[] = [
             component: routeComponents.PostDetailRoute
           },
           {
+            name: ROUTE_NAMES.locationDetail,
+            path: `location/:${ROUTE_PARAMS.locationSlug}`,
+            component: routeComponents.LocationDetailRoute
+          },
+          {
             name: ROUTE_NAMES.map,
             path: 'map',
             component: routeComponents.MapRoute

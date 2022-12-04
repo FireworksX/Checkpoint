@@ -7,7 +7,7 @@ import Button from "../../components/Button/Button";
 import DisplayText from "../../widgets/DisplayText/DisplayText";
 
 export const Root = styled(Container)`
-  padding-top: 30px;
+  padding-top: 10px;
   padding-bottom: 50px;
 `
 

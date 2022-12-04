@@ -5,6 +5,7 @@ import Touchable from '../../components/Touchable/Touchable'
 import Button from '../../components/Button/Button'
 import CommentCard from '../../components/CommentCard/CommentCard'
 import DisplayText from '../../widgets/DisplayText/DisplayText'
+import Link from "../../widgets/Link/Link";
 
 interface Props {
   hasRefer?: boolean
@@ -36,7 +37,7 @@ export const Date = styled.div`
   margin-bottom: 15px;
 `
 
-export const Target = styled.div`
+export const Target = styled(Link)`
   margin-bottom: 15px;
 `
 

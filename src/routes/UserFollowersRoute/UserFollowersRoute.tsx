@@ -15,25 +15,24 @@ const UserFollowersRoute: FC<ProfileRouteProps> = ({ className }) => {
   const { user, followers } = useUserFollowersRoute()
 
   return (
-    <Styled.Root className={className}>
-      <Styled.Header left={<PageHeaderButtonBack />}>
-        <Styled.HeaderTitle>
-          <Username>{user?.username}</Username>
-        </Styled.HeaderTitle>
-      </Styled.Header>
-
+    <Styled.Root
+      className={className}
+      title={<Username>{user?.userName}</Username>}
+      headerLeft={<PageHeaderButtonBack />}
+      description='Followers'
+    >
       <Styled.Wrapper>
         {followers?.map(follower => (
           <Styled.UserCard
             key={follower._id}
-            username={follower?.username}
+            userName={follower?.userName}
             firstName={follower?.firstName}
             lastName={follower?.lastName}
             verify={follower?.verify}
             phone={follower?.phone}
             appLinkProps={{
               type: 'user',
-              userSlug: follower.username!
+              userSlug: follower.userName!
             }}
           />
         ))}
@@ -42,4 +41,4 @@ const UserFollowersRoute: FC<ProfileRouteProps> = ({ className }) => {
   )
 }
 
-export default route(withValidateUser(UserFollowersRoute), ROUTE_NAMES.userFollowers)
+export default route(UserFollowersRoute, ROUTE_NAMES.userFollowers)

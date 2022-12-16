@@ -7,10 +7,10 @@ import { ROUTE_NAMES } from 'src/router/constants'
 import 'src/utils/dayjs-timezone'
 import { RootRouteHead } from './RootRouteHead'
 import { FontStyles } from 'src/styles/FontStyles'
-import {useRootRoute} from "./hooks/useRootRoute";
+import { useRootRoute } from './hooks/useRootRoute'
 
 const RootRoute: FC = ({ children }) => {
-    useRootRoute()
+  useRootRoute()
 
   return (
     <AppHelpers>

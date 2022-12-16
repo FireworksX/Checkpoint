@@ -7,6 +7,7 @@ import { useCallback, useRef, useState } from 'react'
 import { PageRef } from '../../../../../widgets/Page/Page'
 import { useUploadFile } from '../../../../../hooks/data/useUploadFile'
 import { useToggle } from 'react-use'
+import {useIsomorphicEffect} from "../../../../../hooks/useIsomorphicEffect";
 
 interface Props {
   email: string
@@ -26,7 +27,6 @@ export const useWelcomeRegister = ({ email, onRegister }: Props) => {
 
     if (token) {
       const { data: response } = await registerUser({
-        email,
         token,
         ...data
       })
@@ -42,13 +42,14 @@ export const useWelcomeRegister = ({ email, onRegister }: Props) => {
     }
   }
 
-  const { fields, getValues, avatarText, onSubmitForm } = useProfileInfoFields(email, onSubmit)
+  const { fields, getValues, avatarText, setValue, onSubmitForm } = useProfileInfoFields(onSubmit)
+
+  useIsomorphicEffect(() => {
+    setValue('email', email)
+  }, [email])
 
   return {
-    fields: {
-      ...fields,
-      email: email
-    },
+    fields,
     pageRef,
     avatarText,
     getValues,

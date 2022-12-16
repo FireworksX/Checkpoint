@@ -36,18 +36,18 @@ const PostDetailRoute: FC<PostDetailRouteProps> = ({ className }) => {
     <Styled.Root className={className} headerLeft={<PageHeaderButtonBack />} title='Post'>
       <Container>
         {refer && isBrowser && (
-          <Styled.ConnectedSection>Connected from @{refer.user?.username}</Styled.ConnectedSection>
+          <Styled.ConnectedSection>Connected from @{refer.user?.userName}</Styled.ConnectedSection>
         )}
         <div />
 
-        <Link type='user' userSlug={post.user?.username || ''}>
+        <Link type='user' userSlug={post.user?.userName || ''}>
           <Styled.Header
             hasRefer={!!refer}
             verify={post.user?.verify}
             avatar={post.user?.avatar}
             firstName={post.user?.firstName}
             lastName={post.user?.lastName}
-            username={post.user?.username}
+            userName={post.user?.userName}
           />
         </Link>
 

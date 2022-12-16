@@ -1,5 +1,7 @@
+type CacheEntityKey = 'x-user-ip'
+
 export const cacheManager = () => {
-  const cache = new Map()
+  const cache = new Map<CacheEntityKey, any>()
   const id = Date.now()
 
   return {

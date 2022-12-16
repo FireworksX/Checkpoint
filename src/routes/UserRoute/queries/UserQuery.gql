@@ -1,0 +1,9 @@
+query User($userName: String!, $token: String!) {
+  getUserInfo(input: { userName: $userName, token: $token }) {
+    status
+    firstName
+    lastName
+    userName
+    avatar
+  }
+}

@@ -1,0 +1,3 @@
+mutation UnSubscribeUserMutation($userName: String!, $token: String!) {
+  unSubscribe(input: { userName: $userName, token: $token })
+}

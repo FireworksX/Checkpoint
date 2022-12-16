@@ -1,0 +1,8 @@
+query UserConnections($userName: String!) {
+  userConnections(userName: $userName) {
+    firstName
+    lastName
+    userName
+    avatar
+  }
+}

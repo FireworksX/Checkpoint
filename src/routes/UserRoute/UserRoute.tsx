@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, useState } from 'react'
 import * as Styled from './styles'
 import { route } from 'src/hoc/route'
 import { ROUTE_NAMES } from 'src/router/constants'
@@ -10,7 +10,6 @@ import Placeholder from 'src/components/Placeholder/Placeholder'
 import { staticImagesMap } from 'src/data/staticImagesMap'
 import Username from 'src/components/Username/Username'
 import SubscribeContainer from 'src/widgets/SubscribeContainer/SubscribeContainer'
-import SubscribeButton from 'src/widgets/SubscribeContainer/components/SubscribeButton/SubscribeButton'
 import { DEFAULT_ALL_CATEGORY } from '../ProfileRoute/hooks/useProfileRoute'
 import Link from 'src/widgets/Link/Link'
 import { useRouter } from 'src/hooks/useRouter'
@@ -22,6 +21,9 @@ import { random } from '../../utils/random'
 import Post from '../../widgets/Post/Post'
 import LocationCard from '../../widgets/LocationCard/LocationCard'
 import isBrowser from '../../utils/isBrowser'
+import ConnectContainer from '../../widgets/ConnectContainer/ConnectContainer'
+import { useToggle } from 'react-use'
+import ButtonStates from '../../components/ButtonStates/ButtonStates'
 
 interface UserRouteProps {
   className?: string
@@ -29,8 +31,11 @@ interface UserRouteProps {
 
 const UserRoute: FC<UserRouteProps> = ({ className }) => {
   const { citySlug } = useRouter()
+  const [isConnecting, setIsConnecting] = useState(false)
+  const [isFollowing, setIsFollowing] = useState(false)
 
-  const user = getRandomUser()
+  const { user } = useUserRoute()
+
   const posts = getRandomList(random(3, 35), getRandomPost)
 
   if (!isBrowser) {
@@ -40,22 +45,33 @@ const UserRoute: FC<UserRouteProps> = ({ className }) => {
   return (
     <Styled.Root
       className={className}
-      title={<Username>{user?.username}</Username>}
+      title={<Username>{user?.userName}</Username>}
       description='Profile'
       headerLeft={<PageHeaderButtonBack />}
     >
       <UserHeader
         avatar={user?.avatar}
-        username={user?.username}
+        userName={user?.userName}
         firstName={user?.firstName}
         lastName={user?.lastName}
         verify={user?.verify}
         bio={user?.bio}
         actions={
           <Styled.HeaderActions>
-            <Button size='l' mode='secondary' stretched>
-              Follow
-            </Button>
+            <SubscribeContainer isSubscribing={isFollowing} targetId={user?.userName}>
+              {({ onClick }) => (
+                <ButtonStates
+                  size='l'
+                  stretched
+                  mode='secondary'
+                  states={[{ children: 'Follow' }, { children: 'Following' }]}
+                  stateIndex={isFollowing ? 1 : 0}
+                  onClick={async e => {
+                    setIsFollowing(await onClick(e))
+                  }}
+                />
+              )}
+            </SubscribeContainer>
             <Button size='l' mode='secondary' stretched>
               Message
             </Button>
@@ -64,18 +80,24 @@ const UserRoute: FC<UserRouteProps> = ({ className }) => {
       />
 
       <Styled.SubscribeContainer>
-        <SubscribeContainer targetId={user?._id}>
-          {({ isFollowing, onClick }) => (
-            <SubscribeButton
-              size='xl'
+        <ConnectContainer isConnecting={isConnecting} targetId={user?.userName}>
+          {({ onClick }) => (
+            <ButtonStates
               icon='lightning'
+              size='xl'
               stretched
-              labels={['Connecting', 'Connect']}
-              isFollowing={isFollowing}
-              onClick={onClick}
+              states={[
+                { children: 'Connect', mode: 'primary' },
+                { children: 'Connecting', mode: 'secondary' }
+              ]}
+              stateIndex={isConnecting ? 1 : 0}
+              onClick={async e => {
+                const res = await onClick(e)
+                setIsConnecting(res)
+              }}
             />
           )}
-        </SubscribeContainer>
+        </ConnectContainer>
       </Styled.SubscribeContainer>
 
       <Container>

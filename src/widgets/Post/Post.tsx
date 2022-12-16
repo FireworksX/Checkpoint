@@ -10,6 +10,7 @@ interface PostProps {
   className?: string
   slug: string
   target: ReactNode
+  header?: ReactNode
   content?: string
   author: MockUser
   refer?: {
@@ -26,38 +27,27 @@ interface PostProps {
   }
 }
 
-const Post: FC<PostProps> = ({ className, target, slug, selfActions, author, content, refer, metrics }) => {
-  const authorPlaceholder = useInitialAvatarPlaceholder(author)
+const Post: FC<PostProps> = ({ className, target, header, slug, selfActions, author, content, refer, metrics }) => {
   const authorRefer = useInitialAvatarPlaceholder(refer?.user)
 
   return (
     <Styled.Root className={className} hasRefer={!!refer}>
       {!!refer && (
-        <Link type='user' userSlug={refer.user.username}>
+        <Link type='user' effect='none' userSlug={refer.user.userName}>
           <Styled.Connected>
-            <Styled.ConnectedAvatar size={20} uniqueId={refer.user.username}>
+            <Styled.ConnectedAvatar size={20} uniqueId={refer.user.userName}>
               {authorRefer}
             </Styled.ConnectedAvatar>
-            <DisplayText>Connected from @{refer.user.username}</DisplayText>
+            <DisplayText>Connected from @{refer.user.userName}</DisplayText>
           </Styled.Connected>
         </Link>
       )}
-      <Styled.Body>
-        <Link type='user' userSlug={author.username}>
-          <Styled.Header
-            verify={author.verify}
-            avatar={author.avatar}
-            username={author.username}
-            firstName={author.firstName}
-            lastName={author.lastName}
-            description='2h ago'
-          >
-            {authorPlaceholder}
-          </Styled.Header>
-        </Link>
+      <Styled.Body hasHeader={!!header}>
+        {header}
 
         <Link type='post' postSlug={slug}>
           <Styled.Text>{content}</Styled.Text>
+          <Styled.Date>10:06 - Nov 23, 2022</Styled.Date>
         </Link>
         <Styled.Target>{target}</Styled.Target>
         <Styled.Actions>

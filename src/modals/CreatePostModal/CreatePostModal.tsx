@@ -19,7 +19,7 @@ const CreatePostModal: FC<CreatePostModalProps> = ({ className }) => {
   return (
     <BottomSheet name={MODAL_NAMES.postCreate} withHeader autoClose>
       <Styled.Root className={className}>
-        <Styled.Header firstName='Arthur' lastName='Abeltinsh' username='fireworks' />
+        <Styled.Header firstName='Arthur' lastName='Abeltinsh' userName='fireworks' />
         <Styled.Text>
           Was great meeting up with @annaferguson and Dave Bishop at the breakfast talk! 🍕#breakfast
         </Styled.Text>

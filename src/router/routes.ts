@@ -69,6 +69,11 @@ export const routes: Route[] = [
                 name: ROUTE_NAMES.userSubscribers,
                 path: `/subscribers`,
                 component: routeComponents.UserSubscribersRoute
+              },
+              {
+                name: ROUTE_NAMES.userConnections,
+                path: `/connections`,
+                component: routeComponents.UserConnectionsRoute
               }
             ]
           },

@@ -1,14 +1,14 @@
-import {FC, ReactNode, useEffect, useMemo} from 'react'
+import { FC, ReactNode, useEffect, useMemo } from 'react'
 import * as Styled from './styles'
 import { InputProps } from 'src/components/Input/Input'
 import Button from '../../components/Button/Button'
 import { useFileSelector } from '../../hooks/useFileSelector'
-import {ResetAvatar} from "./styles";
-import Icon from "../../components/Icon/Icon";
+import { ResetAvatar } from './styles'
+import Icon from '../../components/Icon/Icon'
 
 interface ProfileFields {
   mail: string
-  username: InputProps
+  userName: InputProps
   firstName: InputProps
   lastName: InputProps
   bio: Omit<InputProps, 'textarea'>
@@ -27,7 +27,7 @@ interface ProfileInfoFieldsProps {
 const ProfileInfoFields: FC<ProfileInfoFieldsProps> = ({
   className,
   fields,
-    formChildren,
+  formChildren,
   avatar,
   avatarText,
   onSubmit,
@@ -56,7 +56,7 @@ const ProfileInfoFields: FC<ProfileInfoFieldsProps> = ({
       </Styled.AvatarWrapper>
 
       <form onSubmit={onSubmit}>
-        <Styled.Field label='Username' placeholder='mikedeal' {...fields.username} />
+        <Styled.Field label='Username' placeholder='mikedeal' {...fields.userName} />
         <Styled.Field label='First name' placeholder='Mike' {...fields.firstName} />
         <Styled.Field label='Last name' placeholder='Deal' {...fields.lastName} />
         {/*<Styled.Field label='Bio' textarea {...fields.bio} />*/}

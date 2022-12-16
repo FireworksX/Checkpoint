@@ -1,5 +1,5 @@
-mutation RegisterUser($email: String!, $username: String!, $token: String!, $firstName: String!, $lastName: String) {
-  register(input: { email: $email, token: $token, userName: $username, firstName: $firstName, lastName: $lastName }) {
+mutation RegisterUser($email: String!, $userName: String!, $token: String!, $firstName: String, $lastName: String) {
+  register(input: { email: $email, token: $token, userName: $userName, firstName: $firstName, lastName: $lastName }) {
     userName
     firstName
     lastName

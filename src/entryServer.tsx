@@ -14,10 +14,15 @@ import { cacheManager } from './services/cacheManager'
 import fetch from 'node-fetch'
 
 export async function render(url: string, ctx: AppContext) {
-  const ip = getClientIp(ctx.req)
+  let ip = getClientIp(ctx.req)
+
+  if (ip === '::1') {
+    ip = '109.124.91.130'
+  }
 
   const { addService } = serviceContainer()
   const cacheManagerInstance = cacheManager()
+  cacheManagerInstance.set('x-user-ip', ip)
 
   const cookieManager = serverCookieManager(ctx.req, ctx.res, appConfig.COOKIE_PREFIX)
 
@@ -33,12 +38,7 @@ export async function render(url: string, ctx: AppContext) {
   const helmetContext = {} as FilledContext
 
   const Application = (
-    <App
-      router={router}
-      helmetContext={helmetContext}
-      cookieManager={cookieManager}
-      urqlClient={gqlClient}
-    />
+    <App router={router} helmetContext={helmetContext} cookieManager={cookieManager} urqlClient={gqlClient} />
   )
 
   const sheet = new ServerStyleSheet()

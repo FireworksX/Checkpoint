@@ -9,21 +9,21 @@ import Button from "../Button/Button";
 import SubscribeButton from "../../widgets/SubscribeContainer/components/SubscribeButton/SubscribeButton";
 import {FollowButton} from "./styles";
 
-interface UserRowCardProps extends Pick<BaseUser, 'username' | 'firstName' | 'lastName' | 'mail' | 'verify'> {
+interface UserRowCardProps extends Pick<BaseUser, 'userName' | 'firstName' | 'lastName' | 'mail' | 'verify'> {
   appLinkProps?: LinkProps
   className?: string
 }
 
 const UserRowCard: FC<UserRowCardProps> = ({
   className,
-  username,
+  userName,
   firstName,
   verify,
   lastName,
   mail,
   appLinkProps
 }) => {
-  const avatarText = useInitialAvatarPlaceholder({ username, firstName, lastName })
+  const avatarText = useInitialAvatarPlaceholder({ userName, firstName, lastName })
 
   return (
     <Styled.Root className={className} {...appLinkProps}>
@@ -33,11 +33,11 @@ const UserRowCard: FC<UserRowCardProps> = ({
           {buildFullName(firstName, lastName)}
           {verify && <Styled.VerifyIcon />}
         </Styled.Title>
-        <Styled.Description>{username}</Styled.Description>
+        <Styled.Description>{userName}</Styled.Description>
       </div>
 
       <Styled.FollowButton>
-        <SubscribeButton isFollowing/>
+        {/*<SubscribeButton isFollowing/>*/}
       </Styled.FollowButton>
     </Styled.Root>
   )

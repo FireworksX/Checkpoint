@@ -6,6 +6,7 @@ import DisplayText from '../DisplayText/DisplayText'
 
 interface Props {
   hasRefer?: boolean
+  hasHeader?: boolean
 }
 
 export const Root = styled.div<Props>`
@@ -13,10 +14,10 @@ export const Root = styled.div<Props>`
   ${({ hasRefer }) => hasRefer && 'padding-top: 44px;'}
 `
 
-export const Body = styled.div`
+export const Body = styled.div<Props>`
   background: ${({ theme }) => theme.colors.backgroundCard};
   border: 1px solid ${({ theme }) => theme.colors.borderCard};
-  padding: 10px 15px;
+  padding: ${({ hasHeader }) => (hasHeader ? '10px' : '20px')} 15px 10px 15px;
   border-radius: ${({ theme }) => theme.baseStyles.radius.radiusMain};
   position: relative;
 `
@@ -39,27 +40,15 @@ export const ConnectedAvatar = styled(Avatar)`
   margin-right: 10px;
 `
 
-export const Header = styled(UserHeader)`
-  margin-bottom: 15px;
-`
-
-export const UserAvatar = styled(Avatar)`
-  margin-right: 10px;
-`
-
-export const UserName = styled.div`
-  ${({ theme }) => theme.typography.text_16_20};
-  font-weight: bold;
-`
-
 export const Date = styled.div`
-  ${({ theme }) => theme.typography.text_12_16};
+  ${({ theme }) => theme.typography.text_12_16}
   color: ${({ theme }) => theme.colors.secondary};
+  margin-bottom: 15px;
 `
 
 export const Text = styled(DisplayText)`
-  ${({ theme }) => theme.typography.text_16_20};
-  margin-bottom: 15px;
+  ${({ theme }) => theme.typography.text_20_24};
+  margin-bottom: 5px;
 `
 
 export const Target = styled.div`

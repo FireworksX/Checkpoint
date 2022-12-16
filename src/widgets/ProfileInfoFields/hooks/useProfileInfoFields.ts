@@ -5,7 +5,8 @@ import { validationRules } from 'src/data/validationRules'
 import {useUsernameExistsQuery} from "../queries/UsernameExistsQuery";
 
 export interface UserFields {
-  username: string
+  email: string
+  userName: string
   firstName?: string
   lastName?: string
   bio?: string
@@ -13,29 +14,29 @@ export interface UserFields {
 
 type OnSubmit = (fields: UserFields) => any
 
-export const useProfileInfoFields = (email: string, onSubmit: OnSubmit) => {
+export const useProfileInfoFields = (onSubmit: OnSubmit) => {
   const { register, handleSubmit, getValues, setValue, errors, isSubmitted } = useForm<UserFields>()
 
-  const [proxyUsername, setProxyUsername] = useState('')
+  const [proxyUserName, setProxyUserName] = useState('')
   const [{data: userExist}] = useUsernameExistsQuery({
     variables: {
-      username: proxyUsername
+      userName: proxyUserName
     }
   })
 
-  const usernameFieldOptions = useMemo(() => {
+  const userNameFieldOptions = useMemo(() => {
     if (isSubmitted) {
-      if (proxyUsername.length > 3) {
-        if ('username' in errors) {
+      if (proxyUserName.length > 3) {
+        if ('userName' in errors) {
           return {
             status: 'error' as const,
-            statusText: errors.username?.message
+            statusText: errors.userName?.message
           }
         }
         if (userExist?.usernameExists) {
           return {
             status: 'error' as const,
-            statusText: 'This username already exists.'
+            statusText: 'This userName already exists.'
           }
         } else {
           return {
@@ -44,10 +45,11 @@ export const useProfileInfoFields = (email: string, onSubmit: OnSubmit) => {
         }
       }
     }
-  }, [userExist, proxyUsername.length, errors, isSubmitted])
+  }, [userExist, proxyUserName.length, errors, isSubmitted])
 
   const onSubmitForm = handleSubmit(async data => {
-    if (usernameFieldOptions?.status === 'error') {
+    console.log(data);
+    if (userNameFieldOptions?.status === 'error') {
       return
     }
 
@@ -55,26 +57,26 @@ export const useProfileInfoFields = (email: string, onSubmit: OnSubmit) => {
   })
 
   const avatarText = useInitialAvatarPlaceholder({
-    username: getValues('username'),
+    userName: getValues('userName'),
     firstName: getValues('firstName'),
     lastName: getValues('lastName')
   })
 
   return {
     fields: {
-      username: {
-        ...register('username', {
+      userName: {
+        ...register('userName', {
           maxLength: validationRules.maxLength(30),
           minLength: validationRules.minLength(3),
           required: validationRules.required(),
-          onChange: ({ target: { value } }) => setProxyUsername(value)
+          onChange: ({ target: { value } }) => setProxyUserName(value)
         }),
-        ...usernameFieldOptions
+        ...userNameFieldOptions
       },
       firstName: register('firstName', { maxLength: validationRules.maxLength(30) }),
       lastName: register('lastName', { maxLength: validationRules.maxLength(30) }),
+      email: register('email', { required: validationRules.required(), pattern: validationRules.emailPattern() })
       // bio: register('bio', { maxLength: validationRules.maxLength(200) }),
-      email
     },
     setValue,
     getValues,

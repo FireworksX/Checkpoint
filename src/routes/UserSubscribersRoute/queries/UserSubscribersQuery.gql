@@ -1,0 +1,8 @@
+query UserSubscribers($userName: String!) {
+  userSubscribers(userName: $userName) {
+    firstName
+    lastName
+    userName
+    avatar
+  }
+}

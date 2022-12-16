@@ -1,0 +1,3 @@
+mutation UnConnectUser($userName: String!, $token: String!) {
+  unConnect(input: { userName: $userName, token: $token })
+}

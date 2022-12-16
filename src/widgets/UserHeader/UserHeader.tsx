@@ -7,34 +7,73 @@ import { Actions, Counters } from './styles'
 import CounterCell from './components/CounterCell/CounterCell'
 import HashtagCell from '../../components/HashtagCell/HashtagCell'
 import HorizontalScroll from '../../components/HorizontalScroll/HorizontalScroll'
+import { useRouter } from '../../hooks/useRouter'
+import { ROUTE_PARAMS } from '../../router/constants'
 
-interface UserHeaderProps extends Pick<BaseUser, 'firstName' | 'lastName' | 'mail' | 'bio' | 'username' | 'verify'> {
+interface UserHeaderProps extends Pick<BaseUser, 'firstName' | 'lastName' | 'mail' | 'bio' | 'userName' | 'verify'> {
   className?: string
   actions?: ReactNode
   avatar?: string
 }
 
-const UserHeader: FC<UserHeaderProps> = ({ className, bio, avatar, actions, firstName, lastName, verify, username, mail }) => {
-  const avatarText = useInitialAvatarPlaceholder({ username, firstName, lastName })
+const UserHeader: FC<UserHeaderProps> = ({
+  className,
+  bio,
+  avatar,
+  actions,
+  firstName,
+  lastName,
+  verify,
+  userName,
+  mail
+}) => {
+  const { getParam } = useRouter()
+  const avatarText = useInitialAvatarPlaceholder({ userName, firstName, lastName })
+  const userSlug = getParam(ROUTE_PARAMS.userSlug)
 
   return (
     <Styled.Root className={className}>
       <Styled.Wrapper>
         <Styled.Head>
-          <Styled.AvatarComponent src={avatar} uniqueId={username}>{avatarText}</Styled.AvatarComponent>
+          <Styled.AvatarComponent src={avatar} uniqueId={userName}>
+            {avatarText}
+          </Styled.AvatarComponent>
           <Styled.Counters>
-            <CounterCell value='1.214' description='Connections' />
             <CounterCell
-              appLinkProps={{
-                type: 'profileFollowers'
-              }}
+              appLinkProps={
+                userSlug
+                  ? {
+                      type: 'userConnections',
+                      userSlug
+                    }
+                  : { type: 'profileFollowers' }
+              }
+              value='1.214'
+              description='Connections'
+            />
+            <CounterCell
+              appLinkProps={
+                userSlug
+                  ? {
+                      type: 'userFollowers',
+                      userSlug
+                    }
+                  : { type: 'profileFollowers' }
+              }
               value='852'
               description='Followers'
             />
             <CounterCell
-              appLinkProps={{
-                type: 'profileSubscribers'
-              }}
+              appLinkProps={
+                userSlug
+                  ? {
+                      type: 'userSubscribers',
+                      userSlug
+                    }
+                  : {
+                      type: 'profileFollowers'
+                    }
+              }
               value='137'
               description='Following'
             />

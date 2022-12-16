@@ -1,36 +1,43 @@
 import { useProfileInfoFields, UserFields } from 'src/widgets/ProfileInfoFields/hooks/useProfileInfoFields'
-import { useCurrentUser } from 'src/hooks/data/useCurrentUser'
 import { useIsomorphicEffect } from 'src/hooks/useIsomorphicEffect'
-import { useCallback } from 'react'
+import { useCallback, useEffect } from 'react'
 import { filterObjectBy } from 'src/utils/filterBy'
 import { isValue } from 'src/utils/isValue'
+import { useCurrentUser } from '../../../hooks/data/useCurrentUser/useCurrentUser'
+import {useLinkConfig} from "../../../widgets/Link/hooks/useLinkConfig";
+import {useRouter} from "../../../hooks/useRouter";
+import {useToggle} from "react-use";
 
 export const useProfileEditRoute = () => {
-  const { user, update } = useCurrentUser()
-  const onSubmit = useCallback(
-    async (data: UserFields) => {
-      const filterData = filterObjectBy(
-        data,
-        (key, value) => isValue(value) && typeof value === 'string' && value.length > 0
-      )
-      await update(filterData)
-    },
-    [update]
-  )
+  const {backSafe} = useRouter()
+  const { user, logout, update } = useCurrentUser()
+  const profileLink = useLinkConfig('profile')
+  const [updating, toggleUpdating] = useToggle(false)
+
+  const onSubmit = useCallback(async (data: UserFields) => {
+    toggleUpdating()
+    await update()
+    toggleUpdating()
+    backSafe(profileLink.link.name, profileLink.link.params)
+    // await update(filterData)
+  }, [backSafe, update, profileLink, toggleUpdating])
 
   const { fields, getValues, avatarText, setValue, onSubmitForm } = useProfileInfoFields(onSubmit)
 
-  useIsomorphicEffect(() => {
-    user?.username && setValue('username', user?.username)
+  useEffect(() => {
+    user?.userName && setValue('userName', user?.userName)
     user?.firstName && setValue('firstName', user?.firstName)
     user?.lastName && setValue('lastName', user?.lastName)
-    user?.bio && setValue('bio', user?.bio)
-  }, [user])
+    user?.email && setValue('email', user?.email)
+    // user?.bio && setValue('bio', user?.bio)
+  }, [user, setValue])
 
   return {
     fields,
     avatarText,
     getValues,
-    onSubmitForm
+    updating,
+    onSubmitForm,
+    logout
   }
 }

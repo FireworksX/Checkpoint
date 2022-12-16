@@ -11,7 +11,8 @@ export const Root = styled.div`
 `
 
 export const Wrapper = styled.div`
-  overflow: auto;
+  overflow-x: auto;
+  overflow-y: hidden;
   display: flex;
 
   // hide scroll

@@ -6,7 +6,7 @@ export interface BaseUser {
   firstName?: string
   lastName?: string
   verify?: boolean
-  username?: string
+  userName?: string
   bio?: string
   mail?: string
   categories?: Category[]

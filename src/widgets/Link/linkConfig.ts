@@ -34,6 +34,10 @@ const linkConfig = {
     name: buildName(ROUTE_NAMES.navigation, ROUTE_NAMES.user, ROUTE_NAMES.userSubscribers),
     params: { required: [ROUTE_PARAMS.userSlug], optional: [] }
   },
+  userConnections: {
+    name: buildName(ROUTE_NAMES.navigation, ROUTE_NAMES.user, ROUTE_NAMES.userConnections),
+    params: { required: [ROUTE_PARAMS.userSlug], optional: [] }
+  },
   map: {
     name: buildName(ROUTE_NAMES.navigation, ROUTE_NAMES.map),
     params: { required: [], optional: [] }

@@ -22,14 +22,14 @@ const ProfileSubscribersRoute: FC<ProfileRouteProps> = ({ className }) => {
         {subscribers?.map(subscriber => (
           <Styled.UserCard
             key={subscriber._id}
-            username={subscriber?.username}
+            userName={subscriber?.userName}
             firstName={subscriber?.firstName}
             verify={subscriber?.verify}
             lastName={subscriber?.lastName}
             phone={subscriber?.phone}
             appLinkProps={{
               type: 'user',
-              userSlug: subscriber.username!
+              userSlug: subscriber.userName!
             }}
           />
         ))}

@@ -24,27 +24,22 @@ import PageHeaderButton from '../../widgets/PageHeader/components/PageHeaderButt
 import { currentUser, getRandomList, getRandomPost } from '../../data/mocks'
 import { random } from '../../utils/random'
 import isBrowser from '../../utils/isBrowser'
+import Username from "../../components/Username/Username";
 
 interface ProfileRouteProps {
   className?: string
 }
 
 const ProfileRoute: FC<ProfileRouteProps> = ({ className }) => {
-  const { open } = useModal(MODAL_NAMES.profileSettings)
-  const { categories, locations, onSelectCategory, locationsFetching, counters, selectedCategory } = useProfileRoute()
-  const { citySlug } = useRouter()
+  const { user, fetching } = useProfileRoute()
 
-  const user = currentUser
   const posts = getRandomList(random(3, 35), getRandomPost)
-
-  if (!isBrowser) {
-    return null
-  }
 
   return (
     <Styled.Root
       className={className}
-      title='@fireworks'
+      fetching={fetching}
+      title={<Username>{user?.userName}</Username>}
       description='Profile'
       headerRight={
         <Link type='profileSettings'>
@@ -55,11 +50,11 @@ const ProfileRoute: FC<ProfileRouteProps> = ({ className }) => {
       }
     >
       <UserHeader
-        avatar={user.avatar}
-        username={user?.username}
+        avatar={user?.avatar}
+        userName={user?.userName}
         firstName={user?.firstName}
         lastName={user?.lastName}
-        verify={user.verify}
+        verify={user?.verify}
         bio={user?.bio}
       />
 

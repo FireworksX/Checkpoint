@@ -12,7 +12,7 @@ interface CommentCardProps {
     verify?: boolean
     firstName?: string
     lastName?: string
-    username: string
+    userName: string
   }
 }
 
@@ -20,13 +20,13 @@ const CommentCard: FC<CommentCardProps> = ({ className, user, children }) => {
   return (
     <Styled.Root className={className}>
       <Styled.Header>
-        <Link type='user' userSlug={user.username}>
+        <Link type='user' userSlug={user.userName}>
           <UserHeader
             avatar={user.avatar}
             verify={user.verify}
             firstName={user.firstName}
             lastName={user.lastName}
-            username={user.username}
+            userName={user.userName}
           />
         </Link>
 

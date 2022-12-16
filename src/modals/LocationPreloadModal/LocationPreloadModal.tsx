@@ -61,14 +61,14 @@ const LocationPreloadModal: FC<LocationPreloadModalProps> = ({ className }) => {
         )}
         {author && (
           <UserRowCard
-            username={author?.username}
+            userName={author?.userName}
             firstName={author?.firstName}
             lastName={author?.lastName}
             verify={author?.verify}
             phone={author?.phone}
             appLinkProps={{
               type: 'user',
-              userSlug: author?.username || '',
+              userSlug: author?.userName || '',
               waitNavigate: navigateAfterClose
             }}
           />

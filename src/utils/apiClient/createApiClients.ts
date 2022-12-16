@@ -76,7 +76,7 @@ const createGqlClient = ({ ssrCache, fetcher = fetch }: ApiClientOptions) => {
   })
 
   const urqlClient = createClient({
-    url: '/graphql',
+    url: `${import.meta.env.VITE_CURRENT_DOMAIN}/graphql`,
     fetch: fetcher,
     suspense: !isBrowser,
     exchanges: [dedupExchange, ssrCacheStore, fetchExchange]

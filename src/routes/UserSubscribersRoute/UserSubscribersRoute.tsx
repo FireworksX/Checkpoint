@@ -15,25 +15,23 @@ const UserSubscribersRoute: FC<ProfileRouteProps> = ({ className }) => {
   const { user, subscribers } = useUserSubscribersRoute()
 
   return (
-    <Styled.Root className={className}>
-      <Styled.Header left={<PageHeaderButtonBack />}>
-        <Styled.HeaderTitle>
-          <Username>{user?.username}</Username>
-        </Styled.HeaderTitle>
-      </Styled.Header>
-
+    <Styled.Root
+      className={className}
+      title={<Username>{user?.userName}</Username>}
+      headerLeft={<PageHeaderButtonBack />}
+      description='Following'
+    >
       <Styled.Wrapper>
         {subscribers?.map(subscriber => (
           <Styled.UserCard
-            key={subscriber._id}
-            username={subscriber?.username}
+            key={subscriber.userName}
+            userName={subscriber?.userName}
             firstName={subscriber?.firstName}
             lastName={subscriber?.lastName}
             verify={subscriber?.verify}
-            phone={subscriber?.phone}
             appLinkProps={{
               type: 'user',
-              userSlug: subscriber.username!
+              userSlug: subscriber.userName
             }}
           />
         ))}
@@ -42,4 +40,4 @@ const UserSubscribersRoute: FC<ProfileRouteProps> = ({ className }) => {
   )
 }
 
-export default route(withValidateUser(UserSubscribersRoute), ROUTE_NAMES.userSubscribers)
+export default route(UserSubscribersRoute, ROUTE_NAMES.userSubscribers)

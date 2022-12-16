@@ -1,0 +1,8 @@
+query UserFollowers($userName: String!) {
+  userFollowers(userName: $userName) {
+    firstName
+    lastName
+    userName
+    avatar
+  }
+}

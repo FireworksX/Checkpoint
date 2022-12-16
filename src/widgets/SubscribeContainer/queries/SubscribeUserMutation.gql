@@ -1,0 +1,3 @@
+mutation SubscribeUser($userName: String!, $token: String!) {
+  subscribe(input: { userName: $userName, token: $token })
+}

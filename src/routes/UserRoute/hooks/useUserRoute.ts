@@ -6,6 +6,8 @@ import { useRouter } from 'src/hooks/useRouter'
 import { ROUTE_PARAMS } from 'src/router/constants'
 import { AuthUserResponse } from 'src/interfaces/User'
 import { buildFullName } from 'src/utils/buildFullName'
+import { useUserQuery } from '../queries/UserQuery'
+import { userTokens } from '../../../utils/userTokens'
 
 const DEFAULT_ALL_CATEGORY: Category = {
   _id: '',
@@ -18,5 +20,20 @@ const DEFAULT_ALL_CATEGORY: Category = {
 }
 
 export const useUserRoute = () => {
+  const { getParam } = useRouter()
+  const userName = getParam(ROUTE_PARAMS.userSlug)
+  const token = userTokens().getTokens().accessToken
 
+  const [{ data }] = useUserQuery({
+    variables: {
+      userName,
+      token
+    }
+  })
+
+  const user = data?.getUserInfo
+
+  return {
+    user
+  }
 }

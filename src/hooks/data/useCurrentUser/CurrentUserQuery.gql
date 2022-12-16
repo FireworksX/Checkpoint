@@ -1,0 +1,18 @@
+query CurrentUser($token: String!, $ip: String!) {
+  getMe(input: { token: $token, xuserip: $ip }) {
+    email
+    status
+    firstName
+    lastName
+    userName
+    avatar
+    location {
+      country
+      city
+      coords {
+        lat
+        lng
+      }
+    }
+  }
+}

@@ -4,8 +4,9 @@ import * as Styled from './styles'
 import { LinkNavigationProps } from './linkConfig'
 import { useRouter } from 'src/hooks/useRouter'
 import { useLinkConfig } from './hooks/useLinkConfig'
+import {TouchableProps} from "../../components/Touchable/Touchable";
 
-export interface LinkPropsInternal {
+export interface LinkPropsInternal extends TouchableProps{
   className?: string
   activeClassName?: string
     /**
@@ -18,7 +19,7 @@ export interface LinkPropsInternal {
 export type LinkProps = PropsWithChildren<LinkPropsInternal> & LinkNavigationProps
 
 const Link: React.FC<LinkProps> = props => {
-  const { className, type, children, activeClassName = '', onClick, waitNavigate } = props
+  const { className, type, children, activeClassName = '', onClick, waitNavigate, ...touchableProps } = props
   const router = useRouter()
   const { isSamePage, link, href, routeParams } = useLinkConfig(type || 'profile', props)
 
@@ -55,6 +56,7 @@ const Link: React.FC<LinkProps> = props => {
       tagName={href ? 'a' : 'span'}
       href={href}
       onClick={onClickHandler}
+      {...touchableProps}
     >
       {children}
     </Styled.Root>

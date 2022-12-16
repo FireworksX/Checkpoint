@@ -21,7 +21,7 @@ export interface PostPreviewModalContext {
   author: {
     firstName?: string
     lastName?: string
-    username?: string
+    userName?: string
   }
 }
 
@@ -32,11 +32,11 @@ const PostPreviewModal: FC<PostPreviewModalProps> = ({ className }) => {
   return (
     <BottomSheet name={MODAL_NAMES.postPreview} withHeader autoClose>
       <Styled.Root className={className}>
-        <Link type='user' userSlug={context?.author?.username || ''} waitNavigate={close}>
+        <Link type='user' userSlug={context?.author?.userName || ''} waitNavigate={close}>
           <Styled.Header
             firstName={context?.author?.firstName}
             lastName={context?.author?.lastName}
-            username={context?.author?.username}
+            userName={context?.author?.userName}
           />
         </Link>
 

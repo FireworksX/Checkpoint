@@ -8,15 +8,15 @@ import { buildFullName } from 'src/utils/buildFullName'
 import Avatar from 'src/widgets/Avatar/Avatar'
 import { useInitialAvatarPlaceholder } from 'src/widgets/Avatar/hooks/useInitialAvatarPlaceholder'
 
-interface AmbassadorCardProps extends Pick<BaseUser, '_id' | 'username' | 'firstName' | 'lastName' | 'phone' | 'bio'> {
+interface AmbassadorCardProps extends Pick<BaseUser, '_id' | 'userName' | 'firstName' | 'lastName' | 'phone' | 'bio'> {
   className?: string
 }
 
-const AmbassadorCard: FC<AmbassadorCardProps> = ({ className, _id, firstName, lastName, username, phone, bio }) => {
-  const avatarText = useInitialAvatarPlaceholder({ username, firstName, lastName })
+const AmbassadorCard: FC<AmbassadorCardProps> = ({ className, _id, firstName, lastName, userName, phone, bio }) => {
+  const avatarText = useInitialAvatarPlaceholder({ userName, firstName, lastName })
 
   return (
-    <Styled.Root className={className} type='user' userSlug={username || 'empty'}>
+    <Styled.Root className={className} type='user' userSlug={userName || 'empty'}>
       <Styled.AvatarWrapper>
         <Avatar size={60} uniqueId={phone}>
           {avatarText}

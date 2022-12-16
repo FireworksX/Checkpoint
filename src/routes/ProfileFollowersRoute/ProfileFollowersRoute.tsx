@@ -20,7 +20,7 @@ const ProfileFollowersRoute: FC<ProfileRouteProps> = ({ className }) => {
 
       <Styled.Wrapper>
           <Styled.UserCard
-              username={'amandasmith'}
+              userName={'amandasmith'}
               firstName='Amanda'
               lastName='Smith'
               appLinkProps={{

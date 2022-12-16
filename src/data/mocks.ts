@@ -2,7 +2,7 @@ import { random, randomArray } from '../utils/random'
 
 export interface MockUser {
   verify: boolean
-  username: string
+  userName: string
   firstName?: string
   lastName?: string
   bio?: string
@@ -11,7 +11,7 @@ export interface MockUser {
 export const currentUser = {
   firstName: 'Arthur',
   lastName: 'Abeltinsh',
-  username: 'fireworks',
+  userName: 'fireworks',
   bio: 'Saint-Peterburg, Russia | Founder of Checkpoint | Traveler | Front-end developer',
   avatar: 'https://avatars.githubusercontent.com/u/22668125?v=4',
   verify: true
@@ -21,20 +21,20 @@ const users = [
   currentUser,
   {
     firstName: 'FAB Uniquie Nation',
-    username: 'uniquielyfab',
+    userName: 'uniquielyfab',
     bio: 'FL🚁LA🚁NY🚁HTX CEO of @blusgalore🛍 Book your Next Trip w/ Me(Link in Bio)🛫',
     avatar:
       'https://sun9-73.userapi.com/impg/vLGipLuW2F2hBJFS2euTN5nAtzH2yc-GqKDoVw/htpuU4MmP9U.jpg?size=1440x1800&quality=96&sign=4bd1eb9f93741b5340e34556f2b9de94&type=album'
   },
   {
-    username: 'liqii.z',
+    userName: 'liqii.z',
     bio: 'Sometimes I post when I travel. Follow my pupper on @reggie.ddawg. He cute.',
     avatar:
       'https://sun9-10.userapi.com/s/v1/ig2/jjGxtVxsVV_Kf1dybCMpAxgiSU5VMFQa7VNUHLkO9m4iZ2tDF6s10XNsZL4XsUziVshy2j1P_lmH3k6wkmypPFPo.jpg?size=400x400&quality=95&crop=524,412,1124,1124&ava=1'
   },
   {
     firstName: 'Arzu & Ozan',
-    username: 'thevoyagebuch',
+    userName: 'thevoyagebuch',
     bio:
       'Our Travel Diary around the globe 🌎\n' +
       'Living in Switzerland🇨🇭\n' +

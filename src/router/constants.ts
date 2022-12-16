@@ -19,8 +19,9 @@ const ROUTE_NAMES = createConstants(
   'userReview',
   'userFollowers',
   'userSubscribers',
+  'userConnections',
   'postDetail',
-    'locationDetail'
+  'locationDetail'
 )
 type RouteNamesType = keyof typeof ROUTE_NAMES
 
@@ -67,7 +68,7 @@ export const MODAL_NAMES = createConstants(
   'preRemoveLocation',
   'locationPreloadModal',
   'postPreview',
-    'postCreate'
+  'postCreate'
 )
 
 export type ModalName = keyof typeof MODAL_NAMES

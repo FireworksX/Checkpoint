@@ -1,0 +1,3 @@
+mutation ConnectUser($userName: String!, $token: String!) {
+  connect(input: { userName: $userName, token: $token })
+}

@@ -45,6 +45,11 @@ export const routes: Route[] = [
                 component: routeComponents.ProfileSubscribersRoute
               },
               {
+                name: ROUTE_NAMES.profileConnections,
+                path: `/connections`,
+                component: routeComponents.ProfileConnectionsRoute
+              },
+              {
                 name: ROUTE_NAMES.profileSettings,
                 path: `/settings`,
                 component: routeComponents.ProfileSettingsRoute

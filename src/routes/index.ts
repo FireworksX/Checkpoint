@@ -3,6 +3,7 @@ import ProfileRoute from './ProfileRoute/ProfileRoute'
 import ProfileSettingsRoute from './ProfileSettingsRoute/ProfileSettingsRoute'
 import ProfileFollowersRoute from './ProfileFollowersRoute/ProfileFollowersRoute'
 import ProfileSubscribersRoute from './ProfileSubscribersRoute/ProfileSubscribersRoute'
+import ProfileConnectionsRoute from './ProfileConnectionsRoute/ProfileConnectionsRoute'
 import NotificationsRoute from './NotificationsRoute/NotificationsRoute'
 import WelcomeRoute from './WelcomeRoute/WelcomeRoute'
 import NavigationRoute from './NavigationRoute/NavigationRoute'
@@ -20,6 +21,7 @@ export default {
   ProfileSettingsRoute,
   ProfileFollowersRoute,
   ProfileSubscribersRoute,
+  ProfileConnectionsRoute,
   NotificationsRoute,
   WelcomeRoute,
   NavigationRoute,

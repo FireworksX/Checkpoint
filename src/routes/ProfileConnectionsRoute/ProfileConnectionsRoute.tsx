@@ -3,15 +3,15 @@ import * as Styled from './styles'
 import { route } from 'src/hoc/route'
 import { ROUTE_NAMES } from 'src/router/constants'
 import PageHeaderButtonBack from 'src/widgets/PageHeader/components/PageHeaderButtonBack/PageHeaderButtonBack'
-import { useProfileSubscribersRoute } from './hooks/useProfileSubscribersRoute'
+import {useProfileConnectionsRoute} from './hooks/useProfileSubscribersRoute'
 import Username from '../../components/Username/Username'
 
-interface ProfileRouteProps {
+interface  ProfileConnectionsRouteProps {
   className?: string
 }
 
-const ProfileSubscribersRoute: FC<ProfileRouteProps> = ({ className }) => {
-  const { user, subscribers, fetching } = useProfileSubscribersRoute()
+const ProfileConnectionsRoute: FC<ProfileConnectionsRouteProps> = ({ className }) => {
+  const { user, list, fetching } = useProfileConnectionsRoute()
 
   return (
     <Styled.Root
@@ -19,10 +19,10 @@ const ProfileSubscribersRoute: FC<ProfileRouteProps> = ({ className }) => {
       fetching={fetching}
       title={<Username>{user?.userName}</Username>}
       headerLeft={<PageHeaderButtonBack />}
-      description='Following'
+      description='Connections'
     >
       <Styled.Wrapper>
-        {subscribers?.map(subscriber => (
+        {list?.map(subscriber => (
           <Styled.UserCard
             key={subscriber._id}
             userName={subscriber?.userName}
@@ -41,4 +41,4 @@ const ProfileSubscribersRoute: FC<ProfileRouteProps> = ({ className }) => {
   )
 }
 
-export default route(ProfileSubscribersRoute, ROUTE_NAMES.profileSubscribers)
+export default route(ProfileConnectionsRoute, ROUTE_NAMES.profileConnections)

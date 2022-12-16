@@ -22,6 +22,10 @@ const linkConfig = {
     name: buildName(ROUTE_NAMES.navigation, ROUTE_NAMES.profile, ROUTE_NAMES.profileSubscribers),
     params: { required: [], optional: [] }
   },
+  profileConnections: {
+    name: buildName(ROUTE_NAMES.navigation, ROUTE_NAMES.profile, ROUTE_NAMES.profileConnections),
+    params: { required: [], optional: [] }
+  },
   user: {
     name: buildName(ROUTE_NAMES.navigation, ROUTE_NAMES.user, ROUTE_NAMES.userReview),
     params: { required: [ROUTE_PARAMS.userSlug], optional: [] }

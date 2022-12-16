@@ -12,6 +12,7 @@ const ROUTE_NAMES = createConstants(
   'profileSettings',
   'profileFollowers',
   'profileSubscribers',
+  'profileConnections',
   'notifications',
   'welcome',
   'register',

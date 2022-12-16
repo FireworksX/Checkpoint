@@ -46,7 +46,7 @@ const UserHeader: FC<UserHeaderProps> = ({
                       type: 'userConnections',
                       userSlug
                     }
-                  : { type: 'profileFollowers' }
+                  : { type: 'profileConnections' }
               }
               value='1.214'
               description='Connections'
@@ -71,7 +71,7 @@ const UserHeader: FC<UserHeaderProps> = ({
                       userSlug
                     }
                   : {
-                      type: 'profileFollowers'
+                      type: 'profileSubscribers'
                     }
               }
               value='137'

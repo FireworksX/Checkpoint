@@ -1,11 +1,12 @@
-import { useCurrentUser } from 'src/hooks/data/useCurrentUser'
+import {useCurrentUser} from "../../../hooks/data/useCurrentUser/useCurrentUser";
 
 
 export const useProfileFollowersRoute = () => {
-  const { user } = useCurrentUser()
+  const { user, fetching } = useCurrentUser()
 
   return {
     user,
-    followers: (user?.followers || []).filter(Boolean)
+    fetching,
+    followers: []
   }
 }

@@ -1,18 +1,18 @@
 import { FC } from 'react'
 import * as Styled from './styles'
-import PageHeaderButtonBack from '../../widgets/PageHeader/components/PageHeaderButtonBack/PageHeaderButtonBack'
-import { route } from '../../hoc/route'
-import { MODAL_NAMES, ROUTE_NAMES } from '../../router/constants'
-import { getRandomList, getRandomLocation, getRandomPost } from '../../data/mocks'
-import Container from '../../components/Container/Container'
-import Button from '../../components/Button/Button'
-import Separator from '../../components/Separator/Separator'
-import { PostWrapper } from './styles'
-import LocationCard from '../../widgets/LocationCard/LocationCard'
+import PageHeaderButtonBack from 'src/widgets/PageHeader/components/PageHeaderButtonBack/PageHeaderButtonBack'
+import { route } from 'src/hoc/route'
+import { MODAL_NAMES, ROUTE_NAMES } from 'src/router/constants'
+import { getRandomList, getRandomLocation, getRandomPost } from 'src/data/mocks'
+import Container from 'src/components/Container/Container'
+import Button from 'src/components/Button/Button'
+import Separator from 'src/components/Separator/Separator'
 import Counter from '../NotificationsRoute/components/Counter/Counter'
-import GroupWrapper from '../../widgets/GroupWrapper/GroupWrapper'
-import { useModal } from '../../hooks/useModal'
-import { CreatePostsModalContext } from '../../modals/CreatePostModal/CreatePostModal'
+import GroupWrapper from 'src/widgets/GroupWrapper/GroupWrapper'
+import { useModal } from 'src/hooks/useModal'
+import { CreatePostsModalContext } from 'src/modals/CreatePostModal/CreatePostModal'
+import Link from '../../widgets/Link/Link'
+import UserHeader from '../../components/UserHeader/UserHeader'
 
 interface LocationDetailRouteProps {
   className?: string
@@ -67,6 +67,18 @@ const LocationDetailRoute: FC<LocationDetailRouteProps> = ({ className }) => {
           {posts.map((post, index) => (
             <Styled.PostWrapper
               key={index}
+              header={
+                <Link type='user' userSlug={post.user.username}>
+                  <UserHeader
+                    verify={post.user.verify}
+                    avatar={post.user.avatar}
+                    username={post.user.username}
+                    firstName={post.user.firstName}
+                    lastName={post.user.lastName}
+                    description='2h ago'
+                  />
+                </Link>
+              }
               slug={post.slug}
               author={post.user}
               content={post.content}

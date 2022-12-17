@@ -1,6 +1,5 @@
-import {FC, ReactNode, useEffect} from 'react'
-import * as Styled from './styles'
-import {useRouter} from "../../hooks/useRouter";
+import { FC, ReactNode, useEffect } from 'react'
+import { useRouter } from 'src/hooks/useRouter'
 
 interface ScrollRestoratorProps {
   children: ReactNode
@@ -18,7 +17,7 @@ const ScrollRestorator: FC<ScrollRestoratorProps> = ({ children }) => {
     }
   }, [route, routerInstance])
 
-  return children
+  return <>{children}</>
 }
 
 export default ScrollRestorator

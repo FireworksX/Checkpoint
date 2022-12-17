@@ -1,8 +1,8 @@
 import { forwardRef, ReactNode, useImperativeHandle, useState } from 'react'
 import * as Styled from './styles'
 import Spinner from 'src/components/Spinner/Spinner'
-import PageHeader from '../PageHeader/PageHeader'
-import { promiseWaiter } from '../../utils/promiseWaiter'
+import PageHeader from 'src/widgets/PageHeader/PageHeader'
+import { promiseWaiter } from 'src/utils/promiseWaiter'
 
 interface PageProps {
   fetching?: boolean
@@ -48,7 +48,7 @@ const Page = forwardRef<PageRef, PageProps>(
         {proxyFetching && (
           <Styled.ScreenSpinner>
             <Styled.SpinnerWrapper>
-              <Spinner size='large' state={fetchingState} />
+              <Spinner size='medium' state={fetchingState} />
             </Styled.SpinnerWrapper>
           </Styled.ScreenSpinner>
         )}

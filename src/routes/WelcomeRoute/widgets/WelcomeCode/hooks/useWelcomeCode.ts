@@ -1,12 +1,8 @@
 import { useCallback, useEffect, useRef } from 'react'
 import { useNumberFormatter } from 'src/components/Input/hooks/useNumberFormatter'
-import { useUserIsRegister } from 'src/hooks/data/useUserIsRegister'
-import { useLoginUser } from 'src/hooks/data/useLoginUser'
-import { useCurrentUser } from 'src/hooks/data/useCurrentUser'
-import { useMailValidationCodeCheck } from 'src/hooks/data/useMailValidationCodeCheck'
 import { useCheckAuthCodeMutation } from '../queries/CheckAuthCodeMutation'
-import { userTokens } from '../../../../../utils/userTokens'
-import { PageRef } from '../../../../../widgets/Page/Page'
+import { userTokens } from 'src/utils/userTokens'
+import { PageRef } from 'src/widgets/Page/Page'
 
 interface Props {
   email?: string
@@ -21,14 +17,7 @@ export const useWelcomeCode = ({ email, onRegister, onLogin }: Props) => {
   const { formatValue, setValue } = useNumberFormatter()
 
   const [{ fetching }, checkCode] = useCheckAuthCodeMutation()
-  // const { data: isRegisterData, fetching } = useUserIsRegister(
-  //   {
-  //     mail: userMail
-  //   },
-  //   !validationData?.data
-  // )
 
-  const { execute } = useLoginUser()
 
   const handleCheckCode = useCallback(async () => {
     if (email) {

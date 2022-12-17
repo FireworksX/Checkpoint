@@ -1,10 +1,8 @@
 import { FC, ReactNode } from 'react'
 import * as Styled from './styles'
-import DisplayText from '../DisplayText/DisplayText'
+import DisplayText from 'src/widgets/DisplayText/DisplayText'
 import { MockUser } from '../../data/mocks'
-import { random } from '../../utils/random'
-import { useInitialAvatarPlaceholder } from '../Avatar/hooks/useInitialAvatarPlaceholder'
-import Link from '../Link/Link'
+import Link from 'src/widgets/Link/Link'
 
 interface PostProps {
   className?: string
@@ -28,22 +26,17 @@ interface PostProps {
 }
 
 const Post: FC<PostProps> = ({ className, target, header, slug, selfActions, author, content, refer, metrics }) => {
-  const authorRefer = useInitialAvatarPlaceholder(refer?.user)
-
   return (
     <Styled.Root className={className} hasRefer={!!refer}>
       {!!refer && (
         <Link type='user' effect='none' userSlug={refer.user.userName}>
           <Styled.Connected>
-            <Styled.ConnectedAvatar size={20} uniqueId={refer.user.userName}>
-              {authorRefer}
-            </Styled.ConnectedAvatar>
             <DisplayText>Connected from @{refer.user.userName}</DisplayText>
           </Styled.Connected>
         </Link>
       )}
       <Styled.Body hasHeader={!!header}>
-        {header}
+        {!!header && <Styled.Header>{header}</Styled.Header>}
 
         <Link type='post' postSlug={slug}>
           <Styled.Text>{content}</Styled.Text>

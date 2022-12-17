@@ -1,4 +1,4 @@
-type CacheEntityKey = 'x-user-ip'
+export type CacheEntityKey = 'x-user-ip'
 
 export const cacheManager = () => {
   const cache = new Map<CacheEntityKey, any>()

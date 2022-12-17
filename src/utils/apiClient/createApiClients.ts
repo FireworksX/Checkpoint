@@ -1,12 +1,10 @@
 import axios, { AxiosRequestConfig } from 'axios'
-import { apiEndpoints } from 'src/data/apiEndpoints'
-import { AuthUserResponse } from 'src/interfaces/User'
-import { ApiResponseBody, GeneratedTokenResponse } from 'src/interfaces/Request'
-import { CookieManager } from 'src/interfaces/CookieManager'
-import refreshToken from './refreshToken'
-import { cacheExchange, createClient, dedupExchange, fetchExchange, ssrExchange } from 'urql'
-import isBrowser from '../isBrowser'
 import { SSRData } from '@urql/core/dist/types/exchanges/ssr'
+import { createClient, dedupExchange, fetchExchange, ssrExchange } from 'urql'
+import { cacheExchange } from '@urql/exchange-graphcache'
+import { CookieManager } from 'src/interfaces/CookieManager'
+import isBrowser from 'src/utils/isBrowser'
+import {buildCacheKey} from "../buildCacheKey";
 
 export interface ApiClientOptions {
   baseURL?: string
@@ -79,7 +77,20 @@ const createGqlClient = ({ ssrCache, fetcher = fetch }: ApiClientOptions) => {
     url: `${import.meta.env.VITE_CURRENT_DOMAIN}/graphql`,
     fetch: fetcher,
     suspense: !isBrowser,
-    exchanges: [dedupExchange, ssrCacheStore, fetchExchange]
+    exchanges: [
+      dedupExchange,
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      cacheExchange({
+        keys: {
+          User: (user) => buildCacheKey(user, 'userName'),
+          Location: () => null,
+          Coords: (coords) => buildCacheKey(coords, 'lat', 'lng'),
+        }
+      }),
+      ssrCacheStore,
+      fetchExchange
+    ]
   })
 
   return {

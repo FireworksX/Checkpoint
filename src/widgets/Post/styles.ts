@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 import Avatar from '../Avatar/Avatar'
 import PostAction from './components/PostAction/PostAction'
-import UserHeader from '../../components/UserHeader/UserHeader'
 import DisplayText from '../DisplayText/DisplayText'
 
 interface Props {
@@ -20,6 +19,10 @@ export const Body = styled.div<Props>`
   padding: ${({ hasHeader }) => (hasHeader ? '10px' : '20px')} 15px 10px 15px;
   border-radius: ${({ theme }) => theme.baseStyles.radius.radiusMain};
   position: relative;
+`
+
+export const Header = styled.div`
+  margin-bottom: 15px;
 `
 
 export const Connected = styled.div`
@@ -47,7 +50,7 @@ export const Date = styled.div`
 `
 
 export const Text = styled(DisplayText)`
-  ${({ theme }) => theme.typography.text_20_24};
+  ${({ theme }) => theme.typography.text_18_22};
   margin-bottom: 5px;
 `
 

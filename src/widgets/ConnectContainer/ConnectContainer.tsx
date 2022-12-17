@@ -1,5 +1,4 @@
 import React, { FC, useCallback } from 'react'
-import { useFollowingUser } from 'src/hooks/data/useFollowingUser'
 import { useConnectUser } from './hooks/useConnectUser'
 
 interface RenderProps {

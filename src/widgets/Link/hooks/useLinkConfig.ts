@@ -7,6 +7,5 @@ export const useLinkConfig = (type: LinkType, props?: Omit<LinkProps, 'router'>)
   const router = useRouter()
   const finalType = useLinkFinalType(type, props)
 
-
   return buildLinkConfig(finalType.type, { ...finalType.props, router })
 }

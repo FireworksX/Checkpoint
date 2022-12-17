@@ -6,31 +6,21 @@ import PageHeaderButtonBack from 'src/widgets/PageHeader/components/PageHeaderBu
 import { useUserRoute } from './hooks/useUserRoute'
 import Container from 'src/components/Container/Container'
 import Button from 'src/components/Button/Button'
-import Placeholder from 'src/components/Placeholder/Placeholder'
-import { staticImagesMap } from 'src/data/staticImagesMap'
 import Username from 'src/components/Username/Username'
 import SubscribeContainer from 'src/widgets/SubscribeContainer/SubscribeContainer'
-import { DEFAULT_ALL_CATEGORY } from '../ProfileRoute/hooks/useProfileRoute'
-import Link from 'src/widgets/Link/Link'
-import { useRouter } from 'src/hooks/useRouter'
-import Spinner from 'src/components/Spinner/Spinner'
-import UserHeader from '../../widgets/UserHeader/UserHeader'
-import { HeaderActions, PostWrapper } from './styles'
-import { getRandomList, getRandomPost, getRandomUser } from '../../data/mocks'
-import { random } from '../../utils/random'
-import Post from '../../widgets/Post/Post'
-import LocationCard from '../../widgets/LocationCard/LocationCard'
-import isBrowser from '../../utils/isBrowser'
-import ConnectContainer from '../../widgets/ConnectContainer/ConnectContainer'
-import { useToggle } from 'react-use'
-import ButtonStates from '../../components/ButtonStates/ButtonStates'
+import UserHeader from 'src/widgets/UserHeader/UserHeader'
+import { getRandomList, getRandomPost } from 'src/data/mocks'
+import { random } from 'src/utils/random'
+import LocationCard from 'src/widgets/LocationCard/LocationCard'
+import isBrowser from 'src/utils/isBrowser'
+import ConnectContainer from 'src/widgets/ConnectContainer/ConnectContainer'
+import ButtonStates from 'src/components/ButtonStates/ButtonStates'
 
 interface UserRouteProps {
   className?: string
 }
 
 const UserRoute: FC<UserRouteProps> = ({ className }) => {
-  const { citySlug } = useRouter()
   const [isConnecting, setIsConnecting] = useState(false)
   const [isFollowing, setIsFollowing] = useState(false)
 

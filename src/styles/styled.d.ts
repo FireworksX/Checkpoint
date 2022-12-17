@@ -1,4 +1,5 @@
 import 'styled-components'
+import {CSSProp} from "styled-components";
 
 type TypographySizeType = {
   fontSize: string
@@ -42,7 +43,7 @@ declare module 'styled-components' {
     }
     typography: {
       fontFamily: string
-      textEllipsis: string
+      textEllipsis: CSSProp
 
       text_32_38: TypographySizeType
       text_26_30: TypographySizeType

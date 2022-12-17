@@ -1,12 +1,12 @@
 import ReactDOM from 'react-dom'
-import { App, AppFetcherType } from './App'
+import { App } from './App'
 import { configureRouter } from './router/configureRouter'
 import { clientCookieManager } from './services/cookie/clientCookieManager'
 import { appConfig } from './data/appConfig'
 import 'src/pwa'
 import { createApiClients } from './utils/apiClient/createApiClients'
 import { serviceContainer } from './services/ioc/serviceContainer'
-import { cacheManager } from './services/cacheManager'
+import { CacheEntityKey, cacheManager } from './services/cacheManager'
 
 const { addService } = serviceContainer()
 const cacheManagerInstance = cacheManager()
@@ -19,7 +19,7 @@ const appCache = window.__APP__CACHE__
 const ssrCache = window.__SSR__CACHE__
 
 if (appCache) {
-  Object.keys(appCache).forEach(key => cacheManagerInstance.set(key, appCache[key]))
+  Object.keys(appCache).forEach(key => cacheManagerInstance.set(key as CacheEntityKey, appCache[key as CacheEntityKey]))
 }
 
 const router = configureRouter()

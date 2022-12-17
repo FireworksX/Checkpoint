@@ -1,5 +1,5 @@
-const userNameRegexp = /@([a-zA-Z]{2,})/g
-const hashtagsRegexp = /#([a-zA-Z]{2,})/g
+const userNameRegexp = /@([a-zA-Z|\S]+)/g
+const hashtagsRegexp = /#([a-zA-Z\S]+)/g
 
 export const useTextExtracts = (text = '') => {
   const userNames = text.match(userNameRegexp)

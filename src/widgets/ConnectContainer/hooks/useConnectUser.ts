@@ -11,14 +11,14 @@ export const useConnectUser = (targetId: string) => {
 
 
   const connect = useCallback(async () => {
-    if (!targetId) return
+    if (!targetId) return false
 
     const response = await connectUser({ userName: targetId, token })
     return response.data?.connect || false
   }, [connectUser, targetId, token])
 
   const unConnect = useCallback(async () => {
-    if (!targetId) return
+    if (!targetId) return false
 
     const response = await unConnectUser({ userName: targetId, token })
     return response.data?.unConnect || false

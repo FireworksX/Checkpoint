@@ -1,10 +1,11 @@
 import { LinkType } from './linkConfig'
-import {AuthUserResponse} from "../../interfaces/User";
 
 const USER_TYPES: LinkType[] = ['user', 'userFollowers', 'userSubscribers']
 
 type Props = Record<string, any> & {
-  currentUser?: AuthUserResponse
+  currentUser?: {
+    userName: string
+  }
 }
 
 export const getFinalLinkType = (type: LinkType, props: Props) => {

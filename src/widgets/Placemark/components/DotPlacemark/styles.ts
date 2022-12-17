@@ -15,8 +15,8 @@ export const Root = styled(Touchable)`
 export const Inner = styled.div`
   width: 20px;
   height: 20px;
-  border: 3px solid ${({ theme }) => theme.colors.basicWhite};
+  border: 3px solid ${({ theme }) => theme.colors.borderLight};
   box-shadow: ${({ theme }) => theme.baseStyles.shadows.shadowBig};
-  background: ${({ theme }) => theme.colors.basicBlack};
+  background: ${({ theme }) => theme.colors.backgroundDark};
   border-radius: 50%;
 `

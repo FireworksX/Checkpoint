@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 import Input from 'src/components/Input/Input'
-import CommonLogo from 'src/components/CommonLogo/CommonLogo'
 import Container from 'src/components/Container/Container'
 import BaseImage from 'src/components/BaseImage/BaseImage'
 
@@ -18,7 +17,7 @@ export const Cover = styled(BaseImage)`
 
 export const Title = styled.div`
   ${({ theme }) => theme.typography.text_32_38}
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColorDark};
   text-align: center;
   font-weight: 500;
   margin-top: 40px;
@@ -27,7 +26,7 @@ export const Title = styled.div`
 
 export const Description = styled.p`
   ${({ theme }) => theme.typography.text_16_20}
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColorDark};
   margin-bottom: 40px;
   text-align: center;
   padding: 0 15%;

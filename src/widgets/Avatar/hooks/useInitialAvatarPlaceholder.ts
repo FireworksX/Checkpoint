@@ -1,6 +1,8 @@
-import { BaseUser } from 'src/interfaces/User'
-
-type Options = Pick<BaseUser, 'userName' | 'firstName' | 'lastName'>
+interface Options {
+  firstName?: string
+  lastName?: string
+  userName?: string
+}
 
 const LIMIT = 2
 

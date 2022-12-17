@@ -23,7 +23,7 @@ export const Icon = styled.div`
 export const Header = styled.div`
   ${({ theme }) => theme.typography.text_20_24};
   font-weight: bold;
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColorDark};
   padding: 0 8px;
 `
 

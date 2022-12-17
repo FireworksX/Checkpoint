@@ -15,7 +15,6 @@ interface MapRouteProps {
 const MapRoute: FC<MapRouteProps> = ({ className }) => {
   const { container } = useMap()
 
-
   return (
     <Styled.Root className={className} safeAreaBottom={false}>
       <div ref={container} className='map-container' />

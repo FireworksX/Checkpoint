@@ -25,7 +25,7 @@ export const Cell = styled(Touchable)`
 
 export const Label = styled.div`
   ${({ theme }) => theme.typography.text_16_20};
-  color: ${({ theme }) => theme.colors.textColor};
+  color: ${({ theme }) => theme.colors.textColorDark};
   font-weight: bold;
 `
 
@@ -43,7 +43,7 @@ export const DotInner = styled.div`
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  background: ${({ theme }) => theme.colors.basicBlack};
+  background: ${({ theme }) => theme.colors.backgroundDark};
 `
 
 export const Description = styled.div`

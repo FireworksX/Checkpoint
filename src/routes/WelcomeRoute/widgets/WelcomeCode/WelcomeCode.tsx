@@ -1,12 +1,8 @@
-import { FC, useEffect, useRef } from 'react'
-import { useTimeout } from 'react-use'
+import { FC } from 'react'
 import * as Styled from './styles'
 import Container from 'src/components/Container/Container'
 import { useWelcomeCode } from './hooks/useWelcomeCode'
-import PageHeaderButton from 'src/widgets/PageHeader/components/PageHeaderButton/PageHeaderButton'
-import { staticImagesMap } from '../../../../data/staticImagesMap'
-import { CodeWrapper, Resend } from './styles'
-import isBrowser from '../../../../utils/isBrowser'
+import { staticImagesMap } from 'src/data/staticImagesMap'
 
 interface WelcomeRegisterProps {
   email?: string

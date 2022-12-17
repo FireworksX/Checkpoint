@@ -1,16 +1,19 @@
 import { FC, ReactNode } from 'react'
 import * as Styled from './styles'
-import { BaseUser } from 'src/interfaces/User'
 import { useInitialAvatarPlaceholder } from 'src/widgets/Avatar/hooks/useInitialAvatarPlaceholder'
 import { buildFullName } from 'src/utils/buildFullName'
-import { Actions, Counters } from './styles'
 import CounterCell from './components/CounterCell/CounterCell'
-import HashtagCell from '../../components/HashtagCell/HashtagCell'
-import HorizontalScroll from '../../components/HorizontalScroll/HorizontalScroll'
-import { useRouter } from '../../hooks/useRouter'
-import { ROUTE_PARAMS } from '../../router/constants'
+import HashtagCell from 'src/components/HashtagCell/HashtagCell'
+import HorizontalScroll from 'src/components/HorizontalScroll/HorizontalScroll'
+import { useRouter } from 'src/hooks/useRouter'
+import { ROUTE_PARAMS } from 'src/router/constants'
 
-interface UserHeaderProps extends Pick<BaseUser, 'firstName' | 'lastName' | 'mail' | 'bio' | 'userName' | 'verify'> {
+interface UserHeaderProps {
+  firstName?: string
+  lastName?: string
+  bio?: string
+  userName?: string
+  verify?: boolean
   className?: string
   actions?: ReactNode
   avatar?: string
@@ -24,8 +27,7 @@ const UserHeader: FC<UserHeaderProps> = ({
   firstName,
   lastName,
   verify,
-  userName,
-  mail
+  userName
 }) => {
   const { getParam } = useRouter()
   const avatarText = useInitialAvatarPlaceholder({ userName, firstName, lastName })

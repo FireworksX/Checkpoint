@@ -1,9 +1,8 @@
 import { FC } from 'react'
 import * as Styled from './styles'
-import { buildStyles, CircularProgressbar } from 'react-circular-progressbar'
+import { buildStyles } from 'react-circular-progressbar'
 import { useTheme } from 'styled-components'
 import Icon from '../Icon/Icon'
-import { Status } from './styles'
 
 export interface SpinnerProps {
   state?: 'error' | 'success'
@@ -13,21 +12,9 @@ export interface SpinnerProps {
 }
 
 const CheckIcon = ({ width, height }: { width: number; height: number }) => (
-    <svg
-        width={width}
-        height={height}
-        viewBox='0 0 48 48'
-        fill='none'
-        xmlns='http://www.w3.org/2000/svg'
-    >
-      <path
-          d='M9 24L19 34L39 14'
-          stroke='currentColor'
-          strokeWidth='3.5'
-          strokeLinecap='round'
-          strokeLinejoin='round'
-      />
-    </svg>
+  <svg width={width} height={height} viewBox='0 0 48 48' fill='none' xmlns='http://www.w3.org/2000/svg'>
+    <path d='M9 24L19 34L39 14' stroke='currentColor' strokeWidth='3.5' strokeLinecap='round' strokeLinejoin='round' />
+  </svg>
 )
 
 const Spinner: FC<SpinnerProps> = ({ className, size = 'regular', state, pathColor }) => {
@@ -39,8 +26,9 @@ const Spinner: FC<SpinnerProps> = ({ className, size = 'regular', state, pathCol
     <Styled.Root className={className} size={size}>
       {!state && (
         <Styled.Bar>
-          <CircularProgressbar
-            strokeWidth={12}
+          <Styled.BarInner
+            size={size}
+            strokeWidth={8}
             value={70}
             styles={buildStyles({
               pathColor: pathColor || theme.colors.secondary,
@@ -54,7 +42,7 @@ const Spinner: FC<SpinnerProps> = ({ className, size = 'regular', state, pathCol
       <Styled.Status>
         {state === 'error' && (
           <Styled.IconWrapper style={{ color }}>
-            <Icon name="close" width={statusSize} height={statusSize} />
+            <Icon name='close' width={statusSize} height={statusSize} />
           </Styled.IconWrapper>
         )}
         {state === 'success' && (

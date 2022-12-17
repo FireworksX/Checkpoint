@@ -12,7 +12,7 @@ export const Wrapper = styled.div`
   width: 40px;
   height: 40px;
   border-radius: ${({ theme }) => theme.baseStyles.radius.radiusMain};
-  background: ${({ theme }) => theme.colors.backgroundWhite};
+  background: ${({ theme }) => theme.colors.background};
   
 `
 

@@ -3,9 +3,10 @@ import * as Styled from './styles'
 import { useTextExtracts } from '../../hooks/useTextExctracts'
 
 export type DisplayTextType = string | (string | undefined)[] | undefined
+
 interface DisplayTextProps {
   className?: string
-  children: DisplayText
+  children: DisplayTextType
 }
 
 const DisplayText: FC<DisplayTextProps> = ({ className, children }) => {

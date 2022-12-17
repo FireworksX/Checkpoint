@@ -5,13 +5,10 @@ import { MODAL_NAMES, ROUTE_NAMES } from '../../router/constants'
 import Container from '../../components/Container/Container'
 import LocationCard from '../../widgets/LocationCard/LocationCard'
 import Button from '../../components/Button/Button'
-import { Actions } from './styles'
 import Separator from '../../components/Separator/Separator'
 import GroupWrapper from '../../widgets/GroupWrapper/GroupWrapper'
-import CommentCard from '../../components/CommentCard/CommentCard'
 import Counter from '../NotificationsRoute/components/Counter/Counter'
 import { useModal } from '../../hooks/useModal'
-import { LocationFieldsModalContext } from '../../modals/LocationFieldsModal/LocationFieldsModal'
 import { getRandomPost } from '../../data/mocks'
 import isBrowser from '../../utils/isBrowser'
 import Link from '../../widgets/Link/Link'
@@ -43,7 +40,6 @@ const PostDetailRoute: FC<PostDetailRouteProps> = ({ className }) => {
         <Link type='user' userSlug={post.user?.userName || ''}>
           <Styled.Header
             hasRefer={!!refer}
-            verify={post.user?.verify}
             avatar={post.user?.avatar}
             firstName={post.user?.firstName}
             lastName={post.user?.lastName}

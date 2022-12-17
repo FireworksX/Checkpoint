@@ -1,10 +1,8 @@
 import { FC, ReactNode, useEffect, useMemo } from 'react'
 import * as Styled from './styles'
 import { InputProps } from 'src/components/Input/Input'
-import Button from '../../components/Button/Button'
-import { useFileSelector } from '../../hooks/useFileSelector'
-import { ResetAvatar } from './styles'
-import Icon from '../../components/Icon/Icon'
+import Button from 'src/components/Button/Button'
+import { useFileSelector } from 'src/hooks/useFileSelector'
 
 interface ProfileFields {
   mail: string

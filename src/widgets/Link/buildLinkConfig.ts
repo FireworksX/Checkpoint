@@ -29,6 +29,7 @@ export const buildLinkConfig = (type: LinkType, props: LinkProps) => {
     console.error(e, link.name, routeParams)
   }
   const isSamePage = route?.path === href
+  const isActive = props.router.isActive()
 
   return {
     routeParams,

@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 import * as Styled from './styles'
-import { useScrollEnd } from '../../hooks/useScrollEnd'
+import { useScrollEnd } from 'src/hooks/useScrollEnd'
 
 export interface HorizontalScrollProps {
   className?: string

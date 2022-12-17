@@ -1,8 +1,8 @@
 import { FC } from 'react'
 import * as Styled from './styles'
 import Icon from '../Icon/Icon'
-import LikesContainer from '../../widgets/LikesContainer/LikesContainer'
-import { Location } from '../../interfaces/Location'
+import LikesContainer from 'src/widgets/LikesContainer/LikesContainer'
+import { Location } from 'src/interfaces/Location'
 
 interface LocationCardProps extends Pick<Location, '_id' | 'likes'> {
   name?: string

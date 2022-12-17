@@ -4,7 +4,7 @@ export const Root = styled.div`
   padding: 3px;
   border-radius: ${({ theme }) => theme.baseStyles.radius.radiusMain};
   border: 1px solid ${({ theme }) => theme.colors.border};
-  background: ${({ theme }) => theme.colors.backgroundWhite};
+  background: ${({ theme }) => theme.colors.background};
   width: 100%;
 `
 

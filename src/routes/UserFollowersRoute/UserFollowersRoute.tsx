@@ -3,7 +3,6 @@ import * as Styled from './styles'
 import { route } from 'src/hoc/route'
 import { ROUTE_NAMES } from 'src/router/constants'
 import PageHeaderButtonBack from 'src/widgets/PageHeader/components/PageHeaderButtonBack/PageHeaderButtonBack'
-import { withValidateUser } from 'src/hoc/withValidateUser'
 import { useUserFollowersRoute } from './hooks/useUserFollowersRoute'
 import Username from 'src/components/Username/Username'
 

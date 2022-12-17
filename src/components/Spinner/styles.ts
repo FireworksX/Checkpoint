@@ -1,6 +1,6 @@
 import styled, { keyframes } from 'styled-components'
 import { SpinnerProps } from './Spinner'
-import Icon from '../Icon/Icon'
+import { CircularProgressbar } from 'react-circular-progressbar'
 
 interface Props {
   size?: SpinnerProps['size']
@@ -30,6 +30,11 @@ export const Root = styled.div<Props>`
 
 export const Bar = styled.div`
   animation: ${rotation} 1s infinite linear;
+`
+
+export const BarInner = styled(CircularProgressbar)<Props>`
+  width: ${({ size }) => sizeMap[size || 'regular']}px;
+  height: ${({ size }) => sizeMap[size || 'regular']}px;
 `
 
 export const Status = styled.div<Props>`

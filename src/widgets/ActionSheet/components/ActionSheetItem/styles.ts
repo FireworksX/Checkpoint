@@ -8,7 +8,7 @@ interface Props {
 
 const colorsMap = (theme: DefaultTheme) => ({
   destructive: theme.colors.accentRed,
-  default: theme.colors.accentBlue
+  default: theme.colors.primary
 })
 
 export const Root = styled(Touchable)<Props>`

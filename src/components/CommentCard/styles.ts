@@ -20,5 +20,5 @@ export const Date = styled.div`
 `
 
 export const Body = styled(DisplayText)`
-  ${({ theme }) => theme.typography.text_14_20}
+  ${({ theme }) => theme.typography.text_16_20}
 `

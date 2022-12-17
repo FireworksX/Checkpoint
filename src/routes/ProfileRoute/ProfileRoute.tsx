@@ -9,9 +9,9 @@ import UserHeader from 'src/widgets/UserHeader/UserHeader'
 import Link from 'src/widgets/Link/Link'
 import LocationCard from '../../widgets/LocationCard/LocationCard'
 import PageHeaderButton from '../../widgets/PageHeader/components/PageHeaderButton/PageHeaderButton'
-import { getRandomList, getRandomPost } from '../../data/mocks'
-import { random } from '../../utils/random'
-import Username from "../../components/Username/Username";
+import Username from '../../components/Username/Username'
+import {getRandomList, getRandomPost} from "../../data/mocks";
+import {random} from "../../utils/random";
 
 interface ProfileRouteProps {
   className?: string
@@ -63,6 +63,8 @@ const ProfileRoute: FC<ProfileRouteProps> = ({ className }) => {
           />
         ))}
       </Container>
+
+      <Styled.Create />
     </Styled.Root>
   )
 }

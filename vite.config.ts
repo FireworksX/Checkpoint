@@ -3,6 +3,7 @@ import react from '@vitejs/plugin-react'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import * as path from 'path'
 import { VitePWA } from 'vite-plugin-pwa'
+import babel from 'vite-plugin-babel';
 
 // https://vitejs.dev/config/
 export default ({ mode }: UserConfig) => {
@@ -21,6 +22,7 @@ export default ({ mode }: UserConfig) => {
       port
     },
     plugins: [
+      babel(),
       react(),
       createSvgIconsPlugin({
         iconDirs: [path.resolve(__dirname, './src/svg')],

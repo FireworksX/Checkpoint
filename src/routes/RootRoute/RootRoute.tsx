@@ -10,14 +10,14 @@ import { FontStyles } from 'src/styles/FontStyles'
 import { useRootRoute } from './hooks/useRootRoute'
 
 const RootRoute: FC = ({ children }) => {
-  const { isAuth } = useRootRoute()
+  useRootRoute()
 
   return (
     <AppHelpers>
       <RootRouteHead />
       <GlobalStyle />
       <FontStyles />
-      <Styled.Root>{isAuth ? children : <Styled.Loader>Loading</Styled.Loader>}</Styled.Root>
+      <Styled.Root>{children}</Styled.Root>
     </AppHelpers>
   )
 }

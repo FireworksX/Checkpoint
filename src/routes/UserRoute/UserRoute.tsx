@@ -12,7 +12,6 @@ import UserHeader from 'src/widgets/UserHeader/UserHeader'
 import { getRandomList, getRandomPost } from 'src/data/mocks'
 import { random } from 'src/utils/random'
 import LocationCard from 'src/widgets/LocationCard/LocationCard'
-import isBrowser from 'src/utils/isBrowser'
 import ConnectContainer from 'src/widgets/ConnectContainer/ConnectContainer'
 import ButtonStates from 'src/components/ButtonStates/ButtonStates'
 
@@ -27,10 +26,6 @@ const UserRoute: FC<UserRouteProps> = ({ className }) => {
   const { user } = useUserRoute()
 
   const posts = getRandomList(random(3, 35), getRandomPost)
-
-  if (!isBrowser) {
-    return null
-  }
 
   return (
     <Styled.Root

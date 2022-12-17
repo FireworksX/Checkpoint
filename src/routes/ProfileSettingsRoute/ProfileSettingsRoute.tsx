@@ -1,15 +1,12 @@
-import {FC, useEffect} from 'react'
+import {FC} from 'react'
 import * as Styled from './styles'
 import { route } from 'src/hoc/route'
-import { withValidateUser } from 'src/hoc/withValidateUser'
 import { ROUTE_NAMES } from 'src/router/constants'
 import PageHeaderButton from 'src/widgets/PageHeader/components/PageHeaderButton/PageHeaderButton'
 import ProfileInfoFields from 'src/widgets/ProfileInfoFields/ProfileInfoFields'
-import Container from 'src/components/Container/Container'
 import PageHeaderButtonBack from 'src/widgets/PageHeader/components/PageHeaderButtonBack/PageHeaderButtonBack'
 import { useProfileEditRoute } from './hooks/useProfileEditRoute'
 import Button from '../../components/Button/Button'
-import { Logout } from './styles'
 import Icon from '../../components/Icon/Icon'
 
 interface ProfileSettingsRouteProps {
@@ -22,6 +19,7 @@ const ProfileSettingsRoute: FC<ProfileSettingsRouteProps> = ({ className }) => {
   return (
     <Styled.Root
       className={className}
+      title='Settings'
       headerLeft={<PageHeaderButtonBack />}
       headerRight={
         <PageHeaderButton onClick={logout}>

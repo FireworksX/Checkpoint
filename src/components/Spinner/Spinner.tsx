@@ -20,7 +20,7 @@ const CheckIcon = ({ width, height }: { width: number; height: number }) => (
 const Spinner: FC<SpinnerProps> = ({ className, size = 'regular', state, pathColor }) => {
   const theme = useTheme()
   const color = pathColor || theme.colors.secondary
-  const statusSize = { small: 10, regular: 18, medium: 18, large: 48 }[size]
+  const statusSize = { small: 10, regular: 18, medium: 34, large: 48 }[size]
 
   return (
     <Styled.Root className={className} size={size}>

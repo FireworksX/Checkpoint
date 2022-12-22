@@ -1,4 +1,4 @@
-import {useCallback, useMemo} from 'react'
+import { useCallback, useMemo } from 'react'
 import { userTokens } from 'src/utils/userTokens'
 import { useCurrentUserQuery } from './CurrentUserQuery'
 import { useCacheManager } from '../../useCacheManager'
@@ -12,12 +12,14 @@ export const useCurrentUser = () => {
   const userTokensManager = userTokens()
   const cacheManager = useCacheManager()
   const welcomeLink = useLinkConfig('welcome')
+  const token = userTokensManager.getTokens().accessToken
 
   const [{ data, fetching }] = useCurrentUserQuery({
     variables: {
-      token: userTokensManager.getTokens().accessToken,
+      token,
       ip: cacheManager.get('x-user-ip')
-    }
+    },
+    pause: !token
   })
 
   const user = useMemo(() => data?.getMe, [data])

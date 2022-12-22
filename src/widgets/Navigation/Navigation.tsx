@@ -13,7 +13,7 @@ const Navigation: React.FC<NavigationProps> = ({ className }) => {
         <Styled.Item type='map'>
           <Styled.Icon name='compass' />
         </Styled.Item>
-        <Styled.Item type='cityMap'>
+        <Styled.Item type='search'>
           <Styled.Icon name='search' />
         </Styled.Item>
         <Styled.Item type='notifications'>

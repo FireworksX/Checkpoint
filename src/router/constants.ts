@@ -12,7 +12,6 @@ const ROUTE_NAMES = createConstants(
   'profileSettings',
   'profileFollowers',
   'profileSubscribers',
-  'profileConnections',
   'notifications',
   'welcome',
   'register',
@@ -20,9 +19,9 @@ const ROUTE_NAMES = createConstants(
   'userReview',
   'userFollowers',
   'userSubscribers',
-  'userConnections',
   'postDetail',
-  'locationDetail'
+  'locationDetail',
+  'search'
 )
 type RouteNamesType = keyof typeof ROUTE_NAMES
 

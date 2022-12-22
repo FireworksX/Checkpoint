@@ -18,6 +18,7 @@ const MapRoute: FC<MapRouteProps> = ({ className }) => {
   return (
     <Styled.Root className={className} safeAreaBottom={false}>
       <div ref={container} className='map-container' />
+      <Styled.Create/>
     </Styled.Root>
   )
 }

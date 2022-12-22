@@ -5,10 +5,9 @@ import { buildFullName } from 'src/utils/buildFullName'
 import CounterCell from './components/CounterCell/CounterCell'
 import HashtagCell from 'src/components/HashtagCell/HashtagCell'
 import HorizontalScroll from 'src/components/HorizontalScroll/HorizontalScroll'
-import { useRouter } from 'src/hooks/useRouter'
-import { ROUTE_PARAMS } from 'src/router/constants'
+import { LinkProps } from '../Link/Link'
 
-interface UserHeaderProps {
+export interface UserHeaderProps {
   firstName?: string
   lastName?: string
   bio?: string
@@ -17,6 +16,11 @@ interface UserHeaderProps {
   className?: string
   actions?: ReactNode
   avatar?: string
+  counters?: {
+    value: number
+    label: string
+    appLinkProps: LinkProps
+  }[]
 }
 
 const UserHeader: FC<UserHeaderProps> = ({
@@ -27,11 +31,10 @@ const UserHeader: FC<UserHeaderProps> = ({
   firstName,
   lastName,
   verify,
-  userName
+  userName,
+  counters = []
 }) => {
-  const { getParam } = useRouter()
   const avatarText = useInitialAvatarPlaceholder({ userName, firstName, lastName })
-  const userSlug = getParam(ROUTE_PARAMS.userSlug)
 
   return (
     <Styled.Root className={className}>
@@ -41,44 +44,14 @@ const UserHeader: FC<UserHeaderProps> = ({
             {avatarText}
           </Styled.AvatarComponent>
           <Styled.Counters>
-            <CounterCell
-              appLinkProps={
-                userSlug
-                  ? {
-                      type: 'userConnections',
-                      userSlug
-                    }
-                  : { type: 'profileConnections' }
-              }
-              value='1.214'
-              description='Connections'
-            />
-            <CounterCell
-              appLinkProps={
-                userSlug
-                  ? {
-                      type: 'userFollowers',
-                      userSlug
-                    }
-                  : { type: 'profileFollowers' }
-              }
-              value='852'
-              description='Followers'
-            />
-            <CounterCell
-              appLinkProps={
-                userSlug
-                  ? {
-                      type: 'userSubscribers',
-                      userSlug
-                    }
-                  : {
-                      type: 'profileSubscribers'
-                    }
-              }
-              value='137'
-              description='Following'
-            />
+            {counters.map(counter => (
+              <CounterCell
+                key={counter.label}
+                appLinkProps={counter.appLinkProps}
+                value={counter.value}
+                description={counter.label}
+              />
+            ))}
             {actions && <Styled.Actions>{actions}</Styled.Actions>}
           </Styled.Counters>
         </Styled.Head>

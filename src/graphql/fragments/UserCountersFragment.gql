@@ -1,0 +1,6 @@
+fragment UserCountersFragment on User {
+  counters {
+    followers
+    subscribers
+  }
+}

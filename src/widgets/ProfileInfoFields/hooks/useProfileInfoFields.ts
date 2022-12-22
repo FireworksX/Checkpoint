@@ -48,7 +48,6 @@ export const useProfileInfoFields = (onSubmit: OnSubmit) => {
   }, [userExist, proxyUserName.length, errors, isSubmitted])
 
   const onSubmitForm = handleSubmit(async data => {
-    console.log(data);
     if (userNameFieldOptions?.status === 'error') {
       return
     }
@@ -75,8 +74,8 @@ export const useProfileInfoFields = (onSubmit: OnSubmit) => {
       },
       firstName: register('firstName', { maxLength: validationRules.maxLength(30) }),
       lastName: register('lastName', { maxLength: validationRules.maxLength(30) }),
-      email: register('email', { required: validationRules.required(), pattern: validationRules.emailPattern() })
-      // bio: register('bio', { maxLength: validationRules.maxLength(200) }),
+      email: register('email', { required: validationRules.required(), pattern: validationRules.emailPattern() }),
+      bio: register('bio', { maxLength: validationRules.maxLength(200) }),
     },
     setValue,
     getValues,

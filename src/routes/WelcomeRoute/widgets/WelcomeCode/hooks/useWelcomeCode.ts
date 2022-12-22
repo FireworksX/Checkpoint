@@ -18,7 +18,6 @@ export const useWelcomeCode = ({ email, onRegister, onLogin }: Props) => {
 
   const [{ fetching }, checkCode] = useCheckAuthCodeMutation()
 
-
   const handleCheckCode = useCallback(async () => {
     if (email) {
       const { data: response, error } = await checkCode({
@@ -47,36 +46,7 @@ export const useWelcomeCode = ({ email, onRegister, onLogin }: Props) => {
     if (formatValue.length === 4) {
       handleCheckCode()
     }
-  }, [formatValue])
-
-  // const onLoginUser = useCallback(async () => {
-  //   if (tryLogin.current) {
-  //     return
-  //   }
-  //
-  //   tryLogin.current = true
-  //
-  //   const { success } = await execute({
-  //     mail: userMail,
-  //     code: formatValue
-  //   })
-  //
-  //   if (success) {
-  //     onLogin()
-  //   } else {
-  //     alert('Error')
-  //   }
-  // }, [formatValue, userMail, execute, onLogin])
-  //
-  // useEffect(() => {
-  //   if (validationData?.success && validationData?.data && !fetching) {
-  //     if (isRegisterData?.success && isRegisterData?.data) {
-  //       onLoginUser()
-  //     } else {
-  //       onRegister()
-  //     }
-  //   }
-  // }, [validationData, fetching, isRegisterData, onLoginUser, onRegister])
+  }, [formatValue, handleCheckCode])
 
   return {
     codeValue: formatValue,

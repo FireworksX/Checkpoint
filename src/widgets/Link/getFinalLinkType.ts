@@ -18,6 +18,10 @@ export const getFinalLinkType = (type: LinkType, props: Props) => {
       type = 'profileSubscribers'
     }
 
+    if (type === 'userConnections') {
+      type = 'profileConnections'
+    }
+
     if (type === 'user') {
       type = 'profile'
     }

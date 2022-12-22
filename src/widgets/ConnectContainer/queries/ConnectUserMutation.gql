@@ -1,3 +1,3 @@
-mutation ConnectUser($userName: String!, $token: String!) {
+mutation ConnectUser($userName: String!, $token: String!, $meUserName: String!) {
   connect(input: { userName: $userName, token: $token })
 }

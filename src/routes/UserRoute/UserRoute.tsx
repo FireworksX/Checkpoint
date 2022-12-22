@@ -14,6 +14,7 @@ import { random } from 'src/utils/random'
 import LocationCard from 'src/widgets/LocationCard/LocationCard'
 import ConnectContainer from 'src/widgets/ConnectContainer/ConnectContainer'
 import ButtonStates from 'src/components/ButtonStates/ButtonStates'
+import { useUserHeaderCounters } from '../../widgets/UserHeader/hooks/useUserHeaderCounters'
 
 interface UserRouteProps {
   className?: string
@@ -23,7 +24,8 @@ const UserRoute: FC<UserRouteProps> = ({ className }) => {
   const [isConnecting, setIsConnecting] = useState(false)
   const [isFollowing, setIsFollowing] = useState(false)
 
-  const { user } = useUserRoute()
+  const { user, fetching } = useUserRoute()
+  const counters = useUserHeaderCounters(user?.counters || {})
 
   const posts = getRandomList(random(3, 35), getRandomPost)
 
@@ -32,6 +34,7 @@ const UserRoute: FC<UserRouteProps> = ({ className }) => {
       className={className}
       title={<Username>{user?.userName}</Username>}
       description='Profile'
+      fetching={fetching}
       headerLeft={<PageHeaderButtonBack />}
     >
       <UserHeader
@@ -41,6 +44,7 @@ const UserRoute: FC<UserRouteProps> = ({ className }) => {
         lastName={user?.lastName}
         verify={user?.verify}
         bio={user?.bio}
+        counters={counters}
         actions={
           <Styled.HeaderActions>
             <SubscribeContainer isSubscribing={isFollowing} targetId={user?.userName}>

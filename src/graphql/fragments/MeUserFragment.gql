@@ -1,0 +1,21 @@
+#import './UserCountersFragment.gql'
+
+fragment MeUserFragment on User {
+  email
+  status
+  firstName
+  lastName
+  userName
+  avatar
+  bio
+  ...UserCountersFragment
+
+  location {
+    country
+    city
+    coords {
+      lat
+      lng
+    }
+  }
+}

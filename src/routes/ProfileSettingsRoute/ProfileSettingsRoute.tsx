@@ -16,7 +16,7 @@ interface ProfileSettingsRouteProps {
 const ProfileSettingsRoute: FC<ProfileSettingsRouteProps> = ({ className }) => {
   const { fields, avatarText, updating, onSubmitForm, logout } = useProfileEditRoute()
 
-  return (
+    return (
     <Styled.Root
       className={className}
       title='Settings'

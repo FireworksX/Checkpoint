@@ -45,11 +45,6 @@ export const routes: Route[] = [
                 component: routeComponents.ProfileSubscribersRoute
               },
               {
-                name: ROUTE_NAMES.profileConnections,
-                path: `/connections`,
-                component: routeComponents.ProfileConnectionsRoute
-              },
-              {
                 name: ROUTE_NAMES.profileSettings,
                 path: `/settings`,
                 component: routeComponents.ProfileSettingsRoute
@@ -74,11 +69,6 @@ export const routes: Route[] = [
                 name: ROUTE_NAMES.userSubscribers,
                 path: `/subscribers`,
                 component: routeComponents.UserSubscribersRoute
-              },
-              {
-                name: ROUTE_NAMES.userConnections,
-                path: `/connections`,
-                component: routeComponents.UserConnectionsRoute
               }
             ]
           },
@@ -101,6 +91,11 @@ export const routes: Route[] = [
             name: ROUTE_NAMES.map,
             path: 'map',
             component: routeComponents.MapRoute
+          },
+          {
+            name: ROUTE_NAMES.search,
+            path: 'search',
+            component: routeComponents.SearchRoute
           }
         ]
       }

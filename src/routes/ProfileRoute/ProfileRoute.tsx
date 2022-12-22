@@ -10,8 +10,9 @@ import Link from 'src/widgets/Link/Link'
 import LocationCard from '../../widgets/LocationCard/LocationCard'
 import PageHeaderButton from '../../widgets/PageHeader/components/PageHeaderButton/PageHeaderButton'
 import Username from '../../components/Username/Username'
-import {getRandomList, getRandomPost} from "../../data/mocks";
-import {random} from "../../utils/random";
+import { getRandomList, getRandomPost } from '../../data/mocks'
+import { random } from '../../utils/random'
+import { useUserHeaderCounters } from '../../widgets/UserHeader/hooks/useUserHeaderCounters'
 
 interface ProfileRouteProps {
   className?: string
@@ -19,6 +20,7 @@ interface ProfileRouteProps {
 
 const ProfileRoute: FC<ProfileRouteProps> = ({ className }) => {
   const { user, fetching } = useProfileRoute()
+  const counters = useUserHeaderCounters(user?.counters || {})
 
   const posts = getRandomList(random(3, 35), getRandomPost)
 
@@ -43,6 +45,7 @@ const ProfileRoute: FC<ProfileRouteProps> = ({ className }) => {
         lastName={user?.lastName}
         verify={user?.verify}
         bio={user?.bio}
+        counters={counters}
       />
 
       <Container>

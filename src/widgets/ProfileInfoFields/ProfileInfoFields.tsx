@@ -57,7 +57,7 @@ const ProfileInfoFields: FC<ProfileInfoFieldsProps> = ({
         <Styled.Field label='Username' placeholder='mikedeal' {...fields.userName} />
         <Styled.Field label='First name' placeholder='Mike' {...fields.firstName} />
         <Styled.Field label='Last name' placeholder='Deal' {...fields.lastName} />
-        {/*<Styled.Field label='Bio' textarea {...fields.bio} />*/}
+        <Styled.Field label='Bio' placeholder='Traveler | Photographer of cities' textarea {...fields.bio} />
         {formChildren}
       </form>
     </Styled.Root>

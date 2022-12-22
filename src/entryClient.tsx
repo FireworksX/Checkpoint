@@ -7,8 +7,13 @@ import 'src/pwa'
 import { createApiClients } from './utils/apiClient/createApiClients'
 import { serviceContainer } from './services/ioc/serviceContainer'
 import { CacheEntityKey, cacheManager } from './services/cacheManager'
+import {urqlCacheNotify} from "./services/urqlCacheNotify";
 
 const { addService } = serviceContainer()
+
+const urqlCache = urqlCacheNotify()
+addService('urqlCacheNotify', urqlCache)
+
 const cacheManagerInstance = cacheManager()
 const cookieManager = clientCookieManager(appConfig.COOKIE_PREFIX)
 

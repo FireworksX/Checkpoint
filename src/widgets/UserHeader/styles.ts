@@ -39,7 +39,7 @@ export const Name = styled.h2`
 `
 
 export const VerifyIcon = styled(Icon).attrs({
-  name: 'check-star'
+  name: 'bag'
 })`
   color: ${({ theme }) => theme.colors.primary};
   margin-left: 10px;

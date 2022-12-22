@@ -15,17 +15,19 @@ export const useRootRoute = () => {
   useIsomorphicEffect(() => {
     const accessToken = userTokens().getTokens().accessToken
 
-    if (!accessToken && user?.status === 2) {
+    if (!accessToken) {
       router.routerInstance.redirect(welcomeLink.link.name, welcomeLink.link.params)
       return
     }
     if (lastSegment === ROUTE_NAMES.navigation) {
-      if (!accessToken) {
+      if (!accessToken || user?.status !== 2) {
         router.routerInstance.redirect(welcomeLink.link.name, welcomeLink.link.params)
+        return
       }
 
       if (accessToken) {
         router.routerInstance.redirect(mapLink.link.name, mapLink.link.params)
+        return
       }
     }
   }, [])

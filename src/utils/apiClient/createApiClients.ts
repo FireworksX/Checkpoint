@@ -1,10 +1,11 @@
 import axios, { AxiosRequestConfig } from 'axios'
 import { SSRData } from '@urql/core/dist/types/exchanges/ssr'
 import { createClient, dedupExchange, fetchExchange, ssrExchange } from 'urql'
-import { cacheExchange } from '@urql/exchange-graphcache'
 import { CookieManager } from 'src/interfaces/CookieManager'
 import isBrowser from 'src/utils/isBrowser'
-import {buildCacheKey} from "../buildCacheKey";
+import { urqlCacheExchange } from './urqlCacheExchange'
+import { serviceContainer } from '../../services/ioc/serviceContainer'
+import initUrqlMutations from 'src/graphql/mutations'
 
 export interface ApiClientOptions {
   baseURL?: string
@@ -73,6 +74,8 @@ const createGqlClient = ({ ssrCache, fetcher = fetch }: ApiClientOptions) => {
     initialState: ssrCache
   })
 
+  const urqlCacheNotify = serviceContainer().getService('urqlCacheNotify')
+
   const urqlClient = createClient({
     url: `${import.meta.env.VITE_CURRENT_DOMAIN}/graphql`,
     fetch: fetcher,
@@ -81,17 +84,13 @@ const createGqlClient = ({ ssrCache, fetcher = fetch }: ApiClientOptions) => {
       dedupExchange,
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
-      cacheExchange({
-        keys: {
-          User: (user) => buildCacheKey(user, 'userName'),
-          Location: () => null,
-          Coords: (coords) => buildCacheKey(coords, 'lat', 'lng'),
-        }
-      }),
+      urqlCacheExchange(urqlCacheNotify),
       ssrCacheStore,
       fetchExchange
     ]
   })
+
+  initUrqlMutations()
 
   return {
     client: urqlClient,

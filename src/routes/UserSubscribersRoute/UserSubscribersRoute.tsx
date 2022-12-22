@@ -3,7 +3,6 @@ import * as Styled from './styles'
 import { route } from 'src/hoc/route'
 import { ROUTE_NAMES } from 'src/router/constants'
 import PageHeaderButtonBack from 'src/widgets/PageHeader/components/PageHeaderButtonBack/PageHeaderButtonBack'
-import { withValidateUser } from 'src/hoc/withValidateUser'
 import { useUserSubscribersRoute } from './hooks/useUserSubscribersRoute'
 import Username from 'src/components/Username/Username'
 
@@ -12,17 +11,18 @@ interface ProfileRouteProps {
 }
 
 const UserSubscribersRoute: FC<ProfileRouteProps> = ({ className }) => {
-  const { user, subscribers } = useUserSubscribersRoute()
+  const { user, list, fetching } = useUserSubscribersRoute()
 
   return (
     <Styled.Root
       className={className}
       title={<Username>{user?.userName}</Username>}
       headerLeft={<PageHeaderButtonBack />}
+      fetching={fetching}
       description='Following'
     >
       <Styled.Wrapper>
-        {subscribers?.map(subscriber => (
+        {list?.map(subscriber => (
           <Styled.UserCard
             key={subscriber.userName}
             userName={subscriber?.userName}

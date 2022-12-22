@@ -1,0 +1,4 @@
+import * as Types from '../codegenTypes';
+
+import { DocumentNode } from 'graphql';
+export const UserMeFlagsFragmentFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"UserMeFlagsFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"User"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"me"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"isSubscribe"}},{"kind":"Field","name":{"kind":"Name","value":"isFollow"}}]}}]}}]} as unknown as DocumentNode;

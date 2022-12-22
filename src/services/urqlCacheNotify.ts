@@ -2,6 +2,7 @@ import { UpdateResolver } from '@urql/exchange-graphcache/dist/types/types'
 
 interface UrqlCacheStore {
   subscribe: UpdateResolver[]
+  unSubscribe: UpdateResolver[]
 }
 
 export type UrqlCacheNotify = ReturnType<typeof urqlCacheNotify>

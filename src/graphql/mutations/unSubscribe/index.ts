@@ -6,7 +6,7 @@ import {updateFollowersResolver} from "../updateFollowersResolver";
 export default () => {
   const { on } = serviceContainer().getService('urqlCacheNotify')
 
-  on('subscribe', updateCountersResolver)
-  on('subscribe', updateConnectionFlagsResolver)
-  on('subscribe', updateFollowersResolver)
+  on('unSubscribe', updateCountersResolver)
+  on('unSubscribe', updateConnectionFlagsResolver)
+  on('unSubscribe', updateFollowersResolver)
 }

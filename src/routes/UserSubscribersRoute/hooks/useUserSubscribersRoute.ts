@@ -8,7 +8,7 @@ export const useUserSubscribersRoute = () => {
   const userSlug = getParam(ROUTE_PARAMS.userSlug)
   const {user} = useUserRoute()
 
-  const [{data}] = useUserSubscribersQuery({
+  const [{data, fetching}] = useUserSubscribersQuery({
     variables: {
       userName: userSlug
     }
@@ -19,6 +19,7 @@ export const useUserSubscribersRoute = () => {
 
   return {
     user,
-    subscribers: list || []
+    list: list || [],
+    fetching
   }
 }

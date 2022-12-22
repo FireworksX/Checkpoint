@@ -1,5 +1,7 @@
-import init from './subscribe'
+import initSubscribe from './subscribe'
+import initUnSubscribe from './unSubscribe'
 
 export default () => {
-  init()
+  initSubscribe()
+  initUnSubscribe()
 }

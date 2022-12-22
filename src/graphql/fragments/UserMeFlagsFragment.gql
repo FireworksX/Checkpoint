@@ -1,0 +1,6 @@
+fragment UserMeFlagsFragment on User {
+  me {
+    isSubscribe
+    isFollow
+  }
+}

@@ -65,7 +65,7 @@ const fieldBase = css<Props>`
   color: ${({ theme }) => theme.colors.textColorDark};
 
   ${({ theme, hasIcon }) => css`
-    padding-left: ${hasIcon && '30px'};
+    padding-left: ${hasIcon && '40px'};
     transition: background-color ${theme.animation.transitionDuration},
       border-color ${theme.animation.transitionDuration};
   `}
@@ -112,11 +112,11 @@ const iconBase = `
 
 export const IconLeft = styled(Icon)`
   ${iconBase}
-  left: 10px;
-  height: 14px;
-  width: 14px;
+  left: 15px;
+  height: 16px;
+  width: 16px;
   top: 50%;
-  color: ${({ theme }) => theme.colors.textColorLight};
+  color: ${({ theme }) => theme.colors.primary};
 `
 
 export const IconCheck = styled(Icon).attrs({ name: 'check-circle' })`

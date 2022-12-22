@@ -1,6 +1,18 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
-export const Root = styled.div`
-  padding-right: ${({ theme }) => theme.baseStyles.paddings.gutterMobile};
-  padding-left: ${({ theme }) => theme.baseStyles.paddings.gutterMobile};
+interface Props {
+  reversed?: boolean
+}
+
+export const Root = styled.div<Props>`
+  ${({ reversed }) =>
+    reversed
+      ? css`
+          margin-right: -${({ theme }) => theme.baseStyles.paddings.gutterMobile};
+          margin-left: -${({ theme }) => theme.baseStyles.paddings.gutterMobile};
+        `
+      : css`
+          padding-right: ${({ theme }) => theme.baseStyles.paddings.gutterMobile};
+          padding-left: ${({ theme }) => theme.baseStyles.paddings.gutterMobile};
+        `};
 `

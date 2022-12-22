@@ -11,17 +11,18 @@ interface ProfileRouteProps {
 }
 
 const UserFollowersRoute: FC<ProfileRouteProps> = ({ className }) => {
-  const { user, followers } = useUserFollowersRoute()
+  const { user, list, fetching } = useUserFollowersRoute()
 
   return (
     <Styled.Root
       className={className}
       title={<Username>{user?.userName}</Username>}
       headerLeft={<PageHeaderButtonBack />}
+      fetching={fetching}
       description='Followers'
     >
       <Styled.Wrapper>
-        {followers?.map(follower => (
+        {list?.map(follower => (
           <Styled.UserCard
             key={follower._id}
             userName={follower?.userName}

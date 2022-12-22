@@ -1,18 +1,16 @@
-import { FC, useState } from 'react'
+import { FC } from 'react'
 import * as Styled from './styles'
 import { route } from 'src/hoc/route'
 import { ROUTE_NAMES } from 'src/router/constants'
 import PageHeaderButtonBack from 'src/widgets/PageHeader/components/PageHeaderButtonBack/PageHeaderButtonBack'
 import { useUserRoute } from './hooks/useUserRoute'
 import Container from 'src/components/Container/Container'
-import Button from 'src/components/Button/Button'
 import Username from 'src/components/Username/Username'
 import SubscribeContainer from 'src/widgets/SubscribeContainer/SubscribeContainer'
 import UserHeader from 'src/widgets/UserHeader/UserHeader'
 import { getRandomList, getRandomPost } from 'src/data/mocks'
 import { random } from 'src/utils/random'
 import LocationCard from 'src/widgets/LocationCard/LocationCard'
-import ConnectContainer from 'src/widgets/ConnectContainer/ConnectContainer'
 import ButtonStates from 'src/components/ButtonStates/ButtonStates'
 import { useUserHeaderCounters } from '../../widgets/UserHeader/hooks/useUserHeaderCounters'
 
@@ -21,13 +19,11 @@ interface UserRouteProps {
 }
 
 const UserRoute: FC<UserRouteProps> = ({ className }) => {
-  const [isConnecting, setIsConnecting] = useState(false)
-  const [isFollowing, setIsFollowing] = useState(false)
-
   const { user, fetching } = useUserRoute()
   const counters = useUserHeaderCounters(user?.counters || {})
 
   const posts = getRandomList(random(3, 35), getRandomPost)
+
 
   return (
     <Styled.Root
@@ -47,47 +43,21 @@ const UserRoute: FC<UserRouteProps> = ({ className }) => {
         counters={counters}
         actions={
           <Styled.HeaderActions>
-            <SubscribeContainer isSubscribing={isFollowing} targetId={user?.userName}>
+            <SubscribeContainer isSubscribing={user?.me?.isFollow} targetId={user?.userName}>
               {({ onClick }) => (
                 <ButtonStates
                   size='l'
                   stretched
                   mode='secondary'
                   states={[{ children: 'Follow' }, { children: 'Following' }]}
-                  stateIndex={isFollowing ? 1 : 0}
-                  onClick={async e => {
-                    setIsFollowing(await onClick(e))
-                  }}
+                  stateIndex={user?.me?.isFollow ? 1 : 0}
+                  onClick={onClick}
                 />
               )}
             </SubscribeContainer>
-            <Button size='l' mode='secondary' stretched>
-              Message
-            </Button>
           </Styled.HeaderActions>
         }
       />
-
-      <Styled.SubscribeContainer>
-        <ConnectContainer isConnecting={isConnecting} targetId={user?.userName}>
-          {({ onClick }) => (
-            <ButtonStates
-              icon='lightning'
-              size='xl'
-              stretched
-              states={[
-                { children: 'Connect', mode: 'primary' },
-                { children: 'Connecting', mode: 'secondary' }
-              ]}
-              stateIndex={isConnecting ? 1 : 0}
-              onClick={async e => {
-                const res = await onClick(e)
-                setIsConnecting(res)
-              }}
-            />
-          )}
-        </ConnectContainer>
-      </Styled.SubscribeContainer>
 
       <Container>
         {posts.map((post, index) => (

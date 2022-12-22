@@ -22,8 +22,8 @@ export default ({ mode }: UserConfig) => {
       port
     },
     plugins: [
-      babel(),
       react(),
+      babel(),
       createSvgIconsPlugin({
         iconDirs: [path.resolve(__dirname, './src/svg')],
         symbolId: '[name]'

@@ -1,0 +1,7 @@
+fragment UserInfoFragment on User {
+  firstName
+  lastName
+  userName
+  avatar
+  bio
+}

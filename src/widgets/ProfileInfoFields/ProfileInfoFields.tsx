@@ -32,6 +32,7 @@ const ProfileInfoFields: FC<ProfileInfoFieldsProps> = ({
   onSelectAvatar
 }) => {
   const { Selector, select, readFiles, files, reset } = useFileSelector({ multiple: false })
+  const userName = fields?.userName?.proxyValue || ''
 
   useEffect(() => {
     if (files) {
@@ -45,7 +46,7 @@ const ProfileInfoFields: FC<ProfileInfoFieldsProps> = ({
     <Styled.Root className={className}>
       {Selector}
       <Styled.AvatarWrapper>
-        <Styled.AvatarComponent src={avatarSrc} uniqueId={fields.mail} onReset={reset}>
+        <Styled.AvatarComponent src={avatarSrc} uniqueId={userName} onReset={reset}>
           {avatarText}
         </Styled.AvatarComponent>
         <Button mode='tertiary' stretched size='l' onClick={select}>

@@ -14,10 +14,11 @@ export const useForm = <T extends FieldValues = FieldValues>() => {
       return {
         ...parentRegister(fieldName, options),
         status: (isSubmitted ? (errors[fieldName] === undefined ? 'success' : 'error') : undefined) as 'success',
-        statusText: errors[fieldName]?.message
+        statusText: errors[fieldName]?.message,
+        proxyValue: getValues(fieldName)
       }
     },
-    [parentRegister, errors, isSubmitted]
+    [parentRegister, errors, isSubmitted, getValues]
   )
 
   return {

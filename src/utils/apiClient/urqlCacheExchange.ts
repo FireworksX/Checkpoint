@@ -29,6 +29,7 @@ export const urqlCacheExchange = (urqlCacheNotify: UrqlCacheNotify) => cacheExch
     Mutation: {
       subscribe: urqlCacheNotify.mutation('subscribe'),
       unSubscribe: urqlCacheNotify.mutation('unSubscribe'),
+      editUser: urqlCacheNotify.mutation('editUser'),
     }
   }
 })

@@ -12,7 +12,7 @@ import { createApiClients } from './utils/apiClient/createApiClients'
 import { serviceContainer } from './services/ioc/serviceContainer'
 import { cacheManager } from './services/cacheManager'
 import fetch from 'node-fetch'
-import {urqlCacheNotify} from "./services/urqlCacheNotify";
+import { urqlCacheNotify } from './services/urqlCacheNotify'
 
 export async function render(url: string, ctx: AppContext) {
   let ip = getClientIp(ctx.req)
@@ -27,7 +27,8 @@ export async function render(url: string, ctx: AppContext) {
   addService('urqlCacheNotify', urqlCache)
 
   const cacheManagerInstance = cacheManager()
-  cacheManagerInstance.set('x-user-ip', ip)
+  cacheManagerInstance.set('x-user-ip', ip || undefined)
+  cacheManagerInstance.set('useragent', ctx.req.useragent)
 
   const cookieManager = serverCookieManager(ctx.req, ctx.res, appConfig.COOKIE_PREFIX)
 
@@ -55,7 +56,7 @@ export async function render(url: string, ctx: AppContext) {
   const ssrCache = ssrCacheStore.extractData()
 
   const appCache: any = {}
-  cacheManagerInstance.forEach((value, key) => (appCache[key] = value))
+  cacheManagerInstance.forEach((key, value) => (appCache[key] = value))
 
   const appCacheTags = `
     <script>

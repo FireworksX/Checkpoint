@@ -1,5 +1,7 @@
+#import '../../../graphql/fragments/UserInfoFragment.gql'
+
 mutation EditUser($userName: String, $firstName: String, $lastName: String, $bio: String, $token: String!) {
   editUser(input: { userName: $userName, firstName: $firstName, lastName: $lastName, bio: $bio, token: $token }) {
-    userName
+    ...UserInfoFragment
   }
 }

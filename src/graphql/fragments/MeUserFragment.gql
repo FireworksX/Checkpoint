@@ -1,13 +1,10 @@
 #import './UserCountersFragment.gql'
+#import './UserInfoFragment.gql'
 
 fragment MeUserFragment on User {
   email
   status
-  firstName
-  lastName
-  userName
-  avatar
-  bio
+  ...UserInfoFragment
   ...UserCountersFragment
 
   location {

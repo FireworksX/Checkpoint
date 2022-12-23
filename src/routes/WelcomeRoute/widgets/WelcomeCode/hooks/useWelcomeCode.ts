@@ -43,10 +43,10 @@ export const useWelcomeCode = ({ email, onRegister, onLogin }: Props) => {
   }, [checkCode, formatValue, email, onLogin, onRegister, userTokensManager])
 
   useEffect(() => {
-    if (formatValue.length === 4) {
+    if (formatValue.length === 4 && !fetching) {
       handleCheckCode()
     }
-  }, [formatValue, handleCheckCode])
+  }, [formatValue, handleCheckCode, fetching])
 
   return {
     codeValue: formatValue,

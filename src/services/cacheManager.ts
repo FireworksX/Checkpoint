@@ -5,6 +5,7 @@ export type CacheEntityKey = 'x-user-ip'
 export type CacheManagerStore = Partial<{
   'x-user-ip': string
   useragent: AppContext['req']['useragent']
+  locationPermission: boolean
 }>
 
 type CacheKeys = keyof CacheManagerStore

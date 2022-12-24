@@ -45,6 +45,7 @@ const STORE_NAMES = createConstants(
   'modalAtom',
   'modalContextAtom',
   'userLocationAtom',
+  'userHasGeoPermission',
   'hasNavigationAtom'
 )
 
@@ -55,21 +56,7 @@ const zIndex = {
   pageSpinner: 30
 }
 
-export const MODAL_NAMES = createConstants(
-  'createCategory',
-  'editCategory',
-  'profileSettings',
-  'locationFields',
-  'locationKitchenTypes',
-  'chooseCategory',
-  'chooseProfileCategory',
-  'successCreateLocation',
-  'locationViewOptions',
-  'preRemoveLocation',
-  'locationPreloadModal',
-  'postPreview',
-  'postCreate'
-)
+export const MODAL_NAMES = createConstants('postPreview', 'postCreate', 'geoLocationRestricted')
 
 export type ModalName = keyof typeof MODAL_NAMES
 

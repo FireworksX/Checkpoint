@@ -6,6 +6,7 @@ import { ROUTE_NAMES } from 'src/router/constants'
 import { hasNavigationAtom } from 'src/store/uiStore'
 import PostPreviewModal from 'src/modals/PostPreviewModal/PostPreviewModal'
 import CreatePostModal from 'src/modals/CreatePostModal/CreatePostModal'
+import GeoLocationRestricted from '../../modals/GeoLocationRestricted/GeoLocationRestricted'
 
 interface NavigationRouteProps {
   className?: string
@@ -21,6 +22,7 @@ const NavigationRoute: FC<NavigationRouteProps> = ({ className, children }) => {
 
       <PostPreviewModal />
       <CreatePostModal />
+      <GeoLocationRestricted />
     </Styled.Root>
   )
 }

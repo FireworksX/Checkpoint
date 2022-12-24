@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 import useCookies from './useCookies'
-import { useUserLocation } from './data/useUserLocation'
+import { useLocationPermission } from './data/useLocationPermission'
 import { useCityInfo } from '../routes/CityInfoRoute/hooks/useCityInfo'
 
 /*
@@ -14,7 +14,7 @@ const DEFAULT_ZOOM_USER = 14
 export const useGeoLocation = () => {
   const { city } = useCityInfo()
   const [cookieSelfLocation, setSelfLocation] = useCookies('selfLocation')
-  const { userLocation } = useUserLocation()
+  const { userLocation } = useLocationPermission()
 
   const zoom = useMemo(() => {
     if (cookieSelfLocation?.zoom || (userLocation?.lng && userLocation?.lat)) {

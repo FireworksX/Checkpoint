@@ -1,5 +1,9 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import BottomSheet from '../BottomSheet/BottomSheet'
+
+interface Props {
+  actionsHorizontal?: boolean
+}
 
 export const Root = styled(BottomSheet).attrs({ withBackground: false, withHeader: false })`
   padding: 10px;
@@ -35,9 +39,16 @@ export const Description = styled.div`
   text-align: center;
 `
 
-export const Actions = styled.div`
+export const Actions = styled.div<Props>`
   margin-top: 10px;
   width: 100%;
+  ${({ actionsHorizontal }) =>
+    actionsHorizontal &&
+    css`
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-gap: 15px;
+    `};
 `
 
 export const CloseIcon = styled.div`

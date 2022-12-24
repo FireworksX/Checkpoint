@@ -3,7 +3,6 @@ import * as Styled from './styles'
 import { BottomSheetProps } from '../BottomSheet/BottomSheet'
 import Icon from 'src/components/Icon/Icon'
 import { useModal } from 'src/hooks/useModal'
-import { MODAL_NAMES } from 'src/router/constants'
 
 interface ModalCardProps extends Pick<BottomSheetProps, 'name' | 'autoClose' | 'onClose'> {
   className?: string
@@ -11,6 +10,7 @@ interface ModalCardProps extends Pick<BottomSheetProps, 'name' | 'autoClose' | '
   header?: ReactNode
   description?: ReactNode
   actions?: ReactNode
+  actionsHorizontal?: boolean
 }
 
 const ModalCard: FC<ModalCardProps> = ({
@@ -20,10 +20,11 @@ const ModalCard: FC<ModalCardProps> = ({
   header,
   description,
   name,
+  actionsHorizontal,
   autoClose = true,
   onClose
 }) => {
-  const { close } = useModal(MODAL_NAMES.successCreateLocation)
+  const { close } = useModal(name)
 
   return (
     <Styled.Root name={name} autoClose={autoClose} className={className} onClose={onClose}>
@@ -36,7 +37,7 @@ const ModalCard: FC<ModalCardProps> = ({
         {icon && <Styled.Icon>{icon}</Styled.Icon>}
         {header && <Styled.Header>{header}</Styled.Header>}
         {description && <Styled.Description>{description}</Styled.Description>}
-        {actions && <Styled.Actions>{actions}</Styled.Actions>}
+        {actions && <Styled.Actions actionsHorizontal={actionsHorizontal}>{actions}</Styled.Actions>}
       </Styled.Body>
     </Styled.Root>
   )

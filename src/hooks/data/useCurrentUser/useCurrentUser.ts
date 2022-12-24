@@ -14,7 +14,7 @@ export const useCurrentUser = () => {
   const welcomeLink = useLinkConfig('welcome')
   const token = userTokensManager.getTokens().accessToken
 
-  const [{ data, fetching }] = useCurrentUserQuery({
+  const [{ data, fetching, error }] = useCurrentUserQuery({
     variables: {
       token,
       ip: cacheManager.get('x-user-ip')

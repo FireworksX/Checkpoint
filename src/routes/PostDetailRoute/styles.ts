@@ -77,3 +77,15 @@ export const Action = styled(Button)`
 export const Comment = styled(CommentCard)`
   margin-bottom: 15px;
 `
+
+export const EmptyTitle = styled.div`
+  ${({ theme }) => theme.typography.text_18_22}
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: ${({ theme }) => theme.colors.secondary};
+`
+
+export const EmptyDescription = styled.div`
+  ${({ theme }) => theme.typography.text_14_24}
+  color: ${({ theme }) => theme.colors.secondary};
+`

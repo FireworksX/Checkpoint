@@ -43,6 +43,13 @@ export async function render(url: string, ctx: AppContext) {
 
   const helmetContext = {} as FilledContext
 
+  const selfCookieLocation = cookieManager.get('mapPosition')
+
+  console.log(selfCookieLocation);
+  if (selfCookieLocation) {
+    cacheManagerInstance.set('mapPosition', selfCookieLocation)
+  }
+
   const Application = (
     <App router={router} helmetContext={helmetContext} cookieManager={cookieManager} urqlClient={gqlClient} />
   )

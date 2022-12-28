@@ -1,6 +1,5 @@
-import { mapCenterAtom } from './atoms/mapCenterAtom'
-import { mapZoomAtom } from './atoms/mapZoomAtom'
+import { mapPositionAtom } from './atoms/mapPositionAtom'
 import { mapPlacemarksAtom } from './atoms/mapPlacemarksAtom'
 import { mapSaveCenterAtom } from './atoms/mapSaveCenterAtom'
 
-export { mapCenterAtom, mapZoomAtom, mapPlacemarksAtom, mapSaveCenterAtom }
+export { mapPositionAtom, mapPlacemarksAtom, mapSaveCenterAtom }

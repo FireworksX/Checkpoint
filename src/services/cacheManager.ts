@@ -6,6 +6,11 @@ export type CacheManagerStore = Partial<{
   'x-user-ip': string
   useragent: AppContext['req']['useragent']
   locationPermission: boolean
+  mapPosition: {
+    lat: number
+    lng: number
+    zoom: number
+  }
 }>
 
 type CacheKeys = keyof CacheManagerStore

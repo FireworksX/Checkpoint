@@ -12,6 +12,7 @@ import {urqlCacheNotify} from "./services/urqlCacheNotify";
 const { addService } = serviceContainer()
 
 const urqlCache = urqlCacheNotify()
+
 addService('urqlCacheNotify', urqlCache)
 
 const cacheManagerInstance = cacheManager()

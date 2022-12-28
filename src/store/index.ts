@@ -1,5 +1,5 @@
 import { RecoilState, RecoilValueReadOnly } from 'recoil'
-import { mapCenterAtom, mapPlacemarksAtom, mapSaveCenterAtom, mapZoomAtom } from './mapStore'
+import { mapPlacemarksAtom, mapSaveCenterAtom } from './mapStore'
 import {hasNavigationAtom, modalAtom} from './uiStore'
 import { geoLocationAtom } from './userStore'
 import { userAgentAtom } from './configStore'
@@ -15,7 +15,6 @@ export type StoreType = {
 }
 
 const storeMap = {
-  [STORE_NAMES.mapCenterAtom]: mapCenterAtom,
   [STORE_NAMES.mapZoomAtom]: mapZoomAtom,
   [STORE_NAMES.mapPlacemarksAtom]: mapPlacemarksAtom,
   [STORE_NAMES.mapSaveCenterAtom]: mapSaveCenterAtom,

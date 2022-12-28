@@ -1,10 +1,10 @@
 import { FC, ReactNode } from 'react'
 import * as Styled from './styles'
 
-interface PlaceholderProps {
+export interface PlaceholderProps {
   icon?: ReactNode
   actions?: ReactNode | ReactNode[]
-  header?: string
+  header?: ReactNode
   className?: string
 }
 

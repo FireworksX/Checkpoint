@@ -6,14 +6,13 @@ import Container from '../../components/Container/Container'
 import LocationCard from '../../widgets/LocationCard/LocationCard'
 import Button from '../../components/Button/Button'
 import Separator from '../../components/Separator/Separator'
-import GroupWrapper from '../../widgets/GroupWrapper/GroupWrapper'
-import Counter from '../NotificationsRoute/components/Counter/Counter'
 import { useModal } from '../../hooks/useModal'
 import { getRandomPost } from '../../data/mocks'
 import isBrowser from '../../utils/isBrowser'
 import Link from '../../widgets/Link/Link'
 import PageHeaderButtonBack from '../../widgets/PageHeader/components/PageHeaderButtonBack/PageHeaderButtonBack'
-import {CreatePostsModalContext} from "../../modals/CreatePostModal/CreatePostModal";
+import { CreatePostsModalContext } from '../../modals/CreatePostModal/CreatePostModal'
+import EmptyPlaceholder from '../../components/EmptyPlaceholder/EmptyPlaceholder'
 
 interface PostDetailRouteProps {
   className?: string
@@ -24,6 +23,8 @@ const PostDetailRoute: FC<PostDetailRouteProps> = ({ className }) => {
 
   const post = getRandomPost()
   const refer = post.refer
+
+  const comments = [] //post.comments
 
   if (!isBrowser) {
     return null
@@ -67,9 +68,16 @@ const PostDetailRoute: FC<PostDetailRouteProps> = ({ className }) => {
           </Styled.Metric>
         </Styled.Metrics>
 
-        <Button size='l' icon='lightning' stretched onClick={() => open({
-          onCancel: close
-        })}>
+        <Button
+          size='l'
+          icon='lightning'
+          stretched
+          onClick={() =>
+            open({
+              onCancel: close
+            })
+          }
+        >
           Connect
         </Button>
 
@@ -87,13 +95,17 @@ const PostDetailRoute: FC<PostDetailRouteProps> = ({ className }) => {
 
         <Separator icon='message-circle' />
 
-        <GroupWrapper title='Comments' counter={<Counter mode='accent'>{post.metrics.comments}</Counter>}>
-          {post.comments.map((comment, index) => (
-            <Styled.Comment key={index} user={comment.user}>
-              {comment.content}
-            </Styled.Comment>
-          ))}
-        </GroupWrapper>
+        <EmptyPlaceholder header='No connections yet'>
+          Yet no one has left feedback on this place
+        </EmptyPlaceholder>
+        {/*<GroupWrapper title='Comments' counter={<Counter mode='accent'>{post.metrics.comments}</Counter>}>*/}
+
+        {/*  {comments.map((comment, index) => (*/}
+        {/*    <Styled.Comment key={index} user={comment.user}>*/}
+        {/*      {comment.content}*/}
+        {/*    </Styled.Comment>*/}
+        {/*  ))}*/}
+        {/*</GroupWrapper>*/}
       </Container>
     </Styled.Root>
   )

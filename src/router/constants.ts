@@ -36,7 +36,7 @@ const ROUTE_PARAMS = createConstants(
 )
 
 const STORE_NAMES = createConstants(
-  'mapCenterAtom',
+  'mapPositionAtom',
   'mapZoomAtom',
   'mapPlacemarksAtom',
   'mapSaveCenterAtom',
@@ -53,7 +53,8 @@ const zIndex = {
   navigation: 10,
   header: 10,
   modal: 20,
-  pageSpinner: 30
+  pageSpinner: 30,
+  mapLocation: 2
 }
 
 export const MODAL_NAMES = createConstants('postPreview', 'postCreate', 'geoLocationRestricted')

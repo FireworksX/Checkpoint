@@ -1,7 +1,15 @@
 import { FC, useEffect, useRef } from 'react'
-import Map from 'react-map-gl'
+import Map, { Marker } from 'react-map-gl'
 import { useMyLocation } from '../../hooks/useMyLocation'
 import { useDisplayMap } from './hooks/useDisplayMap'
+import Placemark from './components/Placemark/Placemark'
+import { times } from '../../../../utils/times'
+import {random} from "../../../../utils/random";
+import {useModal} from "../../../../hooks/useModal";
+import {MODAL_NAMES} from "../../../../router/constants";
+import {PostPreviewModalContext} from "../../../../modals/PostPreviewModal/PostPreviewModal";
+import { getRandomUser} from "../../../../data/mocks";
+import LocationCard from "../../../../widgets/LocationCard/LocationCard";
 
 interface DisplayMapProps {
   className?: string
@@ -9,7 +17,10 @@ interface DisplayMapProps {
 
 const MAPBOX_TOKEN = import.meta.env.VITE_MAPBOX_TOKEN
 
+const marks = times(200).map(() => [random(0, 120), random(-50, 90)])
+
 const DisplayMap: FC<DisplayMapProps> = ({ className }) => {
+    const {open} = useModal<PostPreviewModalContext>(MODAL_NAMES.postPreview)
   const { marker, control } = useMyLocation()
   const map = useRef('')
   const { mapPosition, onZoom, onDrag } = useDisplayMap()
@@ -37,6 +48,14 @@ const DisplayMap: FC<DisplayMapProps> = ({ className }) => {
     >
       {marker}
       {control}
+      {marks.map(([lng, lat]) => (
+        <Marker longitude={lng} latitude={lat} anchor='bottom'>
+          <Placemark onClick={() => open({
+              target: <LocationCard name='test' location='Phuket, Thailand'/>,
+              author: getRandomUser()
+          })} />
+        </Marker>
+      ))}
     </Map>
   )
 }

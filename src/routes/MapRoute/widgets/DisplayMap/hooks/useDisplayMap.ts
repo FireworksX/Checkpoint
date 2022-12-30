@@ -13,7 +13,7 @@ export const useDisplayMap = () => {
         ...data,
         zoom: e.viewState.zoom
       }))
-    }, 300),
+    }, 10),
     []
   )
 

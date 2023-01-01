@@ -53,7 +53,7 @@ export const routes: Route[] = [
           },
           {
             name: ROUTE_NAMES.user,
-            path: `user/:${ROUTE_PARAMS.userSlug}`,
+            path: `u-:${ROUTE_PARAMS.userSlug}`,
             children: [
               {
                 name: ROUTE_NAMES.userReview,
@@ -79,12 +79,25 @@ export const routes: Route[] = [
           },
           {
             name: ROUTE_NAMES.postDetail,
-            path: `post/:${ROUTE_PARAMS.postSlug}`,
-            component: routeComponents.PostDetailRoute
+            path: `p-:${ROUTE_PARAMS.postSlug}?comments`,
+
+            children: [
+              { name: ROUTE_NAMES.postReview, path: '/', component: routeComponents.PostDetailRoute },
+              {
+                name: ROUTE_NAMES.postConnections,
+                path: '/connections',
+                component: routeComponents.PostConnectionsRoute
+              },
+              {
+                name: ROUTE_NAMES.postLikes,
+                path: '/likes',
+                component: routeComponents.PostLikesRoute
+              }
+            ]
           },
           {
             name: ROUTE_NAMES.locationDetail,
-            path: `location/:${ROUTE_PARAMS.locationSlug}`,
+            path: `l-:${ROUTE_PARAMS.locationSlug}`,
             component: routeComponents.LocationDetailRoute
           },
           {

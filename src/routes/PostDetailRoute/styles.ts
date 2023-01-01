@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 import Page from '../../widgets/Page/Page'
 import UserHeader from '../../components/UserHeader/UserHeader'
-import Touchable from '../../components/Touchable/Touchable'
 import Button from '../../components/Button/Button'
 import CommentCard from '../../components/CommentCard/CommentCard'
 import DisplayText from '../../widgets/DisplayText/DisplayText'
@@ -47,7 +46,7 @@ export const Metrics = styled.div`
   margin-bottom: 15px;
 `
 
-export const Metric = styled(Touchable)`
+export const Metric = styled(Link)`
   ${({ theme }) => theme.typography.text_14_20}
   color: ${({ theme }) => theme.colors.secondary};
   margin-right: 30px;

@@ -20,6 +20,9 @@ const ROUTE_NAMES = createConstants(
   'userFollowers',
   'userSubscribers',
   'postDetail',
+  'postReview',
+  'postConnections',
+  'postLikes',
   'locationDetail',
   'search'
 )
@@ -32,7 +35,8 @@ const ROUTE_PARAMS = createConstants(
   'mapAuthor',
   'mapCategory',
   'mapLocation',
-  'postSlug'
+  'postSlug',
+  'postComments',
 )
 
 const STORE_NAMES = createConstants(

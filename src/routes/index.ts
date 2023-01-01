@@ -13,6 +13,8 @@ import PostDetailRoute from './PostDetailRoute/PostDetailRoute'
 import LocationDetailRoute from './LocationDetailRoute/LocationDetailRoute'
 import MapRoute from './MapRoute/MapRoute'
 import SearchRoute from './SearchRoute/SearchRoute'
+import PostConnectionsRoute from './PostConnectionsRoute/PostConnectionsRoute'
+import PostLikesRoute from './PostLikesRoute/PostLikesRoute'
 
 export default {
   RootRoute,
@@ -29,5 +31,7 @@ export default {
   PostDetailRoute,
   MapRoute,
   LocationDetailRoute,
-  SearchRoute
+  SearchRoute,
+  PostConnectionsRoute,
+  PostLikesRoute
 }

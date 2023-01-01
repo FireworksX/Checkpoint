@@ -87,6 +87,7 @@ const getRandomBool = () => !!random(0, 1)
 export const getRandomUser = () => randomArray(users)
 export const getRandomLocation = () => randomArray(locations)
 const getRandomPostSlug = () => randomArray(postSlugs)
+export const getRandomPostText = () => randomArray(postText)
 const getRandomComment = () => ({
   user: getRandomUser(),
   content: randomArray(commentText),

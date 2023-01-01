@@ -1,9 +1,9 @@
 import { userTokens } from 'src/utils/userTokens'
 import { useRouter } from 'src/hooks/useRouter'
 import { useLinkConfig } from 'src/widgets/Link/hooks/useLinkConfig'
-import { ROUTE_NAMES } from 'src/router/constants'
 import { useIsomorphicEffect } from 'src/hooks/useIsomorphicEffect'
 import { useCurrentUser } from 'src/hooks/data/useCurrentUser/useCurrentUser'
+import { ROUTE_NAMES } from 'src/router/constants'
 
 export const useRootRoute = () => {
   const router = useRouter()
@@ -19,6 +19,7 @@ export const useRootRoute = () => {
       router.routerInstance.redirect(welcomeLink.link.name, welcomeLink.link.params)
       return
     }
+
     if (lastSegment === ROUTE_NAMES.navigation) {
       if (!accessToken || user?.status !== 2) {
         router.routerInstance.redirect(welcomeLink.link.name, welcomeLink.link.params)

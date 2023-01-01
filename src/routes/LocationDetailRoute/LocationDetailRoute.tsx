@@ -13,6 +13,7 @@ import { useModal } from 'src/hooks/useModal'
 import { CreatePostsModalContext } from 'src/modals/CreatePostModal/CreatePostModal'
 import Link from '../../widgets/Link/Link'
 import UserHeader from '../../components/UserHeader/UserHeader'
+import {useShare} from "../../hooks/useShare";
 
 interface LocationDetailRouteProps {
   className?: string
@@ -20,6 +21,7 @@ interface LocationDetailRouteProps {
 
 const LocationDetailRoute: FC<LocationDetailRouteProps> = ({ className }) => {
   const { open, close } = useModal<CreatePostsModalContext>(MODAL_NAMES.postCreate)
+  const {share, isAvailable} = useShare()
 
   const location = getRandomLocation()
   const posts = getRandomList(17, getRandomPost)
@@ -57,9 +59,9 @@ const LocationDetailRoute: FC<LocationDetailRouteProps> = ({ className }) => {
           <Styled.Action icon='heart' size='m' mode='secondary'>
             Like
           </Styled.Action>
-          <Styled.Action icon='share' size='m' mode='secondary'>
+          {isAvailable && <Styled.Action icon='share' size='m' mode='secondary' onClick={share}>
             Share
-          </Styled.Action>
+          </Styled.Action>}
         </Styled.Actions>
 
         <Separator icon='lightning' />

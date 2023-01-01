@@ -8,7 +8,7 @@ import {random} from "../../../../utils/random";
 import {useModal} from "../../../../hooks/useModal";
 import {MODAL_NAMES} from "../../../../router/constants";
 import {PostPreviewModalContext} from "../../../../modals/PostPreviewModal/PostPreviewModal";
-import { getRandomUser} from "../../../../data/mocks";
+import {getRandomPostText, getRandomUser} from "../../../../data/mocks";
 import LocationCard from "../../../../widgets/LocationCard/LocationCard";
 
 interface DisplayMapProps {
@@ -52,7 +52,8 @@ const DisplayMap: FC<DisplayMapProps> = ({ className }) => {
         <Marker longitude={lng} latitude={lat} anchor='bottom'>
           <Placemark onClick={() => open({
               target: <LocationCard name='test' location='Phuket, Thailand'/>,
-              author: getRandomUser()
+              author: getRandomUser(),
+              content: getRandomPostText()
           })} />
         </Marker>
       ))}

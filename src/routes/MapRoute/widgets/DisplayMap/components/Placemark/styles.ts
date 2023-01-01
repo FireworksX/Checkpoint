@@ -7,8 +7,8 @@ interface Props {
 
 const sizeByMode: Record<NonNullable<Props['sizeMode']>, number> = {
   s: 10,
-  m: 12,
-  l: 15
+  m: 15,
+  l: 20
 }
 
 export const Root = styled(Touchable)<Props>`

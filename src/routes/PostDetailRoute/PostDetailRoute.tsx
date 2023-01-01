@@ -1,7 +1,7 @@
-import { FC } from 'react'
+import { FC, useEffect, useRef } from 'react'
 import * as Styled from './styles'
 import { route } from '../../hoc/route'
-import { MODAL_NAMES, ROUTE_NAMES } from '../../router/constants'
+import { MODAL_NAMES, ROUTE_NAMES, ROUTE_PARAMS } from '../../router/constants'
 import Container from '../../components/Container/Container'
 import LocationCard from '../../widgets/LocationCard/LocationCard'
 import Button from '../../components/Button/Button'
@@ -12,19 +12,40 @@ import isBrowser from '../../utils/isBrowser'
 import Link from '../../widgets/Link/Link'
 import PageHeaderButtonBack from '../../widgets/PageHeader/components/PageHeaderButtonBack/PageHeaderButtonBack'
 import { CreatePostsModalContext } from '../../modals/CreatePostModal/CreatePostModal'
-import EmptyPlaceholder from '../../components/EmptyPlaceholder/EmptyPlaceholder'
+import { useRouter } from '../../hooks/useRouter'
+import GroupWrapper from '../../widgets/GroupWrapper/GroupWrapper'
+import Counter from '../NotificationsRoute/components/Counter/Counter'
+import { useShare } from '../../hooks/useShare'
 
 interface PostDetailRouteProps {
   className?: string
 }
 
 const PostDetailRoute: FC<PostDetailRouteProps> = ({ className }) => {
+  const commentsSectionRef = useRef<HTMLDivElement>()
   const { open, close } = useModal<CreatePostsModalContext>(MODAL_NAMES.postCreate)
+  const { getParam, route } = useRouter()
+  const { isAvailable, share } = useShare()
 
   const post = getRandomPost()
   const refer = post.refer
 
-  const comments = [] //post.comments
+  const comments = post.comments
+
+  const postSlug = getParam(ROUTE_PARAMS.postSlug)
+
+  useEffect(() => {
+    setTimeout(() => {
+      if ('comments' in route.params) {
+        const offset = commentsSectionRef?.current?.getBoundingClientRect()?.top
+
+        if (offset) {
+          window.scrollTo(0, offset)
+        }
+      }
+    }, 100)
+
+  }, [route.params])
 
   if (!isBrowser) {
     return null
@@ -60,10 +81,10 @@ const PostDetailRoute: FC<PostDetailRouteProps> = ({ className }) => {
         </Styled.Target>
 
         <Styled.Metrics>
-          <Styled.Metric>
+          <Styled.Metric type='postConnections' postSlug={postSlug}>
             <span>{post.metrics.connections}</span> Connections
           </Styled.Metric>
-          <Styled.Metric>
+          <Styled.Metric type='postLikes' postSlug={postSlug}>
             <span>{post.metrics.likes}</span> Likes
           </Styled.Metric>
         </Styled.Metrics>
@@ -88,24 +109,24 @@ const PostDetailRoute: FC<PostDetailRouteProps> = ({ className }) => {
           <Styled.Action icon='heart' size='m' mode='secondary'>
             Like
           </Styled.Action>
-          <Styled.Action icon='share' size='m' mode='secondary'>
-            Share
-          </Styled.Action>
+          {isAvailable && (
+            <Styled.Action icon='share' size='m' mode='secondary' onClick={share}>
+              Share
+            </Styled.Action>
+          )}
         </Styled.Actions>
 
         <Separator icon='message-circle' />
 
-        <EmptyPlaceholder header='No connections yet'>
-          Yet no one has left feedback on this place
-        </EmptyPlaceholder>
-        {/*<GroupWrapper title='Comments' counter={<Counter mode='accent'>{post.metrics.comments}</Counter>}>*/}
-
-        {/*  {comments.map((comment, index) => (*/}
-        {/*    <Styled.Comment key={index} user={comment.user}>*/}
-        {/*      {comment.content}*/}
-        {/*    </Styled.Comment>*/}
-        {/*  ))}*/}
-        {/*</GroupWrapper>*/}
+        {/*<EmptyPlaceholder header='No comments yet'>Yet no one has left feedback on this place</EmptyPlaceholder>*/}
+        <div ref={commentsSectionRef} />
+        <GroupWrapper title='Comments' counter={<Counter mode='accent'>{post.metrics.comments}</Counter>}>
+          {comments.map((comment, index) => (
+            <Styled.Comment key={index} user={comment.user}>
+              {comment.content}
+            </Styled.Comment>
+          ))}
+        </GroupWrapper>
       </Container>
     </Styled.Root>
   )

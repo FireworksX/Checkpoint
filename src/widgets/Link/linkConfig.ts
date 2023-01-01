@@ -43,7 +43,15 @@ const linkConfig = {
     params: { required: [], optional: [] }
   },
   post: {
-    name: buildName(ROUTE_NAMES.navigation, ROUTE_NAMES.postDetail),
+    name: buildName(ROUTE_NAMES.navigation, ROUTE_NAMES.postDetail, ROUTE_NAMES.postReview),
+    params: { required: [ROUTE_PARAMS.postSlug], optional: [ROUTE_PARAMS.postComments] }
+  },
+  postConnections: {
+    name: buildName(ROUTE_NAMES.navigation, ROUTE_NAMES.postDetail, ROUTE_NAMES.postConnections),
+    params: { required: [ROUTE_PARAMS.postSlug], optional: [] }
+  },
+  postLikes: {
+    name: buildName(ROUTE_NAMES.navigation, ROUTE_NAMES.postDetail, ROUTE_NAMES.postLikes),
     params: { required: [ROUTE_PARAMS.postSlug], optional: [] }
   },
   location: {

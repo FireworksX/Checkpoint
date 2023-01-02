@@ -1,5 +1,5 @@
 import { FC, useCallback, useState } from 'react'
-import { Pagination } from 'swiper'
+import SwiperCore, { Pagination } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/swiper.min.css'
 import * as Styled from './styles'
@@ -11,6 +11,8 @@ interface GalleryProps {
 }
 
 const SWIPE_SPEED = 500
+
+SwiperCore.use([Pagination])
 
 const Gallery: FC<GalleryProps> = ({ className }) => {
   const [swiper, setSwiper] = useState<SwiperClass | undefined>()
@@ -35,14 +37,7 @@ const Gallery: FC<GalleryProps> = ({ className }) => {
       <Styled.ButtonNext onClick={nextSlide}>
         <Icon name='caret-right' />
       </Styled.ButtonNext>
-      <Swiper
-        modules={[Pagination]}
-        spaceBetween={50}
-        slidesPerView={1}
-        pagination
-        navigation
-        onSwiper={setSwiper}
-      >
+      <Swiper spaceBetween={50} slidesPerView={1} pagination navigation onSwiper={setSwiper}>
         <SwiperSlide>
           <Styled.Slide>1</Styled.Slide>
         </SwiperSlide>

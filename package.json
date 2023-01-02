@@ -57,7 +57,7 @@
     "router5": "^8.0.1",
     "router5-plugin-browser": "^8.0.1",
     "styled-components": "^5.3.3",
-    "swiper": "^6.5.0",
+    "swiper": "^8.4.5",
     "urql": "^3.0.3",
     "uuid": "^8.3.2",
     "vite-plugin-pwa": "^0.12.0",

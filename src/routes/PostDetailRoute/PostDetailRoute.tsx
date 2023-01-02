@@ -69,8 +69,11 @@ const PostDetailRoute: FC<PostDetailRouteProps> = ({ className }) => {
           />
         </Link>
 
+
         <Styled.Text>{post.content}</Styled.Text>
         <Styled.Date>10:06 - Nov 23, 2022</Styled.Date>
+
+        <Styled.Gallery/>
 
         <Styled.Target type='location' locationSlug='testLocation'>
           <LocationCard

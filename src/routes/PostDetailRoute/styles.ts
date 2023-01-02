@@ -5,6 +5,7 @@ import Button from '../../components/Button/Button'
 import CommentCard from '../../components/CommentCard/CommentCard'
 import DisplayText from '../../widgets/DisplayText/DisplayText'
 import Link from "../../widgets/Link/Link";
+import GalleryComp from "../../components/Gallery/Gallery";
 
 interface Props {
   hasRefer?: boolean
@@ -33,6 +34,10 @@ export const Text = styled(DisplayText)`
 export const Date = styled.div`
   ${({ theme }) => theme.typography.text_12_16}
   color: ${({ theme }) => theme.colors.secondary};
+  margin-bottom: 15px;
+`
+
+export const Gallery = styled(GalleryComp)`
   margin-bottom: 15px;
 `
 

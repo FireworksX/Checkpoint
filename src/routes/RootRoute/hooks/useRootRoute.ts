@@ -11,11 +11,12 @@ export const useRootRoute = () => {
   const mapLink = useLinkConfig('map')
   const lastSegment = router.getLastSegment(router.route.name)
   const { user } = useCurrentUser()
+  const isWelcomePath = router.isActive(ROUTE_NAMES.welcome)
 
   useIsomorphicEffect(() => {
     const accessToken = userTokens().getTokens().accessToken
 
-    if (!accessToken) {
+    if (!accessToken && !isWelcomePath) {
       router.routerInstance.redirect(welcomeLink.link.name, welcomeLink.link.params)
       return
     }

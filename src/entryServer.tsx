@@ -45,7 +45,6 @@ export async function render(url: string, ctx: AppContext) {
 
   const selfCookieLocation = cookieManager.get('mapPosition')
 
-  console.log(selfCookieLocation);
   if (selfCookieLocation) {
     cacheManagerInstance.set('mapPosition', selfCookieLocation)
   }

@@ -18,6 +18,8 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
+      - run: git branch --set-upstream-to=origin/master circleci-project-setup
+      - run: git pull
       - run: yarn install
 
       - save_cache:
@@ -25,5 +27,4 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
-      - run: git pull
       - run: yarn restart

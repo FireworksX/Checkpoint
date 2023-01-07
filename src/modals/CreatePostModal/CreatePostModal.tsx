@@ -14,26 +14,19 @@ export interface CreatePostsModalContext {
 }
 
 const CreatePostModal: FC<CreatePostModalProps> = ({ className }) => {
-  const { context } = useModal<CreatePostsModalContext>(MODAL_NAMES.postCreate)
+  const { context } = useModal(MODAL_NAMES.postCreate)
 
   return (
     <BottomSheet name={MODAL_NAMES.postCreate} withHeader autoClose>
       <Styled.Root className={className}>
+        <Styled.ConnectedSection>Connected from @dodi</Styled.ConnectedSection>
         <Styled.Header firstName='Arthur' lastName='Abeltinsh' userName='fireworks' />
-        <Styled.Text>
-          Was great meeting up with @annaferguson and Dave Bishop at the breakfast talk! 🍕#breakfast
-        </Styled.Text>
-        <Styled.Date>10:06 - Nov 23, 2022</Styled.Date>
 
-        <Styled.Delim icon='lightning' />
+        <Styled.Editor />
 
-        <Styled.Area placeholder='Your reply' />
-        <Styled.Actions>
-          <Styled.CancelButton size='xl' mode='secondary' icon='close-circle' onClick={context?.onCancel}/>
-          <Button size='xl' mode='primary' stretched icon='edit'>
-            Publish
-          </Button>
-        </Styled.Actions>
+        <Button size='l' stretched icon='lightning'>
+          Connect
+        </Button>
       </Styled.Root>
     </BottomSheet>
   )

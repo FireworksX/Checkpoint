@@ -35,7 +35,7 @@ const Avatar: FC<AvatarProps> = ({ className, src, mode = 'circle', uniqueId, ch
               <Icon name='close-circle' />
             </Styled.Reset>
           )}
-          <CommonLogo src={src} size={size || DEFAULT_LOGO_SIZE} withRadius withBackground withBorder alt={children} />
+          <CommonLogo src={src} size={size || DEFAULT_LOGO_SIZE} withRadius withBackground alt={children} />
         </>
       ) : (
         <InitialsAvatar gradientColor={gradientCode} size={size}>

@@ -3,6 +3,7 @@ import * as Styled from './styles'
 import Container from 'src/components/Container/Container'
 import { useWelcomeCode } from './hooks/useWelcomeCode'
 import { staticImagesMap } from 'src/data/staticImagesMap'
+import Touchable from "../../../../components/Touchable/Touchable";
 
 interface WelcomeRegisterProps {
   email?: string
@@ -13,7 +14,7 @@ interface WelcomeRegisterProps {
 }
 
 const WelcomeCode: FC<WelcomeRegisterProps> = ({ className, email, onLogin, onRegister, onBack }) => {
-  const { codeValue, pageRef, fetching, onSetCodeValue } = useWelcomeCode({ email, onLogin, onRegister, onBack })
+  const { codeValue, pageRef, fetching, onSetCodeValue, resendCode, resendValue } = useWelcomeCode({ email, onLogin, onRegister, onBack })
 
   return (
     <Styled.Root className={className} ref={pageRef} fetching={fetching}>
@@ -30,7 +31,7 @@ const WelcomeCode: FC<WelcomeRegisterProps> = ({ className, email, onLogin, onRe
 
         <Styled.Resend>
           Don`t receive code?
-          <span>Resend</span>
+          <Touchable tagName='span' onClick={resendCode}>Resend {resendValue > 0 && `(${resendValue})`}</Touchable>
         </Styled.Resend>
       </Container>
     </Styled.Root>

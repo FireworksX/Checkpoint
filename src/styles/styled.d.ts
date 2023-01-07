@@ -72,6 +72,7 @@ declare module 'styled-components' {
       radius: {
         radiusMain: string
         radiusSecond: string
+        radiusSmall: string
       }
       paddings: {
         gutterMobile: string

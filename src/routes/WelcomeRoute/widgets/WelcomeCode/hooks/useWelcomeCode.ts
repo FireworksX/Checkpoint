@@ -1,8 +1,10 @@
-import { useCallback, useEffect, useRef } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { useNumberFormatter } from 'src/components/Input/hooks/useNumberFormatter'
 import { useCheckAuthCodeMutation } from '../queries/CheckAuthCodeMutation'
 import { userTokens } from 'src/utils/userTokens'
 import { PageRef } from 'src/widgets/Page/Page'
+import { useInterval } from 'react-use'
+import { useSendAuthCodeMutation } from 'src/routes/WelcomeRoute/widgets/WelcomeIntro/queries/SendAuthCodeMutation'
 
 interface Props {
   email?: string
@@ -10,13 +12,18 @@ interface Props {
   onLogin(): void
 }
 
+const RESEND_INTERVAL = 60
+
 export const useWelcomeCode = ({ email, onRegister, onLogin }: Props) => {
+  const [resendValue, setResendValue] = useState(RESEND_INTERVAL)
+
   const userTokensManager = userTokens()
   const pageRef = useRef<PageRef>()
 
   const { formatValue, setValue } = useNumberFormatter()
 
   const [{ fetching }, checkCode] = useCheckAuthCodeMutation()
+  const [, sendAuthCode] = useSendAuthCodeMutation()
 
   const handleCheckCode = useCallback(async () => {
     if (email) {
@@ -48,10 +55,26 @@ export const useWelcomeCode = ({ email, onRegister, onLogin }: Props) => {
     }
   }, [formatValue, handleCheckCode, fetching])
 
+  useInterval(
+    () => {
+      setResendValue(val => val - 1)
+    },
+    resendValue > 0 ? 1000 : null
+  )
+
+  const resendCode = useCallback(async () => {
+    if (email) {
+      await sendAuthCode({ email })
+      setResendValue(RESEND_INTERVAL)
+    }
+  }, [setResendValue, sendAuthCode])
+
   return {
     codeValue: formatValue,
     onSetCodeValue: setValue,
     fetching,
-    pageRef
+    pageRef,
+    resendValue,
+    resendCode
   }
 }

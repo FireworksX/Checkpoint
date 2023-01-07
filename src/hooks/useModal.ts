@@ -1,19 +1,37 @@
 import { useCallback } from 'react'
 import { useRecoilState } from 'recoil'
 import { modalAtom, modalContextAtom } from 'src/store/uiStore'
-import { ModalName } from 'src/router/constants'
+import { MODAL_NAMES, ModalName } from 'src/router/constants'
 import { promiseWaiter } from 'src/utils/promiseWaiter'
+import { modalClosingAtom } from '../store/uiStore/atoms/modalClosingAtom'
+import { CreatePostsModalContext } from '../modals/CreatePostModal/CreatePostModal'
+import { PostPreviewModalContext } from '../modals/PostPreviewModal/PostPreviewModal'
+import { GeoLocationRestrictedContext } from '../modals/GeoLocationRestricted/GeoLocationRestricted'
 
-export const useModal = <CTX = any>(modalName: ModalName) => {
+export type ModalsCtx = Partial<{
+  [MODAL_NAMES.postCreate]: CreatePostsModalContext
+  [MODAL_NAMES.postPreview]: PostPreviewModalContext
+  [MODAL_NAMES.geoLocationRestricted]: GeoLocationRestrictedContext
+}>
+
+export const useModal = <T extends ModalName, CTX extends ModalsCtx[T]>(modalName: T) => {
+  const [modalClosing, setModalClosing] = useRecoilState(modalClosingAtom)
   const [currentModal, setCurrentModal] = useRecoilState(modalAtom)
-  const [modalContext, setModalContext] = useRecoilState<CTX | undefined>(modalContextAtom)
+  const [modalContext, setModalContext] = useRecoilState(modalContextAtom)
   const isOpen = currentModal === modalName
 
-  const close = useCallback(async () => {
-    setCurrentModal(undefined)
-    await promiseWaiter()
-    setModalContext(undefined)
-  }, [setCurrentModal, setModalContext])
+  const close = useCallback(
+    async (resetCtx = false) => {
+      setModalClosing(true)
+      setCurrentModal(undefined)
+      await promiseWaiter(600)
+      setModalClosing(false)
+      if (resetCtx) {
+        setModalContext(data => ({ ...data, [modalName]: undefined }))
+      }
+    },
+    [setCurrentModal, setModalContext, setModalClosing, modalName]
+  )
 
   const open = useCallback(
     async (context?: CTX) => {
@@ -22,7 +40,7 @@ export const useModal = <CTX = any>(modalName: ModalName) => {
       }
 
       setCurrentModal(modalName)
-      setModalContext(context)
+      setModalContext(data => ({ ...data, [modalName]: context }))
       await promiseWaiter()
     },
     [setCurrentModal, modalName, setModalContext, close, currentModal]
@@ -31,17 +49,18 @@ export const useModal = <CTX = any>(modalName: ModalName) => {
   const updateContext = useCallback(
     (fields: Partial<CTX>) => {
       if (isOpen) {
-        setModalContext(curValue => ({ ...curValue, ...fields } as CTX))
+        setModalContext(data => ({ ...data, [modalName]: { ...data[modalName], ...fields } }))
       }
     },
-    [setModalContext, isOpen]
+    [setModalContext, isOpen, modalName]
   )
 
   return {
     isOpen,
     open,
     close,
-    context: modalContext,
-    updateContext
+    context: modalContext[modalName],
+    updateContext,
+    modalClosing
   }
 }

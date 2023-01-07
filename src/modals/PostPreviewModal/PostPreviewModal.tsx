@@ -1,15 +1,11 @@
 import { FC, ReactNode } from 'react'
 import * as Styled from './styles'
-import { useModal } from '../../hooks/useModal'
-import { MODAL_NAMES } from '../../router/constants'
-import { LocationFieldsModalContext } from '../LocationFieldsModal/LocationFieldsModal'
-import SimpleCell from '../../components/SimpleCell/SimpleCell'
-import BottomSheet from '../../widgets/BottomSheet/BottomSheet'
-import UserHeader from '../../components/UserHeader/UserHeader'
-import Button from '../../components/Button/Button'
-import Link from '../../widgets/Link/Link'
+import { useModal } from 'src/hooks/useModal'
+import { MODAL_NAMES } from 'src/router/constants'
+import BottomSheet from 'src/widgets/BottomSheet/BottomSheet'
+import Link from 'src/widgets/Link/Link'
 import { CreatePostsModalContext } from '../CreatePostModal/CreatePostModal'
-import DateFormatter from '../../components/DateFormatter/DateFormatter'
+import DateFormatter from 'src/components/DateFormatter/DateFormatter'
 
 interface PostPreviewModalProps {
   className?: string
@@ -28,6 +24,7 @@ export interface PostPreviewModalContext {
 const PostPreviewModal: FC<PostPreviewModalProps> = ({ className }) => {
   const { context, close, open: openPreview } = useModal<PostPreviewModalContext>(MODAL_NAMES.postPreview)
   const { open } = useModal<CreatePostsModalContext>(MODAL_NAMES.postCreate)
+
 
   return (
     <BottomSheet name={MODAL_NAMES.postPreview} withHeader autoClose>

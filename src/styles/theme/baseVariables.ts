@@ -36,6 +36,7 @@ const baseStyles = {
   radius: {
     radiusMain: '20px',
     radiusSecond: '10px',
+    radiusSmall: '5px',
   },
   paddings: {
     gutterMobile: '15px',

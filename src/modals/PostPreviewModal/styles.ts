@@ -5,8 +5,8 @@ import PostAction from '../../widgets/Post/components/PostAction/PostAction'
 import DisplayText from "../../widgets/DisplayText/DisplayText";
 
 export const Root = styled(Container)`
-  padding-top: 10px;
-  padding-bottom: 50px;
+  padding-top: 15px;
+  padding-bottom: 30px;
 `
 
 export const Header = styled(UserHeader)`

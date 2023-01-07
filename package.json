@@ -50,6 +50,7 @@
     "react-slider": "^2.0.1",
     "react-spring-bottom-sheet": "^3.4.1",
     "react-ssr-prepass": "^1.5.0",
+    "react-textarea-autosize": "^8.4.0",
     "react-transition-group": "^4.4.5",
     "react-use": "^17.3.2",
     "recoil": "^0.6.1",

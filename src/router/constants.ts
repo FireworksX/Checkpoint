@@ -47,6 +47,7 @@ const STORE_NAMES = createConstants(
   'geoLocationAtom',
   'userAgentAtom',
   'modalAtom',
+  'modalClosingAtom',
   'modalContextAtom',
   'userLocationAtom',
   'userHasGeoPermission',

@@ -4,6 +4,8 @@ import Touchable from "../../components/Touchable/Touchable";
 export const Root = styled.div`
   display: inline-flex;
   position: relative;
+  border: 2px solid ${({ theme }) => theme.colors.border};
+  border-radius: 50%;
 `
 
 export const Reset = styled(Touchable)`

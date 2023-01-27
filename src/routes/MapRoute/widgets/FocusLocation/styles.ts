@@ -12,4 +12,5 @@ export const Root = styled.div`
   left: 0;
   right: 0;
   z-index: ${zIndex.mapLocation};
+  pointer-events: none;
 `

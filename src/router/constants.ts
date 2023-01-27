@@ -41,12 +41,14 @@ const ROUTE_PARAMS = createConstants(
 
 const STORE_NAMES = createConstants(
   'mapPositionAtom',
+  'mapLayersAtom',
   'mapZoomAtom',
   'mapPlacemarksAtom',
   'mapSaveCenterAtom',
   'geoLocationAtom',
   'userAgentAtom',
   'modalAtom',
+  'snackbarAtom',
   'modalClosingAtom',
   'modalContextAtom',
   'userLocationAtom',
@@ -56,6 +58,7 @@ const STORE_NAMES = createConstants(
 
 const zIndex = {
   navigation: 10,
+  snackbar: 5,
   header: 10,
   modal: 20,
   pageSpinner: 30,

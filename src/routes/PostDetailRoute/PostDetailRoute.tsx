@@ -11,7 +11,6 @@ import { getRandomPost } from '../../data/mocks'
 import isBrowser from '../../utils/isBrowser'
 import Link from '../../widgets/Link/Link'
 import PageHeaderButtonBack from '../../widgets/PageHeader/components/PageHeaderButtonBack/PageHeaderButtonBack'
-import { CreatePostsModalContext } from '../../modals/CreatePostModal/CreatePostModal'
 import { useRouter } from '../../hooks/useRouter'
 import GroupWrapper from '../../widgets/GroupWrapper/GroupWrapper'
 import Counter from '../NotificationsRoute/components/Counter/Counter'
@@ -23,7 +22,7 @@ interface PostDetailRouteProps {
 
 const PostDetailRoute: FC<PostDetailRouteProps> = ({ className }) => {
   const commentsSectionRef = useRef<HTMLDivElement>()
-  const { open, close } = useModal<CreatePostsModalContext>(MODAL_NAMES.postCreate)
+  const { open, close } = useModal(MODAL_NAMES.postCreate)
   const { getParam, route } = useRouter()
   const { isAvailable, share } = useShare()
 

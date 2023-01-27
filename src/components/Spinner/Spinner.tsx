@@ -8,6 +8,7 @@ export interface SpinnerProps {
   state?: 'error' | 'success'
   size?: 'small' | 'regular' | 'medium' | 'large'
   pathColor?: string
+  strokeWidth?: number
   className?: string
 }
 
@@ -17,7 +18,7 @@ const CheckIcon = ({ width, height }: { width: number; height: number }) => (
   </svg>
 )
 
-const Spinner: FC<SpinnerProps> = ({ className, size = 'regular', state, pathColor }) => {
+const Spinner: FC<SpinnerProps> = ({ className, strokeWidth = 8, size = 'regular', state, pathColor }) => {
   const theme = useTheme()
   const color = pathColor || theme.colors.secondary
   const statusSize = { small: 10, regular: 18, medium: 34, large: 48 }[size]
@@ -28,7 +29,7 @@ const Spinner: FC<SpinnerProps> = ({ className, size = 'regular', state, pathCol
         <Styled.Bar>
           <Styled.BarInner
             size={size}
-            strokeWidth={8}
+            strokeWidth={strokeWidth}
             value={70}
             styles={buildStyles({
               pathColor: pathColor || theme.colors.secondary,

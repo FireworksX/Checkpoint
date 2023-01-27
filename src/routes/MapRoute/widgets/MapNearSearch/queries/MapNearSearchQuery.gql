@@ -1,0 +1,27 @@
+query MapNearSearch($lat: Float!, $lng: Float!) {
+  searchNearPlace(input: { lat: $lat, lng: $lng }) {
+    slug
+    name
+    geometry {
+      viewport {
+        northeast {
+          lat
+          lng
+        }
+        southwest {
+          lat
+          lng
+        }
+      }
+      location {
+        lat
+        lng
+      }
+    }
+    rating {
+      value
+      count
+    }
+    address
+  }
+}

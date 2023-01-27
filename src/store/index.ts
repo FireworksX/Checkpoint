@@ -15,7 +15,6 @@ export type StoreType = {
 }
 
 const storeMap = {
-  [STORE_NAMES.mapZoomAtom]: mapZoomAtom,
   [STORE_NAMES.mapPlacemarksAtom]: mapPlacemarksAtom,
   [STORE_NAMES.mapSaveCenterAtom]: mapSaveCenterAtom,
   [STORE_NAMES.geoLocationAtom]: geoLocationAtom,

@@ -14,7 +14,7 @@ export const useCurrentUser = () => {
   const welcomeLink = useLinkConfig('welcome')
   const token = userTokensManager.getTokens().accessToken
 
-  const [{ data, fetching, error }] = useCurrentUserQuery({
+  const [{ data, fetching }, revalidate] = useCurrentUserQuery({
     variables: {
       token,
       ip: cacheManager.get('x-user-ip')
@@ -25,9 +25,10 @@ export const useCurrentUser = () => {
   const user = useMemo(() => data?.getMe, [data])
 
   const logout = useCallback(async () => {
+    await revalidate({requestPolicy: "network-only"})
     userTokensManager.resetTokens()
     router.navigate(welcomeLink.link.name, welcomeLink.link.params)
-  }, [userTokensManager, router, welcomeLink])
+  }, [userTokensManager, router, welcomeLink, revalidate])
 
   const update = useCallback(async () => {
     await promiseWaiter(300)

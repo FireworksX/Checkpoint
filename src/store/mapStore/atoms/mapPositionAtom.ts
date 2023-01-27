@@ -5,6 +5,8 @@ interface MapPositionAtomProps {
   lat: number
   lng: number
   zoom: number
+  minZoom: number
+  maxZoom: number
 }
 
 export const mapPositionAtom = atom<MapPositionAtomProps>({
@@ -12,6 +14,8 @@ export const mapPositionAtom = atom<MapPositionAtomProps>({
   default: {
     lat: 0,
     lng: 0,
-    zoom: 10
+    zoom: 10,
+    minZoom: 2,
+    maxZoom: 17
   }
 })

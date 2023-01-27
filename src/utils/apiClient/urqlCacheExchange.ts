@@ -8,8 +8,12 @@ export const urqlCacheExchange = (urqlCacheNotify: UrqlCacheNotify) => cacheExch
     User: user => buildCacheKey(user, 'userName'),
     Location: () => null,
     Coords: coords => buildCacheKey(coords, 'lat', 'lng'),
+    Place: place => buildCacheKey(place, 'slug'),
+    PlaceRating: placeRating => buildCacheKey(placeRating, 'value', 'count'),
+    PlaceGeometry: () => null,
+    PlaceViewport: placeViewpoint => buildCacheKey(placeViewpoint, 'northeast', 'southwest'),
     UserCounters: () => null,
-    ConnectionFlag: () => null
+    ConnectionFlag: () => null,
   },
   resolvers: {
     Query: {

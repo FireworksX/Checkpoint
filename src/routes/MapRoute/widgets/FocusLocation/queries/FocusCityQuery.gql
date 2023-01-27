@@ -1,0 +1,3 @@
+query FocusCity($lat: Float!, $lng: Float!) {
+  getCity(input: { lat: $lat, lng: $lng })
+}

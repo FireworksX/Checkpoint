@@ -1,4 +1,3 @@
-import { userTokens } from 'src/utils/userTokens'
 import { useRouter } from 'src/hooks/useRouter'
 import { useLinkConfig } from 'src/widgets/Link/hooks/useLinkConfig'
 import { useIsomorphicEffect } from 'src/hooks/useIsomorphicEffect'
@@ -10,29 +9,29 @@ export const useRootRoute = () => {
   const welcomeLink = useLinkConfig('welcome')
   const mapLink = useLinkConfig('map')
   const lastSegment = router.getLastSegment(router.route.name)
-  const { user } = useCurrentUser()
+  const { user, fetching, fullName } = useCurrentUser()
   const isWelcomePath = router.isActive(ROUTE_NAMES.welcome)
+  const isValidUser = user?.status === 2
 
   useIsomorphicEffect(() => {
-    const accessToken = userTokens().getTokens().accessToken
+    if (isWelcomePath && isValidUser) {
+      router.routerInstance.redirect(mapLink.link.name, mapLink.link.params)
+      return
+    }
 
-    if (!accessToken && !isWelcomePath) {
+    if (!isValidUser && !isWelcomePath) {
       router.routerInstance.redirect(welcomeLink.link.name, welcomeLink.link.params)
       return
     }
 
     if (lastSegment === ROUTE_NAMES.navigation) {
-      if (!accessToken || user?.status !== 2) {
-        router.routerInstance.redirect(welcomeLink.link.name, welcomeLink.link.params)
-        return
-      }
-
-      if (accessToken) {
+      if (isValidUser) {
         router.routerInstance.redirect(mapLink.link.name, mapLink.link.params)
-        return
+      } else {
+        router.routerInstance.redirect(welcomeLink.link.name, welcomeLink.link.params)
       }
     }
-  }, [])
+  }, [isWelcomePath, isValidUser, lastSegment])
 
   return {
     user,

@@ -29,6 +29,7 @@ export const Header = styled.div`
   font-weight: bold;
   color: ${({ theme }) => theme.colors.textColorDark};
   padding: 0 8px;
+  text-align: center;
 `
 
 export const Description = styled.div`

@@ -1,0 +1,27 @@
+query SearchPlaces($term: String!, $bbox: String) {
+  searchPlace(input: { search: $term, bbox: $bbox }) {
+    slug
+    name
+    geometry {
+      viewport {
+        northeast {
+          lat
+          lng
+        }
+        southwest {
+          lat
+          lng
+        }
+      }
+      location {
+        lat
+        lng
+      }
+    }
+    rating {
+      value
+      count
+    }
+    address
+  }
+}

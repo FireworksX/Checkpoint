@@ -5,6 +5,7 @@ import { ROUTE_NAMES } from '../../router/constants'
 import GroupWrapper from '../../widgets/GroupWrapper/GroupWrapper'
 import Container from '../../components/Container/Container'
 import HorizontalScroll from '../../components/HorizontalScroll/HorizontalScroll'
+import {useSearchPlaces} from "./hooks/useSearchPlaces";
 
 interface SearchRouteProps {
   className?: string
@@ -21,10 +22,12 @@ const users = [
 ]
 
 const SearchRoute: FC<SearchRouteProps> = ({ className }) => {
+  const {term, setTerm, results} = useSearchPlaces()
+
   return (
     <Styled.Root title='Explore' className={className}>
       <Styled.Body>
-        <Styled.Search icon='search' placeholder='Search' />
+        <Styled.Search icon='search' placeholder='Search' value={term} onChange={({target: {value}}) => setTerm(value)} />
 
         <GroupWrapper title='Trends for you'>
           {tags.map(tag => (

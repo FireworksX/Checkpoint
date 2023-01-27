@@ -1,12 +1,15 @@
 import { FC } from 'react'
 import * as Styled from './styles'
+import {useFocusCity} from "./hooks/useFocusCity";
 
 interface FocusLocationProps {
   className?: string
 }
 
 const FocusLocation: FC<FocusLocationProps> = ({ className }) => {
-  return <Styled.Root className={className}>Phuket</Styled.Root>
+  const city = useFocusCity()
+
+  return <Styled.Root className={className}>{city}</Styled.Root>
 }
 
 export default FocusLocation

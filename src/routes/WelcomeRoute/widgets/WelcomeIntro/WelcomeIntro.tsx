@@ -4,7 +4,6 @@ import Container from 'src/components/Container/Container'
 import { useWelcomeIntro } from './hooks/useWelcomeIntro'
 import Button from 'src/components/Button/Button'
 import { staticImagesMap } from '../../../../data/staticImagesMap'
-import { useToggle } from 'react-use'
 
 interface WelcomeRegisterProps {
   className?: string

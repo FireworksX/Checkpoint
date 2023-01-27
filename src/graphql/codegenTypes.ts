@@ -24,6 +24,11 @@ export type Coords = {
   lng: Maybe<Scalars['Float']>;
 };
 
+export type LatLng = {
+  lat?: Maybe<Scalars['Float']>;
+  lng?: Maybe<Scalars['Float']>;
+};
+
 export type Location = {
   country: Maybe<Scalars['String']>;
   city: Maybe<Scalars['String']>;
@@ -93,7 +98,40 @@ export type NewUser = {
   bio?: Maybe<Scalars['String']>;
 };
 
+export type Place = {
+  slug: Maybe<Scalars['String']>;
+  name: Maybe<Scalars['String']>;
+  geometry: Maybe<PlaceGeometry>;
+  rating: Maybe<PlaceRating>;
+  address: Maybe<Scalars['String']>;
+};
+
+export type PlaceAddress = {
+  country: Maybe<Scalars['String']>;
+  city: Maybe<Scalars['String']>;
+  detail: Maybe<Scalars['String']>;
+  full: Maybe<Scalars['String']>;
+};
+
+export type PlaceGeometry = {
+  viewport: Maybe<PlaceViewport>;
+  location: Maybe<Coords>;
+};
+
+export type PlaceRating = {
+  value: Maybe<Scalars['Float']>;
+  count: Maybe<Scalars['Int']>;
+};
+
+export type PlaceViewport = {
+  northeast: Maybe<Coords>;
+  southwest: Maybe<Coords>;
+};
+
 export type Query = {
+  searchPlace: Maybe<Array<Maybe<Place>>>;
+  searchNearPlace: Maybe<Array<Maybe<Place>>>;
+  getCity: Maybe<Scalars['String']>;
   usernameExists: Scalars['Boolean'];
   getMe: User;
   getUserInfo: User;
@@ -101,6 +139,21 @@ export type Query = {
   userConnections: Maybe<Array<User>>;
   userFollowers: Maybe<Array<User>>;
   users: Array<User>;
+};
+
+
+export type QuerySearchPlaceArgs = {
+  input: SearchPlace;
+};
+
+
+export type QuerySearchNearPlaceArgs = {
+  input: LatLng;
+};
+
+
+export type QueryGetCityArgs = {
+  input: LatLng;
 };
 
 
@@ -131,6 +184,11 @@ export type QueryUserConnectionsArgs = {
 
 export type QueryUserFollowersArgs = {
   userName: Scalars['String'];
+};
+
+export type SearchPlace = {
+  bbox?: Maybe<Scalars['String']>;
+  search?: Maybe<Scalars['String']>;
 };
 
 export type Subscriptions = {

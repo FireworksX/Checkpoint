@@ -1,19 +1,21 @@
 import { useCallback } from 'react'
 import { ViewStateChangeEvent } from 'react-map-gl/dist/esm/types/external'
 import { useRecoilState } from 'recoil'
-import { mapPositionAtom } from '../../../../../store/mapStore'
-import { debounce } from '../../../../../utils/debounce'
+import { mapPositionAtom } from 'src/store/mapStore'
+import { debounce } from 'src/utils/debounce'
 
 export const useDisplayMap = () => {
   const [mapPosition, setMapPosition] = useRecoilState(mapPositionAtom)
 
-  const onZoom = useCallback(
+  const setZoom = useCallback(
     debounce((e: ViewStateChangeEvent) => {
       setMapPosition(data => ({
         ...data,
-        zoom: e.viewState.zoom
+        zoom: e.viewState.zoom,
+        lat: e.viewState.latitude,
+        lng: e.viewState.longitude
       }))
-    }, 10),
+    }, 300),
     []
   )
 
@@ -21,8 +23,8 @@ export const useDisplayMap = () => {
     debounce((e: ViewStateChangeEvent) => {
       setMapPosition(data => ({
         ...data,
-          lat: e.viewState.latitude,
-          lng: e.viewState.longitude
+        lat: e.viewState.latitude,
+        lng: e.viewState.longitude
       }))
     }, 300),
     []
@@ -30,7 +32,7 @@ export const useDisplayMap = () => {
 
   return {
     mapPosition,
-    onZoom,
-      onDrag
+    setZoom,
+    onDrag,
   }
 }

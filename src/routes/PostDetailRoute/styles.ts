@@ -14,7 +14,7 @@ interface Props {
 export const Root = styled(Page)``
 
 export const ConnectedSection = styled(DisplayText)`
-  border-left: 1px solid ${({ theme }) => theme.colors.border};
+  border-left: 2px solid ${({ theme }) => theme.colors.border};
   padding: 15px 10px;
   margin-left: 22px;
   color: ${({ theme }) => theme.colors.secondary};

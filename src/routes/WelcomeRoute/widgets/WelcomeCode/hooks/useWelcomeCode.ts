@@ -53,7 +53,7 @@ export const useWelcomeCode = ({ email, onRegister, onLogin }: Props) => {
     if (formatValue.length === 4 && !fetching) {
       handleCheckCode()
     }
-  }, [formatValue, handleCheckCode, fetching])
+  }, [formatValue])
 
   useInterval(
     () => {
@@ -67,7 +67,7 @@ export const useWelcomeCode = ({ email, onRegister, onLogin }: Props) => {
       await sendAuthCode({ email })
       setResendValue(RESEND_INTERVAL)
     }
-  }, [setResendValue, sendAuthCode])
+  }, [setResendValue, sendAuthCode, email])
 
   return {
     codeValue: formatValue,

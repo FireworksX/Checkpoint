@@ -7,6 +7,7 @@ import { hasNavigationAtom } from 'src/store/uiStore'
 import PostPreviewModal from 'src/modals/PostPreviewModal/PostPreviewModal'
 import CreatePostModal from 'src/modals/CreatePostModal/CreatePostModal'
 import GeoLocationRestricted from '../../modals/GeoLocationRestricted/GeoLocationRestricted'
+import Snackbar from '../../widgets/Snackbar/Snackbar'
 
 interface NavigationRouteProps {
   className?: string
@@ -20,6 +21,7 @@ const NavigationRoute: FC<NavigationRouteProps> = ({ className, children }) => {
       {children}
       <Styled.Navigation hasNavigation={hasNavigation} />
 
+      <Snackbar />
       <PostPreviewModal />
       <CreatePostModal />
       <GeoLocationRestricted />

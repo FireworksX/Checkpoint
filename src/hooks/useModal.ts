@@ -7,11 +7,13 @@ import { modalClosingAtom } from '../store/uiStore/atoms/modalClosingAtom'
 import { CreatePostsModalContext } from '../modals/CreatePostModal/CreatePostModal'
 import { PostPreviewModalContext } from '../modals/PostPreviewModal/PostPreviewModal'
 import { GeoLocationRestrictedContext } from '../modals/GeoLocationRestricted/GeoLocationRestricted'
+import {PlacePreviewModalContext} from "../modals/PlacePreviewModal/PlacePreviewModal";
 
 export type ModalsCtx = Partial<{
   [MODAL_NAMES.postCreate]: CreatePostsModalContext
   [MODAL_NAMES.postPreview]: PostPreviewModalContext
   [MODAL_NAMES.geoLocationRestricted]: GeoLocationRestrictedContext
+  [MODAL_NAMES.placePreview]: PlacePreviewModalContext
 }>
 
 export const useModal = <T extends ModalName, CTX extends ModalsCtx[T]>(modalName: T) => {

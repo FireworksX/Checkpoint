@@ -1,27 +1,35 @@
 import { useMapNearSearchQuery } from '../queries/MapNearSearchQuery'
-import { useRecoilState } from 'recoil'
+import {useRecoilState, useRecoilValue} from 'recoil'
 import { mapPositionAtom, mapSearchNearLayerAtom } from '../../../../../store/mapStore'
 import { useCallback, useEffect } from 'react'
 import { useSnackbar } from '../../../../../hooks/useSnackbar'
+import {appConfig} from "../../../../../data/appConfig";
+import {getMinDistanceBounds} from "../../../../../store/mapStore/mapInstance/selectors/getMinDistanceBounds";
 
 export const useMapNearSearch = () => {
   const [nearSearch, setNearSearch] = useRecoilState(mapSearchNearLayerAtom)
-  const [mapPosition, setMapPosition] = useRecoilState(mapPositionAtom)
+  const mapPosition = useRecoilValue(mapPositionAtom)
+  const distance = useRecoilValue(getMinDistanceBounds)
+
   const { open: openSnackbar } = useSnackbar({
-    text: 'You can search for new places only with a small zoom of the map'
+    text: 'Too far away from destination',
+    action: {
+      text: 'Zoom to',
+      onClick: () => console.log('on zoom map')
+    }
   })
 
   const [{ fetching }] = useMapNearSearchQuery({
     variables: {
-      lat: mapPosition.lat,
-      lng: mapPosition.lng
+      lat: mapPosition.center.lat,
+      lng: mapPosition.center.lng,
+      distance: Math.round(distance)
     },
     pause: !nearSearch.isVisible
   })
 
-
   const startSearching = useCallback(() => {
-    if (mapPosition.zoom > 14) {
+    if (mapPosition.zoom > appConfig.searchMaxZoom) {
       setNearSearch(oldValue => ({ ...oldValue, isVisible: true }))
     } else {
       openSnackbar()
@@ -33,11 +41,17 @@ export const useMapNearSearch = () => {
   }, [setNearSearch])
 
   useEffect(() => {
-    if (nearSearch.isVisible && mapPosition.zoom < 14) {
+    if (nearSearch.isVisible && mapPosition.zoom < appConfig.searchMaxZoom) {
       stopSearching()
       openSnackbar()
     }
   }, [mapPosition.zoom, nearSearch, openSnackbar, stopSearching])
+
+  useEffect(() => {
+    return () => {
+      stopSearching()
+    }
+  }, [stopSearching])
 
   return {
     isSearching: nearSearch.isVisible,

@@ -24,7 +24,6 @@ const UserRoute: FC<UserRouteProps> = ({ className }) => {
 
   const posts = getRandomList(random(3, 35), getRandomPost)
 
-
   return (
     <Styled.Root
       className={className}

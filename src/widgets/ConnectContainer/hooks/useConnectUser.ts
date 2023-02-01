@@ -1,7 +1,7 @@
 import { useCallback } from 'react'
-import { useConnectUserMutation } from '../queries/ConnectUserMutation'
-import { userTokens } from '../../../utils/userTokens'
-import {useUnConnectUserMutation} from "../queries/UnConnectUserMutation";
+import { useConnectUserMutation } from 'src/widgets/ConnectContainer/queries/ConnectUserMutation'
+import { userTokens } from 'src/utils/userTokens'
+import {useUnConnectUserMutation} from "src/widgets/ConnectContainer/queries/UnConnectUserMutation";
 
 export const useConnectUser = (targetId: string) => {
   const token = userTokens().getTokens().accessToken

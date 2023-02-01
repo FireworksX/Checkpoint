@@ -1,5 +1,5 @@
 import linkConfig, { LinkType } from './linkConfig'
-import { Router } from '../../hooks/useRouter'
+import { Router } from 'src/hooks/useRouter'
 
 export type LinkOptions = { safeOptionalParams?: boolean; router: Router }
 export type LinkProps = Record<string, any> & LinkOptions
@@ -29,7 +29,6 @@ export const buildLinkConfig = (type: LinkType, props: LinkProps) => {
     console.error(e, link.name, routeParams)
   }
   const isSamePage = route?.path === href
-  const isActive = props.router.isActive()
 
   return {
     routeParams,

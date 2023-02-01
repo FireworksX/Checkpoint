@@ -1,5 +1,5 @@
-query MapNearSearch($lat: Float!, $lng: Float!) {
-  searchNearPlace(input: { lat: $lat, lng: $lng }) {
+query MapNearSearch($lat: Float!, $lng: Float!, $distance: Int!) {
+  searchNearPlace(input: { lat: $lat, lng: $lng, distance: $distance}) {
     slug
     name
     geometry {

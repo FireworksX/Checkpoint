@@ -2,9 +2,10 @@ import styled from 'styled-components'
 import { pxToValue } from '../../styles/theme/baseStyleds'
 import Icon from '../../components/Icon/Icon'
 import { zIndex } from '../../router/constants'
-import Touchable, {TouchableProps} from "../../components/Touchable/Touchable";
+import Touchable, { TouchableProps } from '../../components/Touchable/Touchable'
+import Button from '../../components/Button/Button'
 
-interface Props extends TouchableProps{
+interface Props extends TouchableProps {
   isOpen?: boolean
 }
 
@@ -27,10 +28,21 @@ export const Root = styled(Touchable)<Props>`
 export const Body = styled.div`
   ${({ theme }) => theme.typography.text_16_20};
   color: ${({ theme }) => theme.colors.textColorLight};
+  display: flex;
+  align-items: center;
+  width: 100%;
 `
 
 export const Before = styled(Icon)`
   margin-right: 10px;
   color: ${({ theme }) => theme.colors.textColorLight};
   min-width: 20px;
+`
+
+export const Action = styled(Button).attrs({ mode: 'tertiary', size: 'l' })`
+  font-weight: bold;
+  color: ${({ theme }) => theme.colors.textColorLight};
+  margin-left: auto;
+  padding-top: 3px;
+  padding-bottom: 3px;
 `

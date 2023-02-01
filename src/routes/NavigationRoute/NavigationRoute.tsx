@@ -8,6 +8,7 @@ import PostPreviewModal from 'src/modals/PostPreviewModal/PostPreviewModal'
 import CreatePostModal from 'src/modals/CreatePostModal/CreatePostModal'
 import GeoLocationRestricted from '../../modals/GeoLocationRestricted/GeoLocationRestricted'
 import Snackbar from '../../widgets/Snackbar/Snackbar'
+import PlacePreviewModal from '../../modals/PlacePreviewModal/PlacePreviewModal'
 
 interface NavigationRouteProps {
   className?: string
@@ -22,6 +23,7 @@ const NavigationRoute: FC<NavigationRouteProps> = ({ className, children }) => {
       <Styled.Navigation hasNavigation={hasNavigation} />
 
       <Snackbar />
+      <PlacePreviewModal />
       <PostPreviewModal />
       <CreatePostModal />
       <GeoLocationRestricted />

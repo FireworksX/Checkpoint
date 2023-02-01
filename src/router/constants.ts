@@ -36,12 +36,13 @@ const ROUTE_PARAMS = createConstants(
   'mapCategory',
   'mapLocation',
   'postSlug',
-  'postComments',
+  'postComments'
 )
 
 const STORE_NAMES = createConstants(
   'mapPositionAtom',
   'mapLayersAtom',
+  'mapInstanceAtom',
   'mapZoomAtom',
   'mapPlacemarksAtom',
   'mapSaveCenterAtom',
@@ -53,7 +54,8 @@ const STORE_NAMES = createConstants(
   'modalContextAtom',
   'userLocationAtom',
   'userHasGeoPermission',
-  'hasNavigationAtom'
+  'hasNavigationAtom',
+  'getMinDistanceBounds'
 )
 
 const zIndex = {
@@ -65,7 +67,7 @@ const zIndex = {
   mapLocation: 2
 }
 
-export const MODAL_NAMES = createConstants('postPreview', 'postCreate', 'geoLocationRestricted')
+export const MODAL_NAMES = createConstants('postPreview', 'postCreate', 'geoLocationRestricted', 'placePreview')
 
 export type ModalName = keyof typeof MODAL_NAMES
 

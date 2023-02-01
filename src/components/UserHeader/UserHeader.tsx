@@ -2,7 +2,7 @@ import { FC } from 'react'
 import * as Styled from './styles'
 import { buildFullName } from '../../utils/buildFullName'
 import Username from '../Username/Username'
-import {useInitialAvatarPlaceholder} from "../../widgets/Avatar/hooks/useInitialAvatarPlaceholder";
+import { useInitialAvatarPlaceholder } from '../../widgets/Avatar/hooks/useInitialAvatarPlaceholder'
 
 interface UserHeaderProps {
   firstName?: string
@@ -12,9 +12,19 @@ interface UserHeaderProps {
   className?: string
   avatar?: string
   verify?: boolean
+  hasAvatar?: boolean
 }
 
-const UserHeader: FC<UserHeaderProps> = ({ className, avatar, firstName, lastName, verify, description, userName }) => {
+const UserHeader: FC<UserHeaderProps> = ({
+  className,
+  avatar,
+  hasAvatar = true,
+  firstName,
+  lastName,
+  verify,
+  description,
+  userName
+}) => {
   const hasName = firstName || lastName
   const hasDescription = description || userName
   const initialText = useInitialAvatarPlaceholder({
@@ -23,15 +33,23 @@ const UserHeader: FC<UserHeaderProps> = ({ className, avatar, firstName, lastNam
     userName
   })
 
+  const uniqueId = userName || firstName || lastName
+
   return (
     <Styled.Root className={className}>
-      <Styled.Avatar src={avatar} size={44} uniqueId={userName}>{initialText}</Styled.Avatar>
+      {hasAvatar && (
+        <Styled.Avatar src={avatar} size={44} uniqueId={uniqueId}>
+          {initialText}
+        </Styled.Avatar>
+      )}
       <div>
         <Styled.Head>
           {hasName ? buildFullName(firstName, lastName) : <Username>{userName}</Username>}
           {verify && <Styled.VerifyIcon />}
         </Styled.Head>
-        {hasDescription && <Styled.Description>{description || (hasName && <Username>{userName}</Username>)}</Styled.Description>}
+        {hasDescription && (
+          <Styled.Description>{description || (hasName && <Username>{userName}</Username>)}</Styled.Description>
+        )}
       </div>
     </Styled.Root>
   )

@@ -1,21 +1,20 @@
 import { useRouter } from 'src/hooks/useRouter'
 import { ROUTE_PARAMS } from 'src/router/constants'
-import {useUserSubscribersQuery} from "../queries/UserSubscribersQuery";
-import {useUserRoute} from "../../UserRoute/hooks/useUserRoute";
+import { useUserSubscribersQuery } from '../queries/UserSubscribersQuery'
+import { useUserRoute } from '../../UserRoute/hooks/useUserRoute'
 
 export const useUserSubscribersRoute = () => {
   const { getParam } = useRouter()
   const userSlug = getParam(ROUTE_PARAMS.userSlug)
-  const {user} = useUserRoute()
+  const { user } = useUserRoute()
 
-  const [{data, fetching}] = useUserSubscribersQuery({
+  const [{ data, fetching }] = useUserSubscribersQuery({
     variables: {
       userName: userSlug
     }
   })
 
   const list = data?.userSubscribers
-
 
   return {
     user,

@@ -9,7 +9,7 @@ interface UrqlCacheStore {
 export type UrqlCacheNotify = ReturnType<typeof urqlCacheNotify>
 
 export const urqlCacheNotify = () => {
-  const store: UrqlCacheStore = {}
+  const store = {} as UrqlCacheStore
 
   const mutation =
     (mutationName: keyof UrqlCacheStore): UpdateResolver =>

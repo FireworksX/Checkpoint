@@ -27,6 +27,7 @@ export type Coords = {
 export type LatLng = {
   lat?: Maybe<Scalars['Float']>;
   lng?: Maybe<Scalars['Float']>;
+  distance?: Maybe<Scalars['Int']>;
 };
 
 export type Location = {
@@ -37,6 +38,7 @@ export type Location = {
 
 export type Mutation = {
   sendAuthCode: User;
+  savePost: Post;
   checkCode: User;
   register: User;
   editUser: User;
@@ -49,6 +51,11 @@ export type Mutation = {
 
 export type MutationSendAuthCodeArgs = {
   input: NewUser;
+};
+
+
+export type MutationSavePostArgs = {
+  input?: Maybe<SavePostInput>;
 };
 
 
@@ -99,6 +106,7 @@ export type NewUser = {
 };
 
 export type Place = {
+  google_id: Maybe<Scalars['String']>;
   slug: Maybe<Scalars['String']>;
   name: Maybe<Scalars['String']>;
   geometry: Maybe<PlaceGeometry>;
@@ -126,6 +134,14 @@ export type PlaceRating = {
 export type PlaceViewport = {
   northeast: Maybe<Coords>;
   southwest: Maybe<Coords>;
+};
+
+export type Post = {
+  place: Maybe<Place>;
+  placeId: Maybe<Scalars['String']>;
+  text: Maybe<Scalars['String']>;
+  userName: Maybe<Scalars['String']>;
+  createdAt: Maybe<Scalars['Int']>;
 };
 
 export type Query = {
@@ -186,8 +202,14 @@ export type QueryUserFollowersArgs = {
   userName: Scalars['String'];
 };
 
+export type SavePostInput = {
+  googleId?: Maybe<Scalars['String']>;
+  text?: Maybe<Scalars['String']>;
+  token?: Maybe<Scalars['String']>;
+};
+
 export type SearchPlace = {
-  bbox?: Maybe<Scalars['String']>;
+  location?: Maybe<LatLng>;
   search?: Maybe<Scalars['String']>;
 };
 

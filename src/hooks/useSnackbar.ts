@@ -8,6 +8,10 @@ export interface SnackbarOptions {
   autoClose?: boolean
   autoCloseInterval?: number
   icon?: SvgNames
+  action?: {
+    text: string | number
+    onClick: Callback<unknown>
+  }
 }
 
 const DEFAULT_OPTIONS = {

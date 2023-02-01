@@ -36,7 +36,7 @@ export const cacheManager = () => {
     cache[key] = value
   }
 
-  const forEach = (predictor: (key: CacheKeys, value: CacheValue<unknown>) => void) => {
+  const forEach = (predictor: <K extends CacheKeys>(key: K, value: CacheValue<K>) => void) => {
     Object.entries(cache).forEach(([key, value]) => predictor(key as CacheKeys, value))
   }
 

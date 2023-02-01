@@ -1,11 +1,12 @@
-import { FC, useEffect, useRef } from 'react'
+import {FC, useCallback} from 'react'
+import {useRecoilState} from "recoil";
 import Map from 'react-map-gl'
 import { useMyLocation } from '../../hooks/useMyLocation'
 import { useDisplayMap } from './hooks/useDisplayMap'
 import { useModal } from '../../../../hooks/useModal'
 import { MODAL_NAMES } from '../../../../router/constants'
-import { PostPreviewModalContext } from '../../../../modals/PostPreviewModal/PostPreviewModal'
 import MapNearSearchSource from '../MapNearSearch/components/MapNearSearchSource/MapNearSearchSource'
+import {mapInstanceAtom} from "src/store/mapStore";
 
 interface DisplayMapProps {
   className?: string
@@ -14,32 +15,25 @@ interface DisplayMapProps {
 const MAPBOX_TOKEN = import.meta.env.VITE_MAPBOX_TOKEN
 
 const DisplayMap: FC<DisplayMapProps> = ({ className }) => {
-  const { open } = useModal<PostPreviewModalContext>(MODAL_NAMES.postCreate)
+  const [_mapInstance, setMapInstance] = useRecoilState(mapInstanceAtom)
+  const { open } = useModal(MODAL_NAMES.placePreview)
   const { marker, control } = useMyLocation()
-  const map = useRef('')
-  const { mapPosition, setZoom, onDrag } = useDisplayMap()
+  const { mapPosition } = useDisplayMap()
 
-  useEffect(() => {
-    if (map.current) {
-      // map.current.on('zoomEnd', console.log)
-      map.current.on('click', 'near-search', e => {
-        open()
-      })
+  const measuredRef = useCallback(node => {
+    if (node !== null) {
+      setMapInstance(node)
     }
-  }, [map.current])
+  }, [setMapInstance]);
 
   return (
     <Map
       initialViewState={{
-        longitude: mapPosition.lng,
-        latitude: mapPosition.lat,
+        longitude: mapPosition.center.lng,
+        latitude: mapPosition.center.lat,
         zoom: mapPosition.zoom
       }}
-      ref={map}
-      minZoom={mapPosition.minZoom}
-      maxZoom={mapPosition.maxZoom}
-      onZoom={setZoom}
-      onDrag={onDrag}
+      ref={measuredRef}
       style={{ width: '100%', height: 'calc(100vh - 70px)' }}
       mapStyle='mapbox://styles/mapbox/light-v11'
       mapboxAccessToken={MAPBOX_TOKEN}

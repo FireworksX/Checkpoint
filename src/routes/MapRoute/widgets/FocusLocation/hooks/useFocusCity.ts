@@ -1,18 +1,19 @@
-import { useRecoilValue} from "recoil";
-import {mapPositionAtom} from "../../../../../store/mapStore";
-import {useFocusCityQuery} from "../queries/FocusCityQuery";
+import { useRecoilValue } from 'recoil'
+import { mapPositionAtom } from 'src/store/mapStore'
+import { useFocusCityQuery } from '../queries/FocusCityQuery'
+import { appConfig } from 'src/data/appConfig'
+import { useDebounce } from 'src/hooks/useDebounce'
 
 export const useFocusCity = () => {
-    const mapPosition = useRecoilValue(mapPositionAtom)
-    const hasLabel = mapPosition.zoom > 5
+  const mapPosition = useRecoilValue(mapPositionAtom)
+  const hasLabel = mapPosition.zoom > appConfig.searchMaxZoom
 
-    const [{data}] = useFocusCityQuery({
-        variables: {
-            lat: mapPosition.lat,
-            lng: mapPosition.lng,
-        },
-        pause: !hasLabel
-    })
+  const variables = useDebounce(mapPosition.center, 100)
 
-    return hasLabel ? data?.getCity : ''
+  const [{ data }] = useFocusCityQuery({
+    variables,
+    pause: !hasLabel
+  })
+
+  return hasLabel ? data?.getCity : ''
 }

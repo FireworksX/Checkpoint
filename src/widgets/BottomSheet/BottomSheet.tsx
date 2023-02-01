@@ -23,7 +23,7 @@ const BottomSheet: FC<BottomSheetProps> = ({
   name,
   onClose
 }) => {
-  const { isOpen, close, modalClosing } = useModal(name)
+  const { isOpen, close } = useModal(name)
 
   const onCloseModal = useCallback(() => {
     if (onClose) {

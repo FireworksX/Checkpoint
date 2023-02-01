@@ -1,4 +1,4 @@
-import { serviceContainer } from '../services/ioc/serviceContainer'
+import { serviceContainer } from 'src/services/ioc/serviceContainer'
 
 export const userTokens = () => {
   const cookieManager = serviceContainer().getService('cookieManager')
@@ -8,7 +8,7 @@ export const userTokens = () => {
   }
 
   const getTokens = () => ({
-    accessToken: cookieManager?.get('accessToken')
+    accessToken: cookieManager.get('accessToken')!
   })
 
   const resetTokens = () => {

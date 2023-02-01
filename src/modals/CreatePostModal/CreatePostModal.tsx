@@ -10,7 +10,7 @@ interface CreatePostModalProps {
 }
 
 export interface CreatePostsModalContext {
-  onCancel(): void
+  onCancel(): void | Promise<void>
 }
 
 const CreatePostModal: FC<CreatePostModalProps> = ({ className }) => {

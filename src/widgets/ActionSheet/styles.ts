@@ -19,5 +19,5 @@ export const CancelButton = styled(Touchable)`
   display: flex;
   align-items: center;
   justify-content: center;
-  color: ${({ theme }) => theme.colors.accentBlue} !important;
+  color: ${({ theme }) => theme.colors.primary} !important;
 `

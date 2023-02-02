@@ -3,8 +3,6 @@ import {useRecoilState} from "recoil";
 import Map from 'react-map-gl'
 import { useMyLocation } from '../../hooks/useMyLocation'
 import { useDisplayMap } from './hooks/useDisplayMap'
-import { useModal } from '../../../../hooks/useModal'
-import { MODAL_NAMES } from '../../../../router/constants'
 import MapNearSearchSource from '../MapNearSearch/components/MapNearSearchSource/MapNearSearchSource'
 import {mapInstanceAtom} from "src/store/mapStore";
 
@@ -16,7 +14,6 @@ const MAPBOX_TOKEN = import.meta.env.VITE_MAPBOX_TOKEN
 
 const DisplayMap: FC<DisplayMapProps> = ({ className }) => {
   const [_mapInstance, setMapInstance] = useRecoilState(mapInstanceAtom)
-  const { open } = useModal(MODAL_NAMES.placePreview)
   const { marker, control } = useMyLocation()
   const { mapPosition } = useDisplayMap()
 

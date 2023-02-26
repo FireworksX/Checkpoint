@@ -1,6 +1,6 @@
 import { hasNavigationAtom } from './atoms/hasNavigationAtom'
-import { modalAtom } from './atoms/modalAtom'
 import { snackbarAtom} from './atoms/snackbarAtom'
 import { modalContextAtom } from './atoms/modalContextAtom'
+import { modalAtom, modalHistoryAtom } from './modal'
 
-export { modalAtom, modalContextAtom, hasNavigationAtom, snackbarAtom }
+export { modalAtom, modalHistoryAtom, modalContextAtom, hasNavigationAtom, snackbarAtom }

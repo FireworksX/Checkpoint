@@ -1,4 +1,4 @@
-import {mapInstanceAtom} from './atoms/mapInstanceAtom'
-import { mapPositionAtom} from './atoms/mapPositionAtom'
+import { mapInstanceAtom } from './atoms/mapInstanceAtom'
+import { mapPositionAtom } from './atoms/mapPositionAtom'
 
-export {mapInstanceAtom, mapPositionAtom}
+export { mapInstanceAtom, mapPositionAtom }

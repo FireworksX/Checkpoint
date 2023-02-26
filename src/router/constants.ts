@@ -39,25 +39,6 @@ const ROUTE_PARAMS = createConstants(
   'postComments'
 )
 
-const STORE_NAMES = createConstants(
-  'mapPositionAtom',
-  'mapLayersAtom',
-  'mapInstanceAtom',
-  'mapZoomAtom',
-  'mapPlacemarksAtom',
-  'mapSaveCenterAtom',
-  'geoLocationAtom',
-  'userAgentAtom',
-  'modalAtom',
-  'snackbarAtom',
-  'modalClosingAtom',
-  'modalContextAtom',
-  'userLocationAtom',
-  'userHasGeoPermission',
-  'hasNavigationAtom',
-  'getMinDistanceBounds'
-)
-
 const zIndex = {
   navigation: 10,
   snackbar: 5,
@@ -71,4 +52,4 @@ export const MODAL_NAMES = createConstants('postPreview', 'postCreate', 'geoLoca
 
 export type ModalName = keyof typeof MODAL_NAMES
 
-export { langSlugs, ROUTE_NAMES, ROUTE_PARAMS, STORE_NAMES, RouteNamesType, zIndex }
+export { langSlugs, ROUTE_NAMES, ROUTE_PARAMS, RouteNamesType, zIndex }

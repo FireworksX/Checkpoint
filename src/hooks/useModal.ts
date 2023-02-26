@@ -1,13 +1,12 @@
 import { useCallback } from 'react'
-import { useRecoilState } from 'recoil'
 import { modalAtom, modalContextAtom } from 'src/store/uiStore'
 import { MODAL_NAMES, ModalName } from 'src/router/constants'
 import { promiseWaiter } from 'src/utils/promiseWaiter'
-import { modalClosingAtom } from '../store/uiStore/atoms/modalClosingAtom'
 import { CreatePostsModalContext } from '../modals/CreatePostModal/CreatePostModal'
 import { PostPreviewModalContext } from '../modals/PostPreviewModal/PostPreviewModal'
 import { GeoLocationRestrictedContext } from '../modals/GeoLocationRestricted/GeoLocationRestricted'
-import {PlacePreviewModalContext} from "../modals/PlacePreviewModal/PlacePreviewModal";
+import { PlacePreviewModalContext } from '../modals/PlacePreviewModal/PlacePreviewModal'
+import { useStore } from '@nanostores/react'
 
 export type ModalsCtx = Partial<{
   [MODAL_NAMES.postCreate]: CreatePostsModalContext
@@ -16,53 +15,60 @@ export type ModalsCtx = Partial<{
   [MODAL_NAMES.placePreview]: PlacePreviewModalContext
 }>
 
-export const useModal = <T extends ModalName, CTX extends ModalsCtx[T]>(modalName: T) => {
-  const [modalClosing, setModalClosing] = useRecoilState(modalClosingAtom)
-  const [currentModal, setCurrentModal] = useRecoilState(modalAtom)
-  const [modalContext, setModalContext] = useRecoilState(modalContextAtom)
-  const isOpen = currentModal === modalName
+export const useModal = () => {
+  const currentModal = useStore(modalAtom)
+  const modalContext = useStore(modalContextAtom)
+
+  const hide = useCallback(async () => {
+    modalAtom.set(undefined)
+    await promiseWaiter(600)
+  }, [])
 
   const close = useCallback(
     async (resetCtx = false) => {
-      setModalClosing(true)
-      setCurrentModal(undefined)
-      await promiseWaiter(600)
-      setModalClosing(false)
-      if (resetCtx) {
-        setModalContext(data => ({ ...data, [modalName]: undefined }))
+      await hide()
+      if (resetCtx && currentModal) {
+        modalContextAtom.set({ ...modalContextAtom.get(), [currentModal]: undefined })
       }
     },
-    [setCurrentModal, setModalContext, setModalClosing, modalName]
+    [hide, currentModal]
   )
 
   const open = useCallback(
-    async (context?: CTX) => {
+    async <T extends ModalName>(name: T, context?: ModalsCtx[T]) => {
       if (currentModal) {
-        await close()
+        await hide()
       }
 
-      setCurrentModal(modalName)
-      setModalContext(data => ({ ...data, [modalName]: context }))
+      modalAtom.set(name)
+      modalContextAtom.set({ ...modalContextAtom.get(), [name]: context })
+
       await promiseWaiter()
     },
-    [setCurrentModal, modalName, setModalContext, close, currentModal]
+    [currentModal, hide]
   )
 
-  const updateContext = useCallback(
-    (fields: Partial<CTX>) => {
-      if (isOpen) {
-        setModalContext(data => ({ ...data, [modalName]: { ...data[modalName], ...fields } }))
-      }
-    },
-    [setModalContext, isOpen, modalName]
-  )
+  const updateContext = useCallback(<T extends ModalName>(name: T, fields: Partial<ModalsCtx[T]>) => {
+    // if (isOpen) {
+    modalContextAtom.set({ ...modalContextAtom.get(), [name]: { ...modalContextAtom.get()[name], ...fields } })
+    // }
+  }, [])
+
+  // useEffect(() => {
+  //   setModalHistory(history => {
+  //     if (!modalName) {
+  //       return []
+  //     }
+  //
+  //     return [...history, modalName]
+  //   })
+  // }, [modalName])
 
   return {
-    isOpen,
     open,
     close,
-    context: modalContext[modalName],
+    modalContext,
     updateContext,
-    modalClosing
+    currentModal,
   }
 }

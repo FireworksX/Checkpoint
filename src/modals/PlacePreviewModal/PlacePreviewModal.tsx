@@ -19,7 +19,8 @@ export interface PlacePreviewModalContext {
 }
 
 const PlacePreviewModal: FC<PlacePreviewModalProps> = ({ className }) => {
-  const { context } = useModal(MODAL_NAMES.placePreview)
+  const { modalContext } = useModal()
+  const context = modalContext[MODAL_NAMES.placePreview]
 
   return (
     <BottomSheet name={MODAL_NAMES.placePreview} withHeader autoClose>

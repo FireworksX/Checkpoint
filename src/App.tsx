@@ -1,6 +1,5 @@
 import React, { FC } from 'react'
 import { RouterProvider } from 'react-router5'
-import { MutableSnapshot, RecoilRoot } from 'recoil'
 import { Client, Provider as UrqlProvider } from 'urql'
 import { FilledContext, HelmetProvider } from 'react-helmet-async'
 import RootRoute from './routes/RootRoute/RootRoute'
@@ -15,7 +14,7 @@ interface Props {
   cookieManager: CookieManager
   urqlClient: Client
   helmetContext?: FilledContext
-  initializeState?: (snapshot: MutableSnapshot) => void
+  initializeState?: (snapshot: any) => void
 }
 
 export const App: FC<Props> = ({ router, helmetContext, cookieManager, urqlClient, initializeState }) => {
@@ -24,11 +23,9 @@ export const App: FC<Props> = ({ router, helmetContext, cookieManager, urqlClien
       <HelmetProvider context={helmetContext || {}}>
         <CookieProvider cookieManager={cookieManager}>
           <RouterProvider router={router}>
-            <RecoilRoot initializeState={initializeState}>
-              <UrqlProvider value={urqlClient}>
-                <RootRoute />
-              </UrqlProvider>
-            </RecoilRoot>
+            <UrqlProvider value={urqlClient}>
+              <RootRoute />
+            </UrqlProvider>
           </RouterProvider>
         </CookieProvider>
       </HelmetProvider>

@@ -16,7 +16,8 @@ export interface GeoLocationRestrictedContext {
 }
 
 const GeoLocationRestricted: FC<GeoLocationRestrictedProps> = ({ className }) => {
-  const { close, context } = useModal<GeoLocationRestrictedContext>(MODAL_NAMES.geoLocationRestricted)
+  const { close, modalContext } = useModal()
+  const context = modalContext[MODAL_NAMES.geoLocationRestricted]
   const { askPermission } = useLocationPermission()
   const [isChecking, setIsChecking] = useState(false)
 

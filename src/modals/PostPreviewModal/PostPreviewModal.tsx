@@ -4,7 +4,6 @@ import { useModal } from 'src/hooks/useModal'
 import { MODAL_NAMES } from 'src/router/constants'
 import BottomSheet from 'src/widgets/BottomSheet/BottomSheet'
 import Link from 'src/widgets/Link/Link'
-import { CreatePostsModalContext } from '../CreatePostModal/CreatePostModal'
 import DateFormatter from 'src/components/DateFormatter/DateFormatter'
 
 interface PostPreviewModalProps {
@@ -22,9 +21,8 @@ export interface PostPreviewModalContext {
 }
 
 const PostPreviewModal: FC<PostPreviewModalProps> = ({ className }) => {
-  const { context, close, open: openPreview } = useModal<PostPreviewModalContext>(MODAL_NAMES.postPreview)
-  const { open } = useModal<CreatePostsModalContext>(MODAL_NAMES.postCreate)
-
+  const { close, open, modalContext } = useModal()
+  const context = modalContext[MODAL_NAMES.postPreview]
 
   return (
     <BottomSheet name={MODAL_NAMES.postPreview} withHeader autoClose>
@@ -51,9 +49,9 @@ const PostPreviewModal: FC<PostPreviewModalProps> = ({ className }) => {
           <Styled.Action
             icon='lightning'
             onClick={() =>
-              open({
+              open(MODAL_NAMES.postCreate, {
                 onCancel() {
-                  openPreview(context)
+                  open(MODAL_NAMES.postPreview, context)
                 }
               })
             }

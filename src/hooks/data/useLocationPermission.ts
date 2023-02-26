@@ -1,27 +1,27 @@
 import { useCallback } from 'react'
-import {useRecoilState} from 'recoil'
+import { useStore } from '@nanostores/react'
 import isBrowser from 'src/utils/isBrowser'
-import {userHasGeoPermission} from "../../store/userStore";
+import { userHasGeoPermissionAtom } from '../../store/userStore'
 
 export const useLocationPermission = () => {
-  const [hasPermissions, setHasPermissions] = useRecoilState(userHasGeoPermission)
+  const hasPermissions = useStore(userHasGeoPermissionAtom)
 
   const askPermission = useCallback(() => {
     if (isBrowser) {
-      return new Promise<boolean>((resolve) =>
+      return new Promise<boolean>(resolve =>
         navigator.geolocation.getCurrentPosition(
           () => {
-            setHasPermissions(true)
+            userHasGeoPermissionAtom.set(true)
             resolve(true)
           },
           () => {
-            setHasPermissions(false)
+            userHasGeoPermissionAtom.set(false)
             resolve(false)
           }
         )
       )
     }
-  }, [setHasPermissions])
+  }, [])
 
   return {
     askPermission,

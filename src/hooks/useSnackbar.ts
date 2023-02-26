@@ -1,7 +1,7 @@
 import { useCallback, useMemo, useRef } from 'react'
-import { useRecoilState } from 'recoil'
 import { snackbarAtom } from '../store/uiStore'
 import { promiseWaiter } from '../utils/promiseWaiter'
+import { useStore } from '@nanostores/react'
 
 export interface SnackbarOptions {
   text?: string
@@ -22,27 +22,27 @@ const DEFAULT_OPTIONS = {
 
 export const useSnackbar = (options?: SnackbarOptions) => {
   const resultOptions: SnackbarOptions = useMemo(() => ({ ...DEFAULT_OPTIONS, ...options }), [options])
-  const [snackbarOptions, setSnackbarOptions] = useRecoilState(snackbarAtom)
+  const snackbarOptions = useStore(snackbarAtom)
   const timeoutRef = useRef<number>()
 
   const safeClose = useCallback(async () => {
-    setSnackbarOptions(data => ({
+    snackbarAtom.set({
       isOpen: false,
-      options: data.options
-    }))
+      options: snackbarAtom.get().options
+    })
 
     await promiseWaiter()
-    setSnackbarOptions({
+    snackbarAtom.set({
       isOpen: false,
       options: undefined
     })
-  }, [setSnackbarOptions])
+  }, [])
 
   const open = useCallback(() => {
     if (!snackbarOptions.isOpen) {
       clearTimeout(timeoutRef.current)
       timeoutRef.current = undefined
-      setSnackbarOptions({
+      snackbarAtom.set({
         isOpen: true,
         options: resultOptions
       })
@@ -53,7 +53,7 @@ export const useSnackbar = (options?: SnackbarOptions) => {
         }, resultOptions.autoCloseInterval) as any as number
       }
     }
-  }, [snackbarOptions, setSnackbarOptions, resultOptions, timeoutRef, safeClose])
+  }, [snackbarOptions, resultOptions, timeoutRef, safeClose])
 
   const close = useCallback(async () => {
     clearTimeout(timeoutRef.current)

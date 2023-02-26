@@ -1,5 +1,4 @@
-import { atom } from 'recoil'
-import { STORE_NAMES } from 'src/router/constants'
+import {atom} from 'nanostores'
 
 export type LatLng = { lat: number; lng: number }
 
@@ -10,16 +9,13 @@ export interface MapPosition {
 }
 
 export const mapPositionAtom = atom<MapPosition>({
-  key: STORE_NAMES.mapPositionAtom,
-  default: {
-    bounds: [
-      [0, 0],
-      [0, 0]
-    ],
-    center: {
-      lat: 0,
-      lng: 0
-    },
-    zoom: 10
-  }
+  bounds: [
+    [0, 0],
+    [0, 0]
+  ],
+  center: {
+    lat: 55.09512537378686,
+    lng: 14.730376298457344
+  },
+  zoom: 10
 })

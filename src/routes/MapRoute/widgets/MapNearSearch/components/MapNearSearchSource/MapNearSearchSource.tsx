@@ -1,18 +1,18 @@
 import { FC, useMemo } from 'react'
 import { useTheme } from 'styled-components'
 import { Layer, Source } from 'react-map-gl'
-import { useRecoilValue } from 'recoil'
 import { mapSearchNearLayerAtom } from 'src/store/mapStore'
 import { mapLayers } from 'src/data/mapLayers'
 import { usePlacesToGeojson } from '../../../../../../hooks/usePlacesToGeojson'
 import { point } from '@turf/turf'
+import {useStore} from "@nanostores/react";
 
 interface MapNearSearchSourceProps {
   className?: string
 }
 
 const MapNearSearchSource: FC<MapNearSearchSourceProps> = () => {
-  const nearSearch = useRecoilValue(mapSearchNearLayerAtom)
+  const nearSearch = useStore(mapSearchNearLayerAtom)
 
   const parsePoints = usePlacesToGeojson(nearSearch.data, place =>
     point([place.geometry.location.lng, place.geometry.location.lat], place)

@@ -21,6 +21,7 @@
     "lint": "eslint . --ext .ts,.tsx"
   },
   "dependencies": {
+    "@nanostores/react": "^0.4.1",
     "@turf/turf": "^6.5.0",
     "@urql/exchange-graphcache": "^4.3.6",
     "axios": "^0.26.0",
@@ -38,6 +39,7 @@
     "mapbox-gl": "^2.11.0",
     "mem": "^9.0.2",
     "morgan": "^1.10.0",
+    "nanostores": "^0.7.4",
     "node-fetch": "^2.6.7",
     "nodemon": "^2.0.15",
     "pm2": "^5.2.0",
@@ -54,7 +56,6 @@
     "react-textarea-autosize": "^8.4.0",
     "react-transition-group": "^4.4.5",
     "react-use": "^17.3.2",
-    "recoil": "^0.6.1",
     "request-ip": "^3.3.0",
     "router5": "^8.0.1",
     "router5-plugin-browser": "^8.0.1",

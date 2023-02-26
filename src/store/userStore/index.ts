@@ -1,5 +1,5 @@
 import { geoLocationAtom } from './atoms/userCurrentLocationAtom'
 import { userLocationAtom } from './atoms/userLocationAtom'
-import { userHasGeoPermission } from './atoms/userHasGeoPermission'
+import { userHasGeoPermissionAtom } from './atoms/userHasGeoPermissionAtom'
 
-export { geoLocationAtom, userLocationAtom, userHasGeoPermission }
+export { geoLocationAtom, userLocationAtom, userHasGeoPermissionAtom }

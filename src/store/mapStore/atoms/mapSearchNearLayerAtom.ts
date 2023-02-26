@@ -1,13 +1,8 @@
-import { atom } from 'recoil'
-import { STORE_NAMES } from 'src/router/constants'
+import { atom } from 'nanostores'
 import {MapLayer} from "../index";
-import {MapNearSearchQuery} from "../../../routes/MapRoute/widgets/MapNearSearch/queries/MapNearSearchQuery";
-
+import {MapNearSearchQuery} from "src/routes/MapRoute/widgets/MapNearSearch/queries/MapNearSearchQuery";
 
 export const mapSearchNearLayerAtom = atom<MapLayer<MapNearSearchQuery['searchNearPlace']>>({
-  key: STORE_NAMES.mapLayersAtom,
-  default: {
-    isVisible: false,
-    data: []
-  }
+  isVisible: false,
+  data: []
 })

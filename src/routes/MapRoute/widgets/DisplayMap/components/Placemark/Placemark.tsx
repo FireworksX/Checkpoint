@@ -1,15 +1,15 @@
-import {FC, useMemo} from 'react'
+import { FC, useMemo } from 'react'
 import * as Styled from './styles'
-import {useRecoilValue} from "recoil";
-import {mapPositionAtom} from "../../../../../../store/mapStore";
-import {TouchableProps} from "../../../../../../components/Touchable/Touchable";
+import { mapPositionAtom } from '../../../../../../store/mapStore'
+import { TouchableProps } from '../../../../../../components/Touchable/Touchable'
+import { useStore } from '@nanostores/react'
 
-interface PlacemarkProps extends TouchableProps{
+interface PlacemarkProps extends TouchableProps {
   className?: string
 }
 
 const Placemark: FC<PlacemarkProps> = ({ className, ...touchProps }) => {
-  const {zoom} = useRecoilValue(mapPositionAtom)
+  const { zoom } = useStore(mapPositionAtom)
 
   const size = useMemo(() => {
     if (zoom > 0 && zoom <= 7) {
@@ -21,11 +21,11 @@ const Placemark: FC<PlacemarkProps> = ({ className, ...touchProps }) => {
     }
   }, [zoom])
 
-
-
-  return <Styled.Root className={className} sizeMode={size} {...touchProps}>
-    <Styled.Overlay/>
-  </Styled.Root>
+  return (
+    <Styled.Root className={className} sizeMode={size} {...touchProps}>
+      <Styled.Overlay />
+    </Styled.Root>
+  )
 }
 
 export default Placemark

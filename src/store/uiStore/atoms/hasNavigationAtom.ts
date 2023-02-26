@@ -1,7 +1,3 @@
-import { atom } from 'recoil'
-import { STORE_NAMES } from 'src/router/constants'
+import { atom } from 'nanostores'
 
-export const hasNavigationAtom = atom<boolean>({
-  key: STORE_NAMES.hasNavigationAtom,
-  default: true
-})
+export const hasNavigationAtom = atom<boolean>(true)

@@ -4,23 +4,32 @@ import { useModal } from '../../hooks/useModal'
 import { MODAL_NAMES } from '../../router/constants'
 import BottomSheet from '../../widgets/BottomSheet/BottomSheet'
 import Button from '../../components/Button/Button'
+import { useCurrentUser } from '../../hooks/data/useCurrentUser/useCurrentUser'
 
 interface CreatePostModalProps {
   className?: string
 }
 
 export interface CreatePostsModalContext {
+  parent?: {
+    author: {
+      userName: string
+    }
+  }
   onCancel(): void | Promise<void>
 }
 
 const CreatePostModal: FC<CreatePostModalProps> = ({ className }) => {
-  const { context } = useModal(MODAL_NAMES.postCreate)
+  const { modalContext } = useModal()
+  const context = modalContext[MODAL_NAMES.postCreate]
+  const parentName = context?.parent?.author?.userName
+  const { user } = useCurrentUser()
 
   return (
     <BottomSheet name={MODAL_NAMES.postCreate} withHeader autoClose>
       <Styled.Root className={className}>
-        <Styled.ConnectedSection>Connected from @dodi</Styled.ConnectedSection>
-        <Styled.Header firstName='Arthur' lastName='Abeltinsh' userName='fireworks' />
+        {parentName && <Styled.ConnectedSection>Connected from @{parentName}</Styled.ConnectedSection>}
+        <Styled.Header firstName={user?.firstName} lastName={user?.lastName} userName={user?.userName} />
 
         <Styled.Editor />
 

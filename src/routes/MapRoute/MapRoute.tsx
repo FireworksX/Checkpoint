@@ -6,12 +6,15 @@ import { route } from '../../hoc/route'
 import DisplayMap from './widgets/DisplayMap/DisplayMap'
 import FocusLocation from './widgets/FocusLocation/FocusLocation'
 import MapNearSearch from './widgets/MapNearSearch/MapNearSearch'
+import { useMapSettings } from '../../hooks/data/useMapSettings/useMapSettings'
 
 interface MapRouteProps {
   className?: string
 }
 
 const MapRoute: FC<MapRouteProps> = ({ className }) => {
+  useMapSettings()
+
   return (
     <Styled.Root className={className} safeAreaBottom={false}>
       <FocusLocation />

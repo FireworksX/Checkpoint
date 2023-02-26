@@ -36,7 +36,15 @@ export type Location = {
   coords: Maybe<Coords>;
 };
 
+export type MapSettingsInput = {
+  coords?: Maybe<LatLng>;
+  map_center?: Maybe<LatLng>;
+  map_zoom?: Maybe<Scalars['Float']>;
+  token?: Maybe<Scalars['String']>;
+};
+
 export type Mutation = {
+  saveMapSettings: Scalars['Boolean'];
   sendAuthCode: User;
   savePost: Post;
   checkCode: User;
@@ -46,6 +54,11 @@ export type Mutation = {
   unSubscribe: Scalars['Boolean'];
   connect: Scalars['Boolean'];
   unConnect: Scalars['Boolean'];
+};
+
+
+export type MutationSaveMapSettingsArgs = {
+  input: MapSettingsInput;
 };
 
 
@@ -145,6 +158,7 @@ export type Post = {
 };
 
 export type Query = {
+  place: Maybe<Place>;
   searchPlace: Maybe<Array<Maybe<Place>>>;
   searchNearPlace: Maybe<Array<Maybe<Place>>>;
   getCity: Maybe<Scalars['String']>;
@@ -155,6 +169,11 @@ export type Query = {
   userConnections: Maybe<Array<User>>;
   userFollowers: Maybe<Array<User>>;
   users: Array<User>;
+};
+
+
+export type QueryPlaceArgs = {
+  googleId?: Maybe<Scalars['String']>;
 };
 
 
@@ -232,6 +251,9 @@ export type User = {
   location: Maybe<Location>;
   counters: Maybe<UserCounters>;
   me: Maybe<ConnectionFlag>;
+  coords: Maybe<Coords>;
+  mapCenter: Maybe<Coords>;
+  mapZoom: Maybe<Scalars['Float']>;
 };
 
 export type UserCounters = {

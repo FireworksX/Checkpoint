@@ -1,5 +1,3 @@
-import { StoreType } from '../src/store'
-
 require('dotenv').config()
 require('dotenv').config({
   path: '.env.local'
@@ -23,7 +21,7 @@ declare global {
   interface Window {
     __APP__CACHE__: Record<CacheEntityKey, any>
     __SSR__CACHE__: Record<string, any>
-    __STORE__CACHE__: StoreType
+    __STORE__CACHE__: any
   }
 }
 

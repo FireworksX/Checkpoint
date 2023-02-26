@@ -1,6 +1,5 @@
-import { atom, useRecoilState } from 'recoil'
+import { atom, onSet } from 'nanostores'
 import { MapRef } from 'react-map-gl'
-import { STORE_NAMES } from 'src/router/constants'
 import { mapPositionAtom } from './mapPositionAtom'
 
 const formatBounds = (bounds: ReturnType<MapRef['getBounds']>): [[number, number], [number, number]] => [
@@ -8,39 +7,32 @@ const formatBounds = (bounds: ReturnType<MapRef['getBounds']>): [[number, number
   Object.values(bounds._sw)
 ]
 
-export const mapInstanceAtom = atom<MapRef | undefined>({
-  key: STORE_NAMES.mapInstanceAtom,
-  default: undefined,
-  effects: [
-    params => {
-      const [_, setMapPosition] = useRecoilState(mapPositionAtom)
+export const mapInstanceAtom = atom<MapRef | undefined>(undefined)
 
-      params.onSet(map => {
-        if (map) {
-          map.on('drag', data => {
-            setMapPosition(prev => ({
-              ...prev,
-              bounds: formatBounds(map.getBounds()),
-              center: {
-                lat: data.viewState.latitude,
-                lng: data.viewState.longitude
-              }
-            }))
-          })
-
-          map.on('zoom', data => {
-            setMapPosition(prev => ({
-              ...prev,
-              zoom: data.viewState.zoom,
-              bounds: formatBounds(map.getBounds()),
-              center: {
-                lat: data.viewState.latitude,
-                lng: data.viewState.longitude
-              }
-            }))
-          })
+onSet(mapInstanceAtom, ({ newValue: map }) => {
+  if (map) {
+    map.on('drag', data => {
+      console.log(data);
+      mapPositionAtom.set({
+        ...mapPositionAtom.get(),
+        bounds: formatBounds(map.getBounds()),
+        center: {
+          lat: data.viewState.latitude,
+          lng: data.viewState.longitude
         }
       })
-    }
-  ]
+    })
+
+    map.on('zoom', data => {
+      mapPositionAtom.set({
+        ...mapPositionAtom.get(),
+        zoom: data.viewState.zoom,
+        bounds: formatBounds(map.getBounds()),
+        center: {
+          lat: data.viewState.latitude,
+          lng: data.viewState.longitude
+        }
+      })
+    })
+  }
 })

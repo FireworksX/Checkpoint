@@ -23,7 +23,7 @@ const BottomSheet: FC<BottomSheetProps> = ({
   name,
   onClose
 }) => {
-  const { isOpen, close } = useModal(name)
+  const { currentModal, close } = useModal()
 
   const onCloseModal = useCallback(() => {
     if (onClose) {
@@ -36,7 +36,7 @@ const BottomSheet: FC<BottomSheetProps> = ({
   }, [onClose, close, autoClose])
 
   return (
-    <BottomSheetComp open={isOpen} onDismiss={onCloseModal}>
+    <BottomSheetComp open={currentModal === name} onDismiss={onCloseModal}>
       <Styled.Global withHeader={withHeader} withBackground={withBackground} />
       <Styled.Root className={className}>{children}</Styled.Root>
     </BottomSheetComp>

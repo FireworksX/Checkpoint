@@ -1,9 +1,5 @@
-import { atom } from 'recoil'
-import { STORE_NAMES } from 'src/router/constants'
+import { atom } from 'nanostores'
 
 export type MapLayer = 'placemark' | 'search-near'
 
-export const mapLayersAtom = atom<MapLayer[]>({
-  key: STORE_NAMES.mapLayersAtom,
-  default: []
-})
+export const mapLayersAtom = atom<MapLayer[]>([])

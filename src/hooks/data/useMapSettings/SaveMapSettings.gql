@@ -1,0 +1,3 @@
+mutation SaveMapSettings($coords: LatLng, $center: LatLng, $zoom: Float, $token: String!) {
+    saveMapSettings(input: {coords: $coords, map_center: $center, map_zoom: $zoom, token: $token})
+}

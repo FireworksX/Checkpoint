@@ -1,5 +1,6 @@
 query MapNearSearch($lat: Float!, $lng: Float!, $distance: Int!) {
   searchNearPlace(input: { lat: $lat, lng: $lng, distance: $distance}) {
+    googleId: google_id
     slug
     name
     geometry {

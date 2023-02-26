@@ -15,4 +15,14 @@ fragment MeUserFragment on User {
       lng
     }
   }
+
+  mapCenter {
+    lat
+    lng
+  }
+  mapZoom
+  coords {
+    lat
+    lng
+  }
 }

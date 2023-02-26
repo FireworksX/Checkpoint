@@ -7,8 +7,13 @@ import Button from '../../components/Button/Button'
 import DisplayText from '../../widgets/DisplayText/DisplayText'
 import TextEditor from '../../widgets/TextEditor/TextEditor'
 
-export const Root = styled(Container)`
+interface Props {
+  hasParent?: boolean
+}
+
+export const Root = styled(Container)<Props>`
   padding-bottom: 30px;
+  ${({ hasParent, theme }) => !hasParent && `padding-top: ${theme.baseStyles.paddings.gutterMobile}`};
 `
 
 export const ConnectedSection = styled(DisplayText)`

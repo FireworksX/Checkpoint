@@ -1,10 +1,9 @@
-import {FC, useCallback} from 'react'
-import {useRecoilState} from "recoil";
+import { FC, useCallback } from 'react'
 import Map from 'react-map-gl'
 import { useMyLocation } from '../../hooks/useMyLocation'
 import { useDisplayMap } from './hooks/useDisplayMap'
 import MapNearSearchSource from '../MapNearSearch/components/MapNearSearchSource/MapNearSearchSource'
-import {mapInstanceAtom} from "src/store/mapStore";
+import { mapInstanceAtom } from 'src/store/mapStore'
 
 interface DisplayMapProps {
   className?: string
@@ -13,15 +12,14 @@ interface DisplayMapProps {
 const MAPBOX_TOKEN = import.meta.env.VITE_MAPBOX_TOKEN
 
 const DisplayMap: FC<DisplayMapProps> = ({ className }) => {
-  const [_mapInstance, setMapInstance] = useRecoilState(mapInstanceAtom)
   const { marker, control } = useMyLocation()
   const { mapPosition } = useDisplayMap()
 
   const measuredRef = useCallback(node => {
     if (node !== null) {
-      setMapInstance(node)
+      mapInstanceAtom.set(node)
     }
-  }, [setMapInstance]);
+  }, [])
 
   return (
     <Map

@@ -1,5 +1,5 @@
 import { useMapNearSearchQuery } from '../queries/MapNearSearchQuery'
-import { useRecoilState, useRecoilValue } from 'recoil'
+import { useStore } from '@nanostores/react'
 import { mapInstanceAtom, mapPositionAtom, mapSearchNearLayerAtom } from 'src/store/mapStore'
 import { useCallback, useEffect } from 'react'
 import { useSnackbar } from 'src/hooks/useSnackbar'
@@ -8,25 +8,24 @@ import { getMinDistanceBounds } from 'src/store/mapStore/mapInstance/selectors/g
 import { mapLayers } from 'src/data/mapLayers'
 import { useModal } from 'src/hooks/useModal'
 import { MODAL_NAMES } from 'src/router/constants'
-import {useLinkConfig} from "src/widgets/Link/hooks/useLinkConfig";
-import {useRouter} from "src/hooks/useRouter";
+import { useLinkConfig } from 'src/widgets/Link/hooks/useLinkConfig'
+import { useRouter } from 'src/hooks/useRouter'
 
 export const useMapNearSearch = () => {
   const router = useRouter()
-  const [nearSearch, setNearSearch] = useRecoilState(mapSearchNearLayerAtom)
-  const mapPosition = useRecoilValue(mapPositionAtom)
-  const distance = useRecoilValue(getMinDistanceBounds)
-  const map = useRecoilValue(mapInstanceAtom)
-  const { open: openPlacePreview, close: closePlacePreview } = useModal(MODAL_NAMES.placePreview)
-  const { open: openPostCreate } = useModal(MODAL_NAMES.postCreate)
-  const placeDetailLink = useLinkConfig('location', {locationSlug: 'testLocation'})
+  const nearSearch = useStore(mapSearchNearLayerAtom)
+  const mapPosition = useStore(mapPositionAtom)
+  const distance = useStore(getMinDistanceBounds)
+  const map = useStore(mapInstanceAtom)
+  const { open: openModal, close: closeModal } = useModal()
+  const placeDetailLink = useLinkConfig('location', { locationSlug: 'testLocation' })
 
   const { open: openSnackbar } = useSnackbar({
     text: 'Too far away from destination',
     action: {
       text: 'Zoom to',
       onClick: () => {
-        map?.flyTo({ zoom: appConfig.searchMaxZoom + 1 })
+        map?.flyTo({ zoom: appConfig.searchMaxZoom + 1, duration: 200 })
       }
     }
   })
@@ -41,21 +40,23 @@ export const useMapNearSearch = () => {
   })
 
   useEffect(() => {
-    setNearSearch((prevValue) => ({
-      ...prevValue,
+    mapSearchNearLayerAtom.set({
+      ...mapSearchNearLayerAtom.get(),
       data: data?.searchNearPlace || []
-    }))
-  }, [data, setNearSearch])
+    })
+  }, [data])
 
   useEffect(() => {
     map?.on('click', mapLayers['near-search'], e => {
       const props = e.features[0].properties
-      openPlacePreview({
+
+      console.log(props)
+      openModal(MODAL_NAMES.placePreview, {
         name: props.name,
         address: props.address,
-        onConnect: openPostCreate,
+        onConnect: () => openModal(MODAL_NAMES.postCreate),
         onDetail: async () => {
-          await closePlacePreview()
+          await closeModal()
           router.navigate(placeDetailLink.link.name, placeDetailLink.routeParams)
         }
       })
@@ -64,15 +65,15 @@ export const useMapNearSearch = () => {
 
   const startSearching = useCallback(() => {
     if (mapPosition.zoom > appConfig.searchMaxZoom) {
-      setNearSearch(oldValue => ({ ...oldValue, isVisible: true }))
+      mapSearchNearLayerAtom.set({ ...mapSearchNearLayerAtom.get(), isVisible: true })
     } else {
       openSnackbar()
     }
-  }, [openSnackbar, setNearSearch, mapPosition])
+  }, [openSnackbar, mapPosition])
 
   const stopSearching = useCallback(() => {
-    setNearSearch(oldValue => ({ ...oldValue, isVisible: false }))
-  }, [setNearSearch])
+    mapSearchNearLayerAtom.set({ ...mapSearchNearLayerAtom.get(), isVisible: false })
+  }, [])
 
   useEffect(() => {
     if (nearSearch.isVisible && mapPosition.zoom < appConfig.searchMaxZoom) {

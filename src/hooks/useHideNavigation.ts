@@ -1,13 +1,11 @@
-import { useRecoilState } from 'recoil'
 import { hasNavigationAtom } from '../store/uiStore'
 import { useIsomorphicEffect } from './useIsomorphicEffect'
 
 export const useHideNavigation = () => {
-  const [, setHasNavigation] = useRecoilState(hasNavigationAtom)
 
   useIsomorphicEffect(() => {
-    setHasNavigation(false)
+    hasNavigationAtom.set(false)
 
-    return () => setHasNavigation(true)
+    return () => hasNavigationAtom.set(true)
   }, [])
 }

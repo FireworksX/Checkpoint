@@ -8,6 +8,20 @@ export type Scalars = {
   Float: number;
 };
 
+export type Comment = {
+  id: Scalars['ID'];
+  postId: Scalars['String'];
+  text: Scalars['String'];
+  userName: Scalars['String'];
+  createdAt: Maybe<Scalars['Int']>;
+};
+
+export type CommentInput = {
+  postId?: Maybe<Scalars['String']>;
+  text?: Maybe<Scalars['String']>;
+  token?: Maybe<Scalars['String']>;
+};
+
 export type ConnectionFlag = {
   isConnection: Maybe<Scalars['Boolean']>;
   isSubscribe: Maybe<Scalars['Boolean']>;
@@ -44,9 +58,11 @@ export type MapSettingsInput = {
 };
 
 export type Mutation = {
+  unConnectPost: Scalars['Boolean'];
   saveMapSettings: Scalars['Boolean'];
   sendAuthCode: User;
   savePost: Post;
+  saveComment: Comment;
   checkCode: User;
   register: User;
   editUser: User;
@@ -54,6 +70,11 @@ export type Mutation = {
   unSubscribe: Scalars['Boolean'];
   connect: Scalars['Boolean'];
   unConnect: Scalars['Boolean'];
+};
+
+
+export type MutationUnConnectPostArgs = {
+  input: UnconnectPostInput;
 };
 
 
@@ -69,6 +90,11 @@ export type MutationSendAuthCodeArgs = {
 
 export type MutationSavePostArgs = {
   input?: Maybe<SavePostInput>;
+};
+
+
+export type MutationSaveCommentArgs = {
+  input?: Maybe<CommentInput>;
 };
 
 
@@ -119,6 +145,7 @@ export type NewUser = {
 };
 
 export type Place = {
+  id: Scalars['ID'];
   google_id: Maybe<Scalars['String']>;
   slug: Maybe<Scalars['String']>;
   name: Maybe<Scalars['String']>;
@@ -150,14 +177,29 @@ export type PlaceViewport = {
 };
 
 export type Post = {
+  id: Scalars['ID'];
   place: Maybe<Place>;
-  placeId: Maybe<Scalars['String']>;
-  text: Maybe<Scalars['String']>;
-  userName: Maybe<Scalars['String']>;
+  placeId: Scalars['String'];
+  text: Scalars['String'];
+  userName: Scalars['String'];
   createdAt: Maybe<Scalars['Int']>;
+  commentcnt: Maybe<Scalars['Int']>;
+  comments: Maybe<Array<Comment>>;
+  parent: Maybe<Post>;
+  connections: Maybe<Array<Maybe<User>>>;
+  connectionscnt: Maybe<Scalars['Int']>;
+};
+
+export type PostConnection = {
+  parentId: Scalars['ID'];
+  postId: Scalars['ID'];
+  userName: Maybe<Scalars['String']>;
 };
 
 export type Query = {
+  postListByUserName: Maybe<Array<Post>>;
+  postListById: Post;
+  postListByPlaceSlug: Maybe<Array<Post>>;
   place: Maybe<Place>;
   searchPlace: Maybe<Array<Maybe<Place>>>;
   searchNearPlace: Maybe<Array<Maybe<Place>>>;
@@ -172,8 +214,24 @@ export type Query = {
 };
 
 
+export type QueryPostListByUserNameArgs = {
+  userName: Scalars['String'];
+};
+
+
+export type QueryPostListByIdArgs = {
+  id: Scalars['String'];
+};
+
+
+export type QueryPostListByPlaceSlugArgs = {
+  placeSlug: Scalars['String'];
+};
+
+
 export type QueryPlaceArgs = {
   googleId?: Maybe<Scalars['String']>;
+  slug?: Maybe<Scalars['String']>;
 };
 
 
@@ -225,6 +283,7 @@ export type SavePostInput = {
   googleId?: Maybe<Scalars['String']>;
   text?: Maybe<Scalars['String']>;
   token?: Maybe<Scalars['String']>;
+  parentId?: Maybe<Scalars['String']>;
 };
 
 export type SearchPlace = {
@@ -235,6 +294,12 @@ export type SearchPlace = {
 export type Subscriptions = {
   userName: Maybe<Scalars['String']>;
   subscriptions: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
+export type UnconnectPostInput = {
+  parentId?: Maybe<Scalars['String']>;
+  postId?: Maybe<Scalars['String']>;
+  token?: Maybe<Scalars['String']>;
 };
 
 export type User = {

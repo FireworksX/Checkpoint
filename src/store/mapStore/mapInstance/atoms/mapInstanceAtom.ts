@@ -12,7 +12,6 @@ export const mapInstanceAtom = atom<MapRef | undefined>(undefined)
 onSet(mapInstanceAtom, ({ newValue: map }) => {
   if (map) {
     map.on('drag', data => {
-      console.log(data);
       mapPositionAtom.set({
         ...mapPositionAtom.get(),
         bounds: formatBounds(map.getBounds()),

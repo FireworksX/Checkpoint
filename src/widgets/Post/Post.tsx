@@ -11,8 +11,10 @@ interface PostProps {
   header?: ReactNode
   content?: string
   author: MockUser
-  refer?: {
-    user: MockUser
+  connectionsCount: number
+  commentCount: number
+  parent?: {
+    userName: string
   }
   metrics: {
     connections: number
@@ -23,15 +25,28 @@ interface PostProps {
     hasConnect: boolean
     hasLike: boolean
   }
+  onConnect(): void
 }
 
-const Post: FC<PostProps> = ({ className, target, header, slug, selfActions, author, content, refer, metrics }) => {
+const Post: FC<PostProps> = ({
+  className,
+  target,
+  header,
+  slug,
+  selfActions,
+  author,
+  content,
+  parent,
+  connectionsCount,
+  commentCount,
+  onConnect
+}) => {
   return (
-    <Styled.Root className={className} hasRefer={!!refer}>
-      {!!refer && (
-        <Link type='user' effect='none' userSlug={refer.user.userName}>
+    <Styled.Root className={className} hasRefer={!!parent}>
+      {!!parent && (
+        <Link type='user' effect='none' userSlug={parent.userName}>
           <Styled.Connected>
-            <DisplayText>Connected from @{refer.user.userName}</DisplayText>
+            <DisplayText>Connected from @{parent.userName}</DisplayText>
           </Styled.Connected>
         </Link>
       )}
@@ -44,12 +59,12 @@ const Post: FC<PostProps> = ({ className, target, header, slug, selfActions, aut
         </Link>
         <Styled.Target>{target}</Styled.Target>
         <Styled.Actions>
-          <Styled.Action icon='lightning' isActive={selfActions?.hasConnect}>
-            {metrics.connections}
+          <Styled.Action icon='lightning' isActive={selfActions?.hasConnect} onClick={onConnect}>
+            {connectionsCount}
           </Styled.Action>
-          <Styled.Action icon='message-circle'>{metrics.comments}</Styled.Action>
+          <Styled.Action icon='message-circle'>{commentCount}</Styled.Action>
           <Styled.Action icon='heart' isActive={selfActions?.hasLike}>
-            {metrics.likes}
+            5
           </Styled.Action>
         </Styled.Actions>
       </Styled.Body>

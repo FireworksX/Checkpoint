@@ -1,12 +1,13 @@
-import { FC, useMemo, useState } from 'react'
+import { FC, useMemo } from 'react'
 import * as Styled from './styles'
 
 interface TextEditorProps {
+  value: string
   className?: string
+  onChange(value: string): void
 }
 
-const TextEditor: FC<TextEditorProps> = ({ className }) => {
-  const [value, setValue] = useState('')
+const TextEditor: FC<TextEditorProps> = ({ className, value, onChange }) => {
 
   const fontSize = useMemo(() => {
     const length = value.length
@@ -31,7 +32,7 @@ const TextEditor: FC<TextEditorProps> = ({ className }) => {
         maxRows={10}
         fontSize={fontSize}
         value={value}
-        onChange={({ target: { value } }) => setValue(value)}
+        onChange={({ target: { value } }) => onChange(value)}
       />
     </Styled.Root>
   )

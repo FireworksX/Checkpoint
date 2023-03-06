@@ -11,7 +11,7 @@ export const useCurrentUser = () => {
   const router = useRouter()
   const userTokensManager = userTokens()
   const cacheManager = useCacheManager()
-  const welcomeLink = useLinkConfig('welcome')
+  const [welcomeLink] = useLinkConfig('welcome')
   const token = userTokensManager.getTokens().accessToken
 
   const [{ data, fetching }, revalidate] = useCurrentUserQuery({

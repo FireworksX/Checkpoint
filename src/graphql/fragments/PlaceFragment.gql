@@ -1,0 +1,26 @@
+fragment PlaceFragment on Place {
+  googleId: google_id
+  slug
+  name
+  geometry {
+    viewport {
+      northeast {
+        lat
+        lng
+      }
+      southwest {
+        lat
+        lng
+      }
+    }
+    location {
+      lat
+      lng
+    }
+  }
+  rating {
+    value
+    count
+  }
+  address
+}

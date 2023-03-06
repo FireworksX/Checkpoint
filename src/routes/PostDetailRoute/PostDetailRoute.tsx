@@ -1,20 +1,19 @@
 import { FC, useEffect, useRef } from 'react'
 import * as Styled from './styles'
 import { route } from '../../hoc/route'
-import { MODAL_NAMES, ROUTE_NAMES, ROUTE_PARAMS } from '../../router/constants'
+import { MODAL_NAMES, ROUTE_NAMES } from '../../router/constants'
 import Container from '../../components/Container/Container'
 import LocationCard from '../../widgets/LocationCard/LocationCard'
 import Button from '../../components/Button/Button'
 import Separator from '../../components/Separator/Separator'
 import { useModal } from '../../hooks/useModal'
-import { getRandomPost } from '../../data/mocks'
 import isBrowser from '../../utils/isBrowser'
-import Link from '../../widgets/Link/Link'
 import PageHeaderButtonBack from '../../widgets/PageHeader/components/PageHeaderButtonBack/PageHeaderButtonBack'
 import { useRouter } from '../../hooks/useRouter'
 import GroupWrapper from '../../widgets/GroupWrapper/GroupWrapper'
 import Counter from '../NotificationsRoute/components/Counter/Counter'
 import { useShare } from '../../hooks/useShare'
+import {usePostDetailRoute} from "./hooks/usePostDetailRoute";
 
 interface PostDetailRouteProps {
   className?: string
@@ -26,12 +25,9 @@ const PostDetailRoute: FC<PostDetailRouteProps> = ({ className }) => {
   const { getParam, route } = useRouter()
   const { isAvailable, share } = useShare()
 
-  const post = getRandomPost()
-  const refer = post.refer
+  const {text, parent, commentCount, connectionsCount, place, postSlug} = usePostDetailRoute()
 
-  const comments = post.comments
-
-  const postSlug = getParam(ROUTE_PARAMS.postSlug)
+  const comments = []
 
   useEffect(() => {
     setTimeout(() => {
@@ -53,41 +49,40 @@ const PostDetailRoute: FC<PostDetailRouteProps> = ({ className }) => {
   return (
     <Styled.Root className={className} headerLeft={<PageHeaderButtonBack />} title='Post'>
       <Container>
-        {refer && isBrowser && (
-          <Styled.ConnectedSection>Connected from @{refer.user?.userName}</Styled.ConnectedSection>
+        {parent && (
+          <Styled.ConnectedSection>Connected from @{parent.userName}</Styled.ConnectedSection>
         )}
         <div />
 
-        <Link type='user' userSlug={post.user?.userName || ''}>
-          <Styled.Header
-            hasRefer={!!refer}
-            avatar={post.user?.avatar}
-            firstName={post.user?.firstName}
-            lastName={post.user?.lastName}
-            userName={post.user?.userName}
-          />
-        </Link>
+        {/*<Link type='user' userSlug={post.user?.userName || ''}>*/}
+        {/*  <Styled.Header*/}
+        {/*    hasRefer={!!refer}*/}
+        {/*    avatar={post.user?.avatar}*/}
+        {/*    firstName={post.user?.firstName}*/}
+        {/*    lastName={post.user?.lastName}*/}
+        {/*    userName={post.user?.userName}*/}
+        {/*  />*/}
+        {/*</Link>*/}
 
 
-        <Styled.Text>{post.content}</Styled.Text>
+        <Styled.Text>{text}</Styled.Text>
         <Styled.Date>10:06 - Nov 23, 2022</Styled.Date>
 
         <Styled.Gallery/>
 
-        <Styled.Target type='location' locationSlug='testLocation'>
+        {place && <Styled.Target type='location' locationSlug='testLocation'>
           <LocationCard
-            name={post.target?.name || ''}
-            location={post.target?.location || ''}
-            avatar={post.target?.logo}
+            name={place.name}
+            location={place.address}
           />
-        </Styled.Target>
+        </Styled.Target>}
 
         <Styled.Metrics>
           <Styled.Metric type='postConnections' postSlug={postSlug}>
-            <span>{post.metrics.connections}</span> Connections
+            <span>{connectionsCount}</span> Connections
           </Styled.Metric>
           <Styled.Metric type='postLikes' postSlug={postSlug}>
-            <span>{post.metrics.likes}</span> Likes
+            <span>{15}</span> Likes
           </Styled.Metric>
         </Styled.Metrics>
 
@@ -122,7 +117,7 @@ const PostDetailRoute: FC<PostDetailRouteProps> = ({ className }) => {
 
         {/*<EmptyPlaceholder header='No comments yet'>Yet no one has left feedback on this place</EmptyPlaceholder>*/}
         <div ref={commentsSectionRef} />
-        <GroupWrapper title='Comments' counter={<Counter mode='accent'>{post.metrics.comments}</Counter>}>
+        <GroupWrapper title='Comments' counter={<Counter mode='accent'>{commentCount}</Counter>}>
           {comments.map((comment, index) => (
             <Styled.Comment key={index} user={comment.user}>
               {comment.content}

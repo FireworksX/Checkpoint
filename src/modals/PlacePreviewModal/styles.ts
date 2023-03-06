@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import Container from 'src/components/Container/Container'
 import UserHeader from '../../components/UserHeader/UserHeader'
-import Button from "../../components/Button/Button";
+import Link from "../../widgets/Link/Link";
 
 export const Root = styled(Container)`
   padding-top: 15px;
@@ -17,7 +17,7 @@ export const Actions = styled.div`
   align-items: center;
 `
 
-export const Action = styled(Button)`
+export const Action = styled(Link)`
   margin-right: 15px;
   width: 100%;
 `

@@ -9,8 +9,8 @@ import { mapInstanceAtom, mapPositionAtom } from 'src/store/mapStore'
 
 export const useRootRoute = () => {
   const router = useRouter()
-  const welcomeLink = useLinkConfig('welcome')
-  const mapLink = useLinkConfig('map')
+  const [welcomeLink] = useLinkConfig('welcome')
+  const [mapLink] = useLinkConfig('map')
   const lastSegment = router.getLastSegment(router.route.name)
   const { user } = useCurrentUser()
   const mapInstance = useStore(mapInstanceAtom)

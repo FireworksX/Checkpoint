@@ -1,0 +1,11 @@
+query PlaceDetail($googleId: String) {
+  place(googleId: $googleId) {
+    slug
+    name
+    address
+    rating {
+      value
+      count
+    }
+  }
+}

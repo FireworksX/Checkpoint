@@ -16,7 +16,7 @@ const WelcomeRoute: FC<WelcomeRouteProps> = ({ className }) => {
   const { routerInstance } = useRouter()
   const [step, setStep] = useState(0)
   const [email, setEmail] = useState<string | undefined>()
-  const cityInfoLink = useLinkConfig('map')
+  const [cityInfoLink] = useLinkConfig('map')
 
   const onFinish = useCallback(() => {
     routerInstance.navigate(cityInfoLink.link.name)

@@ -1,0 +1,7 @@
+#import "../../../graphql/fragments/PostFragment.gql"
+
+query PlaceDetailConnections($placeSlug: String!) {
+  postListByPlaceSlug(placeSlug: $placeSlug) {
+    ...PostFragment
+  }
+}

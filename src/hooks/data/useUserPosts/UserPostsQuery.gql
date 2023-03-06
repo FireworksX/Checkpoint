@@ -1,0 +1,7 @@
+#import "../../../graphql/fragments/PostFragment.gql"
+
+query UserPosts($userName: String!) {
+  postListByUserName(userName: $userName) {
+    ...PostFragment
+  }
+}

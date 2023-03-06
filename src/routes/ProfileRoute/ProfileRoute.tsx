@@ -7,22 +7,22 @@ import Icon from 'src/components/Icon/Icon'
 import Container from 'src/components/Container/Container'
 import UserHeader from 'src/widgets/UserHeader/UserHeader'
 import Link from 'src/widgets/Link/Link'
-import LocationCard from '../../widgets/LocationCard/LocationCard'
 import PageHeaderButton from '../../widgets/PageHeader/components/PageHeaderButton/PageHeaderButton'
 import Username from '../../components/Username/Username'
-import { getRandomList, getRandomPost } from '../../data/mocks'
-import { random } from '../../utils/random'
 import { useUserHeaderCounters } from '../../widgets/UserHeader/hooks/useUserHeaderCounters'
+import LocationCard from "../../widgets/LocationCard/LocationCard";
 
 interface ProfileRouteProps {
   className?: string
 }
 
 const ProfileRoute: FC<ProfileRouteProps> = ({ className }) => {
-  const { user, fetching } = useProfileRoute()
+  const { user, posts, fetching } = useProfileRoute()
   const counters = useUserHeaderCounters(user?.counters || {})
 
-  const posts = getRandomList(random(3, 35), getRandomPost)
+  console.log(posts);
+
+  // const posts = getRandomList(random(3, 35), getRandomPost)
 
   return (
     <Styled.Root
@@ -52,16 +52,18 @@ const ProfileRoute: FC<ProfileRouteProps> = ({ className }) => {
         {posts.map((post, index) => (
           <Styled.PostWrapper
             key={index}
-            slug={post.slug}
-            author={user}
+            slug={post.id}
+            // author={user}
             refer={post.refer}
-            content={post.content}
-            metrics={post.metrics}
+            content={post.text}
+            commentCount={post.commentCount}
+            connectionsCount={post.connectionsCount}
             target={
-              <Link type='location' locationSlug={post.target.slug}>
-                <LocationCard avatar={post.target.logo} name={post.target?.name} location={post.target?.location} />
+              <Link type='location' locationSlug={post.place.googleId}>
+                <LocationCard name={post.place.name} location={post.place.address} />
               </Link>
             }
+            parent={post.parent}
             selfActions={post.selfActions}
           />
         ))}

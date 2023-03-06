@@ -29,7 +29,7 @@ const Link: React.FC<LinkProps> = props => {
     ...touchableProps
   } = props
   const router = useRouter()
-  const { isSamePage, link, href, routeParams } = useLinkConfig(type || 'profile', props)
+  const [{ isSamePage, link, href, routeParams }] = useLinkConfig(type || 'profile', props)
   const isActive = partialActive && router.isActive(partialActive)
 
   const navigateHandler = useCallback(() => {

@@ -8,21 +8,18 @@ import Container from 'src/components/Container/Container'
 import Username from 'src/components/Username/Username'
 import SubscribeContainer from 'src/widgets/SubscribeContainer/SubscribeContainer'
 import UserHeader from 'src/widgets/UserHeader/UserHeader'
-import { getRandomList, getRandomPost } from 'src/data/mocks'
-import { random } from 'src/utils/random'
 import LocationCard from 'src/widgets/LocationCard/LocationCard'
 import ButtonStates from 'src/components/ButtonStates/ButtonStates'
 import { useUserHeaderCounters } from '../../widgets/UserHeader/hooks/useUserHeaderCounters'
+import Link from '../../widgets/Link/Link'
 
 interface UserRouteProps {
   className?: string
 }
 
 const UserRoute: FC<UserRouteProps> = ({ className }) => {
-  const { user, fetching } = useUserRoute()
+  const { user, fetching, posts, connectPost } = useUserRoute()
   const counters = useUserHeaderCounters(user?.counters || {})
-
-  const posts = getRandomList(random(3, 35), getRandomPost)
 
   return (
     <Styled.Root
@@ -62,13 +59,18 @@ const UserRoute: FC<UserRouteProps> = ({ className }) => {
         {posts.map((post, index) => (
           <Styled.PostWrapper
             key={index}
-            slug={post.slug}
-            author={user}
+            slug={post.id}
+            // author={user}
             refer={post.refer}
-            content={post.content}
-            metrics={post.metrics}
-            target={<LocationCard name={post.target?.name} location={post.target?.location} />}
-            selfActions={post.selfActions}
+            content={post.text}
+            commentCount={post.commentCount}
+            connectionsCount={post.connectionsCount}
+            target={
+              <Link type='location' locationSlug={post.place.googleId}>
+                <LocationCard name={post.place.name} location={post.place.address} />
+              </Link>
+            }
+            onConnect={() => connectPost(post.id, post.place.googleId)}
           />
         ))}
       </Container>

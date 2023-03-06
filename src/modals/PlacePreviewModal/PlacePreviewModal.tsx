@@ -14,12 +14,12 @@ export interface PlacePreviewModalContext {
   address: string
   slug?: string
   logo?: string
+  isLoading?: boolean
   onConnect(): void
-  onDetail(): void
 }
 
 const PlacePreviewModal: FC<PlacePreviewModalProps> = ({ className }) => {
-  const { modalContext } = useModal()
+  const { modalContext, close } = useModal()
   const context = modalContext[MODAL_NAMES.placePreview]
 
   return (
@@ -28,8 +28,10 @@ const PlacePreviewModal: FC<PlacePreviewModalProps> = ({ className }) => {
         <Styled.Header firstName={context?.name} description={context?.address} avatar={context?.logo} />
 
         <Styled.Actions>
-          <Styled.Action size='l' stretched mode='secondary' onClick={context?.onDetail}>
-            Detail
+          <Styled.Action type='location' locationSlug={context?.slug || 'unknown'} waitNavigate={close}>
+            <Button size='l' stretched mode='secondary' loading={context?.isLoading}>
+              Detail
+            </Button>
           </Styled.Action>
 
           <Button size='l' icon='lightning' onClick={context?.onConnect} />

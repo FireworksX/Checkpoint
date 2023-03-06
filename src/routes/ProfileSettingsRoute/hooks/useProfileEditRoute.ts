@@ -10,7 +10,7 @@ import {userTokens} from "../../../utils/userTokens";
 export const useProfileEditRoute = () => {
   const {backSafe} = useRouter()
   const { user, logout, update } = useCurrentUser()
-  const profileLink = useLinkConfig('profile')
+  const [profileLink] = useLinkConfig('profile')
   const [updating, toggleUpdating] = useToggle(false)
   const token = userTokens().getTokens().accessToken
 

@@ -1,0 +1,5 @@
+mutation CreatePost($googleId: String!, $token: String!, $text: String, $parentId: String) {
+  savePost(input: { googleId: $googleId, token: $token, text: $text, parentId: $parentId }) {
+    id
+  }
+}

@@ -8,7 +8,7 @@
     "ecmaVersion": 12,
     "sourceType": "module"
   },
-  "plugins": ["@typescript-eslint", "react-hooks", "unused-imports"],
+  "plugins": ["@typescript-eslint", "react-hooks", "unused-imports", "prettier"],
   "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended", "prettier", "plugin:react/recommended"],
   "rules": {
     "react/react-in-jsx-scope": "off",

@@ -3,6 +3,7 @@ import { useFocusCityQuery } from '../queries/FocusCityQuery'
 import { appConfig } from 'src/data/appConfig'
 import { useDebounce } from 'src/hooks/useDebounce'
 import {useStore} from "@nanostores/react";
+import isBrowser from 'src/utils/isBrowser';
 
 export const useFocusCity = () => {
   const mapPosition = useStore(mapPositionAtom)
@@ -12,7 +13,7 @@ export const useFocusCity = () => {
 
   const [{ data }] = useFocusCityQuery({
     variables,
-    pause: !hasLabel
+    pause: !hasLabel || !isBrowser
   })
 
   return hasLabel ? data?.getCity : ''

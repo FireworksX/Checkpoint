@@ -8,17 +8,17 @@ import { getMinDistanceBounds } from 'src/store/mapStore/mapInstance/selectors/g
 import { mapLayers } from 'src/data/mapLayers'
 import { useModal } from 'src/hooks/useModal'
 import { MODAL_NAMES } from 'src/router/constants'
-import { useLinkConfig } from 'src/widgets/Link/hooks/useLinkConfig'
-import { useRouter } from 'src/hooks/useRouter'
+import { useDebounce } from '../../../../../hooks/useDebounce'
+import { useCreatePost } from '../../../../../hooks/data/useCreatePost/useCreatePost'
+import { userTokens } from '../../../../../utils/userTokens'
 
 export const useMapNearSearch = () => {
-  const router = useRouter()
+  const token = userTokens().getTokens().accessToken
   const nearSearch = useStore(mapSearchNearLayerAtom)
-  const mapPosition = useStore(mapPositionAtom)
-  const distance = useStore(getMinDistanceBounds)
+  const mapPosition = useDebounce(useStore(mapPositionAtom), 100)
+  const distance = useDebounce(useStore(getMinDistanceBounds), 100)
   const map = useStore(mapInstanceAtom)
-  const { open: openModal, close: closeModal } = useModal()
-  const placeDetailLink = useLinkConfig('location', { locationSlug: 'testLocation' })
+  const { open: openModal, modalContext, updateContext } = useModal()
 
   const { open: openSnackbar } = useSnackbar({
     text: 'Too far away from destination',
@@ -39,6 +39,28 @@ export const useMapNearSearch = () => {
     pause: !nearSearch.isVisible
   })
 
+  const [createdPost, createPost] = useCreatePost()
+
+  useEffect(() => {
+    updateContext(MODAL_NAMES.postCreate, {
+      isLoading: createdPost.fetching
+    })
+  }, [createdPost, updateContext])
+
+  const onConnect = useCallback(
+    async (text: string) => {
+      const modalCtx = modalContext[MODAL_NAMES.placePreview]
+
+      const newPost = await createPost({
+        text,
+        googleId: modalCtx?.slug,
+        token
+      })
+      console.log(newPost)
+    },
+    [createPost, token, modalContext]
+  )
+
   useEffect(() => {
     mapSearchNearLayerAtom.set({
       ...mapSearchNearLayerAtom.get(),
@@ -50,18 +72,14 @@ export const useMapNearSearch = () => {
     map?.on('click', mapLayers['near-search'], e => {
       const props = e.features[0].properties
 
-      console.log(props)
       openModal(MODAL_NAMES.placePreview, {
         name: props.name,
         address: props.address,
-        onConnect: () => openModal(MODAL_NAMES.postCreate),
-        onDetail: async () => {
-          await closeModal()
-          router.navigate(placeDetailLink.link.name, placeDetailLink.routeParams)
-        }
+        slug: props.googleId,
+        onConnect: () => openModal(MODAL_NAMES.postCreate, { onSubmit: onConnect })
       })
     })
-  }, [map])
+  }, [map, openModal])
 
   const startSearching = useCallback(() => {
     if (mapPosition.zoom > appConfig.searchMaxZoom) {

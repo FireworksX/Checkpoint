@@ -7,7 +7,6 @@ import LocationCard from '../../widgets/LocationCard/LocationCard'
 import Button from '../../components/Button/Button'
 import Separator from '../../components/Separator/Separator'
 import { useModal } from '../../hooks/useModal'
-import isBrowser from '../../utils/isBrowser'
 import PageHeaderButtonBack from '../../widgets/PageHeader/components/PageHeaderButtonBack/PageHeaderButtonBack'
 import { useRouter } from '../../hooks/useRouter'
 import GroupWrapper from '../../widgets/GroupWrapper/GroupWrapper'
@@ -42,10 +41,6 @@ const PostDetailRoute: FC<PostDetailRouteProps> = ({ className }) => {
     }, 100)
 
   }, [route.params])
-
-  if (!isBrowser) {
-    return null
-  }
 
   return (
     <Styled.Root className={className} headerLeft={<PageHeaderButtonBack />} title='Post'>

@@ -12,13 +12,15 @@ import LocationCard from 'src/widgets/LocationCard/LocationCard'
 import ButtonStates from 'src/components/ButtonStates/ButtonStates'
 import { useUserHeaderCounters } from '../../widgets/UserHeader/hooks/useUserHeaderCounters'
 import Link from '../../widgets/Link/Link'
+import Placeholder from "../../components/Placeholder/Placeholder";
+import Spinner from "../../components/Spinner/Spinner";
 
 interface UserRouteProps {
   className?: string
 }
 
 const UserRoute: FC<UserRouteProps> = ({ className }) => {
-  const { user, fetching, posts, connectPost } = useUserRoute()
+  const { user, fetching, posts, fetchingPosts, connectPost } = useUserRoute()
   const counters = useUserHeaderCounters(user?.counters || {})
 
   return (
@@ -56,6 +58,8 @@ const UserRoute: FC<UserRouteProps> = ({ className }) => {
       />
 
       <Container>
+        {fetchingPosts && <Placeholder icon={<Spinner />} />}
+
         {posts.map((post, index) => (
           <Styled.PostWrapper
             key={index}

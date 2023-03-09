@@ -21,7 +21,7 @@ export const useUserRoute = () => {
   })
   const user = data?.getUserInfo
 
-  const { posts } = useUserPosts(userName)
+  const { posts, fetching: fetchingPosts } = useUserPosts(userName)
   const [createdPost, createPost] = useCreatePost()
 
   const onConnectPost = useCallback(
@@ -40,6 +40,7 @@ export const useUserRoute = () => {
 
   return {
     fetching,
+    fetchingPosts,
     user,
     posts,
     connectPost: (postId: string) => {

@@ -11,16 +11,16 @@ import PageHeaderButton from '../../widgets/PageHeader/components/PageHeaderButt
 import Username from '../../components/Username/Username'
 import { useUserHeaderCounters } from '../../widgets/UserHeader/hooks/useUserHeaderCounters'
 import LocationCard from "../../widgets/LocationCard/LocationCard";
+import Placeholder from "../../components/Placeholder/Placeholder";
+import Spinner from "../../components/Spinner/Spinner";
 
 interface ProfileRouteProps {
   className?: string
 }
 
 const ProfileRoute: FC<ProfileRouteProps> = ({ className }) => {
-  const { user, posts, fetching } = useProfileRoute()
+  const { user, posts, fetching, fetchingPosts } = useProfileRoute()
   const counters = useUserHeaderCounters(user?.counters || {})
-
-  console.log(posts);
 
   // const posts = getRandomList(random(3, 35), getRandomPost)
 
@@ -49,6 +49,8 @@ const ProfileRoute: FC<ProfileRouteProps> = ({ className }) => {
       />
 
       <Container>
+        {fetchingPosts && <Placeholder icon={<Spinner />} />}
+
         {posts.map((post, index) => (
           <Styled.PostWrapper
             key={index}

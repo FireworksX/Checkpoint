@@ -48,18 +48,15 @@ export const useMapNearSearch = () => {
   }, [createdPost, updateContext])
 
   const onConnect = useCallback(
-    async (text: string) => {
-      const modalCtx = modalContext[MODAL_NAMES.placePreview]
-
-      console.log(modalContext);
-      const newPost = await createPost({
+    async (text: string, googleId: string) => {
+      await createPost({
         text,
-        googleId: modalCtx?.slug,
+        googleId,
         token
       })
-      console.log(newPost)
+
     },
-    [createPost, token, modalContext]
+    [createPost, token]
   )
 
   useEffect(() => {
@@ -77,7 +74,7 @@ export const useMapNearSearch = () => {
         name: props.name,
         address: props.address,
         slug: props.googleId,
-        onConnect: () => openModal(MODAL_NAMES.postCreate, { onSubmit: onConnect })
+        onConnect: () => openModal(MODAL_NAMES.postCreate, { onSubmit: text => onConnect(text, props.googleId) })
       })
     })
   }, [map, openModal])

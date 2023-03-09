@@ -1,43 +1,43 @@
 import { FC, useMemo } from 'react'
 import { Layer, Source } from 'react-map-gl'
 import { useTheme } from 'styled-components'
-import { times } from '../../../../utils/times'
-import { random } from '../../../../utils/random'
+import { usePlacesToGeojson } from '../../../../hooks/usePlacesToGeojson'
+import { point } from '@turf/turf'
+import { mapLayers } from '../../../../data/mapLayers'
+import { useStore } from '@nanostores/react'
+import { placemarksAtom } from '../../../../store/mapStore/placemarks'
 
-interface PlacemarksSourceProps {
-  visible?: boolean
-}
+interface PlacemarksSourceProps {}
 
-const marks = times(200).map(() => [random(0, 120), random(-50, 90)])
+const PlacemarksSource: FC<PlacemarksSourceProps> = () => {
+  const placemarks = useStore(placemarksAtom)
 
-const geojson = {
-  type: 'FeatureCollection',
-  features: marks.map(mark => [{ type: 'Feature', geometry: { type: 'Point', coordinates: mark } }]).flat()
-}
+  const parsePoints = usePlacesToGeojson(placemarks.data, place =>
+    point([place.geometry.location.lng, place.geometry.location.lat], place)
+  )
 
-const PlacemarksSource: FC<PlacemarksSourceProps> = ({ visible = true }) => {
   const theme = useTheme()
 
   const layerStyle = useMemo(
     () => ({
-      id: 'point',
+      id: mapLayers.placemarks,
       type: 'circle',
       paint: {
         'circle-radius': ['interpolate', ['linear'], ['zoom'], 7, 5, 15, 7.5, 20, 10],
-        'circle-color': theme.colors.backgroundDark
+        'circle-color': theme.colors.backgroundDark,
+        'circle-stroke-width': 3,
+        'circle-stroke-color': theme.colors.secondaryBg
       },
       layout: {
-        visibility: visible ? 'visible' : 'none'
+        visibility: placemarks.isVisible ? 'visible' : 'none'
       }
     }),
-    [theme, visible]
+    [theme, placemarks]
   )
 
   return (
-    <Source type='geojson' data={geojson}>
-      <Layer
-        {...layerStyle}
-      />
+    <Source type='geojson' data={parsePoints}>
+      <Layer {...layerStyle} />
     </Source>
   )
 }

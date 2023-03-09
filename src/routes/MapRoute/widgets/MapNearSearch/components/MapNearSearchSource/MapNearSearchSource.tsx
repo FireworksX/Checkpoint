@@ -5,7 +5,7 @@ import { mapSearchNearLayerAtom } from 'src/store/mapStore'
 import { mapLayers } from 'src/data/mapLayers'
 import { usePlacesToGeojson } from '../../../../../../hooks/usePlacesToGeojson'
 import { point } from '@turf/turf'
-import {useStore} from "@nanostores/react";
+import { useStore } from '@nanostores/react'
 
 interface MapNearSearchSourceProps {
   className?: string

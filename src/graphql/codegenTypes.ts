@@ -152,6 +152,7 @@ export type Place = {
   geometry: Maybe<PlaceGeometry>;
   rating: Maybe<PlaceRating>;
   address: Maybe<Scalars['String']>;
+  photos: Maybe<Array<Maybe<Scalars['String']>>>;
 };
 
 export type PlaceAddress = {
@@ -174,6 +175,11 @@ export type PlaceRating = {
 export type PlaceViewport = {
   northeast: Maybe<Coords>;
   southwest: Maybe<Coords>;
+};
+
+export type Placemark = {
+  geometry: Maybe<PlaceGeometry>;
+  post: Maybe<Post>;
 };
 
 export type Post = {
@@ -211,6 +217,7 @@ export type Query = {
   userSubscribers: Maybe<Array<User>>;
   userConnections: Maybe<Array<User>>;
   userFollowers: Maybe<Array<User>>;
+  getPlacemarks: Maybe<Array<Maybe<Placemark>>>;
   users: Array<User>;
 };
 
@@ -278,6 +285,11 @@ export type QueryUserConnectionsArgs = {
 
 export type QueryUserFollowersArgs = {
   userName: Scalars['String'];
+};
+
+
+export type QueryGetPlacemarksArgs = {
+  token: Scalars['String'];
 };
 
 export type SavePostInput = {

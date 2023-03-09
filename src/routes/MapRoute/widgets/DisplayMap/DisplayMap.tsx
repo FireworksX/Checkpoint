@@ -4,6 +4,8 @@ import { useMyLocation } from '../../hooks/useMyLocation'
 import { useDisplayMap } from './hooks/useDisplayMap'
 import MapNearSearchSource from '../MapNearSearch/components/MapNearSearchSource/MapNearSearchSource'
 import { mapInstanceAtom } from 'src/store/mapStore'
+import PlacemarksSource from '../PlacemarksSource/PlacemarksSource'
+import { usePlacemarks } from '../../../../hooks/data/usePlacemarks/usePlacemarks'
 
 interface DisplayMapProps {
   className?: string
@@ -14,6 +16,7 @@ const MAPBOX_TOKEN = import.meta.env.VITE_MAPBOX_TOKEN
 const DisplayMap: FC<DisplayMapProps> = ({ className }) => {
   const { marker, control } = useMyLocation()
   const { mapPosition } = useDisplayMap()
+  usePlacemarks()
 
   const measuredRef = useCallback(node => {
     if (node !== null) {
@@ -35,7 +38,7 @@ const DisplayMap: FC<DisplayMapProps> = ({ className }) => {
     >
       {marker}
       {control}
-      {/*<PlacemarksSource visible={false} />*/}
+      <PlacemarksSource />
       <MapNearSearchSource />
     </Map>
   )

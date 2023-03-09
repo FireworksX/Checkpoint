@@ -13,6 +13,7 @@ interface PostPreviewModalProps {
 export interface PostPreviewModalContext {
   target: ReactNode
   content: string
+  slug: string
   author: {
     firstName?: string
     lastName?: string
@@ -35,7 +36,7 @@ const PostPreviewModal: FC<PostPreviewModalProps> = ({ className }) => {
           />
         </Link>
 
-        <Link type='post' postSlug='test' waitNavigate={close}>
+        <Link type='post' postSlug={context?.slug} waitNavigate={close}>
           <Styled.Text>{context?.content}</Styled.Text>
         </Link>
 

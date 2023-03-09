@@ -1,0 +1,15 @@
+#import "../../../graphql/fragments/PostFragment.gql"
+
+query Placemarks($token: String!) {
+  getPlacemarks(token: $token) {
+    geometry {
+      location {
+        lat
+        lng
+      }
+    }
+    post {
+      ...PostFragment
+    }
+  }
+}

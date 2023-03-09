@@ -13,13 +13,15 @@ import { useModal } from 'src/hooks/useModal'
 import { useShare } from '../../hooks/useShare'
 import { useLocationDetailRoute } from './hooks/useLocationDetailRoute'
 import UserHeader from '../../components/UserHeader/UserHeader'
+import Placeholder from '../../components/Placeholder/Placeholder'
+import Spinner from '../../components/Spinner/Spinner'
 
 interface LocationDetailRouteProps {
   className?: string
 }
 
 const LocationDetailRoute: FC<LocationDetailRouteProps> = ({ className }) => {
-  const { name, address, connections, onConnect } = useLocationDetailRoute()
+  const { name, address, connections, fetchingConnections, onConnect } = useLocationDetailRoute()
 
   const { open, close } = useModal()
   const { share, isAvailable } = useShare()
@@ -66,6 +68,8 @@ const LocationDetailRoute: FC<LocationDetailRouteProps> = ({ className }) => {
             </Styled.Action>
           )}
         </Styled.Actions>
+
+        {fetchingConnections && <Placeholder icon={<Spinner />} />}
 
         {connections.length > 0 && (
           <>

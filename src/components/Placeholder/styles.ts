@@ -7,6 +7,8 @@ export const Root = styled.div`
 
 export const Icon = styled.div`
   margin-bottom: 12px;
+  display: flex;
+  justify-content: center;
 `
 
 export const Header = styled.h2`

@@ -18,7 +18,7 @@ export const useLocationDetailRoute = () => {
     }
   })
 
-  const [{ data: placeConnections }] = usePlaceDetailConnectionsQuery({
+  const [{ data: placeConnections, fetching: fetchingConnections }] = usePlaceDetailConnectionsQuery({
     variables: {
       placeSlug: placeData?.place?.slug || ''
     },
@@ -36,6 +36,7 @@ export const useLocationDetailRoute = () => {
     name: placeData?.place?.name,
     address: placeData?.place?.address,
     connections: placeConnections?.postListByPlaceSlug || [],
+    fetchingConnections,
     onConnect
   }
 }

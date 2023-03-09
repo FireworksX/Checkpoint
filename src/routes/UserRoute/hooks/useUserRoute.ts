@@ -25,7 +25,7 @@ export const useUserRoute = () => {
   const [createdPost, createPost] = useCreatePost()
 
   const onConnectPost = useCallback(
-    async (parentPostId: string, googleId, text: string) => {
+    async (parentPostId: string, text: string) => {
       await createPost({
         googleId,
         text,
@@ -42,9 +42,9 @@ export const useUserRoute = () => {
     fetching,
     user,
     posts,
-    connectPost: (postId: string, googleId) => {
+    connectPost: (postId: string) => {
       open(MODAL_NAMES.postCreate, {
-        onSubmit: (text: string) => onConnectPost(postId, googleId, text)
+        onSubmit: (text: string) => onConnectPost(postId, text)
       })
     }
   }

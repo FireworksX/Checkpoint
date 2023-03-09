@@ -3,6 +3,7 @@ import { timezoneData, TimezoneName } from 'src/data/timezonesDayjs'
 
 export const phpFormat = 'YYYY-MM-DD HH:mm:ss'
 export const urlFormat = 'YYYY-MM-DD'
+export const defaultFormat = 'HH:mm - MMM DD, YYYY'
 
 export function getPhpDate() {
   return dayjs(new Date().toUTCString().replace(' GMT', '')).format(phpFormat)
@@ -10,13 +11,20 @@ export function getPhpDate() {
 
 export type FormatDateArg = {
   date: string | null | undefined | number
-  format: string
+  format: string | 'default'
   timezone?: TimezoneName
 }
 
 export function formatDate({ date, format, timezone }: FormatDateArg): any {
   if (!date) {
     return ''
+  }
+
+  if (format === 'default') {
+    if (typeof date === 'number') {
+      return dayjs.unix(date).format(defaultFormat)
+    }
+    return dayjs(date).format(defaultFormat)
   }
 
   return dayjs(date)

@@ -1,8 +1,8 @@
 import { FC, ReactNode } from 'react'
 import * as Styled from './styles'
 import DisplayText from 'src/widgets/DisplayText/DisplayText'
-import { MockUser } from '../../data/mocks'
 import Link from 'src/widgets/Link/Link'
+import DateFormatter from "../../components/DateFormatter/DateFormatter";
 
 interface PostProps {
   className?: string
@@ -10,9 +10,9 @@ interface PostProps {
   target: ReactNode
   header?: ReactNode
   content?: string
-  author: MockUser
   connectionsCount: number
   commentCount: number
+  createdAt?: number | string
   parent?: {
     userName: string
   }
@@ -34,11 +34,11 @@ const Post: FC<PostProps> = ({
   header,
   slug,
   selfActions,
-  author,
   content,
   parent,
   connectionsCount,
   commentCount,
+    createdAt,
   onConnect
 }) => {
   return (
@@ -55,7 +55,9 @@ const Post: FC<PostProps> = ({
 
         <Link type='post' postSlug={slug}>
           <Styled.Text>{content}</Styled.Text>
-          <Styled.Date>10:06 - Nov 23, 2022</Styled.Date>
+          <Styled.Date>
+            <DateFormatter date={createdAt} format='default'/>
+            </Styled.Date>
         </Link>
         <Styled.Target>{target}</Styled.Target>
         <Styled.Actions>

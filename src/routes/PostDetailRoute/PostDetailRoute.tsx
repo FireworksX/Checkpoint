@@ -14,6 +14,7 @@ import GroupWrapper from '../../widgets/GroupWrapper/GroupWrapper'
 import Counter from '../NotificationsRoute/components/Counter/Counter'
 import { useShare } from '../../hooks/useShare'
 import {usePostDetailRoute} from "./hooks/usePostDetailRoute";
+import Link from "../../widgets/Link/Link";
 
 interface PostDetailRouteProps {
   className?: string
@@ -25,7 +26,7 @@ const PostDetailRoute: FC<PostDetailRouteProps> = ({ className }) => {
   const { getParam, route } = useRouter()
   const { isAvailable, share } = useShare()
 
-  const {text, parent, commentCount, connectionsCount, place, postSlug} = usePostDetailRoute()
+  const {text, parent, commentCount, connectionsCount, place, postSlug, user} = usePostDetailRoute()
 
   const comments = []
 
@@ -54,15 +55,15 @@ const PostDetailRoute: FC<PostDetailRouteProps> = ({ className }) => {
         )}
         <div />
 
-        {/*<Link type='user' userSlug={post.user?.userName || ''}>*/}
-        {/*  <Styled.Header*/}
-        {/*    hasRefer={!!refer}*/}
-        {/*    avatar={post.user?.avatar}*/}
-        {/*    firstName={post.user?.firstName}*/}
-        {/*    lastName={post.user?.lastName}*/}
-        {/*    userName={post.user?.userName}*/}
-        {/*  />*/}
-        {/*</Link>*/}
+        <Link type='user' userSlug={user?.userName || ''}>
+          <Styled.Header
+            hasRefer={!!parent}
+            avatar={user?.avatar}
+            firstName={user?.firstName}
+            lastName={user?.lastName}
+            userName={user?.userName}
+          />
+        </Link>
 
 
         <Styled.Text>{text}</Styled.Text>
@@ -70,7 +71,7 @@ const PostDetailRoute: FC<PostDetailRouteProps> = ({ className }) => {
 
         <Styled.Gallery/>
 
-        {place && <Styled.Target type='location' locationSlug='testLocation'>
+        {place && <Styled.Target type='location' locationSlug={place.googleId}>
           <LocationCard
             name={place.name}
             location={place.address}

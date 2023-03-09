@@ -182,6 +182,7 @@ export type Post = {
   placeId: Scalars['String'];
   text: Scalars['String'];
   userName: Scalars['String'];
+  user: Maybe<User>;
   createdAt: Maybe<Scalars['Int']>;
   commentcnt: Maybe<Scalars['Int']>;
   comments: Maybe<Array<Comment>>;

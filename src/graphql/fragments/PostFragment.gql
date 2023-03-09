@@ -1,14 +1,19 @@
 #import "PlaceFragment.gql"
+#import "UserInfoFragment.gql"
 
 fragment PostFragment on Post {
   id
   text
   commentCount: commentcnt
   connectionsCount: connectionscnt
+  user {
+    ...UserInfoFragment
+  }
   place {
     ...PlaceFragment
   }
   parent {
     userName
   }
+  createdAt
 }

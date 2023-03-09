@@ -63,6 +63,7 @@ const ProfileRoute: FC<ProfileRouteProps> = ({ className }) => {
                 <LocationCard name={post.place.name} location={post.place.address} />
               </Link>
             }
+            createdAt={post.createdAt}
             parent={post.parent}
             selfActions={post.selfActions}
           />

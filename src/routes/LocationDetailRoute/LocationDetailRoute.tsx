@@ -12,6 +12,7 @@ import GroupWrapper from 'src/widgets/GroupWrapper/GroupWrapper'
 import { useModal } from 'src/hooks/useModal'
 import { useShare } from '../../hooks/useShare'
 import { useLocationDetailRoute } from './hooks/useLocationDetailRoute'
+import UserHeader from '../../components/UserHeader/UserHeader'
 
 interface LocationDetailRouteProps {
   className?: string
@@ -73,10 +74,18 @@ const LocationDetailRoute: FC<LocationDetailRouteProps> = ({ className }) => {
               {connections.map((post, index) => (
                 <Styled.PostWrapper
                   key={index}
+                  header={
+                    <UserHeader
+                      avatar={post.user?.avatar}
+                      firstName={post.user?.firstName}
+                      lastName={post.user?.lastName}
+                      userName={post.user?.userName}
+                    />
+                  }
                   slug={post.id}
-                  // author={user}
-                  refer={post.refer}
+                  parent={post.parent}
                   content={post.text}
+                  createdAt={post.createdAt}
                   commentCount={post.commentCount}
                   connectionsCount={post.connectionsCount}
                 />

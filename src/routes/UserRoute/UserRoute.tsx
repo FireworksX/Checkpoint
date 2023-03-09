@@ -70,7 +70,7 @@ const UserRoute: FC<UserRouteProps> = ({ className }) => {
                 <LocationCard name={post.place.name} location={post.place.address} />
               </Link>
             }
-            onConnect={() => connectPost(post.id, post.place.googleId)}
+            onConnect={() => connectPost(post.id)}
           />
         ))}
       </Container>

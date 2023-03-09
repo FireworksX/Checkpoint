@@ -51,6 +51,7 @@ export const useMapNearSearch = () => {
     async (text: string) => {
       const modalCtx = modalContext[MODAL_NAMES.placePreview]
 
+      console.log(modalContext);
       const newPost = await createPost({
         text,
         googleId: modalCtx?.slug,

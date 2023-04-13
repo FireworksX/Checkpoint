@@ -4,11 +4,11 @@ import { useUserQuery } from '../queries/UserQuery'
 import { userTokens } from '../../../utils/userTokens'
 import { useUserPosts } from '../../../hooks/data/useUserPosts/useUserPosts'
 import { useCreatePost } from '../../../hooks/data/useCreatePost/useCreatePost'
-import { useCallback } from 'react'
+import {useCallback, useEffect} from 'react'
 import { useModal } from '../../../hooks/useModal'
 
 export const useUserRoute = () => {
-  const { open } = useModal()
+  const { open, close, updateContext } = useModal()
   const { getParam } = useRouter()
   const userName = getParam(ROUTE_PARAMS.userSlug)
   const token = userTokens().getTokens().accessToken
@@ -24,18 +24,25 @@ export const useUserRoute = () => {
   const { posts, fetching: fetchingPosts } = useUserPosts(userName)
   const [createdPost, createPost] = useCreatePost()
 
+  useEffect(() => {
+    updateContext(MODAL_NAMES.postCreate, {
+      isLoading: createdPost.fetching
+    })
+  }, [createdPost.fetching])
+
   const onConnectPost = useCallback(
     async (parentPostId: string, text: string) => {
-      await createPost({
-        googleId,
+      const result = await createPost({
         text,
         parentId: parentPostId,
         token
       })
 
-      console.log(createdPost)
+      console.log(result)
+      close()
+
     },
-    [createdPost, createPost, token]
+    [createdPost, createPost, token, close]
   )
 
   return {

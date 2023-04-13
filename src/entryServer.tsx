@@ -26,11 +26,8 @@ export async function render(url: string, ctx: AppContext) {
   const urqlCache = urqlCacheNotify()
   addService('urqlCacheNotify', urqlCache)
 
-
-
   const cacheManagerInstance = cacheManager()
   cacheManagerInstance.set('x-user-ip', ip || undefined)
-
 
   cacheManagerInstance.set('useragent', ctx.req.useragent)
 

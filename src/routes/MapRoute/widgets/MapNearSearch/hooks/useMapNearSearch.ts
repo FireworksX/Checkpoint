@@ -18,7 +18,7 @@ export const useMapNearSearch = () => {
   const mapPosition = useDebounce(useStore(mapPositionAtom), 100)
   const distance = useDebounce(useStore(getMinDistanceBounds), 100)
   const map = useStore(mapInstanceAtom)
-  const { open: openModal, modalContext, updateContext } = useModal()
+  const { open: openModal, close, updateContext } = useModal()
 
   const { open: openSnackbar } = useSnackbar({
     text: 'Too far away from destination',
@@ -54,6 +54,8 @@ export const useMapNearSearch = () => {
         googleId,
         token
       })
+
+      close()
 
     },
     [createPost, token]

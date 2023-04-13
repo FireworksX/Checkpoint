@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import Avatar from '../Avatar/Avatar'
 import PostAction from './components/PostAction/PostAction'
 import DisplayText from '../DisplayText/DisplayText'
+import Button from "../../components/Button/Button";
 
 interface Props {
   hasRefer?: boolean
@@ -22,7 +23,14 @@ export const Body = styled.div<Props>`
 `
 
 export const Header = styled.div`
+  display: flex;
+  align-items: center;
   margin-bottom: 15px;
+`
+
+export const HeadAction = styled(Button)`
+  margin-left: auto;
+  color: ${({ theme }) => theme.colors.textColorDark};
 `
 
 export const Connected = styled.div`

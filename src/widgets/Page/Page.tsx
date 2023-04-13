@@ -13,6 +13,7 @@ interface PageProps {
   headerLeft?: ReactNode
   headerRight?: ReactNode
   children?: ReactNode
+  hiddenBodyWhileFetching?: boolean
 }
 
 export type PageFetchingState = 'error' | 'success' | undefined
@@ -20,7 +21,20 @@ export type PageFetchingState = 'error' | 'success' | undefined
 export type PageRef = { fetchingError: () => Promise<void>; fetchingSuccess: () => Promise<void> }
 
 const Page = forwardRef<PageRef, PageProps>(
-  ({ className, children, headerLeft, headerRight, title, description, fetching, safeAreaBottom = true }, ref) => {
+  (
+    {
+      className,
+      children,
+      hiddenBodyWhileFetching,
+      headerLeft,
+      headerRight,
+      title,
+      description,
+      fetching,
+      safeAreaBottom = true
+    },
+    ref
+  ) => {
     const [fetchingState, setFetchingState] = useState<PageFetchingState>()
     const hasHeader = !!title || !!description || !!headerLeft || !!headerRight
     const proxyFetching = fetching || fetchingState === 'error' || fetchingState === 'success'
@@ -52,7 +66,7 @@ const Page = forwardRef<PageRef, PageProps>(
             </Styled.SpinnerWrapper>
           </Styled.ScreenSpinner>
         )}
-        {children}
+        {fetching && hiddenBodyWhileFetching ? null : children}
       </Styled.Root>
     )
   }

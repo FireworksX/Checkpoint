@@ -7,5 +7,6 @@ query PlaceDetail($googleId: String) {
       value
       count
     }
+    photos
   }
 }

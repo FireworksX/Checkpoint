@@ -20,6 +20,7 @@ export const Root = styled(Touchable)<Props>`
   display: flex;
   align-items: center;
   justify-content: center;
+  border-bottom: 1px solid ${({ theme }) => theme.colors.border};
 
   &:first-child {
     border-top-left-radius: 14px;
@@ -29,5 +30,6 @@ export const Root = styled(Touchable)<Props>`
   &:last-child {
     border-bottom-left-radius: 14px;
     border-bottom-right-radius: 14px;
+    border-bottom: none;
   }
 `

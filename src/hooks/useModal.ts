@@ -7,12 +7,14 @@ import { PostPreviewModalContext } from '../modals/PostPreviewModal/PostPreviewM
 import { GeoLocationRestrictedContext } from '../modals/GeoLocationRestricted/GeoLocationRestricted'
 import { PlacePreviewModalContext } from '../modals/PlacePreviewModal/PlacePreviewModal'
 import { useStore } from '@nanostores/react'
+import {PostActionsContext} from "../modals/PostActions/PostActions";
 
 export type ModalsCtx = Partial<{
   [MODAL_NAMES.postCreate]: CreatePostsModalContext
   [MODAL_NAMES.postPreview]: PostPreviewModalContext
   [MODAL_NAMES.geoLocationRestricted]: GeoLocationRestrictedContext
   [MODAL_NAMES.placePreview]: PlacePreviewModalContext
+  [MODAL_NAMES.postActions]: PostActionsContext
 }>
 
 export const useModal = () => {

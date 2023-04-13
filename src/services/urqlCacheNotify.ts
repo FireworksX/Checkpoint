@@ -4,6 +4,7 @@ interface UrqlCacheStore {
   subscribe: UpdateResolver[]
   unSubscribe: UpdateResolver[]
   editUser: UpdateResolver[]
+  savePost: UpdateResolver[]
 }
 
 export type UrqlCacheNotify = ReturnType<typeof urqlCacheNotify>

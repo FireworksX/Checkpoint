@@ -25,7 +25,7 @@ const PostDetailRoute: FC<PostDetailRouteProps> = ({ className }) => {
   const { getParam, route } = useRouter()
   const { isAvailable, share } = useShare()
 
-  const {text, parent, commentCount, connectionsCount, place, postSlug, user} = usePostDetailRoute()
+  const {text, parent, commentCount, connectionsCount, place, postSlug, user, fetching} = usePostDetailRoute()
 
   const comments = []
 
@@ -43,7 +43,7 @@ const PostDetailRoute: FC<PostDetailRouteProps> = ({ className }) => {
   }, [route.params])
 
   return (
-    <Styled.Root className={className} headerLeft={<PageHeaderButtonBack />} title='Post'>
+    <Styled.Root className={className} fetching={fetching} hiddenBodyWhileFetching headerLeft={<PageHeaderButtonBack />} title='Post'>
       <Container>
         {parent && (
           <Styled.ConnectedSection>Connected from @{parent.userName}</Styled.ConnectedSection>
@@ -77,8 +77,8 @@ const PostDetailRoute: FC<PostDetailRouteProps> = ({ className }) => {
           <Styled.Metric type='postConnections' postSlug={postSlug}>
             <span>{connectionsCount}</span> Connections
           </Styled.Metric>
-          <Styled.Metric type='postLikes' postSlug={postSlug}>
-            <span>{15}</span> Likes
+          <Styled.Metric type='post' postSlug={postSlug}>
+            <span>{commentCount}</span> Comments
           </Styled.Metric>
         </Styled.Metrics>
 
@@ -99,9 +99,9 @@ const PostDetailRoute: FC<PostDetailRouteProps> = ({ className }) => {
           <Styled.Action icon='map-pin-alt' size='m' mode='secondary'>
             Show on map
           </Styled.Action>
-          <Styled.Action icon='heart' size='m' mode='secondary'>
-            Like
-          </Styled.Action>
+          {/*<Styled.Action icon='heart' size='m' mode='secondary'>*/}
+          {/*  Like*/}
+          {/*</Styled.Action>*/}
           {isAvailable && (
             <Styled.Action icon='share' size='m' mode='secondary' onClick={share}>
               Share

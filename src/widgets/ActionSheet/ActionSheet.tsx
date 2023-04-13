@@ -9,7 +9,7 @@ interface ActionSheetProps {
 }
 
 const ActionSheet: FC<ActionSheetProps> = ({ className, name, children }) => {
-  const { close } = useModal(name)
+  const { close } = useModal()
 
   return (
     <Styled.Root name={name} className={className} withHeader={false} withBackground={false} autoClose>

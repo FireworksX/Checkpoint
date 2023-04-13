@@ -2,7 +2,7 @@ import { FC, ReactNode } from 'react'
 import * as Styled from './styles'
 import DisplayText from 'src/widgets/DisplayText/DisplayText'
 import Link from 'src/widgets/Link/Link'
-import DateFormatter from "../../components/DateFormatter/DateFormatter";
+import DateFormatter from '../../components/DateFormatter/DateFormatter'
 
 interface PostProps {
   className?: string
@@ -26,6 +26,7 @@ interface PostProps {
     hasLike: boolean
   }
   onConnect(): void
+  onHeaderAction?(): void
 }
 
 const Post: FC<PostProps> = ({
@@ -38,8 +39,9 @@ const Post: FC<PostProps> = ({
   parent,
   connectionsCount,
   commentCount,
-    createdAt,
-  onConnect
+  createdAt,
+  onConnect,
+  onHeaderAction
 }) => {
   return (
     <Styled.Root className={className} hasRefer={!!parent}>
@@ -51,23 +53,31 @@ const Post: FC<PostProps> = ({
         </Link>
       )}
       <Styled.Body hasHeader={!!header}>
-        {!!header && <Styled.Header>{header}</Styled.Header>}
+        {(!!header || onHeaderAction) && (
+          <Styled.Header>
+            {header}
+            {onHeaderAction && <Styled.HeadAction icon='more-vertical' mode='tertiary' onClick={onHeaderAction} />}
+          </Styled.Header>
+        )}
 
         <Link type='post' postSlug={slug}>
           <Styled.Text>{content}</Styled.Text>
           <Styled.Date>
-            <DateFormatter date={createdAt} format='default'/>
-            </Styled.Date>
+            <DateFormatter date={createdAt} format='default' />
+          </Styled.Date>
         </Link>
         <Styled.Target>{target}</Styled.Target>
         <Styled.Actions>
           <Styled.Action icon='lightning' isActive={selfActions?.hasConnect} onClick={onConnect}>
             {connectionsCount}
           </Styled.Action>
-          <Styled.Action icon='message-circle'>{commentCount}</Styled.Action>
-          <Styled.Action icon='heart' isActive={selfActions?.hasLike}>
-            5
-          </Styled.Action>
+          <Link type='post' postSlug={slug} postComments>
+            <Styled.Action icon='message-circle'>{commentCount}</Styled.Action>{' '}
+          </Link>
+
+          {/*<Styled.Action icon='heart' isActive={selfActions?.hasLike}>*/}
+          {/*  5*/}
+          {/*</Styled.Action>*/}
         </Styled.Actions>
       </Styled.Body>
     </Styled.Root>

@@ -14,6 +14,8 @@ export const urqlCacheExchange = (urqlCacheNotify: UrqlCacheNotify) => cacheExch
     PlaceViewport: placeViewpoint => buildCacheKey(placeViewpoint, 'northeast', 'southwest'),
     UserCounters: () => null,
     ConnectionFlag: () => null,
+    Post: post => buildCacheKey(post, 'id'),
+    Placemark: placemark => placemark?.post?.id || null,
   },
   resolvers: {
     Query: {
@@ -34,6 +36,7 @@ export const urqlCacheExchange = (urqlCacheNotify: UrqlCacheNotify) => cacheExch
       subscribe: urqlCacheNotify.mutation('subscribe'),
       unSubscribe: urqlCacheNotify.mutation('unSubscribe'),
       editUser: urqlCacheNotify.mutation('editUser'),
+      savePost: urqlCacheNotify.mutation('savePost'),
     }
   }
 })

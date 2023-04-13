@@ -1,4 +1,4 @@
-import { useCallback, useMemo } from 'react'
+import { useCallback, useEffect, useMemo } from 'react'
 import { userTokens } from 'src/utils/userTokens'
 import { useCurrentUserQuery } from './CurrentUserQuery'
 import { useCacheManager } from '../../useCacheManager'
@@ -16,19 +16,23 @@ export const useCurrentUser = () => {
 
   const [{ data, fetching }, revalidate] = useCurrentUserQuery({
     variables: {
-      token,
+      token: token || '',
       ip: cacheManager.get('x-user-ip')
-    },
-    pause: !token
+    }
   })
 
   const user = useMemo(() => data?.getMe, [data])
 
-  const logout = useCallback(async () => {
-    await revalidate({requestPolicy: "network-only"})
+  useEffect(() => {
+    if (!user) {
+      router.navigate(welcomeLink.link.name, welcomeLink.link.params)
+    }
+  }, [user, router, welcomeLink])
+
+  const logout = async () => {
     userTokensManager.resetTokens()
-    router.navigate(welcomeLink.link.name, welcomeLink.link.params)
-  }, [userTokensManager, router, welcomeLink, revalidate])
+    revalidate({ requestPolicy: 'network-only' })
+  }
 
   const update = useCallback(async () => {
     await promiseWaiter(300)

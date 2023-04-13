@@ -29,6 +29,7 @@ const UserRoute: FC<UserRouteProps> = ({ className }) => {
       title={<Username>{user?.userName}</Username>}
       description='Profile'
       fetching={fetching}
+      hiddenBodyWhileFetching
       headerLeft={<PageHeaderButtonBack />}
     >
       <UserHeader

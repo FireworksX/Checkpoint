@@ -8,7 +8,8 @@ import CreatePostModal from 'src/modals/CreatePostModal/CreatePostModal'
 import GeoLocationRestricted from '../../modals/GeoLocationRestricted/GeoLocationRestricted'
 import Snackbar from '../../widgets/Snackbar/Snackbar'
 import PlacePreviewModal from '../../modals/PlacePreviewModal/PlacePreviewModal'
-import {useStore} from "@nanostores/react";
+import { useStore } from '@nanostores/react'
+import PostActions from '../../modals/PostActions/PostActions'
 
 interface NavigationRouteProps {
   className?: string
@@ -27,6 +28,7 @@ const NavigationRoute: FC<NavigationRouteProps> = ({ className, children }) => {
       <PostPreviewModal />
       <CreatePostModal />
       <GeoLocationRestricted />
+      <PostActions />
     </Styled.Root>
   )
 }

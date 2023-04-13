@@ -10,16 +10,18 @@ import { mapInstanceAtom } from '../../../store/mapStore'
 import { useModal } from '../../useModal'
 import LocationCard from '../../../widgets/LocationCard/LocationCard'
 import Link from '../../../widgets/Link/Link'
+import isBrowser from "../../../utils/isBrowser";
 
 export const usePlacemarks = () => {
   const map = useStore(mapInstanceAtom)
   const token = userTokens().getTokens().accessToken
-  const { open } = useModal()
+  const { open, close } = useModal()
 
   const [{ data }] = usePlacemarksQuery({
     variables: {
       token
-    }
+    },
+    pause: !isBrowser
   })
 
   const placemarks = data?.getPlacemarks || []
@@ -41,7 +43,7 @@ export const usePlacemarks = () => {
         author: postData.user,
         slug: postData.id,
         target: (
-          <Link type='location' locationSlug={postData.place.googleId}>
+          <Link type='location' locationSlug={postData.place.googleId} waitNavigate={close}>
             <LocationCard name={postData.place.name} location={postData.place.address} />
           </Link>
         )

@@ -48,7 +48,7 @@ const zIndex = {
   mapLocation: 2
 }
 
-export const MODAL_NAMES = createConstants('postPreview', 'postCreate', 'geoLocationRestricted', 'placePreview')
+export const MODAL_NAMES = createConstants('postPreview', 'postCreate', 'geoLocationRestricted', 'placePreview', 'postActions')
 
 export type ModalName = keyof typeof MODAL_NAMES
 

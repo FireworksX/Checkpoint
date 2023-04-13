@@ -38,6 +38,11 @@ export type Coords = {
   lng: Maybe<Scalars['Float']>;
 };
 
+export type DelPostOrComm = {
+  id?: Maybe<Scalars['String']>;
+  token?: Maybe<Scalars['String']>;
+};
+
 export type LatLng = {
   lat?: Maybe<Scalars['Float']>;
   lng?: Maybe<Scalars['Float']>;
@@ -58,6 +63,8 @@ export type MapSettingsInput = {
 };
 
 export type Mutation = {
+  deletePost: Scalars['Boolean'];
+  deleteComment: Scalars['Boolean'];
   unConnectPost: Scalars['Boolean'];
   saveMapSettings: Scalars['Boolean'];
   sendAuthCode: User;
@@ -70,6 +77,16 @@ export type Mutation = {
   unSubscribe: Scalars['Boolean'];
   connect: Scalars['Boolean'];
   unConnect: Scalars['Boolean'];
+};
+
+
+export type MutationDeletePostArgs = {
+  input: DelPostOrComm;
+};
+
+
+export type MutationDeleteCommentArgs = {
+  input: DelPostOrComm;
 };
 
 

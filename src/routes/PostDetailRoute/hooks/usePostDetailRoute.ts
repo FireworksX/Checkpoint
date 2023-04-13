@@ -6,7 +6,7 @@ export const usePostDetailRoute = () => {
   const { getParam } = useRouter()
   const postSlug = getParam(ROUTE_PARAMS.postSlug)
 
-  const [{ data }] = usePostDetailQuery({
+  const [{ data, fetching }] = usePostDetailQuery({
     variables: {
       slug: postSlug
     }
@@ -14,6 +14,7 @@ export const usePostDetailRoute = () => {
 
   return {
     postSlug,
+    fetching,
     ...(data?.postListById || {})
   }
 }

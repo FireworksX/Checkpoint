@@ -1,11 +1,13 @@
 import { FC } from 'react'
 import * as Styled from './styles'
 import { route } from 'src/hoc/route'
-import { ROUTE_NAMES } from 'src/router/constants'
+import {MODAL_NAMES, ROUTE_NAMES} from 'src/router/constants'
 import { useProfileRoute } from './hooks/useProfileRoute'
 import Icon from 'src/components/Icon/Icon'
 import Container from 'src/components/Container/Container'
 import UserHeader from 'src/widgets/UserHeader/UserHeader'
+import PostUserHeader from '../../components/UserHeader/UserHeader'
+
 import Link from 'src/widgets/Link/Link'
 import PageHeaderButton from '../../widgets/PageHeader/components/PageHeaderButton/PageHeaderButton'
 import Username from '../../components/Username/Username'
@@ -13,6 +15,7 @@ import { useUserHeaderCounters } from '../../widgets/UserHeader/hooks/useUserHea
 import LocationCard from "../../widgets/LocationCard/LocationCard";
 import Placeholder from "../../components/Placeholder/Placeholder";
 import Spinner from "../../components/Spinner/Spinner";
+import {useModal} from "../../hooks/useModal";
 
 interface ProfileRouteProps {
   className?: string
@@ -21,6 +24,7 @@ interface ProfileRouteProps {
 const ProfileRoute: FC<ProfileRouteProps> = ({ className }) => {
   const { user, posts, fetching, fetchingPosts } = useProfileRoute()
   const counters = useUserHeaderCounters(user?.counters || {})
+  const {open} = useModal()
 
   // const posts = getRandomList(random(3, 35), getRandomPost)
 
@@ -55,6 +59,14 @@ const ProfileRoute: FC<ProfileRouteProps> = ({ className }) => {
           <Styled.PostWrapper
             key={index}
             slug={post.id}
+            header={
+              <PostUserHeader
+                  avatar={post.user?.avatar}
+                  firstName={post.user?.firstName}
+                  lastName={post.user?.lastName}
+                  userName={post.user?.userName}
+              />
+            }
             // author={user}
             refer={post.refer}
             content={post.text}
@@ -68,6 +80,11 @@ const ProfileRoute: FC<ProfileRouteProps> = ({ className }) => {
             createdAt={post.createdAt}
             parent={post.parent}
             selfActions={post.selfActions}
+            onHeaderAction={() => open(MODAL_NAMES.postActions, {
+              onDelete: () => alert('delete'),
+              onEdit: () => alert('delete'),
+              onReport: () => alert('report')
+            })}
           />
         ))}
       </Container>

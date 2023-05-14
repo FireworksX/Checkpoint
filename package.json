@@ -1,7 +1,7 @@
 {
   "name": "Checkpoint",
   "short_name": "Checkpoint",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "engines": {
     "node": ">=14.18.3"
   },

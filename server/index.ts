@@ -1,19 +1,26 @@
-require('dotenv').config()
-require('dotenv').config({
-  path: '.env.local'
-})
+import { createProxyMiddleware } from 'http-proxy-middleware'
+import dotenv from 'dotenv'
 import { FilledContext } from 'react-helmet-async'
 import { Request, Response } from 'express'
-import { apiProxy } from './proxy/apiProxy'
-import { gqlProxy } from './proxy/gqlProxy'
 import { CacheEntityKey } from '../src/services/cacheManager'
-const fs = require('fs')
-const path = require('path')
-const express = require('express')
-const bodyParser = require('body-parser')
-const cookieParser = require('cookie-parser')
-const useragent = require('express-useragent')
+import fs from 'fs'
+import path from 'path'
+import express from 'express'
+import compression from 'compression'
+import serverStatic from 'serve-static'
+import bodyParser from 'body-parser'
+import cookieParser from 'cookie-parser'
+import useragent from 'express-useragent'
+import { createServer as viteCreateServer } from 'vite'
+import { fileURLToPath } from 'url'
 
+dotenv.config()
+dotenv.config({
+  path: '.env.local'
+})
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 const isTest = process.env.NODE_ENV === 'test' || !!process.env.VITE_TEST_BUILD
 const port = process.env.VITE_PORT || 3000
 
@@ -34,6 +41,20 @@ export interface AppContext {
   res: Response
 }
 
+export const gqlProxy = createProxyMiddleware({
+  target: process.env.VITE_GQL_PATH,
+  changeOrigin: true,
+  logLevel: process.env.NODE_ENV !== 'production' ? 'debug' : 'error',
+  pathRewrite: { '^/graphql': '' }
+})
+
+export const apiProxy = createProxyMiddleware({
+  target: process.env.VITE_SERVER_PATH,
+  changeOrigin: true,
+  logLevel: process.env.NODE_ENV !== 'production' ? 'debug' : 'error',
+  pathRewrite: { '^/api': '' }
+})
+
 async function createServer(root = process.cwd(), isProd = process.env.NODE_ENV === 'production') {
   const resolve = (p: string) => path.resolve(__dirname, p)
 
@@ -51,7 +72,7 @@ async function createServer(root = process.cwd(), isProd = process.env.NODE_ENV 
 
   let vite: any
   if (!isProd) {
-    vite = await require('vite').createServer({
+    vite = await viteCreateServer({
       root,
       logLevel: isTest ? 'error' : 'info',
       server: {
@@ -67,9 +88,9 @@ async function createServer(root = process.cwd(), isProd = process.env.NODE_ENV 
     // use vite's connect instance as middleware
     app.use(vite?.middlewares)
   } else {
-    app.use(require('compression')())
+    app.use(compression())
     app.use(
-      require('serve-static')(resolve('../dist/client'), {
+      serverStatic(resolve('../dist/client'), {
         index: false
       })
     )
@@ -87,7 +108,8 @@ async function createServer(root = process.cwd(), isProd = process.env.NODE_ENV 
         render = (await vite.ssrLoadModule('/src/entryServer.tsx')).render
       } else {
         template = indexProd
-        render = require('../dist/server/entryServer.js').render
+        // @ts-ignore
+        render = (await import('../dist/server/entryServer.js')).render //require('../dist/server/entryServer.js').render
       }
 
       const context: AppContext = {
@@ -140,6 +162,3 @@ if (!isTest) {
     })
   )
 }
-
-// for test use
-exports.createServer = createServer

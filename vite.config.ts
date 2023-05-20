@@ -18,6 +18,9 @@ export default ({ mode }: UserConfig) => {
       }
     },
     publicDir: 'assets',
+    ssr: {
+      noExternal: ['swiper', 'react-use', 'router5', 'router5-transition-path', 'styled-components']
+    },
     server: {
       port
     },

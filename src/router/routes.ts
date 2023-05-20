@@ -80,7 +80,6 @@ export const routes: Route[] = [
           {
             name: ROUTE_NAMES.postDetail,
             path: `p-:${ROUTE_PARAMS.postSlug}?comments`,
-
             children: [
               { name: ROUTE_NAMES.postReview, path: '/', component: routeComponents.PostDetailRoute },
               {

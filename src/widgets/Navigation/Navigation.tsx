@@ -13,12 +13,12 @@ const Navigation: React.FC<NavigationProps> = ({ className }) => {
         <Styled.Item type='map'>
           <Styled.Icon name='compass' />
         </Styled.Item>
-        <Styled.Item type='search'>
-          <Styled.Icon name='search' />
-        </Styled.Item>
-        <Styled.Item type='notifications'>
-          <Styled.Icon name='bell' />
-        </Styled.Item>
+        {/*<Styled.Item type='search'>*/}
+        {/*  <Styled.Icon name='search' />*/}
+        {/*</Styled.Item>*/}
+        {/*<Styled.Item type='notifications'>*/}
+        {/*  <Styled.Icon name='bell' />*/}
+        {/*</Styled.Item>*/}
         <Styled.Item type='profile' partialActive={ROUTE_NAMES.profile}>
           <Styled.Icon name='user-circle' />
         </Styled.Item>

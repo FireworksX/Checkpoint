@@ -17,12 +17,12 @@ export const Root = styled(Touchable)<Props>`
   box-shadow: ${({ theme }) => theme.baseStyles.shadows.shadowBasic};
   padding: 10px ${({ theme }) => theme.baseStyles.paddings.gutterMobile};
   position: fixed;
-  bottom: 80px;
+  bottom: 20px;
   z-index: ${zIndex.snackbar};
   display: flex;
   align-items: center;
   transition: ${({ theme }) => theme.animation.transitionDuration};
-  transform: translateY(${({ isOpen }) => (isOpen ? 0 : 100)}px);
+  transform: translateY(${({ isOpen }) => (isOpen ? 0 : 300)}px);
 `
 
 export const Body = styled.div`
